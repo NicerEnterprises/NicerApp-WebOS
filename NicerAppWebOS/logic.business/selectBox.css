@@ -1,0 +1,49 @@
+    body { background : url('https://img.freepik.com/free-vector/christmas-tree-fir-branch-seamless-background-vector-illustration-eps-10_87521-4016.jpg?w=740&t=st=1661904867~exp=1661905467~hmac=43e432bac890a524eac1beca38685e8aa0bfd271d2c083e230dd9e8d7743a00a'); font-family:Montserrat;}
+    div.select {
+        margin: 20px;
+        padding: 10px;
+        background: rgba(255,255,255,0.7);
+        border: 3px ridge purple;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        width: 150px;
+        box-shadow : inset 2px 2px 2px 2px rgba(0,0,0,0.55), 2px 2px 2px 2px rgba(0,0,0,0.6);
+    }
+    div.select:hover {
+    border : 3px ridge lime;
+    }
+    div.select > ul {
+    display: none; width: 200px; left: 25px; position: absolute;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    }
+    div.select > ul > li {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    }
+    div.select:hover > ul > li > a { color : lime; }
+    div.select:hover > ul {display: block; background: rgba(0,0,150,0.5); border: 1px solid purple;}
+    div.select:hover > ul > li { padding: 5px;}
+    div.select:hover > ul > li:hover { background: white;}
+    div.select:hover > ul > li:hover > a { color: red; }
+
+    div.select > ul > li:nth-child(1):hover > ul {
+        display: none; height: 90px; width: 200px; left: 150px; position: absolute;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+    }
+    div.select:hover > ul > li:nth-child(1):hover > ul > li > a { color : lime; }
+    div.select:hover > ul > li:nth-child(1):hover > ul {
+    display: block; background: rgba(0,0,75,0.75); border: 1px solid purple;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    }
+    div.select:hover > ul > li:nth-child(1) > ul > li { padding: 5px; display: none; }
+    div.select:hover > ul > li:nth-child(1):hover > ul > li { padding: 5px; display: block; }
+    div.select:hover > ul > li:nth-child(1):hover > ul > li:hover { background: white; }
+    div.select:hover > ul > li:nth-child(1):hover > ul > li:hover > a { color: red; }

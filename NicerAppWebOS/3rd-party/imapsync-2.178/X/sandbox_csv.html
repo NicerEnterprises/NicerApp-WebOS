@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  <head>
+    <title>Imapsync CSV online</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../S/style.css" type="text/css"   />
+
+    <link rel="license" href="https://imapsync.lamiral.info/NOLIMIT">
+    <!-- -->
+  </head>
+
+<body>
+
+<h1>Imapsync CSV online</h1>
+
+<p>
+This Imapsync CSV online service is a prototype, a working prototype.<br/>
+</p>
+
+Some explanations about this service:
+<ul>
+<li>The input textarea is multi-lines, each line describe a synchronization from the source account to the destination account.</li>
+<li>Blank lines are ignored. Blanks lines have only spaces or tabs or nothing but a CR</li>
+<li>Lines beginning with # are also ignored, use that for commenting.</li>
+<li>A basic line will sync all messages in all folders from the source account to the destination account.</li>
+<li>Each line has seven columns, six for the credentials, and one extra to add one or several parameters to the imapsync command.</li>
+<li>Each line has seven semi-colons characters ";", each one delimiting a column. The last column can be empty.</li>
+<li>Each line is processed serially, one synchronization at a time.</li>
+<li>At the end of the log, the lines that failed are listed.</li>
+<li>The input textarea is prefilled with values, as an example, replace them with yours or remove them.</li>
+<li></li>
+<li></li>
+<li></li>
+
+</ul>
+
+
+
+<form id="form" action="/cgi-bin/imapsync_csv_wrapper" method="post" autocomplete="on">
+
+<textarea id="csv_data" name="csv_data" rows="10" cols="120">
+# This example is a real one, ie, a truly working in the real world.
+test1.lamiral.info;test1;secret1;test2.lamiral.info;test2;secret2;;
+
+# The first again but this time with an authentication failure
+test1.lamiral.info;test1;secret1;test2.lamiral.info;test2;wrong_secret;;
+
+# The first again but this time with extra parameters
+test1.lamiral.info;test1;secret1;test2.lamiral.info;test2;secret2;--justfoldersizes --dry --minage 55 ;
+
+</textarea>
+<br/>
+</form>
+
+<p>
+<button id="bt-sync" type="button">
+Run imapsync on all csv data!
+</button>
+
+<button id="bt-abort" type="button">
+Abort the run!
+</button>
+</p>
+
+
+<p>
+<a  href="#BOTTOM">Link to the bottom of this page (end of the log)</a>
+</p>
+
+
+<h2>Console of imapsync runs</h2>
+
+<pre id="console">
+</pre>
+
+<h2>Log of abort</h2>
+
+<pre id="abort">
+</pre>
+
+<h2>Log of all imapsync runs</h2>
+
+<pre id="output" >
+</pre>
+
+<h2>Links</h2>
+
+<div id="BOTTOM">
+<p >
+<a  href="#TOP">Top of the page</a>
+</p>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+
+<script src="sandbox_csv.js">
+</script>
+
+</body>
+</html>

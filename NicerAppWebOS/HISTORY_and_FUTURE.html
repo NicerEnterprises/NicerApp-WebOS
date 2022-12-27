@@ -1,0 +1,36 @@
+<h1>History</h1>
+<ul>
+    <li>Versions 3.y.z and lower : Increasingly stylish, and compatible with older browsers, but in terms of core code quite bulky and slow.</li>
+    <li>4.0.0 : complete rewrite of the version 3.Y.Z, much faster startup times.</li>
+    <li>4.1.0 : added many of the apps of the v3.Y.Z back in (tarot, music player, news, etc).</li>
+    <li>4.1.1 : vertical roots for vividMenu added.</li>
+    <li>4.2.0 : webmail functionality finished but not including an editor for the config settings yet (as these have to be stored encrypted, and i have no way of doing that yet).</li>
+    <li>4.2.1 : many small improvements and additions to apps/nicer.app</li>
+    <li>4.3.0 : crypto per page / app / whatever now possible, oAuth support put on todo list, creditCard & ING.NL iDeal payment support put on todo list, made vividButton's (text version) height fit to the text placed in the vividButton, made the top menu bar *completely* resolution independent.</li>
+    <li>4.3.1 and 4.3.2 : bugfixes</li>
+    <li>5.0.0 : bugfixes and efficiency improvements in the core code
+        <li>Lots of changes and standarization of the entire code convention or naming structure for variables, Server-side PHP class names, Browser-side Javascript root level objects, and all the other "root-level" "variable names" used in NicerApp WCS</li>
+        <li>MySQL and PostgreSQL added to the list of supported database architectures (via .../NicerAppWebOS/3rd-party/adodb5), currently only couchdb is supported.<br/>
+        Why? because upon installation of a new version of the operating system, all of the component maintainers are likely taking a holiday of some sorts.<br/>
+        <li>couchdb-3.2 support for kubuntu 22.04LTS has returned, via the following commands :
+            <div><pre style="color:lime">
+                apt install libmozjs-78-0
+                dpkg -i /var/www/$DOMAIN_TLD/NicerAppWebOS/scripts.install/couchdb_3.2.2-2_jammy_amd64.deb
+            </pre></div>
+        </li>
+    </li>
+</ul>
+
+<h1>Future</h1>
+<ul>
+    <li>5.0.0 stable release :<br/>
+        <ul>
+            <li>Start of the use of https://github.com/nicerapp/nicerapp-currently-in-development alongside https://github.com/nicerapp/nicerapp (which will become the current stable release)</li>
+            <li>Merging of this file's contents and the frontpage 'Development Direction' into a single TODO file that can be viewed from the main page of https://nicer.app</li>
+            <li>Server-side PHP tasks manager A.P.I. code and it's user interface components</li>
+            <li>backgrounds management A.P.I. code and it's user interface components</li>
+            <li>backup and restore A.P.I. code and it's user interface components</li>
+
+        </ul>
+    </li>
+</ul>

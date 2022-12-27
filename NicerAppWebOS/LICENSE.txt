@@ -1,0 +1,54 @@
+BASE LAYER FOR THIS LICENSE IS : https://opensource.org/licenses/MIT
+The Name For This License is The NA-COMMIT License.
+
+https://nicer.app, https://said.by, https://zoned.at
+known as 'The Nicer Enterprises software platform collection' ("The Software")
+and stored as various Repositories on the cloudhosting platform https://github.com/NicerEnterprises,
+
+and all of the content listed at https://github.com/NicerEnterprises are all
+Copyrighted (c) and (r), by Nicer Enterprises[1] 
+2002-2022 by me, it's sole Owner, CEO, CTO and CFO, 
+"Rene A.J.M. Veerman" <rene.veerman.netherlands@gmail.com> ("The Software Owner")
+
+[1] to be registered as trademark with patented products
+when money becomes available for those legal activities.
+
+ADDITIONAL OVERRIDING CONDITIONS ON TOP OF https://opensource.org/licenses/MIT :
+
+Nicer Enterprises NA-COMMIT LICENSE details : 
+
+ALL commercial usage of The Software by licensees ("The Licensee"), 
+EXCLUDING ONLY governmental[6], non-profit organisations' usage and personal use,
+shall pay 5% (FIVE PERCENT) of the total profits,
+converted to Euros[3], to me The Software Owner[2],
+and are to be notified to me through email delivered to[5].
+
+THESE LICENSE CONDITIONS MAY CHANGE AT ANY TIME.
+IT IS UP TO YOU TO RECHECK THEM AT
+    https://nicer.app/NicerAppWebOS/LICENSE.txt
+
+
+[2] Bank details to be filled in a little later than today. 
+Tax reports by my bewindvoerster accountant will be sent to me (by print-out mail), 
+my legal mentors (my parents) (by printout mail), the Licensee (by email),
+my own government (by email), and the Licensee's national government (by email).
+
+[3] Email address to send these reports to is "Rene A.J.M. Veerman" <rene.veerman.netherlands@gmail.com>,
+(https://facebook.com/rene.veerman.90, https://facebook.com/gavanHoverswell, https://www.facebook.com/profile.php?id=100084429072879),
+and email subject and attachment formats[4]  including filename formats, 
+for automated processing by Nicer Enterprises) to be filled in later.
+
+[4] JSON and PDF, spanning identical monthly financial sales statements 
+of all sales made by The Licensee 
+using any part of The Software to achieve those sales.
+Details should at least include product category, 
+product name, product price, and internal sales ID number of the Licensee 
+for that sale by The Licensee (for government audit purposes only). 
+
+[5] PLEASE NOTE : THE NA-COMMIT LICENSE (AS A CONCEPT AND LEGAL TEMPLATE FILE) ALLOWS USERS OF THAT LICENSE TO SET ANY PERCENTAGE OF SALES VALUE,
+AS WELL AS DEFINE THE EXCLUSION LIST THAT RESTRICTS "The Licensee", TO ANYTHING The Owner of The Software deems fit.
+IN FACT, ALL "Additional Terms on top of the MIT license" are up to The Owner(s) of any software that also uses
+another version of the *****-COMMIT LICENSE.
+
+[6] i built this system on a social welfare income, and i'm grateful for that.
+so i'm not going to drain taxpayer funds with this license.
