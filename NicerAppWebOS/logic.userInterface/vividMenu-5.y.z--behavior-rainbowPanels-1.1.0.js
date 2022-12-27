@@ -468,8 +468,9 @@ debugger;
             var column = lidx;
         } else {
             var
-            offsetX = $(t.el).position().left,
-            offsetY = $(t.el).position().top,
+            tel_bcr = t.el.getBoundingClientRect(),
+            offsetX = 0,//tel_bcr.left,
+            offsetY = tel_bcr.top - (t.el.offsetHeight / 2),
             numRows = 1,
             numColumns = $('#'+t.el.id+' > .vividMenu_mainUL > li').length,
             row = 0,
