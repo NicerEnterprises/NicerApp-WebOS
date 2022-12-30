@@ -69,6 +69,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news'] = {
                             document.addEventListener ('keyup', na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news'].onkeyup);
                             
                             na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news'].nestedStartApp();
+na.site.onresize_doContent({});
                             if (typeof settings.callback=='function') settings.callback('siteContent');
                             na.analytics.logMetaEvent ('/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news (version '+na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news'].about.version+' is starting.');
                             
@@ -1426,7 +1427,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news'] = {
         }
         //if (w < 300) w = 300;
         //if (h > h2) h= h2;
-    //h = '100%';
+    h = '100%';
 
         html += '<div id="newsApp__item__'+it.idx+'" class="newsApp__item__outer" style="width:'+w+'px;'+fontSize+';">';
         html += '<div id="newsApp__item__'+it.idx+'__bg" class="newsApp__item__outer__bg" style="">';
