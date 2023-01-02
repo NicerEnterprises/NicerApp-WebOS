@@ -8,17 +8,23 @@
     2022-11-02 08:56CEST:<br/>
     NicerApp won't work properly on iPhone 13, 14, and the related iPad products.<br/>
     This is because Apple.com has become standards-non-compliant.<br/>
-    And I'll leave it up to Apple to fix their own products to be able to view my websites again,<br/>
-    I'm not buying Apple products every year.
+	I can fix these bugs in a little while, by augmenting jQuery.com (one of the base software layers that i use in my WebOS) while sitting in front of an Apple Store with my laptop, now that i've finally opened up an SSH port on the server (and switched to very strong passwords).<br/>
     </p>
     <br/><br/>
 
     <h2 class="contentSectionTitle2">THIS COMPANY IS NOW FOR SALE!</h2><br/><br/>
 
     <p>
-    Bids can be sent in by unencrypted email to <a href="maillto:rene.veerman.netherlands@gmail.com">rene.veerman.netherlands@gmail.com</a>.<br/>
-    Starting price is 50 million euro.<br/>
-    You might see me building a Real Time Strategy game, or a Linux security-boosting security service app, or commandline file-copying app with proper progressbar, in the future that way! :)
+    Bids can be sent in by unencrypted email to <a href="maillto:rene.veerman.netherlands@gmail.com">rene.veerman.netherlands@gmail.com</a>, via which we can exchange WhatsApp contact details for encrypted communications.<br/>
+    I find all potential buyers to be legitimate buyers (meaning : i do not discriminate), and the
+    <b>starting price is 50 million euro</b>, which is a <b>total buy-out offer</b>.<br/>
+    You might see me joining the Kubuntu.com KDE development teams in the future that way! :)
+    </p>
+
+    <p>
+    I make this offer to the world, because currently i'm operating at near poverty levels from a social welfare situation due to persistent sleep rythm problems, which no medication or counseling is able to fix.<br/>
+    Having 50 million or more in the bank would enable to see myself to a much more comfortable future, a house in the countryside of The Netherlands, and probably some travelling during holiday seasons as well.<br/>
+    I would participate in philantropic efforts <b>only through relatively small donations to legitimate charity organisations</b>, pending further income from new business activities that i've yet to come up with (one thing at a time).
     </p>
     <br/><br/>
 
