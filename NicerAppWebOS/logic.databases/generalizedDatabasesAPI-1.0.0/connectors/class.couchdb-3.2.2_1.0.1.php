@@ -513,10 +513,22 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             'menusUseRainbowPanels'=> true,
             'textBackgroundOpacity' => 0.38,
             'lastUsed' => time(),
+            'dialogs' => array_merge_recursive(
+                            css_to_array (file_get_contents(
+                                realpath(dirname(__FILE__).'/../../../..')
+                                .'/NicerAppWebOS/themes/nicerapp_default_siteContent-almost-transparent.css'
+                            )),
+                            css_to_array (file_get_contents(
+                                realpath(dirname(__FILE__).'/../../../..')
+                                .'/NicerAppWebOS/themes/nicerapp_app.2D.musicPlayer.css'
+                            ))
+            )
+/*
             'dialogs' => css_to_array (file_get_contents(
                 realpath(dirname(__FILE__).'/../../../..')
                 .'/NicerAppWebOS/themes/nicerapp_default.css'
             ))
+*/
         );
         if ($this->debug) { echo '<pre style="color:blue">'; var_dump ($rec); var_dump ($cdb); echo '</pre>'; }
         try {

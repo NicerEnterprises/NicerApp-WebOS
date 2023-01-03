@@ -102,7 +102,7 @@ $spacer = "\n\t\t\t\t";
         </div>
     </div>
 
-	<div id="mp3s" class="vividMenu vividScrollpane" type="vertical" theme="dark" style="overflow:visible;overflow-y:auto;opacity:0.001;position:absolute;text-align:center;width:100%;">
+	<div id="mp3s" class="vividMenu vividScrollpane" type="vertical" theme="dark" style="overflow:hidden;overflow-y:auto;opacity:0.001;position:absolute;text-align:center;width:100%;">
 <?php
 
 			$filez = array();
