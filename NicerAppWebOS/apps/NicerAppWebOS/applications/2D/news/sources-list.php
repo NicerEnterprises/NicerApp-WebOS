@@ -84,6 +84,7 @@ $newsApp3_dataSources['RSS_list'] = array (
     ),
     'English News' => array (
         'World Headlines' => array (
+            'CSIS.org' => 'https://www.csis.org/programs/about-us/rss.xml',
             'BBC News' => 'http://feeds.bbci.co.uk/news/rss.xml',
             'BBC World News' => 'http://feeds.bbci.co.uk/news/world/rss.xml', 
             'CBN World News' => 'http://www.cbn.com/cbnnews/world/feed/',

@@ -18,5 +18,32 @@
     and <a class="noPushState" href="https://facebook.com/gavanHoverswell" target="fbMain">https://facebook.com/gavanHoverswell</a> for my pseudonym facebook blog account,<br/>
     which also links into my online forum peace-activism activities.
     </p>
+
+    <p>i am a (martial-)artist, part-time peace activist, civilian international warrior-diplomat, and part-time resistance fighter (for patients' rights against oppression done by psychiatric law in western societies), a near full-time software engineer and computer systems administrator, and most of all a business man.</p>
+
+    <p>
+    i am a nice man, but i am no loser, i always aim to win any competition, and i **do not take sh!t from anyone or any group, no matter it's size**.</p>
+
+    <p>
+    my sexual orientation is 100% straight and i always date within my own age range (up to 15 years younger, and up to 5 years older).
+    </p>
+
+    <p>i never force myself onto a woman, but i don't accept prudes or gold-digging or mail-order bride women in my life either. i walk away from those scam artist ladies.<br/>
+    in other words, if you want to flirt with me, be honest and serious about it, or don't do it at all.
+    </p>
+
+    <p>
+    i am homophobic, and proud of it.<br/>
+    but i will help a LGBTI+ person who is fighting for his/her life.
+    </p>
+
+    <p>
+    i shave parts of my head completely bald from time to time, but i am not a racist towards skin colors or religions other than my own.
+    </p>
+
+    <p>
+    i am (currently!) a spiritually gifted Atheist.<br/>
+    and i do not want to get recruited by any religion.<br/>
+    </p>
 </div>
 

@@ -44,10 +44,10 @@ fi
 
 
 ##sudo git pull https://github.com/NicerAppWebOS/nicerapp main
-#echo "-- NOW FETCHING LATEST SOURCES AS PACKAGE CONTAINING ONLY LATEST CHANGES"
-#sudo git fetch --all
-#echo "-- NOW APPLYING LATEST CHANGES TO LOCAL FILES of https://github.com/NicerAppWebOS/nicerapp"
-#sudo git reset --hard origin/main
+echo "-- NOW FETCHING LATEST SOURCES AS PACKAGE CONTAINING ONLY LATEST CHANGES"
+sudo git fetch --all
+echo "-- NOW APPLYING LATEST CHANGES TO LOCAL FILES of https://github.com/NicerAppWebOS/nicerapp"
+sudo git reset --hard origin/main
 
 echo "sudo rm $ROOT_PATH/lastModified.*"
 sudo rm $ROOT_PATH/lastModified.*

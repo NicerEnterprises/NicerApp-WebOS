@@ -77,6 +77,12 @@
     <h2 class="contentSectionTitle2">Current Problems</h2><br/><br/>
 
     <p>
+    2015 to 2023:<br/>
+    This site is under regular cyber-attack, due to my peace-activism activities.<br/>
+    Which i'm <b>NOT</b> giving up any time soon.
+    </p>
+
+    <p>
     2022-11-02 08:56CEST:<br/>
     NicerApp won't work properly on iPhone 13, 14, and the related iPad products.<br/>
     This is because Apple.com has become standards-non-compliant.<br/>

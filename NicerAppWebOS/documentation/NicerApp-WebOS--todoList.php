@@ -294,7 +294,11 @@ or : (
 
         <li class="todoList"><div>(2025) Integration of oAuth (Google and Facebook authentication systems).</div></li>
 
+        <li class="todoList"><div>(2025) Webshop features.</div></li>
+
+        <li class="todoList"><div>(2025) Small business administration features.</div></li>
+
         <li class="todoList"><div>(2025) Webmail features that can hopefully work with another IMAP data provider like Gmail and Hotmail as the primary email (backup) provider, IF Gmail and/or Hotmail still allow this.</div></li>
 
-        <li class="todoList"><div>(2026) Music production app via linux commandline app sonic-pi, integration of that app with payment modules and musicPlayer.</div></li>
+        <li class="todoList"><div>(2026-2028) Music production app via linux commandline app sonic-pi, integration of that app with payment modules and musicPlayer.</div></li>
     </ol>
