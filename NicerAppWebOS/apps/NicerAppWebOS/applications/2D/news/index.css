@@ -6,6 +6,7 @@
 #newsApp_content {
     display : flex;
     flex-wrap : wrap;
+    padding : 10px;
     /*display : block;*/
 }
 

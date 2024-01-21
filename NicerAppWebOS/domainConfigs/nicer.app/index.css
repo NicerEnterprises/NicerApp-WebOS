@@ -2094,16 +2094,20 @@ label {
     padding : 0;
     margin : auto;
 }
-#btnPrevious {
+#btnPrevious img {
     width : 75px;
+}
+#btnPrevious {
     position : absolute;
     z-index : 3100;
     left : 10px;
     top : calc(50% - 32px);
     cursor : pointer;
 }
-#btnNext {
+#btnNext img {
     width : 75px;
+}
+#btnNext {
     position : absolute;
     z-index : 3100;
     right : 10px;

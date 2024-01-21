@@ -16,12 +16,10 @@
 <div>
     <p>
     <a href="https://nicer.app" target="naHP">https://nicer.app</a>, <a href="https://said.by" target="sbHP">https://said.by</a>, <a href="https://zoned.at" target="zAt">https://zoned.at</a>, are all
-    Copyrighted 2023 by Rene A.J.M. Veerman &lt;<a href="mailto:rene.veerman.netherlands@gmail.com" class="noPushState" target="writeMailToRene">rene.veerman.netherlands@gmail.com</a>&gt;.<br/>
+    Copyrighted 2002-2024 by Rene A.J.M. Veerman &lt;<a href="mailto:rene.veerman.netherlands@gmail.com" class="noPushState" target="writeMailToRene">rene.veerman.netherlands@gmail.com</a>&gt;.<br/>
     i am also the owner, CEO, CTO and CFO for all of these websites.<br/>
     <br/>
-    My social media accounts are <a class="noPushState" href="https://facebook.com/rene.veerman.90" target="fbMain">https://facebook.com/rene.veerman.90</a><br/>
-    and <a class="noPushState" href="https://facebook.com/gavanHoverswell" target="fbMain2">https://facebook.com/gavanHoverswell</a> for my pseudonym facebook blog account,<br/>
-    which also links into my online forum peace-activism activities.
+    My social media account can be found at <a class="noPushState" href="https://facebook.com/rene.veerman.90" target="fbMain">https://facebook.com/rene.veerman.90</a>.<br/>
     </p>
 
     <p>

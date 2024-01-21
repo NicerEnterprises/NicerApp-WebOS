@@ -1294,7 +1294,7 @@ class NicerAppWebOS {
                 echo '$hasJS = '; var_dump ($hasJS); echo PHP_EOL.PHP_EOL;
                 echo '$hasCSS = '; var_dump ($hasCSS); echo PHP_EOL.PHP_EOL;
                 echo '$selectorL1 = '; var_dump ($selector); echo PHP_EOL.PHP_EOL;
-                exit();
+                //exit();
             };
             //$_SESSION['selectorName'] = $selectorNames[$idx];
             //$_SESSION['preferredSelectorName'] = &$d['preferredSelectorName'];
@@ -2115,7 +2115,7 @@ class NicerAppWebOS {
             if (array_key_exists('view', $selector)) $sel['view'] = $selector['view']; else $sel['view'] = [ '$exists' => false ];
             if (array_key_exists('app', $selector)) $sel['app'] = $selector['app']; else $sel['app'] = [ '$exists' => false ];
             if (array_key_exists('url', $selector)) $sel['url'] = $selector['url']; else $sel['url'] = [ '$exists' => false ];
-            if (array_key_exists('specificityName', $selector)) $sel['specificityName'] = $selector['specificityName'];
+            if (array_key_exists('specificityName', $selector) && $selector['specificityName']!==false) $sel['specificityName'] = $selector['specificityName'];
             if (array_key_exists('theme', $selector)) $sel['theme'] = $selector['theme']; //else $sel['theme'] = [ '$exists' => false ];
             if (array_key_exists('ip', $selector)) $sel['ip'] = $selector['ip']; else $sel['ip'] = [ '$exists' => false ];
             global $naIP;

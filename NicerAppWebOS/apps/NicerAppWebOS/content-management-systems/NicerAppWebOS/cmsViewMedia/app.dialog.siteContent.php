@@ -94,6 +94,8 @@ foreach ($files as $idx => $file) {
             )
         );
         $prevJSON = base64_encode_url (json_encode($prevArr));
+        $prevURL = '/view-content/'.$prevJSON;
+
         $nextArr = array (
             "misc" => [ "folder" => "/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/NicerAppWebOS" ],
             'cmsViewMedia' => array (
@@ -102,6 +104,7 @@ foreach ($files as $idx => $file) {
             )
         );
         $nextJSON = base64_encode_url (json_encode($nextArr));
+        $nextURL = '/view-content/'.$nextJSON;
     }
 }
 
@@ -111,8 +114,8 @@ foreach ($files as $idx => $file) {
 <img id="btnBack_fromMediaView" class="tooltip" tooltipTheme="mainTooltipTheme" title="Go back, leave the photo-album viewer." src="/NicerAppWebOS/siteMedia/btnBack.png" onclick="window.history.back();" style="position:absolute"/>
     <img id="viewMedia" src="<?php echo $targetURL.$fn;?>"/>
 <img id="btnSetBackground" class="tooltip" tooltipTheme="mainTooltipTheme" title="Set as site background" src="/NicerAppWebOS/siteMedia/btnBackground.png" onclick="na.backgrounds.next ('#siteBackground', na.site.globals.backgroundSearchKey, '<?php echo $targetURL.$fn;?>');"/>
-<img id="btnPrevious" src="/NicerAppWebOS/siteMedia/btnPrevious.png" onclick="na.site.loadContent(event,'<?php echo $prevJSON?>');"/>
-<img id="btnNext" src="/NicerAppWebOS/siteMedia/btnNext.png" onclick="na.site.loadContent(event,'<?php echo $nextJSON?>');"/>
+<a id="btnPrevious" href="<?php echo $prevURL;?>"><img src="/NicerAppWebOS/siteMedia/btnPrevious.png"/></a>
+<a id="btnNext" href="<?php echo $nextURL;?>"><img src="/NicerAppWebOS/siteMedia/btnNext.png"/></a>
 <div id="naPhotoAlbum__control" style="position:absolute;top:5%;width:200px;height:100px;right:1%;z-index:3200;">
     <div class="naPhotoAlbum_control__background" style="position:absolute;width:100%;height:100%;">&nbsp;</div>
 	<div id="naPhotoAlbum__control__naturalWidth" class="naPhotoAlbum_control_element" style="position:absolute;top:1em;"></div>

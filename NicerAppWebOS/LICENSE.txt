@@ -1,6 +1,6 @@
 copied from https://opensource.org/licenses/MIT
 
-Copyright 2002-2023 Rene A.J.M. Veerman, rene.veerman.netherlands@gmail.com
+Copyright 2002-2024 Rene A.J.M. Veerman, rene.veerman.netherlands@gmail.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software
 and associated documentation files (the “Software”), to deal in the Software without restriction,

@@ -43,8 +43,9 @@ $p = preg_match_all ('/:{"mediaFolder":".*"}:/', $doc, $matches, PREG_OFFSET_CAP
 //echo '<pre style="color:yellow;background:black;">'; var_dump ($matches); echo '</pre><br/>'; //exit();
 foreach ($matches[0] as $idx => $match) {
     $cmd = json_decode (substr($match[0],1,strlen($match[0])-2), true);
+    //echo '<pre style="color:yellow;background:black;">'; var_dump ($cmd); echo '</pre><br/>'; //exit();
     if (array_key_exists('mediaFolder',$cmd)) {
-        $doc = str_replace ('<p>'.$match[0].'</p>', naPhotoAlbum($cmd['mediaFolder']), $doc);
+        $doc = str_replace ($match[0], naPhotoAlbum($cmd['mediaFolder']), $doc);
     }
 }
 $doc = str_replace ('<p>\s+</p>', '<div style="height:1em"></div>', $doc);
@@ -56,4 +57,8 @@ echo $doc;
 <script type="text/javascript">
         na.site.settings.current.loadingApps = false;
         na.site.settings.current.startingApps = false;
+        $(document).ready(function(){
+            debugger;
+            na.site.transformLinks($('#siteContent')[0]);
+        });
 </script>

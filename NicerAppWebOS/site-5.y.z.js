@@ -2,7 +2,7 @@ var NicerApp_WebOS = nicerapp = na = {};
 na.site = {
     about : {
         firstCreated : '10 January 2002',
-        copyright : '<table style="height:100%;"><tr><td>Copyright (C) 2002-2023 by <a href="mailto:rene.veerman.netherlands@gmail.com" class ="contentSectionTitle3_a"><span class="contentSectionTitle3_span">Rene A.J.M. Veerman</span></a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>',
+        copyright : '<table style="height:100%;"><tr><td>Copyright (C) 2002-2024 by <a href="mailto:rene.veerman.netherlands@gmail.com" class ="contentSectionTitle3_a"><span class="contentSectionTitle3_span">Rene A.J.M. Veerman</span></a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>',
         easterEggs : {
             '2023-12(Dec)-13(Tue) 11:34CET (Amsterdam.NL\'s timezone)' : '<p>at a certain point in a soul\'s career,<br/>that soul (learns to) trancend(s) judgement of IQ and EQ of others.<br/>this is usually only once enough kung-fu has been practiced though.<br/><a class="noPushState nomod" href="https://youtube.com/@cheetahKungFu" target="ckf">https://youtube.com/@cheetahKungFu</a></p>'
         }
@@ -80,7 +80,7 @@ na.site = {
             $.cookie('agreedToPolicies')!=='true'
             ? '<table style=""><tr><td><a href="/" style="padding:0;text-shadow:0px 0px 5px rgba(0,0,0,0.8);">'+na.site.globals.domain+'</a> only uses cookies for remembering user settings.</td>'
                 + '<td style="width:66px;"><div class="vividButton" theme="dark" style="position:relative;color:white;width:40px;height:20px;" onclick="na.site.dismissCookieWarning();">Ok</div></td></table>'
-            : '<table style="height:100%;"><tr><td>Opensourced <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" target="_new" class="nomod noPushState contentSectionTitle1_a"><span class="contentSectionTitle1_span">here</span></a>, Copyright (C) 2002-2023 by <a href="mailto:rene.veerman.netherlands@gmail.com" class ="contentSectionTitle3_a"><span class="contentSectionTitle3_span">Rene A.J.M. Veerman</span></a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
+            : '<table style="height:100%;"><tr><td>Opensourced <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" target="_new" class="nomod noPushState contentSectionTitle1_a"><span class="contentSectionTitle1_span">here</span></a>, Copyright (C) 2002-2024 by <a href="mailto:rene.veerman.netherlands@gmail.com" class ="contentSectionTitle3_a"><span class="contentSectionTitle3_span">Rene A.J.M. Veerman</span></a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
         );
 
 
@@ -1248,9 +1248,10 @@ na.site = {
             url : url,
             success : function (data, ts, xhr) {
                 debugger;
-                if (data.indexOf('status : Success')!==-1) na.site.loadTheme(null, null, true, true);
+                if (data.indexOf('status : Success')!==-1) na.site.loadTheme(null, null, true, true, false);
             },
             error : function (xhr, textStatus, errorThrown) {
+                debugger;
                 na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
             }
         };
@@ -1329,6 +1330,7 @@ na.site = {
             History.pushState (null, '', document.location.origin+'/view/'+url);
         } else debugger;
         
+        event.preventDefault();
     },
     
 	stateChange : function(){ 
@@ -3127,6 +3129,7 @@ na.site = {
             debugger;
             na.site.loadTheme_doGetPageSpecificSettings (function() {
 
+                specificityName = na.site.globals.specificityName;
                 na.site.loadTheme_do (callback, specificityName, theme, loadBackground);
 
             }, doSwitchSpecificities, includeClientOnlyThemes, specificityName, theme, ct, stickToCurrentSpecificity);
@@ -3172,6 +3175,8 @@ na.site = {
         if (typeof includeClientOnlyThemes=='undefined') includeClientOnlyThemes = true;
         if (typeof stickToCurrentSpecificity=='undefined') stickToCurrentSpecificity = true;
 
+        //if (typeof specificityName=='undefined') specificityName = na.te.s.c.specificity.specificityName;
+
         var
         state = History.getState(),
         url = state.url.replace(document.location.origin,'').replace('/view/', ''),
@@ -3184,7 +3189,7 @@ na.site = {
                 viewID : na.m.base64_encode_url(JSON.stringify(na.site.globals.app)),// url2
                 includeClientOnlyThemes : includeClientOnlyThemes || na.site.globals.specificityName.match(' client')?'true':'false',
                 stickToCurrentSpecificity : stickToCurrentSpecificity,
-                specificityName : na.te.s.c.specificity.specificityName,
+                specificityName : specificityName,
                 c : na.m.changedDateTime_current()
             },
             success : function (data2, ts2, xhr2) {
@@ -3232,9 +3237,11 @@ na.site = {
             //theme : theme//,
             //dialogs : JSON.stringify (na.desktop.settings.visibleDivs)
         };
+        debugger;
         if (
             typeof specificityName=='undefined'
             || specificityName===null
+            //|| specificityName===false
         ) specificityName = na.site.globals.specificityName;
         if (typeof apps=='object')
             for (var app in apps) break;
@@ -3247,19 +3254,22 @@ na.site = {
             if (s.role) acData.role = s.role;
             if (s.user) acData.user = s.user;
             //if (s.specificityName) acData.specificityName = s.specificityName;
-            acData.specificityName = specificityName;
-            if (specificityName.match('current page')) {
-                if (u) acData.url = u;
-                if (s.url) acData.url = s.url;
-                if (!acData.url) acData.url = window.location.href.replace('https://'+na.site.globals.domain,'');
-            }
-            if (specificityName.match('app \'')) {
-                if (app) acData.app = app;
-            }
-            if (specificityName.match(/^site /)) {
-                delete acData.view;
-                delete acData.app;
-                delete acData.url;
+            if (specificityName) {
+                acData.specificityName = specificityName;
+
+                if (specificityName.match('current page')) {
+                    if (u) acData.url = u;
+                    if (s.url) acData.url = s.url;
+                    if (!acData.url) acData.url = window.location.href.replace('https://'+na.site.globals.domain,'');
+                }
+                if (specificityName.match('app \'')) {
+                    if (app) acData.app = app;
+                }
+                if (specificityName.match(/^site /)) {
+                    delete acData.view;
+                    delete acData.app;
+                    delete acData.url;
+                }
             }
         } else debugger;
 
@@ -3332,6 +3342,7 @@ na.site = {
                 //na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
             }                
         };        
+        debugger;
         $.ajax(ac);
     },
 

@@ -38,11 +38,11 @@ import { FlyControls } from '/NicerAppWebOS/3rd-party/3D/libs/three.js/examples/
 import gsap from "https://unpkg.com/gsap@3.12.2/index.js";
 import { CameraControls, approxZero } from '/NicerAppWebOS/3rd-party/3D/libs/three.js/dist_camera-controls.module.js';
 
-  import {
+ /* import {
     CSS2DRenderer,
     CSS2DObject,
   } from 'https://unpkg.com/three@0.125.2/examples/jsm/renderers/CSS2DRenderer.js';
-
+*/
 
 
 
@@ -614,6 +614,9 @@ export class na3D_fileBrowser {
 
                 const [hovered] = t.raycaster.intersectObjects(t.s2);
                 if (hovered && hovered.object.type!=='Line') {
+
+                    debugger;
+
                     // Setup label
                     t.renderer.domElement.className = 'hovered';
                     //$('#site3D_label')[0].textContent = hovered.object.it.name;
@@ -1844,7 +1847,7 @@ export class na3D_demo_models {
         t.items = [];
         
         t.scene = new THREE.Scene();
-        t.camera = new THREE.PerspectiveCamera( 75, $(el).width() / $(el).height(), 0.1, 1000 );
+        t.camera = new THREE.PerspectiveCamera( 75, $(el).width() / $(el).height(), 0.1, 20*1000 );
         
 
         t.renderer = new THREE.WebGLRenderer({alpha:true, antialias : true});
@@ -1864,10 +1867,9 @@ export class na3D_demo_models {
         
         t.loader.load( '/NicerAppWebOS/3rd-party/3D/models/human armor/scene.gltf', function ( gltf ) {
             gltf.scene.position.x = -150;
-            gltf.scene.scale.setScalar (10);
+            gltf.scene.scale.setScalar (100);
             t.cube = gltf.scene;
             t.scene.add (t.cube);
-            
             t.updateTextureEncoding(t, t.cube);
         }, function ( xhr ) {
             console.log( 'model "human armor" : ' + ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
@@ -1905,7 +1907,7 @@ export class na3D_demo_models {
         t.pmremGenerator = new PMREMGenerator( t.renderer );
         t.pmremGenerator.compileEquirectangularShader();
         
-        t.updateEnvironment(this);
+        //t.updateEnvironment(this);
         
         $(el).bind('mousemove', function() { t.onMouseMove (event, t) });
         
@@ -1988,11 +1990,11 @@ export class na3D_demo_models {
             t.scene.environment = envMap;
             //t.scene.background = envMap;//t.state.background ? envMap : null;
 
-        });
+        }, t);
 
     }    
     
-    getCubeMapTexture ( environment ) {
+    getCubeMapTexture ( environment, t ) {
         const { path } = environment;
 
         // no envmap

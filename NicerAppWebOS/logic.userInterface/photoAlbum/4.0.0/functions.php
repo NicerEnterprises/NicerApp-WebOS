@@ -53,7 +53,7 @@ function naPhotoAlbum ($basePath=null) {
             )
         );
         $json = json_encode($arr);
-        $href = "/view/".base64_encode_url($json);
+        $href = "/view-content/".base64_encode_url($json);
         
         
         $r .= '<center><a href="'.$href.'"><img src="'.$thumbURL.'" style="width:200px" '.$onclick.'/><br/><span class="filename">'.$fileName.'</span></a></center></div>';        

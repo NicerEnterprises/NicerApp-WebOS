@@ -9,7 +9,7 @@ Options +FollowSymLinks
     RewriteBase /
     # redirect www.nicer.app to nicer.app
     RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+    RewriteRule ^(.*)$ https://%1/$1 [R=307,L]
 
     # uses /view-content/logs due to na.site.loadContent() URL mangling in na.site.transformLinks()!
     #RewriteCond %{REQUEST_METHOD} ^(GET)$

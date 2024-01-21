@@ -409,7 +409,7 @@ ul.index > li {
     width : 272px;
 }
 #siteToolbarThemeEditor__elementPicker .vividButton {
-    font-size : 0.661em;
+    font-size : 0.58em;
 }
 .vividDropDownBox_selector > .vividScrollpane > div, .vividListSelector > .vividScrollpane > div {
     width : calc(100% - 20px);

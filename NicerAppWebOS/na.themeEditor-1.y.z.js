@@ -861,7 +861,7 @@ na.te = na.themeEditor = {
          * that leaves us with only the custom built selectors to pick up here,
          * to be used in na.site.saveTheme() and na.site.loadTheme()
          */
-
+        debugger;
         switch (it.type) {
             /*
             case 'naSelectorSet' :
@@ -882,9 +882,9 @@ na.te = na.themeEditor = {
                 regExApps = /#app__(.*)__(.*)$/;
 
                 if (
-                    !it.text.match(regExDialogs)
-                    && !it.text.match(regExApps)
-                    && !it.text.match(/Dialog/)
+                    typeof it.text.match(regExDialogs)[1] == 'string'
+                    || typeof it.text.match(regExApps)[1] == 'string'
+                    || typeof it.text.match(/Dialog/)[1] == 'string'
                     //&& !it.text.match(/Extras/)
                 ) {
                     if (!themeSettings[parent.text]) themeSettings[parent.text] = { css : {} };
@@ -893,8 +893,9 @@ na.te = na.themeEditor = {
                         themeSettings[parent.text].css, na.site.fetchTheme(it.text)
                     );
                 }
-                break;
         }
+        debugger;
+
         return themeSettings;
     },
     

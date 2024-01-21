@@ -1915,6 +1915,9 @@ debugger;
                 $('.newsAppButton').css({ display : 'block' });
                 $('.popupButtons').css({ display : 'none' });
             }
+            if ($(window).width()<1300) {
+                $('#div_newsApp_info').fadeOut('normal');
+            }
 
             $('#siteContent__btnOptions_menu').detach().appendTo('body').css({display:'block',opacity:0.0001});
             $('.vividButton, .vividButton_icon_50x50_siteTop, .vividButton_icon_50x50', $('#siteContent__btnOptions_menu')[0])

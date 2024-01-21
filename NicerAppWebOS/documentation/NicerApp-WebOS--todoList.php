@@ -8,6 +8,18 @@
 <p class="todoList">FYI : major release time is Christmas Day each year.</p>
 
 <ol class="todoList">
+    <li class="todoList"><div>(CURRENT) (2024) Write the <a class="nomod noPushState" href="https://new.nicer.app" target="nna">next major version</a>.
+        <ol class="todoList_l1">
+            <li class="todoList_l1"><div>how to run multiple web apps with changing DIV contents in a single tab</div></li>
+            <li class="todoList_l1"><div>(DONE) how to load web apps as a module into a DIV on demand (lazy loading of ThreeJS -240Kb- for instance)</div></li>
+            <li class="todoList_l1"><div>(NEARLY DONE) how to do canvas animations of DIV borders</div></li>
+            <li class="todoList_l1"><div>(CURRENT) how to display 3D content and menus without taking up too much screen real-estate (see <a href="https://nicer.app/3D-data" class="nomod noPushState" target="3dfm1">3D file manager on nicer.app</a> for a demo of a filetree browser in 3D, using ThreeJS)</div></li>
+            <li class="todoList_l1"><div>how to move DIV dialogs/windows in and out of view on a screen that may change it's orientation at any time, on demand.</div></li>.
+        </ol>
+    </li>
+    <li class="todoList"><div>(CURRENT) (Jan 2024) Fix bugs in the Theme Editor and page loading mechanism of v5.y.z</div></li>
+
+
     <li class="todoList"><div>(CURRENT) (2023 Oct,Nov,Dec) Upgrade the blogging features.
         <ol class="todoList_l1">
             <li class="todoList_l1"><div>(STALLED) Create a custom HTML WYSIWYG rich-text editor component of my own, that ties into the NicerApp Theme Editor.<br/>

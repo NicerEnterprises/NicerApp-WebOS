@@ -47,7 +47,8 @@ $newsApp3_dataSources['RSS_list'] = array (
             'NOS Nieuws in 60 seconden' => 'http://feeds.nos.nl/nos-nieuwsin60seconden?format=xml',
             'NOS Video Nieuws' => 'http://feeds.nos.nl/nosnieuwsvideo?format=xml',
             'NU.nl' => 'https://www.nu.nl/rss',
-            'NOS Met het oog op morgen' => 'http://feeds.nos.nl/MHOOM?format=xml'
+            'NOS Met het oog op morgen' => 'http://feeds.nos.nl/MHOOM?format=xml',
+            'bright.nl' => 'https://www.bright.nl/rss?tag=rss'
             
         ),
         'Binnenland' => array (
