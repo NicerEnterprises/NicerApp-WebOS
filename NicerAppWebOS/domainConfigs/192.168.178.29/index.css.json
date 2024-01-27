@@ -1,7 +1,0 @@
-[
-    "/NicerAppWebOS/3rd-party/jQuery/tooltipster/dist/css/tooltipster.bundle.css",
-    "/NicerAppWebOS/3rd-party/jQuery/spectrum/dist/spectrum.css",
-    "/NicerAppWebOS/domainConfigs/{$domain}/index.css",
-    "/NicerAppWebOS/domainConfigs/{$domain}/index.dark.css",
-    "/NicerAppWebOS/domainConfigs/{$domain}/errors.css"
-]

@@ -1,1 +1,0 @@
-{ "OWNER_NAME" : "Rene AJM Veerman", "OWNER_EMAIL" : "rene.veerman.netherlands@gmail.com", "OWNER_PASSWORD" : "dontGoBitingMee,Pups" }

@@ -1,2 +1,0 @@
-<meta name="keywords" content="data analyzer, expansible view, collapsed view, array, object, nested array, recursive array, nested object, recursive object"/>
-<meta name="description" content="provides a collapsed-expansible view of nested arrays and objects"/>

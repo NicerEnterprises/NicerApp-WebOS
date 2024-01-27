@@ -1,1 +1,0 @@
-NicerApp WebOS LICENSE

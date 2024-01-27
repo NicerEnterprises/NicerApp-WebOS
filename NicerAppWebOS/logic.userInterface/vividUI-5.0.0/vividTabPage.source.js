@@ -1,5 +1,0 @@
-class naVividMenu {
-    constructor (el ) {
-    }
-}
-

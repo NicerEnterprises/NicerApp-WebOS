@@ -1,1 +1,0 @@
-vividText : color animations for HTML text

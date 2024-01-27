@@ -1,1 +1,0 @@
-vividScrollpane : a basic but pretty scrollpane component

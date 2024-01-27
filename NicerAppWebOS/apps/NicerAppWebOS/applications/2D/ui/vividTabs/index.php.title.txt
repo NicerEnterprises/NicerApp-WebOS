@@ -1,1 +1,0 @@
-vividTabs: a tabs component with animated buttons that you can put video clips on
