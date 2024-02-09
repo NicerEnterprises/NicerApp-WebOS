@@ -1,0 +1,53 @@
+
+
+/* $Id: imapsync_form.css,v 1.10 2021/09/21 09:25:53 gilles Exp gilles $ */
+
+body {
+  color: black;
+  background-color: #eeffff;
+}
+
+#account1 {
+        background-color: DodgerBlue ;
+        /* background-color: Fuchsia ; */
+        /* background-color: RoyalBlue ; */
+}
+
+#account2 {
+        background-color: DarkTurquoise ;
+}
+
+#parameters {
+        /* background-color: GreenYellow ; */
+        /* background-color: White ; */
+}
+
+#progress-txt {
+        text-align: center ;
+        font-size: 1.4em ;
+        margin: 0 0 0px ;
+        height: 50px ;
+}
+
+#imapsync_log_bottom {
+        scroll-margin-top: 300px ;
+}
+
+.progress {
+        /* text-align: center ; */
+        /* font-size: 1.4em ; */
+        margin: 0 0 0px ;
+}
+
+.progress-bar {
+        text-align: center ;
+        font-size: 1.4em ;
+        margin: 0 0 0px ;
+}
+
+
+.padd0 {
+        padding-left:  0px ;
+        padding-right: 0px ;
+}
+

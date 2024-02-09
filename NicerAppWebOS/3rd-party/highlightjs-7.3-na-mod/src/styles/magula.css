@@ -1,0 +1,122 @@
+﻿/*
+Description: Magula style for highligh.js
+Author: Ruslan Keba <rukeba@gmail.com>
+Website: http://rukeba.com/
+Version: 1.0
+Date: 2009-01-03
+Music: Aphex Twin / Xtal
+*/
+
+pre.jshighlight__theme__magula code {
+  display: block; padding: 0.5em;
+  background-color: #f4f4f4;
+}
+
+pre.jshighlight__theme__magula code,
+pre.jshighlight__theme__magula .subst,
+pre.jshighlight__theme__magula .lisp .title,
+pre.jshighlight__theme__magula .clojure .built_in {
+  color: black;
+}
+
+pre.jshighlight__theme__magula .string,
+pre.jshighlight__theme__magula .title,
+pre.jshighlight__theme__magula .parent,
+pre.jshighlight__theme__magula .tag .value,
+pre.jshighlight__theme__magula .rules .value,
+pre.jshighlight__theme__magula .rules .value .number,
+pre.jshighlight__theme__magula .pre.jshighlight__theme__magulaprocessor,
+pre.jshighlight__theme__magula .ruby .symbol,
+pre.jshighlight__theme__magula .ruby .symbol .string,
+pre.jshighlight__theme__magula .aggregate,
+pre.jshighlight__theme__magula .template_tag,
+pre.jshighlight__theme__magula .django .variable,
+pre.jshighlight__theme__magula .smalltalk .class,
+pre.jshighlight__theme__magula .addition,
+pre.jshighlight__theme__magula .flow,
+pre.jshighlight__theme__magula .stream,
+pre.jshighlight__theme__magula .bash .variable,
+pre.jshighlight__theme__magula .apache .cbracket,
+pre.jshighlight__theme__magula .coffeescript .attribute {
+  color: #050;
+}
+
+pre.jshighlight__theme__magula .comment,
+pre.jshighlight__theme__magula .annotation,
+pre.jshighlight__theme__magula .template_comment,
+pre.jshighlight__theme__magula .diff .header,
+pre.jshighlight__theme__magula .chunk {
+  color: #777;
+}
+
+pre.jshighlight__theme__magula .number,
+pre.jshighlight__theme__magula .date,
+pre.jshighlight__theme__magula .regexp,
+pre.jshighlight__theme__magula .literal,
+pre.jshighlight__theme__magula .smalltalk .symbol,
+pre.jshighlight__theme__magula .smalltalk .char,
+pre.jshighlight__theme__magula .change,
+pre.jshighlight__theme__magula .tex .special {
+  color: #800;
+}
+
+pre.jshighlight__theme__magula .label,
+pre.jshighlight__theme__magula .javadoc,
+pre.jshighlight__theme__magula .ruby .string,
+pre.jshighlight__theme__magula .decorator,
+pre.jshighlight__theme__magula .filter .argument,
+pre.jshighlight__theme__magula .localvars,
+pre.jshighlight__theme__magula .array,
+pre.jshighlight__theme__magula .attr_selector,
+pre.jshighlight__theme__magula .pseudo,
+pre.jshighlight__theme__magula .pi,
+pre.jshighlight__theme__magula .doctype,
+pre.jshighlight__theme__magula .deletion,
+pre.jshighlight__theme__magula .envvar,
+pre.jshighlight__theme__magula .shebang,
+pre.jshighlight__theme__magula .apache .sqbracket,
+pre.jshighlight__theme__magula .nginx .built_in,
+pre.jshighlight__theme__magula .tex .formula,
+pre.jshighlight__theme__magula .prompt,
+pre.jshighlight__theme__magula .clojure .attribute {
+  color: #00e;
+}
+
+pre.jshighlight__theme__magula .keyword,
+pre.jshighlight__theme__magula .id,
+pre.jshighlight__theme__magula .phpdoc,
+pre.jshighlight__theme__magula .title,
+pre.jshighlight__theme__magula .built_in,
+pre.jshighlight__theme__magula .aggregate,
+pre.jshighlight__theme__magula .smalltalk .class,
+pre.jshighlight__theme__magula .winutils,
+pre.jshighlight__theme__magula .bash .variable,
+pre.jshighlight__theme__magula .apache .tag,
+pre.jshighlight__theme__magula .xml .tag,
+pre.jshighlight__theme__magula .tex .command,
+pre.jshighlight__theme__magula .request,
+pre.jshighlight__theme__magula .status {
+  font-weight: bold;
+  color: navy;
+}
+
+pre.jshighlight__theme__magula .nginx .built_in {
+  font-weight: normal;
+}
+
+pre.jshighlight__theme__magula .coffeescript .javascript,
+pre.jshighlight__theme__magula .javascript .xml,
+pre.jshighlight__theme__magula .tex .formula,
+pre.jshighlight__theme__magula .xml .javascript,
+pre.jshighlight__theme__magula .xml .vbscript,
+pre.jshighlight__theme__magula .xml .css,
+pre.jshighlight__theme__magula .xml .cdata {
+  opacity: 0.5;
+}
+
+/* --- */
+pre.jshighlight__theme__magula .apache .tag {
+  font-weight: bold;
+  color: blue;
+}
+

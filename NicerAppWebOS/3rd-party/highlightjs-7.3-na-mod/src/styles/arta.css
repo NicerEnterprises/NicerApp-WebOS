@@ -1,0 +1,159 @@
+/*
+Date: 17.V.2011
+Author: pumbur <pumbur@pumbur.net>
+*/
+
+pre.jshighlight__theme__arta code
+{
+  display: block; padding: 0.5em;
+  background: #222;
+}
+
+pre.jshighlight__theme__arta .profile .header *,
+pre.jshighlight__theme__arta .ini .title,
+pre.jshighlight__theme__arta .nginx .title
+{
+  color: #fff;
+}
+
+pre.jshighlight__theme__arta .comment,
+pre.jshighlight__theme__arta .javadoc,
+pre.jshighlight__theme__arta .pre.jshighlight__theme__artaprocessor,
+pre.jshighlight__theme__arta .pre.jshighlight__theme__artaprocessor .title,
+pre.jshighlight__theme__arta .shebang,
+pre.jshighlight__theme__arta .profile .summary,
+pre.jshighlight__theme__arta .diff,
+pre.jshighlight__theme__arta .pi,
+pre.jshighlight__theme__arta .doctype,
+pre.jshighlight__theme__arta .tag,
+pre.jshighlight__theme__arta .template_comment,
+pre.jshighlight__theme__arta .css .rules,
+pre.jshighlight__theme__arta .tex .special
+{
+  color: #444;
+}
+
+pre.jshighlight__theme__arta .string,
+pre.jshighlight__theme__arta .symbol,
+pre.jshighlight__theme__arta .diff .change,
+pre.jshighlight__theme__arta .regexp,
+pre.jshighlight__theme__arta .xml .attribute,
+pre.jshighlight__theme__arta .smalltalk .char,
+pre.jshighlight__theme__arta .xml .value,
+pre.jshighlight__theme__arta .ini .value,
+pre.jshighlight__theme__arta .clojure .attribute,
+pre.jshighlight__theme__arta .coffeescript .attribute
+{
+  color: #ffcc33;
+}
+
+pre.jshighlight__theme__arta .number,
+pre.jshighlight__theme__arta .addition
+{
+  color: #00cc66;
+}
+
+pre.jshighlight__theme__arta .built_in,
+pre.jshighlight__theme__arta .literal,
+pre.jshighlight__theme__arta .vhdl .typename,
+pre.jshighlight__theme__arta .go .constant,
+pre.jshighlight__theme__arta .go .typename,
+pre.jshighlight__theme__arta .ini .keyword,
+pre.jshighlight__theme__arta .lua .title,
+pre.jshighlight__theme__arta .perl .variable,
+pre.jshighlight__theme__arta .php .variable,
+pre.jshighlight__theme__arta .mel .variable,
+pre.jshighlight__theme__arta .django .variable,
+pre.jshighlight__theme__arta .css .funtion,
+pre.jshighlight__theme__arta .smalltalk .method,
+pre.jshighlight__theme__arta .hexcolor,
+pre.jshighlight__theme__arta .important,
+pre.jshighlight__theme__arta .flow,
+pre.jshighlight__theme__arta .inheritance,
+pre.jshighlight__theme__arta .parser3 .variable
+{
+  color: #32AAEE;
+}
+
+pre.jshighlight__theme__arta .keyword,
+pre.jshighlight__theme__arta .tag .title,
+pre.jshighlight__theme__arta .css .tag,
+pre.jshighlight__theme__arta .css .class,
+pre.jshighlight__theme__arta .css .id,
+pre.jshighlight__theme__arta .css .pseudo,
+pre.jshighlight__theme__arta .css .attr_selector,
+pre.jshighlight__theme__arta .lisp .title,
+pre.jshighlight__theme__arta .clojure .built_in,
+pre.jshighlight__theme__arta .winutils,
+pre.jshighlight__theme__arta .tex .command,
+pre.jshighlight__theme__arta .request,
+pre.jshighlight__theme__arta .status
+{
+  color: #6644aa;
+}
+
+pre.jshighlight__theme__arta .title,
+pre.jshighlight__theme__arta .ruby .constant,
+pre.jshighlight__theme__arta .vala .constant,
+pre.jshighlight__theme__arta .parent,
+pre.jshighlight__theme__arta .deletion,
+pre.jshighlight__theme__arta .template_tag,
+pre.jshighlight__theme__arta .css .keyword,
+pre.jshighlight__theme__arta .objectivec .class .id,
+pre.jshighlight__theme__arta .smalltalk .class,
+pre.jshighlight__theme__arta .lisp .keyword,
+pre.jshighlight__theme__arta .apache .tag,
+pre.jshighlight__theme__arta .nginx .variable,
+pre.jshighlight__theme__arta .envvar,
+pre.jshighlight__theme__arta .bash .variable,
+pre.jshighlight__theme__arta .go .built_in,
+pre.jshighlight__theme__arta .vbscript .built_in,
+pre.jshighlight__theme__arta .lua .built_in,
+pre.jshighlight__theme__arta .rsl .built_in,
+pre.jshighlight__theme__arta .tail,
+pre.jshighlight__theme__arta .avrasm .label,
+pre.jshighlight__theme__arta .tex .formula,
+pre.jshighlight__theme__arta .tex .formula *
+{
+  color: #bb1166;
+}
+
+pre.jshighlight__theme__arta .yardoctag,
+pre.jshighlight__theme__arta .phpdoc,
+pre.jshighlight__theme__arta .profile .header,
+pre.jshighlight__theme__arta .ini .title,
+pre.jshighlight__theme__arta .apache .tag,
+pre.jshighlight__theme__arta .parser3 .title
+{
+  font-weight: bold;
+}
+
+pre.jshighlight__theme__arta .coffeescript .javascript,
+pre.jshighlight__theme__arta .javascript .xml,
+pre.jshighlight__theme__arta .tex .formula,
+pre.jshighlight__theme__arta .xml .javascript,
+pre.jshighlight__theme__arta .xml .vbscript,
+pre.jshighlight__theme__arta .xml .css,
+pre.jshighlight__theme__arta .xml .cdata
+{
+  opacity: 0.6;
+}
+
+pre.jshighlight__theme__arta code,
+pre.jshighlight__theme__arta .javascript,
+pre.jshighlight__theme__arta .css,
+pre.jshighlight__theme__arta .xml,
+pre.jshighlight__theme__arta .subst,
+pre.jshighlight__theme__arta .diff .chunk,
+pre.jshighlight__theme__arta .css .value,
+pre.jshighlight__theme__arta .css .attribute,
+pre.jshighlight__theme__arta .lisp .string,
+pre.jshighlight__theme__arta .lisp .number,
+pre.jshighlight__theme__arta .tail .params,
+pre.jshighlight__theme__arta .container,
+pre.jshighlight__theme__arta .haskell *,
+pre.jshighlight__theme__arta .erlang *,
+pre.jshighlight__theme__arta .erlang_repl *
+{
+  color: #aaa;
+}

@@ -1,0 +1,50 @@
+﻿/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+
+*/
+
+pre.jshighlight__theme__ascetic code {
+  display: block; padding: 0.5em;
+  background: white; color: black;
+}
+
+pre.jshighlight__theme__ascetic .string,
+pre.jshighlight__theme__ascetic .tag .value,
+pre.jshighlight__theme__ascetic .filter .argument,
+pre.jshighlight__theme__ascetic .addition,
+pre.jshighlight__theme__ascetic .change,
+pre.jshighlight__theme__ascetic .apache .tag,
+pre.jshighlight__theme__ascetic .apache .cbracket,
+pre.jshighlight__theme__ascetic .nginx .built_in,
+pre.jshighlight__theme__ascetic .tex .formula {
+  color: #888;
+}
+
+pre.jshighlight__theme__ascetic .comment,
+pre.jshighlight__theme__ascetic .template_comment,
+pre.jshighlight__theme__ascetic .shebang,
+pre.jshighlight__theme__ascetic .doctype,
+pre.jshighlight__theme__ascetic .pi,
+pre.jshighlight__theme__ascetic .javadoc,
+pre.jshighlight__theme__ascetic .deletion,
+pre.jshighlight__theme__ascetic .apache .sqbracket {
+  color: #CCC;
+}
+
+pre.jshighlight__theme__ascetic .keyword,
+pre.jshighlight__theme__ascetic .tag .title,
+pre.jshighlight__theme__ascetic .ini .title,
+pre.jshighlight__theme__ascetic .lisp .title,
+pre.jshighlight__theme__ascetic .clojure .title,
+pre.jshighlight__theme__ascetic .http .title,
+pre.jshighlight__theme__ascetic .nginx .title,
+pre.jshighlight__theme__ascetic .css .tag,
+pre.jshighlight__theme__ascetic .winutils,
+pre.jshighlight__theme__ascetic .flow,
+pre.jshighlight__theme__ascetic .apache .tag,
+pre.jshighlight__theme__ascetic .tex .command,
+pre.jshighlight__theme__ascetic .request,
+pre.jshighlight__theme__ascetic .status {
+  font-weight: bold;
+}

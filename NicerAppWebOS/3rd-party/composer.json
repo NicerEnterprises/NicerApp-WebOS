@@ -1,0 +1,15 @@
+{
+    "require": {
+        "ibm-watson-data-lab/php-couchdb": "^0.1.2",
+        "php-mime-mail-parser/php-mime-mail-parser": "^7.0",
+        "birke/rememberme": "^4.0",
+        "ircmaxell/random-lib": "^1.2",
+        "defuse/php-encryption": "^2.3",
+        "phpfanatic/clarifai": "^2.0",
+        "league/oauth2-facebook": "^2.0",
+        "league/oauth2-google": "^4.0",
+        "league/oauth2-instagram": "^3.0",
+        "league/oauth2-linkedin": "^5.1",
+        "league/oauth2-github": "^3.0"
+    }
+}

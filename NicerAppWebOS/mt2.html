@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Style the menu items and submenus */
+        ul.menu {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul.menu li {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        ul.submenu {
+            display: none;
+        }
+
+        /* Style the submenu items */
+        ul.submenu li {
+            padding: 5px;
+            background-color: #e0e0e0;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        /* Style the backdrop */
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Style the submenu container */
+        .submenu-container {
+            background-color: #fff;
+            border: 1px solid #000;
+            padding: 20px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <ul class="menu" id="menu">
+        <li>Home</li>
+        <li>Products
+            <ul class="submenu">
+                <li>Product 1</li>
+                <li>Product 2</li>
+                <li>Product 3</li>
+            </ul>
+        </li>
+        <li>Services
+            <ul class="submenu">
+                <li>Service 1</li>
+                <li>Service 2</li>
+                <li>Service 3</li>
+            </ul>
+        </li>
+        <li>Contact</li>
+    </ul>
+
+    <div class="backdrop" id="backdrop">
+        <div class="submenu-container" id="submenu-container">
+            <button id="backButton">Back</button>
+            <ul class="submenu" id="submenu-back"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Get the menu and submenu elements
+        const menu = document.getElementById('menu');
+        const menuItems = menu.querySelectorAll('li');
+
+        const backdrop = document.getElementById('backdrop');
+        const submenuContainer = document.getElementById('submenu-container');
+        const backButton = document.getElementById('backButton');
+        const submenuBack = document.getElementById('submenu-back');
+
+        // Function to show a submenu
+        function showSubmenu(submenu) {
+            submenuBack.innerHTML = submenu.innerHTML;
+            submenuContainer.style.display = 'block';
+            backdrop.style.display = 'block';
+        }
+
+        // Function to hide the submenu
+        function hideSubmenu() {
+            submenuContainer.style.display = 'none';
+            backdrop.style.display = 'none';
+        }
+
+        // Add click event listeners to menu items
+        menuItems.forEach((menuItem) => {
+            menuItem.addEventListener('click', () => {
+                const submenu = menuItem.querySelector('.submenu');
+                if (submenu) {
+                    showSubmenu(submenu);
+                }
+            });
+        });
+
+        // Add click event listener to the Back button
+        backButton.addEventListener('click', hideSubmenu);
+
+        // Close submenu when clicking outside of the submenu
+        backdrop.addEventListener('click', (e) => {
+            if (e.target === backdrop) {
+                hideSubmenu();
+            }
+        });
+    </script>
+</body>
+</html>

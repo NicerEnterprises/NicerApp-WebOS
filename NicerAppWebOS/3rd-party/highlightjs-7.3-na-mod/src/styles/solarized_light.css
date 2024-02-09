@@ -1,0 +1,91 @@
+/*
+
+Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
+
+*/
+
+pre.jshighlight__theme__solarized_light code {
+  display: block; padding: 0.5em;
+  background: #fdf6e3; color: #657b83;
+}
+
+pre.jshighlight__theme__solarized_light .comment,
+pre.jshighlight__theme__solarized_light .template_comment,
+pre.jshighlight__theme__solarized_light .diff .header,
+pre.jshighlight__theme__solarized_light .doctype,
+pre.jshighlight__theme__solarized_light .pi,
+pre.jshighlight__theme__solarized_light .lisp .string,
+pre.jshighlight__theme__solarized_light .javadoc {
+  color: #93a1a1;
+  font-style: italic;
+}
+
+pre.jshighlight__theme__solarized_light .keyword,
+pre.jshighlight__theme__solarized_light .winutils,
+pre.jshighlight__theme__solarized_light .method,
+pre.jshighlight__theme__solarized_light .addition,
+pre.jshighlight__theme__solarized_light .css .tag,
+pre.jshighlight__theme__solarized_light .request,
+pre.jshighlight__theme__solarized_light .status,
+pre.jshighlight__theme__solarized_light .nginx .title {
+  color: #859900;
+}
+
+pre.jshighlight__theme__solarized_light .number,
+pre.jshighlight__theme__solarized_light .command,
+pre.jshighlight__theme__solarized_light .string,
+pre.jshighlight__theme__solarized_light .tag .value,
+pre.jshighlight__theme__solarized_light .rules .value,
+pre.jshighlight__theme__solarized_light .phpdoc,
+pre.jshighlight__theme__solarized_light .tex .formula,
+pre.jshighlight__theme__solarized_light .regexp,
+pre.jshighlight__theme__solarized_light .hexcolor {
+  color: #2aa198;
+}
+
+pre.jshighlight__theme__solarized_light .title,
+pre.jshighlight__theme__solarized_light .localvars,
+pre.jshighlight__theme__solarized_light .chunk,
+pre.jshighlight__theme__solarized_light .decorator,
+pre.jshighlight__theme__solarized_light .built_in,
+pre.jshighlight__theme__solarized_light .identifier,
+pre.jshighlight__theme__solarized_light .vhdl .literal,
+pre.jshighlight__theme__solarized_light .id,
+pre.jshighlight__theme__solarized_light .css .function {
+  color: #268bd2;
+}
+
+pre.jshighlight__theme__solarized_light .attribute,
+pre.jshighlight__theme__solarized_light .variable,
+pre.jshighlight__theme__solarized_light .lisp .body,
+pre.jshighlight__theme__solarized_light .smalltalk .number,
+pre.jshighlight__theme__solarized_light .constant,
+pre.jshighlight__theme__solarized_light .class .title,
+pre.jshighlight__theme__solarized_light .parent,
+pre.jshighlight__theme__solarized_light .haskell .type {
+  color: #b58900;
+}
+
+pre.jshighlight__theme__solarized_light .pre.jshighlight__theme__solarized_lightprocessor,
+pre.jshighlight__theme__solarized_light .pre.jshighlight__theme__solarized_lightprocessor .keyword,
+pre.jshighlight__theme__solarized_light .shebang,
+pre.jshighlight__theme__solarized_light .symbol,
+pre.jshighlight__theme__solarized_light .symbol .string,
+pre.jshighlight__theme__solarized_light .diff .change,
+pre.jshighlight__theme__solarized_light .special,
+pre.jshighlight__theme__solarized_light .attr_selector,
+pre.jshighlight__theme__solarized_light .important,
+pre.jshighlight__theme__solarized_light .subst,
+pre.jshighlight__theme__solarized_light .cdata,
+pre.jshighlight__theme__solarized_light .clojure .title,
+pre.jshighlight__theme__solarized_light .css .pseudo {
+  color: #cb4b16;
+}
+
+pre.jshighlight__theme__solarized_light .deletion {
+  color: #dc322f;
+}
+
+pre.jshighlight__theme__solarized_light .tex .formula {
+  background: #eee8d5;
+}

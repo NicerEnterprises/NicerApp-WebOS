@@ -1,0 +1,58 @@
+/*
+  Five-color theme from a single blue hue.
+*/
+pre.jshighlight__theme__mono-blue code {
+  display: block; padding: 0.5em;
+  background: #EAEEF3; color: #00193A;
+}
+
+pre.jshighlight__theme__mono-blue .keyword,
+pre.jshighlight__theme__mono-blue .title,
+pre.jshighlight__theme__mono-blue .important,
+pre.jshighlight__theme__mono-blue .request,
+pre.jshighlight__theme__mono-blue .header {
+  font-weight: bold;
+}
+
+pre.jshighlight__theme__mono-blue .comment,
+pre.jshighlight__theme__mono-blue .chunk,
+pre.jshighlight__theme__mono-blue .template_comment {
+  color: #738191;
+}
+
+pre.jshighlight__theme__mono-blue .string,
+pre.jshighlight__theme__mono-blue .title,
+pre.jshighlight__theme__mono-blue .parent,
+pre.jshighlight__theme__mono-blue .built_in,
+pre.jshighlight__theme__mono-blue .literal,
+pre.jshighlight__theme__mono-blue .filename,
+pre.jshighlight__theme__mono-blue .value,
+pre.jshighlight__theme__mono-blue .addition,
+pre.jshighlight__theme__mono-blue .tag,
+pre.jshighlight__theme__mono-blue .argument,
+pre.jshighlight__theme__mono-blue .link_label,
+pre.jshighlight__theme__mono-blue .blockquote,
+pre.jshighlight__theme__mono-blue .header {
+  color: #0048AB;
+}
+
+pre.jshighlight__theme__mono-blue .decorator,
+pre.jshighlight__theme__mono-blue .prompt,
+pre.jshighlight__theme__mono-blue .yardoctag,
+pre.jshighlight__theme__mono-blue .subst,
+pre.jshighlight__theme__mono-blue .symbol,
+pre.jshighlight__theme__mono-blue .doctype,
+pre.jshighlight__theme__mono-blue .regexp,
+pre.jshighlight__theme__mono-blue .pre.jshighlight__theme__mono-blueprocessor,
+pre.jshighlight__theme__mono-blue .pi,
+pre.jshighlight__theme__mono-blue .attribute,
+pre.jshighlight__theme__mono-blue .attr_selector,
+pre.jshighlight__theme__mono-blue .javadoc,
+pre.jshighlight__theme__mono-blue .xmlDocTag,
+pre.jshighlight__theme__mono-blue .deletion,
+pre.jshighlight__theme__mono-blue .shebang,
+pre.jshighlight__theme__mono-blue .string .variable,
+pre.jshighlight__theme__mono-blue .link_url,
+pre.jshighlight__theme__mono-blue .bullet {
+  color: #4C81C9;
+}
