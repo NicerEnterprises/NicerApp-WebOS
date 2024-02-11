@@ -30,7 +30,7 @@
             i've taken the liberty of web form contacting the tinymce sales team to ask if they can implement this for universal web theme editor makers for free.
             </div></li>
 
-            <li class="todoList_l1"><div>(STALLED, awaiting completion of item 1.1 on this list)<br/>
+            <li class="todoList_l1"><div>(STALLED, awaiting completion of item 3.1 on this list)<br/>
             Supply data from a HTML+CSS form (as a tabpage in the universal web theme editor) into <a href="https://github.com/NicerEnterprises/NicerApp-WebOS/blob/main/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php#L1374" class="noPushState" target="naGH_wos1088">css_keyframes_to_array() and css_animation_template_to_animation()</a>.
                 <ol class="todoList_l2">
                     <li class="todoList_l2"><div>Write 'vividRangeFinder' (a percentage bar -input field really- with 2 percentage stops)</div></li>
