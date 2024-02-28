@@ -28,8 +28,8 @@ if (!$naLAN) die('403 Forbidden.');
                 [ 'isLAN' => 'desc' ]
 
         ],
-        'use_index' => $naWebOS->globals['cdbDesignDocs']['logentries_pageLoad'],
-        'limit' => 10 * 1000
+        'use_index' => $naWebOS->globals['cdbDesignDocs']['logentries_frontpage'],
+        'limit' => 100
     ];
 
     if ($_GET['type']=='robots') $findCommand['selector']['isBot'] = true;
@@ -52,10 +52,11 @@ if (!$naLAN) die('403 Forbidden.');
 
 
 
-    //echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;margin:10px;">'; var_dump($call); echo '</pre>';
+    //echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;margin:10px;">'; var_dump($call); echo '</pre>'; //exit();
+    //if (false)
     foreach ($call->body->docs as $docID => $doc) {
         //echo '<pre style="padding:5px;margin:8px;color:white;background:rgba(0,50,0,0.5);">'; var_dump ($doc); echo '</pre>';
-        $call2 = $cdb-> get($doc->_id);
+        $call2 = $cdb->get($doc->_id);
         //echo $call2->body->entry->request->html;
 
         //echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;padding:5px;margin:10px;">'; var_dump($doc); echo '</pre>';

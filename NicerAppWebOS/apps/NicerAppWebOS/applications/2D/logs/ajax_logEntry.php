@@ -25,7 +25,7 @@ if (!$naLAN) die('403 Forbidden.');
                 [ 'isLAN' => 'desc' ]
         ],
         'use_index' => $naWebOS->globals['cdbDesignDocs']['logentries_pageLoad'],
-        'limit' => 10 * 1000
+        'limit' => 100
     ];
     //echo '<pre style="padding:8px;border-radius:10px;background:rgba(255,255,255,0.5);color:green;">'; var_dump ($findCommand); echo '</pre>';
     try {

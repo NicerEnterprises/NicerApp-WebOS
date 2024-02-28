@@ -122,8 +122,8 @@ echo $naWebOS->html_vividButton (
                 [ 'isBot' => 'desc' ],
                 [ 'isLAN' => 'desc' ]
         ],
-            'use_index' => $naWebOS->globals['cdbDesignDocs']['logentries_pageLoad'],
-        'limit' => 10 * 1000
+            'use_index' => $naWebOS->globals['cdbDesignDocs']['logentries_frontpage'],
+        'limit' => 100
     ];
     if ($_GET['type']=='robots') $findCommand['selector']['isBot'] = true;
     elseif ($_GET['type']=='LAN') $findCommand['selector']['isLAN'] = true;
@@ -141,6 +141,7 @@ echo $naWebOS->html_vividButton (
         die();
     }
 
+    //if (false)
     foreach ($call->body->docs as $docID => $doc) {
         $call2 = $cdb->get($doc->_id);
         $docA = json_decode(json_encode($call2->body), true);

@@ -113,7 +113,7 @@ if ($appRec['page']=='index') {
             [ 'isBot' => 'desc' ],
             [ 'isLAN' => 'desc' ]
         ],
-        'use_index' => $naWebOS->globals['cdbDesignDocs']['logentries_pageLoad'],
+        'use_index' => $naWebOS->globals['cdbDesignDocs']['logentries_frontpage'],
         'limit' => 10 * 1000
     ];
 
@@ -129,6 +129,7 @@ if ($appRec['page']=='index') {
         die();
     }
 
+    if (false)
     foreach ($call->body->docs as $docID => $doc) {
         $call2 = $cdb->get($doc->_id);
         //echo '<pre>';var_dump ($call2->body);echo '</pre>';

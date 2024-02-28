@@ -27,7 +27,8 @@ if ($appRec['page']=='index') {
                 [ 'isBot' => 'desc' ],
                 [ 'isLAN' => 'desc' ]
             ],
-            'use_index' => $naWebOS->globals['cdbDesignDocs']['logentries_pageLoad']
+            'limit' => 20,
+            'use_index' => $naWebOS->globals['cdbDesignDocs']['logentries_frontpage']
         ];
         //echo '<pre style="padding:8px;border-radius:10px;background:rgba(255,255,255,0.5);color:green;">'; var_dump ($findCommand2); echo '</pre>';
     try {
@@ -44,7 +45,8 @@ if ($appRec['page']=='index') {
 
 
 
-    //echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;margin:10px;">'; var_dump($call); echo '</pre>';
+    //echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;margin:10px;">'; var_dump($call); echo '</pre>'; //exit();
+    //if (false)
     foreach ($call->body->docs as $docID => $doc) {
         //echo '<pre style="padding:5px;margin:8px;color:white;background:rgba(0,50,0,0.5);">'; var_dump ($doc); echo '</pre>';
         $call2 = $cdb->get($doc->_id);
@@ -52,6 +54,28 @@ if ($appRec['page']=='index') {
 
         //echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;padding:5px;margin:10px;">'; var_dump($call2->body); echo '</pre>';
 
+        $docA = json_decode(json_encode($call2->body), true);
+
+        $now = DateTime::createFromFormat('U', $call2->body->s2);
+        $now2 = $now->format("Y-m-d H:i:s");
+
+        $class = '';
+        if ($call2->body->isBot) $class.='bot ';
+
+        $url = '';
+        $tooltip = '';
+        if (array_key_exists('request', $docA)) {
+            $url = $docA['request']['$_SERVER']['REQUEST_URI'];
+            $tooltip = str_replace('\/','/',str_replace('"', "'", str_replace(' ', '&nbsp;', str_replace(PHP_EOL, '<br/>', json_encode($docA['request']['$naWebOS->view'],JSON_PRETTY_PRINT)))));
+        }
+        if (array_key_exists('httpOpts', $docA))
+            if (array_key_exists('ALL cURL fields', $docA['httpOpts']))
+                $url = $docA['httpOpts']['ALL cURL fields']['CURLOPT_URL'];
+            else
+                $url = $docA['httpOpts']['CURLOPT_URL'];
+
+
+        echo '<h2 class="logEntry '.$class.' tooltip flex" s1="'.$call2->body->s1.'" i="'.$call2->body->i.'" title="'.$tooltip.'" alt="'.$tooltip.'"  onclick="naLog.onclick_logEntry(event);"><span class="datetimeAccurate">'.$now2.'</span> <span class="ip">'.$call2->body->ip.'</span><br/>'.$url.'</h2>';
 
         $marginLeft = 10;
         if (!$doc->isIndex) $marginLeft = 50;
@@ -90,7 +114,7 @@ if ($appRec['page']=='index') {
 
     }
     $html = '';
-    $html .= '<script type="text/javascript">setTimeout (function() {na.site.settings.current.running_loadTheme = false; na.site.settings.current.loadingApps = false; na.hms.startProcessing()}, 1500); na.site.transformLinks()</script>';
+    $html .= '<script type="text/javascript">setTimeout (function() {na.site.settings.current.running_loadTheme = false; na.site.settings.current.loadingApps = false; na.hms.startProcessing(); $(\'.logEntry.flex\').detach().appendTo(\'#siteToolbarLeft .vividDialogContent\'); }, 500); na.site.transformLinks()</script>';
     echo $html;
 
 
