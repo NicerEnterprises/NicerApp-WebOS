@@ -1,4 +1,4 @@
-na.photoAlbum = {
+if (!na.photoAlbum) na.photoAlbum = {
     settings : {},
     
     onload : function () {
@@ -11,45 +11,43 @@ na.photoAlbum = {
         iframeHeight = $('#siteContent .vividDialogContent').height(),
         imgpw = Math.floor((w*100)/iframeWidth),
         imgph = Math.floor((h*100)/iframeHeight);
-        
         s.naturalWidth = w;
         s.naturalHeight = h;
-//debugger;
         //na.m.log (1, 't12', iframeWidth, w, iframeHeight, h, imgpw, imgph);
         if (imgph>imgpw) {
             if (h>iframeHeight) {
-                tw = jQueryImg.css({width:'',left:0,height:iframeHeight}).width();
+                tw = jQueryImg.css({width:'',left:0,height:iframeHeight}).delay(50).width();
                 th = jQueryImg.height();
                 s.zoomPercentage = (tw*100)/w;
             } else if (w>iframeWidth) {
-                th = jQueryImg.css({top:0,width:iframeWidth,height:''}).height();
+                th = jQueryImg.css({top:0,width:iframeWidth,height:''}).delay(50).height();
                 tw = jQueryImg.width();
                 s.zoomPercentage = (th * 100) / h;
             } else if (w>h) {
-                tw = jQueryImg.css({width:'',left:0,height:iframeHeight}).width();
+                tw = jQueryImg.css({width:'',left:0,height:h}).delay(50).width();
                 th = jQueryImg.height();
                 s.zoomPercentage = (tw*100)/w;
             } else {
-                th = jQueryImg.css({top:0,width:iframeWidth,height:''}).height();
+                th = jQueryImg.css({top:0,width:w,height:''}).delay(250).height();
                 tw = jQueryImg.width();
                 s.zoomPercentage = (th*100) / h;
             }
 
         } else {
             if (w>iframeWidth) {
-                th = jQueryImg.css({top:0,width:iframeWidth,height:''}).height();
+                th = jQueryImg.css({top:0,width:iframeWidth,height:''}).delay(50).height();
                 tw = jQueryImg.width();
                 s.zoomPercentage = (th*100) / h;
             } else if (h>iframeHeight) {
-                tw = jQueryImg.css({width:'',left:0,height:iframeHeight}).width();
+                tw = jQueryImg.css({width:'',left:0,height:iframeHeight}).delay(50).width();
                 th = jQueryImg.height();
                 s.zoomPercentage = (tw*100)/w;
             } else if (w>h) {
-                tw = jQueryImg.css({width:'',left:0,height:iframeHeight}).width();
+                tw = jQueryImg.css({width:'',left:0,height:h}).delay(50).width();
                 th = jQueryImg.height();
                 s.zoomPercentage = (tw*100)/w;
             } else {
-                th = jQueryImg.css({top:0,width:iframeWidth,height:''}).height();
+                th = jQueryImg.css({top:0,width:w,height:''}).delay(50).height();
                 tw = jQueryImg.width();
                 s.zoomPercentage = (th*100) / h;
             }
@@ -57,13 +55,14 @@ na.photoAlbum = {
         };
         s.minZoom = s.zoomPercentage;
         
-        na.photoAlbum.updateZoom();
+        setTimeout(na.photoAlbum.updateZoom,200);
         na.m.hookScrollwheel ($('#viewMedia')[0], na.photoAlbum.mousewheel, false, true);
         document.onmousedown = na.photoAlbum.startDrag;
-		document.onmouseup = na.photoAlbum.stopDrag;
-        debugger;
+        document.onmouseup = na.photoAlbum.stopDrag;
         if (!na.photoAlbum.settings.onresizeHooked) {
-            window.addEventListener ('resize', function () { setTimeout(na.photoAlbum.onload,500) });
+            window.addEventListener ('resize', function () {
+                debugger;
+                setTimeout(na.photoAlbum.onload,500) });
             na.photoAlbum.settings.onresizeHooked = true;
         }
 
@@ -149,30 +148,30 @@ na.photoAlbum = {
         if (imgph>imgpw) {
             if (h>iframeHeight) {
                 th = ((h)/100) * s.zoomPercentage;
-                tw = jQueryImg.css({width:'',left:0,height:th}).width();
+                tw = jQueryImg.css({width:'',left:0,height:th}).delay(50).width();
             } else if (w>iframeWidth) {
                 tw = ((w)/100) * s.zoomPercentage;
-                th = jQueryImg.css({top:0,width:tw,height:''}).height();
+                th = jQueryImg.css({top:0,width:tw,height:''}).delay(50).height();
             } else if (w>h) {
                 tw = ((w)/100) * s.zoomPercentage;
-                th = jQueryImg.css({top:0,width:tw,height:''}).height();
+                th = jQueryImg.css({top:0,width:tw,height:''}).delay(50).height();
             } else {
                 th = ((h)/100) * s.zoomPercentage;
-                tw = jQueryImg.css({width:'',left:0,height:th}).width();
+                tw = jQueryImg.css({width:'',left:0,height:th}).delay(50).width();
             }
         } else {
             if (w>iframeWidth) {
                 tw = ((w)/100) * s.zoomPercentage;
-                th = jQueryImg.css({top:0,width:tw,height:''}).height();
+                th = jQueryImg.css({top:0,width:tw,height:''}).delay(50).height();
             } else if (h>iframeHeight) {
                 th = ((h)/100) * s.zoomPercentage;
-                tw = jQueryImg.css({width:'',left:0,height:th}).width();
+                tw = jQueryImg.css({width:'',left:0,height:th}).delay(50).width();
             } else if (w>h) {
                 tw = ((w)/100) * s.zoomPercentage;
-                th = jQueryImg.css({top:0,width:tw,height:''}).height();
+                th = jQueryImg.css({top:0,width:tw,height:''}).delay(50).height();
             } else {
                 th = ((h)/100) * s.zoomPercentage;
-                tw = jQueryImg.css({width:'',left:0,height:th}).width();
+                tw = jQueryImg.css({width:'',left:0,height:th}).delay(50).width();
             }
         };
         s.th = Math.round(th*1000)/1000;
@@ -190,8 +189,11 @@ na.photoAlbum = {
             width : tw,
             height : th
         };
-        
-        jQueryImg.css (pos2);
+        debugger;
+
+        setTimeout(function(pos2) {
+            jQueryImg.css (pos2);
+        }, 200, pos2);
         $('#naPhotoAlbum__control__naturalWidth').html ( 'Original\'s width : ' + s.naturalWidth);
         $('#naPhotoAlbum__control__naturalHeight').html ( 'Original\'s height : ' + s.naturalHeight);
         $('#naPhotoAlbum__control__width').html ( 'Width : ' + s.tw);
