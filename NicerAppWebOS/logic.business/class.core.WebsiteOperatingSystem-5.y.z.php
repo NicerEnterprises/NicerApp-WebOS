@@ -198,7 +198,7 @@ class NicerAppWebOS {
         $this->globals = [
             'cdbDesignDocs' => [
                 'logentries_frontpage' => '_design/b85f421ac33d01d90fbeb14a187600d44c01bd36',
-                'logentries_pageLoad' => '_design/03aacee4245b3bbbe289236ba169e05515ea5a52'
+                'logentries_pageLoad' => '_design/556539d11d9d33d17c72fd402798730ceac08471'
             ]
         ];
 

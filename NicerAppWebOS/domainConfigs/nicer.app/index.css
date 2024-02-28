@@ -876,7 +876,7 @@ body {
 .vividButton_icon_imgButtonIconBG_100x100.grouped {
     position : relative;
     left : 2px;
-    top : calc(-300px + 6px + 6px + 2px + 8px);
+    top : calc(-300px + 6px + 6px + 2px + 16px);
     display : flex;
     width : 84px;
     height : 84px;
@@ -887,7 +887,7 @@ body {
     width : 64px;
     height : 64px;
     left : calc(10px + 2px);
-    top : calc(-400px + 6px + 6px + 3px + 2px + 8px + 18px);
+    top : calc(-400px + 6px + 6px + 3px + 2px + 8px + 32px);
     position : relative;
     display : flex;
     z-index : 2020;

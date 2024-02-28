@@ -1129,7 +1129,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
         $rec = [
             'index' => [
-                'fields' => [ 's1', 's2', 'i', 'type', 'isIndex', 'isBot', 'isLAN']
+                'fields' => [ 's2', 'i', 'isIndex', 'isBot', 'isLAN']
             ],
             'name' => 'all',
             'type' => 'json'

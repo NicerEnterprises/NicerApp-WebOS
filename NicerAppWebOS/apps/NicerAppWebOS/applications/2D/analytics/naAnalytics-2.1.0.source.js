@@ -267,6 +267,7 @@ na.an = na.analytics = {
                     doc : JSON.stringify(doc)
                 }
             };
+            debugger;
             $.ajax(ac);
             na.m.log (1, 'na.analytics.logEvent() : eventType='+doc.eventType+', htmlID='+doc.htmlID, false);
         }
@@ -309,9 +310,17 @@ na.an = na.analytics = {
             ac = {
                 type : 'POST',
                 url : '/NicerAppWebOS/logEvent.php',
-                data : { doc : JSON.stringify(doc) }
+                data : { doc : JSON.stringify(doc) },
+                success : function (data, ts, xhr) {
+                    na.an.settings.performingMeta = false;
+                }
             };
-            $.ajax(ac);
+            na.m.waitForCondition('na.an.settings.performingMeta '+datetime.getTime(), function() {
+                return !na.an.settings.performingMeta;
+            }, function() {
+                na.an.settings.performingMeta = true;
+                $.ajax(ac);
+            });
             na.m.log (1, 'na.analytics.logMetaEvent() : '+msg, stacktrace);
         }
     },
