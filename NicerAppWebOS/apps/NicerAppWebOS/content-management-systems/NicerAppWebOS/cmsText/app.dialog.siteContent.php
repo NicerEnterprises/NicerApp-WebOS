@@ -39,13 +39,18 @@ $doc = $call->body->document;
 
 
 
-$p = preg_match_all ('/:{"mediaFolder":".*"}:/', $doc, $matches, PREG_OFFSET_CAPTURE);
-//echo '<pre style="color:yellow;background:black;">'; var_dump ($matches); echo '</pre><br/>'; //exit();
-foreach ($matches[0] as $idx => $match) {
-    $cmd = json_decode (substr($match[0],1,strlen($match[0])-2), true);
-    //echo '<pre style="color:yellow;background:black;">'; var_dump ($cmd); echo '</pre><br/>'; //exit();
+$p = preg_match_all ('/<p>.*?:({"mediaFolder":".*?"}):.*?<\/p>/', $doc, $matches, PREG_OFFSET_CAPTURE);
+//echo '<pre style="color:yellow;background:black;">'; var_dump ($matches); echo '</pre><br/>'; exit();
+foreach ($matches[1] as $idx => $match) {
+
+    $cmd = json_decode ($match[0], true);
+    //echo '<pre style="color:yellow;background:black;">'; var_dump (htmlentities($match[0])); echo '</pre><br/>'; //exit();
     if (array_key_exists('mediaFolder',$cmd)) {
-        $doc = str_replace ($match[0], naPhotoAlbum($cmd['mediaFolder']), $doc);
+        //echo '<pre style="color:yellow;background:navy;">'; var_dump (htmlentities($doc)); echo '</pre><br/>'; //exit();
+        //echo '<pre style="color:lime;background:navy;">'; var_dump ($matches[0][$idx]); echo '</pre><br/>';exit();
+
+        $doc = str_replace ($matches[0][$idx][0], naPhotoAlbum($cmd['mediaFolder']), $doc);
+        //echo '<pre style="color:yellow;background:navy;">'; var_dump (htmlentities($doc)); echo '</pre><br/>'; //exit();
     }
 }
 $doc = str_replace ('<p>\s+</p>', '<div style="height:1em"></div>', $doc);
@@ -57,8 +62,4 @@ echo $doc;
 <script type="text/javascript">
         na.site.settings.current.loadingApps = false;
         na.site.settings.current.startingApps = false;
-        $(document).ready(function(){
-            debugger;
-            na.site.transformLinks($('#siteContent')[0]);
-        });
 </script>

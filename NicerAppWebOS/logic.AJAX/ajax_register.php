@@ -78,7 +78,12 @@ if ($do) try { $cdb->post($data); } catch (Exception $e) { if ($debug) { echo '<
 
 $rec2_id = cdb_randomString(20);
 $do = false; try { $doc = $cdb->get($rec2_id); } catch (Exception $e) { $do = true; };
-$data = '{ "database" : "'.$dbName.'", "_id" : "'.$rec2_id.'", "id" : "'.$rec2_id.'", "parent" : "'.$rec1_id.'", "text" : "Blog", "state" : { "opened" : true, "selected" : true }, "type" : "naFolder" }';
+$data = '{ "database" : "'.$dbName.'", "_id" : "'.$rec2_id.'", "id" : "'.$rec2_id.'", "parent" : "'.$rec1_id.'", "text" : "Blog", "state" : { "opened" : true }, "type" : "naFolder" }';
+if ($do) try { $cdb->post($data); } catch (Exception $e) { if ($debug) {echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; }};
+
+$rec2a_id = cdb_randomString(20);
+$do = false; try { $doc = $cdb->get($rec2a_id); } catch (Exception $e) { $do = true; };
+$data = '{ "database" : "'.$dbName.'", "_id" : "'.$rec2a_id.'", "id" : "'.$rec2a_id.'", "parent" : "'.$rec2_id.'", "text" : "New", "state" : { "opened" : true, "selected" : true }, "type" : "naDocument" }';
 if ($do) try { $cdb->post($data); } catch (Exception $e) { if ($debug) {echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; }};
 
 $rec3_id = cdb_randomString(20);
@@ -99,6 +104,21 @@ try { $cdb->deleteDatabase ($dbName); } catch (Exception $e) { };
 $cdb->setDatabase($dbName, true);
 try {
     $call = $cdb->setSecurity ($security_user);
+} catch (Exception $e) {
+    if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
+}
+$rec = array(
+    'user' => $username,
+    '_id' => $rec2a_id,
+    'id' => $rec2a_id,
+    'text' => 'New',
+    'url1' => 'on',
+    'seoValue' => 'frontpage',
+    'pageTitle' => $username.'\'s frontpage',
+    'document' => '<p>Start editing your frontpage here</p>'
+);
+try {
+    $cdb->post($rec);
 } catch (Exception $e) {
     if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
 }

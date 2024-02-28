@@ -96,7 +96,6 @@ h1::after, h2::after, h3::after { white-space : inherit};
     order : 2;
     flex-direction : row;
     justify-content : space-around;
-    width : 100%;
 }
 
 .audioVolumeBar, .audioSeekBar {

@@ -2233,6 +2233,223 @@ na.site = {
     },
     
     
+        onresize : function(settings) {
+                $('#siteBackground, #siteBackground iframe, #siteBackground img, #siteBackground div').css({
+                    width : $(window).width(),
+                    height : $(window).height()
+                });
+            //$('#siteBackground img.bg_first').fadeIn(2000);
+
+            // fix attempts (all failed) for [apple bug 1] orientation change bug on iphone 6
+            $('body')[0].scrollLeft = 0;//	$('body')[0].style.position = 'relative';
+            $('body')[0].scrollTop = 0;//	$('body')[0].style.position = 'relative';
+
+            $('html')[0].scrollLeft = 0;
+            $('html')[0].scrollTop = 0;
+            $('html')[0].style.display = 'none';
+            $('html')[0].style.display = 'block';
+
+            if (typeof settings=='object' && settings.possiblyChangeBackground) {
+                var oldBSK = na.site.globals.backgroundSearchKey;
+                if (oldBSK==='' || oldBSK=='landscape' || oldBSK=='portrait') {
+                    if ( parseFloat($(window).width()) > parseFloat($(window).height()) )
+                        na.site.globals.backgroundSearchKey = 'landscape';
+                    else
+                        na.site.globals.backgroundSearchKey = 'portrait';
+                }
+                if (oldBSK !== '' && oldBSK != na.site.globals.backgroundSearchKey)
+                    na.backgrounds.next (
+                        '#siteBackground',
+                        na.site.globals.backgroundSearchKey,
+                        null,
+                        false
+                    );
+            };
+
+            if (
+                na.apps.loaded[na.site.settings.current.app]
+                && typeof na.apps.loaded[na.site.settings.current.app].preResize == 'function'
+            ) na.apps.loaded[na.site.settings.current.app].preResize ( {} );
+
+            na.desktop.resize(function (div, calculationResults, sectionIdx, section, divOrderIdx) {
+                if (!settings) settings = {};
+                if (!settings.finalized) {
+                    settings.finalized = true;
+
+                    na.site.settings.current.siteInitialized = true;
+
+                    na.site.reloadMenu();
+
+                    na.site.onresize_doContent(settings);
+
+
+
+                    if (typeof settings=='object' && typeof settings.callback=='function') {
+
+                        var cb2 = function (settings) {
+                            settings.callback = settings.callback_naSiteOnresize;
+                            delete settings.callback_naSiteOnresize;
+                            if (
+                                (typeof settings=='object' && settings.reloadMenu===true)
+                            ) na.site.reloadMenu(settings);
+                            else if (typeof settings=='object' && typeof settings.callback=='function') settings.callback();
+                        }
+
+                        var cb = settings.callback;
+                        settings.callback_naSiteOnresize = cb;
+                        settings.callback = function() {
+                            na.site.settings.current.numAppsResizing = 0;
+                            na.site.settings.current.numAppsResized = 0;
+                            na.site.settings.current.appsResizing = {};
+                            cb2(settings);
+                        };
+                    } else
+                        settings.callback = function() {
+                            na.site.settings.current.numAppsResizing = 0;
+                            na.site.settings.current.numAppsResized = 0;
+                            na.site.settings.current.appsResizing = {};
+                            //cb2(settings);
+                        };
+
+                    na.site.resizeApps(settings.callback);
+                }
+            });
+
+
+        },
+
+        onresize_doContent : function (settings) {
+            //debugger;
+            startLogo('neCompanyLogo', 'countryOfOriginColors');
+            return false;
+            /*
+            if ($(window).width() < na.site.globals.reallySmallDeviceWidth) {
+                na.site.settings.current.fontSize_siteContent = $('#siteContent').css('fontSize');
+                na.site.settings.current.fontSize_siteStatusbar = $('#siteStatusbar').css('fontSize');
+                $('#siteContent, #siteStatusbar').css ({ fontSize : '70%' });
+                $('#siteStatusbar').css({height:'5.5rem'});
+                $('#siteStatusbar .vividButton').css({width : 40});
+                $('#siteStatusbar td:nth-child(2)').css({width:55});
+                $('#tdFor_neCompanyLogo').css ({ width : 80, height : 80 });
+                $('#tableFor_neCompanyLogo').css ({ width : 80, height : 80 });
+                $('#divFor_neCompanyLogo').css ({ width : 70, height : 70, marginLeft : 0 });
+                $('#mainCSS').html('.vividMenu_item td { font-size : 11px; }; #siteStatus td { font-weight : bold };');
+                $('html, body, p, span, ul, ol, li, div').not('.vt, .vividButton, .vividMenu_item, .subMenu, .contentMenu').css({fontSize:'0.7rem'});
+                na.site.settings.current.menuFontSize = '11px';
+                //$('.vividMenu .vividButton').css({ width : 100, height : 10 });
+                $('#neCompanyLogo').attr('width',70).attr('height',70);
+                $('.td_spacer').css ({ height : 100 });
+                if ($('#headerSite').length===1) {
+                    $('#headerSite').css ({ height:100, padding : 5, paddingLeft : 5 });
+                    $('#headerSite, #headerSite h1').css({ fontSize : '1rem' });
+                    $('#headerSite h2, #headerSite h3').not('.subMenu, .contentMenu').css ({ fontSize : '0.7rem' });
+                    var w = 200;//$('#siteContent .vividDialogContent').width() - $('#headerSite').offset().left;
+                    $('#headerSiteDiv').css ({ height : 80, width : w, paddingTop : 10 });
+                    $('#headerSiteDiv div').css ({ height : 0, width : w });
+                    $('.contentSectionTitle1').css({fontSize:'1em'});
+                }
+                $('#newsApp_title, #newsApp_info, #newsApp_timer').css({fontSize:'0.7rem'});
+            } else if ($(window).width() < na.site.globals.smallDeviceWidth) {
+                if (na.site.settings.current.fontSize_siteContent) {
+                    $('#siteContent').css ({ fontSize : na.site.settings.current.fontSize_siteContent });
+                    $('#siteStatusbar').css ({ fontSize : na.site.settings.current.fontSize_siteStatusbar });
+                };
+                $('#siteStatusbar').css({height:'4.5rem'});
+                $('#siteStatusbar .vividButton').css({width : 100});
+                $('#siteStatusbar td:nth-child(2)').css({width:105});
+                $('#mainCSS').html('.vividMenu_item td { font-size : 14px; }; #siteStatus td { font-weight : bold };');
+                na.site.settings.current.menuFontSize = '14px';
+                //$('.vividMenu .vividButton').css({ width : 135, height : 14 });
+                $('#tdFor_neCompanyLogo').css ({ width : 200, height : 200 });
+                $('#tableFor_neCompanyLogo').css ({ width : 200, height : 200 });
+                $('#divFor_neCompanyLogo').css ({ width : 200, height : 200});
+                $('#datetime').css({marginLeft:40,marginTop:20});
+                $('#neCompanyLogo').attr('width',200).attr('height',200);
+                $('html, body, p, span, ul, ol, li, div').not('.vt, .vividButton, .vividMenu_item, .subMenu, .contentMenu').css({fontSize:'0.85rem'});
+                $('.td_spacer').css ({ height : 100 });
+                if ($('#headerSite').length===1) {
+                    $('#headerSite').css ({ height : 100, padding : 5, paddingLeft : 5 });
+                    $('#headerSite, #headerSite h1').css({ fontSize : '1rem' });
+                    $('#headerSite h2, #headerSite h3').css ({ fontSize : '0.8rem' });
+                    $('#newsApp_title, #newsApp_info, #newsApp_timer').css({fontSize:'0.8rem'});
+                    var w = 250;//$('#siteContent .vividDialogContent').width() - $('#headerSite').offset().left;
+                    $('#headerSiteDiv').css ({ height : 200, width : w, paddingTop : 20 });
+                    $('#headerSiteDiv div').css ({ height : 0, width : w });
+                    $('.contentSectionTitle1').css({fontSize:'1.5em'});
+                }
+                $('#newsApp_title, #newsApp_info, #newsApp_timer').css({fontSize:'0.85rem'});
+            } else {
+                if (na.site.settings.current.fontSize_siteContent) {
+                    $('#siteContent').css ({ fontSize : na.site.settings.current.fontSize_siteContent });
+                    $('#siteStatusbar').css ({ fontSize : na.site.settings.current.fontSize_siteStatusbar });
+                };
+                $('#siteStatusbar').css({height:'4.5rem'});
+                $('#siteStatusbar .vividButton').css({width : 220});
+                $('#siteStatusbar td:nth-child(2)').css({width:225});
+                $('#mainCSS').html('.vividMenu_item td { font-size : 14px; }; #siteStatus td { font-weight : bold };');
+                na.site.settings.current.menuFontSize = '14px';
+                //$('.vividMenu .vividButton').css({ width : 220, height : 20 });
+                $('#tdFor_neCompanyLogo').css ({ width : 200, height : 200 });
+                $('#tableFor_neCompanyLogo').css ({ width : 200, height : 200 });
+                $('#divFor_neCompanyLogo').css ({ width : 200, height : 200 });
+                $('#datetime').css({marginLeft:40,marginTop:20});
+                $('#neCompanyLogo').attr('width',200).attr('height',200);
+                $('html, body, p, span, ul, ol, li, div').not('.vt, .vividButton, .vividMenu_item, .subMenu, .contentMenu').css({fontSize:'1rem'});
+                $('.td_spacer').css ({ height : 100 });
+                if ($('#headerSite').length===1) {
+                    $('#headerSite').css ({ height : 220, padding : 5, paddingLeft : 5 });
+                    $('#headerSite, #headerSite h1').css({ fontSize : '1.4rem' });
+                    $('#headerSite h2, #headerSite h3').css ({ fontSize : '1rem' });
+                    $('#newsApp_title, #newsApp_info, #newsApp_timer').css({fontSize:'1.15rem'});
+                    var w = 250;//$('#siteContent .vividDialogContent').width() - $('#headerSite').offset().left;
+                    $('#headerSiteDiv').css ({ height : 200, width : w, paddingTop : 20 });
+                    $('#headerSiteDiv div').css ({ height : 0, width : w });
+                    $('.contentSectionTitle1').css({fontSize:'2em'});
+                }
+                $('#newsApp_title, #newsApp_info, #newsApp_timer').css({fontSize:'1rem'});
+            };
+
+            startLogo('neCompanyLogo', 'countryOfOriginColors');
+            */
+        },
+
+    reloadMenu : function (settings) {
+        // only drastically slows things down
+        //na.desktop.resize(null, false);
+        //na.site.onresize ({ reloadMenu:false });
+
+
+        //na.m.waitForCondition ('na.site.reloadMenu() : na.m.HTMLidle() && !na.site.settings.current.startingApps?', function() {
+        na.m.waitForCondition ('na.site.reloadMenu() : na.m.HTMLidle()?', function() {
+            var r =
+                na.m.HTMLidle()
+                //&& !na.site.settings.current.startingApps;
+            return r;
+        }, function() {
+            var
+            callback3x = (settings ? settings.callback : null),
+            callback2b = function () {
+                na.m.log (210, '<UL> & <LI> DATA LOADED FOR #siteMenu', false);
+                na.m.log (210, 'STARTING TO RE-INITIALIZE #siteMenu', false);
+
+                setTimeout (function() {
+                    $('#siteMenu').css({zIndex:800*1000});
+                    na.site.settings.menus['#siteMenu'] = new naVividMenu($('#siteMenu')[0], function(menu) {
+                        na.m.log (210, 'DONE RE-INITIALIZING #siteMenu', false);
+                        var topLevelItemCount = $('.vividMenu_mainUL > li', menu).length;
+                        //debugger;
+
+                        if (settings) settings.naVividMenu_menuInitialized = menu;
+                        if (typeof callback3x=='function') callback3x (settings);
+                    });
+                }, 50);
+            };
+
+            na.site.reloadMenu_reOrganise (callback2b);
+            na.site.renderAllCustomHeadingsAndLinks();
+        }, 50);
+    },
+    
     onresize : function(settings) {
             $('#siteBackground, #siteBackground iframe, #siteBackground img, #siteBackground div').css({
                 width : $(window).width(),
@@ -2243,7 +2460,7 @@ na.site = {
         // fix attempts (all failed) for [apple bug 1] orientation change bug on iphone 6
         $('body')[0].scrollLeft = 0;//	$('body')[0].style.position = 'relative';
         $('body')[0].scrollTop = 0;//	$('body')[0].style.position = 'relative';
-        
+
         $('html')[0].scrollLeft = 0;
         $('html')[0].scrollTop = 0;
         $('html')[0].style.display = 'none';
@@ -2252,20 +2469,20 @@ na.site = {
         if (typeof settings=='object' && settings.possiblyChangeBackground) {
             var oldBSK = na.site.globals.backgroundSearchKey;
             if (oldBSK==='' || oldBSK=='landscape' || oldBSK=='portrait') {
-                if ( parseFloat($(window).width()) > parseFloat($(window).height()) ) 
+                if ( parseFloat($(window).width()) > parseFloat($(window).height()) )
                     na.site.globals.backgroundSearchKey = 'landscape';
-                else   
+                else
                     na.site.globals.backgroundSearchKey = 'portrait';
             }
-            if (oldBSK !== '' && oldBSK != na.site.globals.backgroundSearchKey) 
+            if (oldBSK !== '' && oldBSK != na.site.globals.backgroundSearchKey)
                 na.backgrounds.next (
-                    '#siteBackground', 
-                    na.site.globals.backgroundSearchKey, 
+                    '#siteBackground',
+                    na.site.globals.backgroundSearchKey,
                     null,
                     false
                 );
         };
-        
+
         if (
             na.apps.loaded[na.site.settings.current.app]
             && typeof na.apps.loaded[na.site.settings.current.app].preResize == 'function'
@@ -2275,17 +2492,17 @@ na.site = {
             if (!settings) settings = {};
             if (!settings.finalized) {
                 settings.finalized = true;
-                                
+
                 na.site.settings.current.siteInitialized = true;
-                
+
                 na.site.reloadMenu();
 
                 na.site.onresize_doContent(settings);
 
-            
-                
+
+
                 if (typeof settings=='object' && typeof settings.callback=='function') {
-                    
+
                     var cb2 = function (settings) {
                         settings.callback = settings.callback_naSiteOnresize;
                         delete settings.callback_naSiteOnresize;
@@ -2294,7 +2511,7 @@ na.site = {
                         ) na.site.reloadMenu(settings);
                         else if (typeof settings=='object' && typeof settings.callback=='function') settings.callback();
                     }
-                    
+
                     var cb = settings.callback;
                     settings.callback_naSiteOnresize = cb;
                     settings.callback = function() {
@@ -2303,21 +2520,21 @@ na.site = {
                         na.site.settings.current.appsResizing = {};
                         cb2(settings);
                     };
-                } else 
+                } else
                     settings.callback = function() {
                         na.site.settings.current.numAppsResizing = 0;
                         na.site.settings.current.numAppsResized = 0;
                         na.site.settings.current.appsResizing = {};
                         //cb2(settings);
                     };
-            
+
                 na.site.resizeApps(settings.callback);
             }
         });
-    
-        
+
+
     },
-    
+
     onresize_doContent : function (settings) {
         //debugger;
         startLogo('neCompanyLogo', 'countryOfOriginColors');
@@ -2412,44 +2629,7 @@ na.site = {
         startLogo('neCompanyLogo', 'countryOfOriginColors');
         */
     },
-    
-    reloadMenu : function (settings) {
-        // only drastically slows things down
-        //na.desktop.resize(null, false);
-        //na.site.onresize ({ reloadMenu:false });
 
-
-        //na.m.waitForCondition ('na.site.reloadMenu() : na.m.HTMLidle() && !na.site.settings.current.startingApps?', function() {
-        na.m.waitForCondition ('na.site.reloadMenu() : na.m.HTMLidle()?', function() {
-            var r =
-                na.m.HTMLidle()
-                //&& !na.site.settings.current.startingApps;
-            return r;
-        }, function() {
-            var
-            callback3x = (settings ? settings.callback : null),
-            callback2b = function () {
-                na.m.log (210, '<UL> & <LI> DATA LOADED FOR #siteMenu', false);
-                na.m.log (210, 'STARTING TO RE-INITIALIZE #siteMenu', false);
-
-                setTimeout (function() {
-                    $('#siteMenu').css({zIndex:800*1000});
-                    na.site.settings.menus['#siteMenu'] = new naVividMenu($('#siteMenu')[0], function(menu) {
-                        na.m.log (210, 'DONE RE-INITIALIZING #siteMenu', false);
-                        var topLevelItemCount = $('.vividMenu_mainUL > li', menu).length;
-                        //debugger;
-
-                        if (settings) settings.naVividMenu_menuInitialized = menu;
-                        if (typeof callback3x=='function') callback3x (settings);
-                    });
-                }, 50);
-            };
-
-            na.site.reloadMenu_reOrganise (callback2b);
-            na.site.renderAllCustomHeadingsAndLinks();
-        }, 50);
-    },
-    
     reloadMenu_reOrganise : function(callback4a) {
 
         if (!$('#siteMenu_vbChecker')[0]) $('#siteMenu').append('<div id="siteMenu_vbChecker" class="vividButton vividButton_text vividMenu_item" theme="'+$('#siteMenu').attr('theme')+'" style="opacity:0.0001;position:absolute;">abc XYZ</div>');

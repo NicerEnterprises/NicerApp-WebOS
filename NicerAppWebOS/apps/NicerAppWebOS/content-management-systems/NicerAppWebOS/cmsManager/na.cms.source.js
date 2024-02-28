@@ -445,7 +445,7 @@ debugger;
                 $('#nb_mediaFolderLabel').val(rec.original.text);
 
                 $('#nb_url1_dropdown_selected').html(rec.original.url1);
-                $('#nb_url1_dropdown_selector option').each(function(idx,optEl) {
+                $('#nb_url1_dropdown_selector div').each(function(idx,optEl) {
                     if ($(optEl).html()==data) $(optEl).addClass('selected');
                 });
                 $('#nb_url2_value').val(rec.original.seo_value);
