@@ -85,7 +85,12 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
                         <option id="nb_url1_select__on" name="url1_select__on" value="on">on</option>
                         <option id="nb_url1_select__during" name="url1_select__during" value="during">during</option>
                     </select>
-                    <div id="nb_url1_dropdown" class="vividDropDownBox" style="display:inline-block;width:auto;"></div>
+                    <div id="nb_url1_dropdown" class="vividDropDownBox" style="display:inline-block;width:auto;">
+                        <div class="vividDropDownBox_selected">on</div>
+                        <div class="vividDropDownBox_selector">in</div>
+                        <div class="vividDropDownBox_selector">on</div>
+                        <div class="vividDropDownBox_selector">during</div>
+                    </div>
                     <!--<label id="url2_label" for="documentTitle">SEO-2, URL-2</label>-->
                     <span id="nb_url1-2" class="vividTheme_input_urls" style="padding-left:10px !important;padding-right:10px !important;">/</span>
                     <input id="nb_url2_value" type="text" onchange="na.cms.onchange_documentHeaders(event);"></input>
@@ -121,14 +126,14 @@ HTTP ERROR 404
                 plugins: [
                     'advlist autolink lists link image charmap print preview anchor textcolor',
                     'searchreplace visualblocks code fullscreen',
-                    'insertdatetime media table contextmenu paste code help'
+                    'insertdatetime media table contextmenu paste code help table'
                 ],
                 external_plugins : {
                     'emoticons' : '/NicerAppWebOS/3rd-party/tinymce-4/plugins/naEmoticons/plugin.min.js'
                 },
                 resize : true,
                 menubar: false,//'file edit view insert format tools table help',
-                toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect | formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect | formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl | table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
                 toolbar_sticky: true,
                 height: $('#siteContent .vividDialogContent').height() - $('#document_navBar').height(),
                 editor_css : '/NicerAppWebOS/3rd-party/tinymce-4/themes/charcoal/editor.na.css',

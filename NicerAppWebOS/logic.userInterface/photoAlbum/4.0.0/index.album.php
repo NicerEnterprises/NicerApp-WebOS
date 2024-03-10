@@ -18,14 +18,6 @@
 
     $files = getFilePathList ($targetDir, false, FILE_FORMATS_photos, null, array('file'))['files'];
     
-    ?>
-    <style>
-        .filename {
-            color : white;
-        }
-    </style>
-    <?php
-    
     $dbg = array (
         'baseURL' => $baseURL,
         'baseDir' => $baseDir,

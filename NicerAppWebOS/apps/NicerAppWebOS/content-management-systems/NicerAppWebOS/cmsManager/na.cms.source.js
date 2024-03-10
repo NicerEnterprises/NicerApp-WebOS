@@ -126,7 +126,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                     na.site.fail (fncn+' : AJAX decode error in data returned for url='+url1+', error='+error.message+', in data='+data, xhr);
                     return false;
                 }
-debugger;
+
                 na.cms.settings.current.db = dat;
                 $.jstree.defaults.core.error = function (a,b,c,d) {
                     //debugger;
@@ -306,7 +306,7 @@ debugger;
                                 || rec.type=='naMediaAlbum'
                             )
                         ) na.site.settings.buttons['#btnDeleteRecord'].enable();
-                    }, 500, data);
+                    }, 150, data);
 
                     //clearTimeout (na.cms.settings.current.timeoutRefresh);
                     //na.cms.settings.current.timeoutRefresh = setTimeout(na.cms.refresh,1000);
@@ -424,7 +424,12 @@ debugger;
                 if (p.type == 'naGroupRootFolder') url0 = p.text;
             }
 
-            if (rec && rec.original) {
+            if (rec && rec.original
+                && (
+                    rec.original.type=='naDocument'
+                    || rec.original.type=='naMediaAlbum'
+                )
+            ) {
                 //na.site.setSpecificity(); // ENDLESS LOOP IN /cms
                 na.cms.treeButtonsEnableDisable (rec);
 
@@ -445,10 +450,10 @@ debugger;
                 $('#nb_mediaFolderLabel').val(rec.original.text);
 
                 $('#nb_url1_dropdown_selected').html(rec.original.url1);
-                $('#nb_url1_dropdown_selector div').each(function(idx,optEl) {
+                $('#nb_url1_dropdown_selector option').each(function(idx,optEl) {
                     if ($(optEl).html()==data) $(optEl).addClass('selected');
                 });
-                $('#nb_url2_value').val(rec.original.seo_value);
+                $('#nb_url2_value').val(rec.original.seoValue);
 
 
                 var
@@ -458,7 +463,7 @@ debugger;
                     url : url1,
                     data : {
                         database : rec.original.database,
-                        id : rec.original._id || original.id
+                        id : rec.original._id || rec.original.id
                     },
                     success : function (data, ts, xhr) {
                         $('#documentTitle').val(data);
@@ -468,7 +473,6 @@ debugger;
                         na.site.ajaxFail(fncn, url2, xhr, textStatus, errorThrown);
                     }
                 };
-                debugger;
                 $.ajax(ac);
 
 
@@ -716,7 +720,7 @@ debugger;
                                 && typeof settings.callback == 'function'
                             ) settings.callback (settings);
 
-                        }, 500
+                        }, 50
                     );
                 //}
            // });
@@ -766,8 +770,8 @@ debugger;
 
                     setTimeout (function () {
                         if (typeof callback=='function') callback (dat);
-                    }, 500);
-                }, 1000, dat, jfu);
+                    }, 50);
+                }, 100, dat, jfu);
 
 
             },
@@ -806,7 +810,6 @@ debugger;
                 na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
             }                
         };
-        debugger;
         $.ajax(ac);
     },
 
@@ -1024,6 +1027,7 @@ debugger;
         if (user) ac.data.user = user;
         if (role) ac.data.role = role;
 
+        debugger;
         $.ajax(ac);
     },
 
@@ -1188,10 +1192,11 @@ debugger;
         
         //var url = '/'+user+'/in/'+sel.original.dataID;//na.m.base64_encode_url (JSON.stringify(arr));
         na.cms.saveEditorContent(sel, function(rec) {
-            debugger;
-            var url = '/'+user.replace(/ /g, '-')+'/'+$('#nb_url1_dropdown_selected')[0].innerText+'/'+rec.original.seo_value;
-            na.site.loadContent(null, url);
-
+            na.cms.onchange_documentHeaders({}, function() {
+                debugger;
+                var url = '/'+user.replace(/ /g, '-')+'/'+$('#nb_url1_dropdown_selected')[0].innerText+'/'+$('#nb_url2_value').val();
+                na.site.loadContent(null, url);
+            });
         });
     },
     

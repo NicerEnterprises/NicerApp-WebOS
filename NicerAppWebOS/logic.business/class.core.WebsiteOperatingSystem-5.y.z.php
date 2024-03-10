@@ -1636,6 +1636,7 @@ class NicerAppWebOS {
         }
 
         $appName = preg_replace('/.*\//','',$viewFolder);
+        //echo PHP_EOL.PHP_EOL.'T123::'.'$appName='.$appName.'<br/>'.PHP_EOL.PHP_EOL;
         //if ($debug) { echo '<pre>'; var_dump ($url); echo PHP_EOL; var_dump ($this->view); echo '</pre>'.PHP_EOL; }
         /*if ($viewFolder!=='') {
             $appName = preg_replace('/.*\//','',$viewFolder);

@@ -70,11 +70,6 @@ if (!array_key_exists('noIframe', $_GET) || $_GET['noIframe']===false) {
 ?>
 
 <div class="vividScrollpane" style="width:100%;height:100%;overflow:auto;">
-    <style>
-        .filename {
-            color : white;
-        }
-    </style>
     <?php
     
     $dbg = array (

@@ -21,7 +21,8 @@ $id = $_POST['id'];
             'database' => $_POST['database'],//str_replace('_tree_','_document_',$_REQUEST['database']),
             'id' => $_POST['id']
         ],
-        'fields' => [ '_id' ]
+        'fields' => [ '_id' ],
+        'use_index' => '_design/b3dd8de328e2616f0f8d4e5fc48906d0745f87e9'
     ];
 
     try {

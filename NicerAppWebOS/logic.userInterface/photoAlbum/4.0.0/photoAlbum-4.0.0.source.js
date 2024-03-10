@@ -16,15 +16,15 @@ if (!na.photoAlbum) na.photoAlbum = {
         //na.m.log (1, 't12', iframeWidth, w, iframeHeight, h, imgpw, imgph);
         if (imgph>imgpw) {
             if (h>iframeHeight) {
-                tw = jQueryImg.css({width:'',left:0,height:iframeHeight}).delay(50).width();
+                tw = jQueryImg.css({width:'',left:0,height:iframeHeight}).delay(250).width();
                 th = jQueryImg.height();
                 s.zoomPercentage = (tw*100)/w;
             } else if (w>iframeWidth) {
-                th = jQueryImg.css({top:0,width:iframeWidth,height:''}).delay(50).height();
+                th = jQueryImg.css({top:0,width:iframeWidth,height:''}).delay(250).height();
                 tw = jQueryImg.width();
                 s.zoomPercentage = (th * 100) / h;
             } else if (w>h) {
-                tw = jQueryImg.css({width:'',left:0,height:h}).delay(50).width();
+                tw = jQueryImg.css({width:'',left:0,height:h}).delay(250).width();
                 th = jQueryImg.height();
                 s.zoomPercentage = (tw*100)/w;
             } else {
@@ -35,19 +35,19 @@ if (!na.photoAlbum) na.photoAlbum = {
 
         } else {
             if (w>iframeWidth) {
-                th = jQueryImg.css({top:0,width:iframeWidth,height:''}).delay(50).height();
+                th = jQueryImg.css({top:0,width:iframeWidth,height:''}).delay(250).height();
                 tw = jQueryImg.width();
                 s.zoomPercentage = (th*100) / h;
             } else if (h>iframeHeight) {
-                tw = jQueryImg.css({width:'',left:0,height:iframeHeight}).delay(50).width();
+                tw = jQueryImg.css({width:'',left:0,height:iframeHeight}).delay(250).width();
                 th = jQueryImg.height();
                 s.zoomPercentage = (tw*100)/w;
             } else if (w>h) {
-                tw = jQueryImg.css({width:'',left:0,height:h}).delay(50).width();
+                tw = jQueryImg.css({width:'',left:0,height:h}).delay(250).width();
                 th = jQueryImg.height();
                 s.zoomPercentage = (tw*100)/w;
             } else {
-                th = jQueryImg.css({top:0,width:w,height:''}).delay(50).height();
+                th = jQueryImg.css({top:0,width:w,height:''}).delay(250).height();
                 tw = jQueryImg.width();
                 s.zoomPercentage = (th*100) / h;
             }
@@ -148,30 +148,30 @@ if (!na.photoAlbum) na.photoAlbum = {
         if (imgph>imgpw) {
             if (h>iframeHeight) {
                 th = ((h)/100) * s.zoomPercentage;
-                tw = jQueryImg.css({width:'',left:0,height:th}).delay(50).width();
+                tw = jQueryImg.css({width:'',left:0,height:th}).delay(250).width();
             } else if (w>iframeWidth) {
                 tw = ((w)/100) * s.zoomPercentage;
-                th = jQueryImg.css({top:0,width:tw,height:''}).delay(50).height();
+                th = jQueryImg.css({top:0,width:tw,height:''}).delay(250).height();
             } else if (w>h) {
                 tw = ((w)/100) * s.zoomPercentage;
-                th = jQueryImg.css({top:0,width:tw,height:''}).delay(50).height();
+                th = jQueryImg.css({top:0,width:tw,height:''}).delay(250).height();
             } else {
                 th = ((h)/100) * s.zoomPercentage;
-                tw = jQueryImg.css({width:'',left:0,height:th}).delay(50).width();
+                tw = jQueryImg.css({width:'',left:0,height:th}).delay(250).width();
             }
         } else {
             if (w>iframeWidth) {
                 tw = ((w)/100) * s.zoomPercentage;
-                th = jQueryImg.css({top:0,width:tw,height:''}).delay(50).height();
+                th = jQueryImg.css({top:0,width:tw,height:''}).delay(250).height();
             } else if (h>iframeHeight) {
                 th = ((h)/100) * s.zoomPercentage;
-                tw = jQueryImg.css({width:'',left:0,height:th}).delay(50).width();
+                tw = jQueryImg.css({width:'',left:0,height:th}).delay(250).width();
             } else if (w>h) {
                 tw = ((w)/100) * s.zoomPercentage;
-                th = jQueryImg.css({top:0,width:tw,height:''}).delay(50).height();
+                th = jQueryImg.css({top:0,width:tw,height:''}).delay(250).height();
             } else {
                 th = ((h)/100) * s.zoomPercentage;
-                tw = jQueryImg.css({width:'',left:0,height:th}).delay(50).width();
+                tw = jQueryImg.css({width:'',left:0,height:th}).delay(250).width();
             }
         };
         s.th = Math.round(th*1000)/1000;

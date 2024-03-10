@@ -2,6 +2,7 @@
 $rootPathNA = realpath(dirname(__FILE__).'/../..').'/NicerAppWebOS';
 require_once ($rootPathNA.'/boot.php');
 global $naIP;
+global $naWebOS;
 
 $debug = true;
 if ($debug) {
@@ -187,7 +188,12 @@ $dbg = [
 if (!isset($_SESSION) || !is_array($_SESSION) || !array_key_exists('selectors',$_SESSION)) {
     echo 'Session does not contain required "selectors" data.'; exit();
 } else {
-    $selectors = json_decode ($_SESSION['selectors'],true);
+        $d1 = $naWebOS->getPageCSS_permissionsList($js);
+        $d2 = $naWebOS->getPageCSS_checkPermissions($d1);
+        $selectors = $d2['selectors'];
+
+
+    //$selectors = json_decode ($naWebOS->selectors, true); //$_SESSION['selectors'],true);
 
 
     foreach ($selectors as $idx => $selector) {
@@ -195,7 +201,7 @@ if (!isset($_SESSION) || !is_array($_SESSION) || !array_key_exists('selectors',$
             '1' => $selector['specificityName'],
             '2' => $_POST['specificityName']
         ];
-        //echo '<pre style="margin:5px;border-radius:10px;padding:5px;background:navy;color:lime">'; var_dump ($dbg2); echo '</pre>';
+        echo '<pre style="margin:5px;border-radius:10px;padding:5px;background:navy;color:lime">'; var_dump ($dbg2); echo '</pre>';
 
         if ($selector['specificityName']===$_POST['specificityName']) $sel = $selector;
     }

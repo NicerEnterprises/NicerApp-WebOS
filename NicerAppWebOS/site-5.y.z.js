@@ -3803,8 +3803,8 @@ na.site = {
         if (!s) return false;        
         if (!theme) theme = $('.na_themes_dropdown__themes > .vividDropDownBox_selected > .vividScrollpane').html();
         
-        clearTimeout (na.site.settings.current.saveThemeTimeout);
-        na.site.settings.current.saveThemeTimeout = setTimeout(function() {
+        //clearTimeout (na.site.settings.current.saveThemeTimeout);
+        //na.site.settings.current.saveThemeTimeout = setTimeout(function() {
             var tApp = null;
             if (
                 na.site.globals.themes
@@ -3890,6 +3890,7 @@ na.site = {
                 url : url,
                 data : themeData,
                 success : function (data, ts, xhr) {
+                    debugger;
                     if (data.match('status : Failed')) {
                         $('#siteLoginFailed').html('Could not save settings. Please login again.').fadeIn('normal', 'swing', function () {
                             setTimeout (function() {
@@ -3914,9 +3915,9 @@ na.site = {
                     na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
                 }                
             };
-            //debugger;
+            debugger;
             $.ajax(ac2);
-        }, 750);
+        //}, 750);
     },
 
     loadTheme_fetchDialogs : function (themeData) {
@@ -3964,7 +3965,7 @@ na.site = {
         try {
             themeData.themeSettings.Extras = na.te.transform_jsTree_to_siteGlobalsThemes();
         } catch (err) {
-            //debugger;
+            debugger;
         }
 
         return themeData;

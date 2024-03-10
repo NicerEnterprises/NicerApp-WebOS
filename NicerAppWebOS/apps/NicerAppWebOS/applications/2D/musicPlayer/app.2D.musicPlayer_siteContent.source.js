@@ -254,7 +254,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
                 na.ui.vividButton.onclick({currentTarget:$('#btnPlayPause')[0]});
             }
             
-            setTimeout(na.mp.setTimeDisplayInterval,100);
+            setTimeout(na.mp.setTimeDisplayInterval,1000);
         });
 
     },

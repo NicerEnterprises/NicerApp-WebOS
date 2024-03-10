@@ -25,7 +25,7 @@ $cdb->setDatabase($_POST['database'],false);
 $call = $cdb->get ($_POST['id']);
 $call->body->text = $_POST['text'];
 $call->body->url1 = $_POST['url1'];
-$call->body->seo_value = $_POST['seoValue'];
+$call->body->seoValue = $_POST['seoValue'];
 $call->body->pageTitle = $_POST['pageTitle'];
 
 try { $call = $cdb->post($call->body); } catch (Exception $e) {
@@ -73,10 +73,10 @@ if (
                     'database' => $_POST['database'],
                     'id' => $_POST['id']
                 ],
-                'seo_value' => $_POST['seoValue']
+                'seoValue' => $_POST['seoValue']
             ],
             'url1' => $_POST['url1'],
-            'seo_value' => $_POST['seoValue'],
+            'seoValue' => $_POST['seoValue'],
             'pageTitle' => $_POST['pageTitle']
         ];
         if (array_key_exists('user', $_POST) && is_string($_POST['user']) && !$_POST['user']==='') $data['user'] = $_POST['user'];
@@ -94,7 +94,7 @@ if (
         $data = json_decode(json_encode($call2->body),true);
 
         $data['url1'] = $_POST['url1'];
-        $data['seo_value'] = $_POST['seoValue'];
+        $data['seoValue'] = $_POST['seoValue'];
         $data['pageTitle'] = $_POST['pageTitle'];
         $data['viewSettings']['seo_value'] = $_POST['seoValue'];
 /*
@@ -115,11 +115,5 @@ if (
     }
 }
 
-
-
 echo 'status : Success';
-
-
-
-
 ?>

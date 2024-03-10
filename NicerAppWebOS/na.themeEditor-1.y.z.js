@@ -848,7 +848,6 @@ na.te = na.themeEditor = {
             var it = jsonNodes[i];
             na.te.transform_jsTree_to_siteGlobalsThemes__do (it, themeSettings);
         }
-        debugger;
         return themeSettings;
     },
 
@@ -861,7 +860,7 @@ na.te = na.themeEditor = {
          * that leaves us with only the custom built selectors to pick up here,
          * to be used in na.site.saveTheme() and na.site.loadTheme()
          */
-        debugger;
+
         switch (it.type) {
             /*
             case 'naSelectorSet' :
@@ -882,9 +881,9 @@ na.te = na.themeEditor = {
                 regExApps = /#app__(.*)__(.*)$/;
 
                 if (
-                    typeof it.text.match(regExDialogs)[1] == 'string'
-                    || typeof it.text.match(regExApps)[1] == 'string'
-                    || typeof it.text.match(/Dialog/)[1] == 'string'
+                    !it.text.match(regExDialogs)
+                    && !it.text.match(regExApps)
+                    && !it.text.match(/Dialog/)
                     //&& !it.text.match(/Extras/)
                 ) {
                     if (!themeSettings[parent.text]) themeSettings[parent.text] = { css : {} };
@@ -893,9 +892,8 @@ na.te = na.themeEditor = {
                         themeSettings[parent.text].css, na.site.fetchTheme(it.text)
                     );
                 }
+                break;
         }
-        debugger;
-
         return themeSettings;
     },
     
@@ -978,12 +976,7 @@ na.te = na.themeEditor = {
         if (b) {
             na.te.s.c.selectedButtonID = el.id;
             b.select();
-            try {
-                if ($('#'+el.id+'_container')[0])
-                    $('#'+el.id+'_container').click(event);
-                else
-                    $('#'+el.id).click(event);
-            } catch (err) { };
+            $('#'+el.id).click(event);
         }
     },
     
@@ -1044,16 +1037,36 @@ na.te = na.themeEditor = {
            var s = na.te.s.c.specificity = na.site.globals.themesDBkeys[idx];
            na.site.globals.themeSpecificityName = sn;
            na.site.globals.specificityName = sn;
-           //na.site.globals.themeName = s.themeName; JUST DON'T!
+           na.site.globals.themeName = s.themeName;
             if (!s || (!s.role && !s.user)) {
                 na.site.settings.buttons['#btnDeleteSpecificity'].disable();
             } else {
                 na.site.settings.buttons['#btnDeleteSpecificity'].enable();
             }
 
-            na.site.loadTheme (null, s.themeName, true, true, sn, null, sn.match(' client'));
+            debugger;
+            na.site.loadTheme (function () { // **POSSIBLY** NOT NEEDED
+                var btn = $('#'+na.te.s.c.selectedButtonID)[0];
+                if (btn) na.te.onclick(btn, false);
+            }, s.themeName);
+
+
+            na.site.setSiteLoginLogout();
         }
     },
+    /*
+    themeSelected : function (event) {
+        na.site.globals.themeName = $(event.currentTarget)[0].innerText;
+        $('.na_themes_dropdown__themes > .vividDropDownBox_selected').html (na.site.globals.themeName);
+
+        na.site.loadTheme (function () { // **POSSIBLY** NOT NEEDED
+            var btn = $('#'+na.te.s.c.selectedButtonID)[0];
+            if (btn) na.te.onclick(btn, false);
+        });
+
+        na.site.setSiteLoginLogout();
+    },*/
+
     deleteSpecificity : function (event, callback) {
         var
         fncn = 'na.themeEditor.deleteSpecificity(event, callback)',
@@ -1076,10 +1089,6 @@ na.te = na.themeEditor = {
                 url = state.url.replace(document.location.origin,'').replace('/apps/', ''),
                 url2 = url.replace(document.location.origin,'').replace(document.location.host,'').replace('/apps/', '');
                 
-                debugger;
-                na.site.loadTheme(callback, 'default', true);
-                /*
-
                 var ac2 = {
                     type : 'GET',
                     url : '/NicerAppWebOS/logic.AJAX/ajax_get_pageSpecificSettings.php',
@@ -1110,7 +1119,7 @@ na.te = na.themeEditor = {
                 //setTimeout (function() { 
                     $.ajax(ac2);
                 //}, 250);
-                */
+                
             },
             error : function (xhr, textStatus, errorThrown) {
                 na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
@@ -1161,21 +1170,21 @@ na.te = na.themeEditor = {
         themeName = na.site.globals.themeName;
         //$('#themeName').val(theme);
 
-        //na.site.saveTheme(function() {
+        na.site.saveTheme(function() {
             var
             theme = $('.na_themes_dropdown__themes > .vividDropDownBox_selected').html();
-            if (theme==='') theme = themeName;
 
-            na.site.loadTheme(function() {
-                //debugger;
-                //var btn = $('#'+na.te.s.c.selectedButtonID)[0];
-                //if (btn) na.te.onclick(btn, false);
-                $('.themeItem.onfocus input')[0].onfocus(evt);
+            setTimeout (function(theme) {
+                na.site.loadTheme(function() {
+                    debugger;
+                    var btn = $('#'+na.te.s.c.selectedButtonID)[0];
+                    if (btn) na.te.onclick(btn, false);
 
-                na.te.s.c.selectedThemeName = theme;
-                na.site.globals.themeName = theme;
-            }, theme, true, true, null, null, true, false, true);
-        //},themeName);
+                    na.te.s.c.selectedThemeName = theme;
+                    na.site.globals.themeName = theme;
+                }, theme);
+            }, 100, theme);
+        },themeName);
     },
     deleteTheme : function (event) {
         var
@@ -1187,11 +1196,17 @@ na.te = na.themeEditor = {
             type : 'POST',
             url : url,
             data : {
-                themeName : themeName,
-                specificityName : na.te.s.c.specificity
+                themeName : themeName
             },
             success : function (data, textStatus, xhr) {
-                na.site.loadTheme (null, 'default', true);
+                if (data == 'status : Success.') {
+                    $('.na_themes_dropdown__themes > .vividDropDownBox_selector > .vividScrollpane > div').each(function(idx,optEl){
+                        if ($(optEl).html() === themeName) $(optEl).remove();
+                    });
+                    $('.themeItem input').each(function(idx,inputEl){
+                        if ($(inputEl).val() === themeName) $(inputEl).parent().remove();
+                    });
+                } else na.site.fail(fncn+' : '+url+' : '+data, xhr, textStatus, null);
             },
             error : function (xhr, textStatus, errorThrown) {
                 na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
@@ -1202,8 +1217,8 @@ na.te = na.themeEditor = {
     },
     themeNameSelected : function (themeID) {
         var themeName = $('#'+themeID).val();
-        //if (themeName === na.site.globals.themeName) return false;
-        //na.site.saveTheme (function() {
+        if (themeName === na.site.globals.themeName) return false;
+        na.site.saveTheme (function() {
             na.site.globals.themeName = themeName;
             na.te.s.c.selectedThemeName = themeName;
             
@@ -1216,13 +1231,13 @@ na.te = na.themeEditor = {
                         $(ti).addClass('onfocus');
                 });
 
-                //na.site.loadTheme(function() {
-                    //var btn = $('#'+na.te.s.c.selectedButtonID)[0];
-                    //if (btn) na.te.onclick(btn, false);
-                //}, themeName);
+                na.site.loadTheme(function() {
+                    var btn = $('#'+na.te.s.c.selectedButtonID)[0];
+                    if (btn) na.te.onclick(btn, false);
+                }, themeName);
             }, 200);
         
-        //}, na.site.globals.themeName);
+        }, na.site.globals.themeName);
     },
     themeNameChanged : function (themeIdx, themeNameID) {
         var
@@ -1260,7 +1275,6 @@ na.te = na.themeEditor = {
         $.ajax(ajaxCmd);            
     },
     setPermissionsForTheme : function (event) {
-        debugger;
         $('.themeEditorComponent, .themeEditorComponent_containerDiv2').not('#themePermissions').fadeOut('fast');
         $('.themeEditor_colorPicker').next().fadeOut('fast');
         $('#themePermissions').fadeIn('fast', 'swing', function () {
@@ -1301,22 +1315,16 @@ na.te = na.themeEditor = {
         $('#themePermissionsControls').append(html);
         $('#theme_'+i).focus();
         
+        var evt = { currentTarget : opt };
+        na.te.themeSelected (evt);
 
-        //$('.na_themes_dropdown__themes > .vividDropDownBox_selected').html('new theme'); // much better idea
+        $('.na_themes_dropdown__themes > .vividDropDownBox_selected').html('new theme'); // much better idea
+        $('.themeItem').removeClass('onfocus');
+        $('.themeItem').each(function(idx,ti) {
+            if ($('input', ti).val()=='new theme')
+                $(ti).addClass('onfocus');
+        });
 
-        debugger;
-        na.site.saveTheme (function () {
-            var evt = { currentTarget : opt };
-            debugger;
-            na.site.globals.themeName = 'new theme';
-            na.te.themeSelected (evt);
-
-            $('.themeItem').removeClass('onfocus');
-            $('.themeItem').each(function(idx,ti) {
-                if ($('input', ti).val()=='new theme')
-                    $(ti).addClass('onfocus');
-            });
-        }, 'new theme');
 
 
     },

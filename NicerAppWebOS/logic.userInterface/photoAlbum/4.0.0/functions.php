@@ -1,7 +1,7 @@
 <?php
 //require_once (dirname(__FILE__).'/../../../../boot_stage_001.php');
     
-function naPhotoAlbum ($basePath=null) {
+function naPhotoAlbum ($cmd=null) {
     $root = realpath(dirname(__FILE__).'/../../../../');
     global $naWebOS;
     
@@ -13,11 +13,12 @@ function naPhotoAlbum ($basePath=null) {
     
     $baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domain;
     $baseDir = $root.'/NicerAppWebOS/siteData/'.$naWebOS->domain;
-    $targetDir = realpath($baseDir.'/'.$basePath);
+    $targetDir = realpath($baseDir.'/'.$cmd['mediaFolder']);
     $thumbDir = $targetDir.'/thumbs';
     
     $files = getFilePathList ($targetDir, false, FILE_FORMATS_photos, null, array('file'));
-    $r = '<style>.filename {color : white;}</style>';
+    //$r = '<style>.filename {color : white;}</style>';
+    $r = '';
     
     $dbg = array (
         'baseURL' => $baseURL,
@@ -41,7 +42,7 @@ function naPhotoAlbum ($basePath=null) {
             'thumbURL' => $thumbURL
         );
         //echo '<pre style="color:black;background:white;border-radius:3px;border:1px solid black;">'; var_dump ($dbg); echo '</pre>';
-        $r .= '<div style="overflow:hidden;float:left;width:220px;height:fit-content;margin:5px;padding:10px;padding-top:20px;border-radius:10px;border:1px solid black;background:rgba(0,0,0,0.7);box-shadow:2px 2px 2px rgba(0,0,0,0.5), inset 1px 1px 1px rgba(0,0,255,0.5), inset -1px -1px 1px rgba(0,0,255,0.5);">';
+        $r .= '<div style="overflow:hidden;float:left;width:'.(array_key_exists('thumbWidth',$cmd)?$cmd['thumbWidth']+20:220).'px;height:fit-content;margin:5px;padding:10px;padding-top:20px;border-radius:10px;border:1px solid black;background:rgba(0,0,0,0.7);box-shadow:2px 2px 2px rgba(0,0,0,0.5), inset 1px 1px 1px rgba(0,0,255,0.5), inset -1px -1px 1px rgba(0,0,255,0.5);">';
         
         $onclick = '';
         $href = '';
@@ -56,7 +57,7 @@ function naPhotoAlbum ($basePath=null) {
         $href = "/view-content/".base64_encode_url($json);
         
         
-        $r .= '<center><a href="'.$href.'"><img src="'.$thumbURL.'" style="width:200px" '.$onclick.'/><br/><span class="filename">'.$fileName.'</span></a></center></div>';        
+        $r .= '<center><a href="'.$href.'"><img src="'.$fileURL.'" style="width:'.(array_key_exists('thumbWidth',$cmd)?$cmd['thumbWidth']:200).'px" '.$onclick.'/><br/><span class="filename">'.$fileName.'</span></a></center></div>';
     }
     $r .= '</div>';
     return $r;

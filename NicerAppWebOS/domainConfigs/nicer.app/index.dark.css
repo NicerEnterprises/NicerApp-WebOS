@@ -1004,9 +1004,12 @@ ul.index > li {
     }
     #player .vdBackground {
     }
+    #app__musicPlayer__player::before {
+        mask-image: url("/NicerAppWebOS/siteMedia/vividDialog_borderMask_300x500.png");
+    }
 
     #app__musicPlayer__description::before {
-        -webkit-mask-image: url("/NicerAppWebOS/siteMedia/vividDialog_borderMask_300x500.png");
+        -webkit-mask-image: url("/NicerAppWebOS/siteMedia/vividDialog_borderMask_500x1000.png");
         mask-image: url("/NicerAppWebOS/siteMedia/vividDialog_borderMask_500x1000.png");
     }
     #app__musicPlayer__description .vdBackground {

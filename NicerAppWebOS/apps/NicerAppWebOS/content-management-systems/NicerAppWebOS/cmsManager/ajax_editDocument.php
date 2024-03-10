@@ -11,14 +11,14 @@ $acdb = $adb->cdb;
 // //echo '<pre>'; var_dump ($_POST); die();
 $html = str_replace('&lt;','<',str_replace('&gt;','>',$_POST['document']));
 if (
-    false && (
+    (
         strpos ($html, '<script') !== false
         || strpos ($html, '<link') !== false
         || strpos ($html, 'javascript:') !== false
         || strpos ($html, '<?php') !== false
         || strpos ($html, '<iframe') !== false
     )
-) die ('403 Forbidden - No <script>, <link>, javascript:, <?php and <iframe> allowed.');
+) die ('403 Forbidden - Illegal content.');
 
 $illegal = false;
 $domain = $_SERVER['HTTP_HOST'];
@@ -49,7 +49,7 @@ if (!$illegal) foreach ($matches2[2] as $idx => $url) {
 // !! !! ! --- uncomment the next line to activate the 'open house' mode in the blogging apps of all sites that run this code-file.
 //$illegal = false;
 
-if (false && $illegal) {
+if ($illegal) {
     die ('403 Forbidden - No links allowed.');
 } else {
 
@@ -78,7 +78,7 @@ if (false && $illegal) {
         echo '{"rec":';
         $findCommand = [
             'selector' => [
-                'seo_value' => $dr['resultValue']
+                'seoValue' => $dr['resultValue']
             ],
             'fields' => [ '_id' ]
         ];
@@ -93,9 +93,9 @@ if (false && $illegal) {
                     'database' => $_POST['database'],
                     'id' => $_POST['id']
                 ],
-                "seo_value" => str_replace('\\','',$_POST['seoValue'])
+                "seoValue" => str_replace('\\','',$_POST['seoValue'])
             ],
-            'seo_value' => str_replace('\\','',$_POST['seoValue'])
+            'seoValue' => str_replace('\\','',$_POST['seoValue'])
         ];
         if ( array_key_exists('url1',$_POST) && $_POST['url1']!=='' ) $document['url1'] = $_POST['url1'];
         if ( array_key_exists('user',$_POST) && $_POST['user']!=='' ) $document['user'] = $_POST['user'];
