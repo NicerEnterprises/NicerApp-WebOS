@@ -901,7 +901,7 @@ debugger;
         });
         c.page++;*/
 
-        $('.newsApp__item__outer a:not(:has(img))').animate({opacity:0.7});
+        //$('.newsApp__item__outer a:not(:has(img))').animate({opacity:0.7});
 
 
         if (c.tries === 0) c.randomValue = randomValue;
