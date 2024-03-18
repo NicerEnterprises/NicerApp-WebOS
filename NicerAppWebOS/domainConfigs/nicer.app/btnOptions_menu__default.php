@@ -120,6 +120,30 @@
         'grouped btnDelete themes',
         ''
     );
+    if ($naLAN) echo $naWebOS->html_vividButton (
+        0, 'align-items:center;justify-content:center;margin-right:10px;margin-left:10px;',
+
+        'btnDeleteAllUserThemes',
+        'vividButton_icon_50x50 grouped btnDelete forum', '_50x50', 'grouped',
+        '',
+        'na.site.onclick_btnDeleteAllUserThemes(event)',
+        '',
+        '',
+
+        202, 'Delete all user themes.',
+
+
+        'btnCssVividButton_outerBorder.png',
+        'btnCssVividButton.blue1b.png',
+        null,//'btnCssVividButton_iconBackground.png',
+        'btnTrashcan_red.png',
+
+        '',
+
+        'Delete all user themes.',
+        'grouped btnDelete themes',
+        ''
+    );
     echo $naWebOS->html_vividButton (
         0, 'align-items:center;justify-content:center;margin-right:10px;margin-left:10px;',
 

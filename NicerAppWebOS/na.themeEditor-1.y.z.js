@@ -526,12 +526,14 @@ na.te = na.themeEditor = {
             ]
         }).on('changed.jstree', function (e, data) {
             na.te.s.c.selectedSelector = data;
+            debugger;
             na.te.enableDisableButtons('selectedSelector');
         });
     },
 
     enableDisableButtons : function (which) {
         var x = na.te.s.c;
+        x.which = which;
 
         if (which=='selectedSelector') {
             var data = na.te.s.c.selectedSelector;
@@ -2456,11 +2458,11 @@ debugger;
     },
 
     onclick_btnAddElement : function () {
-        if ($('div, p, span, li, ol, ul, h1, h2, h3, h4').css('cursor').match(/grab/)) {
-            $('div, p, span, li, ol, ul, h1, h2, h3, h4').css({cursor:'inherit'}).each (function(){debugger; this.removeEventListener('click',na.te.btnAddElement_clickElement)});
+        if ($('a, div, p, span, li, ol, ul, h1, h2, h3, h4').css('cursor').match(/grab/)) {
+            $('a, div, p, span, li, ol, ul, h1, h2, h3, h4').css({cursor:'inherit'}).each (function(){debugger; this.removeEventListener('click',na.te.btnAddElement_clickElement)});
         } else {
             na.te.s.c.addingElements = true;
-            $('div, p, span, li, ol, ul, h1, h2, h3, h4').css({cursor:'url(/NicerAppWebOS/siteMedia/btnSettings2.32x32.png) 16 16, grab'}).each (function(idx,el) { this.addEventListener('click',na.te.btnAddElement_clickElement,{capture:true})});
+            $('a, div, p, span, li, ol, ul, h1, h2, h3, h4').css({cursor:'url(/NicerAppWebOS/siteMedia/btnSettings2.32x32.png) 16 16, grab'}).each (function(idx,el) { this.addEventListener('click',na.te.btnAddElement_clickElement,{capture:true})});
         }
     },
 

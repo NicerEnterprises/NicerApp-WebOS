@@ -171,8 +171,8 @@ p > .newsApp__item__paint {
 
 .newsApp__item__title a, .newsApp__item__desc a {
     --bg-size: 400%;
-    --color-one-blue: navy;
-    --color-two-green: #000070;
+    --color-one-blue: yellow;
+    --color-two-green: navy;
     background: linear-gradient( 315deg,
         var(--color-one-blue),
         var(--color-two-green),
@@ -181,11 +181,13 @@ p > .newsApp__item__paint {
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    animation: move-bg 10s infinite cubic-bezier(0.11, 0, 0.5, 0);
-    text-shadow: 3px 3px 3px rgba(0,0,0,0.8);
+    animation: move-bg 10s infinite cubic-bezier(0.1, 0, 0.5, 0);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.95);
+    /*text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;*/
 
     text-decoration : none;
-    font-weight : bold;
+    font-weight : bolder;
+    font-size : 120%;
     z-index : 750000;
     position : relative;
     display : inline-block;

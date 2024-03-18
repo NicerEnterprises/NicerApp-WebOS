@@ -1237,6 +1237,23 @@ na.site = {
         };
         $.ajax(ajaxCmd);
     },
+    onclick_btnDeleteAllUserThemes : function (event) {
+        var
+         url = '/NicerAppWebOS/logic.AJAX/ajax_database_deleteAllUserThemes.php',
+        ajaxCmd = {
+            type : 'POST',
+            url : url,
+            success : function (data, ts, xhr) {
+                debugger;
+                if (data.indexOf('status : Success')!==-1) na.site.loadTheme(null, null, true, true, false);
+            },
+            error : function (xhr, textStatus, errorThrown) {
+                debugger;
+                na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
+            }
+        };
+        $.ajax(ajaxCmd);
+    },
     onclick_btnDeleteAllOfMyThemes : function (event) {
         var
          url = '/NicerAppWebOS/logic.AJAX/ajax_database_deleteAllOfMyThemes.php',
@@ -3350,7 +3367,7 @@ na.site = {
     },
     loadTheme_doGetPageSpecificSettings : function(callback, doSwitchSpecificities, includeClientOnlyThemes, specificityName, theme, ct, stickToCurrentSpecificity) {
         if (typeof includeClientOnlyThemes=='undefined') includeClientOnlyThemes = true;
-        if (typeof stickToCurrentSpecificity=='undefined') stickToCurrentSpecificity = true;
+        if (typeof stickToCurrentSpecificity=='undefined') stickToCurrentSpecificity = false;
 
         //if (typeof specificityName=='undefined') specificityName = na.te.s.c.specificity.specificityName;
 
@@ -3377,6 +3394,7 @@ na.site = {
                     && !data2.match(/E_NOTICE/)
                 ) {
                     $('#cssPageSpecific, #jsPageSpecific').remove();
+                    debugger;
                     $('head').append(data2).delay(100);
                 }
                 if (doSwitchSpecificities) {
@@ -3406,7 +3424,7 @@ na.site = {
     loadTheme_do : function (callback, specificityName, theme, loadBackground) {
         var
         fncn = 'na.site.loadTheme_do(callback,theme)',
-        s = na.te.settings.current.specificity,
+        s = na.site.globals.specificity,
         u = na.site.settings.current.url,
         apps = na.site.globals.app,
         acData = {
