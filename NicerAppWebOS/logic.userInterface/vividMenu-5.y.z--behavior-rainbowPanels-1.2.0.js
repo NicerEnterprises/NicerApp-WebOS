@@ -234,7 +234,7 @@ class naVividMenu__behavior_rainbowPanels {
         it.b.el.level = it.level;
         if (it.level === 1 && !$(t.el).is('.noInitialShowing')) $(it.b.el).css({ display : 'block' }); else $(it.b.el).css({ display : 'none' });
 
-        $(it.b.el).css({opacity:1});
+        $(it.b.el).css({opacity:1, width : 150, height : '120%'});
 
         $(it.b.el).bind('mouseenter', function(event) {
             event.stopPropagation();
@@ -685,7 +685,8 @@ class naVividMenu__behavior_rainbowPanels {
             if (t.panelsShown[panel.id].hideAll) clearTimeout (t.panelsShown[panel.id].hideAll);
         });
 
-            $('.vividMenu_item', panel).css({display:'inline-block', float:'left'});
+        $('.vividMenu_item', panel).css({display:'inline-block', float:'left'});
+
         var
         itsKids = t.children[pit.idx],
         container = panel,
@@ -763,9 +764,14 @@ class naVividMenu__behavior_rainbowPanels {
                 )
             ),
             x1t = x1_bcr.top - tel_bcr.top,
-            x1l = x1_bcr.left + tel_bcr.left,
+            x1l =
+                dim.verDirection=='south' && dim.horDirection=='east' && it.level > 2
+                ? x1_bcr.left + tel_bcr.left
+                : tel_bcr.left,
             x2t = x2_bcr.top - tel_bcr.top,
-            x2l = x2_bcr.left + tel_bcr.left;
+            x2l = dim.verDirection=='south' && dim.horDirection=='east' && it.level > 2
+                ? x2_bcr.left + tel_bcr.left
+                : tel_bcr.left;
             //if (pit.label=='Background') debugger;
             //if (pit.label=='Landscape') debugger;
             var
@@ -800,6 +806,7 @@ class naVividMenu__behavior_rainbowPanels {
                         ? p_bcr.top - $(panel).height() - 305 - (1.5 * na.d.g.margin)
                         : p_bcr.top + 20 + (1.5 * na.d.g.margin)
                 ),
+                width : 170,
 
                 zIndex : it.b.el.style.zIndex-1
             },
@@ -810,6 +817,7 @@ class naVividMenu__behavior_rainbowPanels {
             panelID = it.parents ? t.el.id+'__panel__'+it.parents[0].idx : t.el.id+'__panel__'+t.el.id,
             itID = t.el.id+'__'+pit.idx,
             html = '<div id="'+panelID+'" class="vividMenu_subMenuPanel">&nbsp;</div>';
+            debugger;
             if (t.percentageFor_rainbowPanels===0) {
                 cssPanel.borderRadius = 0;
                 cssPanel.background = background3;
@@ -823,7 +831,7 @@ class naVividMenu__behavior_rainbowPanels {
             kids = [];
             for (var kidIdx=0; kidIdx<itsKids.length; itsKids++) {
                 var itKid = itsKids[kidIdx];
-                kids.push (itKid.b.el);
+                if (!itKid.b.el) kids.push (itKid.b.el);
             }
             if (t.percentageFor_rainbowPanels>0) $(kids).css(cssItem);
             t.currentEl_cssItem.border = '2px solid rgba(255,255,255,0.7)';
