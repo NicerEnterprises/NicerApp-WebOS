@@ -59,7 +59,8 @@ if ($callOK) {
         'use_index' => 'primaryIndex'
     );
     if (array_key_exists('backgroundSearchKey',$_POST) && !is_null($_POST['backgroundSearchKey'])) $findCommand['selector']['backgroundSearchKey'] = $_POST['backgroundSearchKey'];
-    if (array_key_exists('orientation',$_POST) && !is_null($_POST['orientation'])) $findCommand['selector']['orientation'] = $_POST['orientation'];
+    if (array_key_exists('theme',$_POST) && !is_null($_POST['theme'])) $findCommand['selector']['orientation'] = $_POST['orientation'];
+    if (array_key_exists('theme',$_POST) && !is_null($_POST['theme'])) $findCommand['selector']['orientation'] = $_POST['orientation'];
     if (array_key_exists('specificityName',$_POST) && !is_null($_POST['specificityName'])) $findCommand['selector']['specificityName'] = $_POST['specificityName'];
     if (array_key_exists('orientation',$_POST) && !is_null($_POST['orientation'])) $findCommand['selector']['orientation'] = $_POST['orientation'];
     if (array_key_exists('view',$_POST) && !is_null($_POST['view'])) $findCommand['selector']['view'] = $_POST['view'];

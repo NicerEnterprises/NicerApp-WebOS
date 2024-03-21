@@ -157,6 +157,7 @@ na.m.preventScreenLock();
         //dtQuit = new Date(dtBegin.getTime() - 1000 * 60 * 60 * 1.5), //(na.m.userDevice.isPhone ? 2.5 : 24.5)),
         urlp = na1.getURLparameters(),
         settings = urlp[0];
+        debugger;
         
         na.analytics.logMetaEvent ('start app : applications/2D/news.v'+na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news'].about.version);
         
@@ -188,7 +189,7 @@ na.m.preventScreenLock();
         
         c.firstRun = true;
         c.loads = 0;
-
+debugger;
         na1.loadNews_read_loop ();
 
         var
@@ -311,7 +312,6 @@ na.m.preventScreenLock();
             c.lastCurrentGet = dtBegin;
             na1.loadNews_searchResults_loop (new Date(dtBegin.getTime() - (1000 * 60 * g.readHistory_numHours * c.readHistory_numHours__multiplier)), dtBegin, settings);
         };        
-
         na.m.waitForCondition ('news app not loading?', function () {
             return !s.loading
         }, function() {
@@ -371,20 +371,21 @@ na.m.preventScreenLock();
                     c.dtCurrent = new Date(c.dtEnd.getTime() - (1000 * 60 * c.read_loop_minutesIntoPast));
 
 
-                    if (parseInt(c.dtCurrent.getFullYear())<2022) {
+                    debugger;
+                    if (parseInt(c.dtCurrent.getFullYear())<2023) {
                         clearInterval (c.intervalMailLogCountdown);
                         clearTimeout (c.timerDisplayNews_loop);
                         $('#newsAppInfo').html('Loaded all the news available by now. Press F5 to start over.');
-                    } else if (itemsLoadedCount < 50) {
+                    } else /*if (itemsLoadedCount < 50)*/ {
+                        c.read_loop_minutesIntoPast = 60 * g.readHistory_numHours * c.readHistory_numHours__multiplier;
+                        c.read_loop_millisecondsToDoNext = 5 * 60 * 1000;
+                    } /*else if (itemsLoadedCount < 100) {
                         c.read_loop_minutesIntoPast = 60 * g.readHistory_numHours * c.readHistory_numHours__multiplier;
                         c.read_loop_millisecondsToDoNext = 2 * 1000;
-                    } else if (itemsLoadedCount < 100) {
+                    } /*else {
                         c.read_loop_minutesIntoPast = 60 * g.readHistory_numHours * c.readHistory_numHours__multiplier;
                         c.read_loop_millisecondsToDoNext = 2 * 1000;
-                    } else {
-                        c.read_loop_minutesIntoPast = 60 * g.readHistory_numHours * c.readHistory_numHours__multiplier;
-                        c.read_loop_millisecondsToDoNext = 2 * 1000;
-                    };
+                    };*/
 
 
                     if (data.trim && data.trim() === '') {
@@ -431,7 +432,9 @@ na.m.preventScreenLock();
 
                         clearTimeout (c.timerDisplayNews_loop);
                         clearTimeout (c.timerLoadNews_read_loop);
+                        debugger;
                         c.timerLoadNews_read_loop = setTimeout (function() {
+                            debugger;
                             na1.loadNews_searchResults_loop (c.dtCurrent, c.dtEnd, settings);
                         }, c.read_loop_millisecondsToDoNext);
 
@@ -559,7 +562,8 @@ na.m.preventScreenLock();
         //ks = ks.sort(function(a,b){ return b - a }); // BAD IDEA!
         
         var
-        unread = dc[ks[0]];
+        unread = parseInt(dc[ks[0]]);
+        debugger;
         c.unread = unread;
         if (!c.dtEnd || unread < 100) {
             if (!c.dtCurrent) c.dtCurrent = new Date();
@@ -576,7 +580,7 @@ na.m.preventScreenLock();
                 na1.displayNewNewsItems();
                 na1.countDown();
                 na1.onresize();
-            return false;
+            //return false;
 
         }
 
@@ -584,6 +588,7 @@ na.m.preventScreenLock();
         if (c.firstRun) {
             c.firstRun = false;
             c.failedLoads = 0;
+            debugger;
             na1.loadNews_get_forDateTimeRange(c.dtCurrent, c.dtEnd, settings);
         }
 
@@ -591,10 +596,10 @@ na.m.preventScreenLock();
         settings.direction = 'future';
         if (
             !c.lastCurrentGet
-            || c.lastCurrentGet.getTime() < dtBegin.getTime() - 1000 * 60 * g.readHistory_numHours
+            || c.lastCurrentGet.getTime() < dtBegin.getTime() - 1000 * 3600 * g.readHistory_numHours
         ) {
             c.lastCurrentGet = dtBegin;
-            na1.loadNews_get_forDateTimeRange (new Date(dtBegin.getTime() - 1000 * 60 * g.readHistory_numHours), dtBegin, settings);
+            na1.loadNews_get_forDateTimeRange (new Date(dtBegin.getTime() - 1000 * 3600 * g.readHistory_numHours), dtBegin, settings);
         };
 
 
@@ -694,6 +699,7 @@ na.m.preventScreenLock();
                     var dat = JSON.parse(data,null,4);
                     dat.fncn = fncn;
                     na.m.log (2, dat);
+                    debugger;
                     setTimeout (function() {
                         try {
                             dataText = data;
@@ -701,7 +707,7 @@ na.m.preventScreenLock();
                         } catch (err) {
                             debugger;
                         }
-
+debugger;
                         if (data.length > 0) {
                             na.m.walkArray (data, data, undefined, na1.loadNews_get_forDateTimeRange_walkValue);
 
@@ -713,16 +719,16 @@ na.m.preventScreenLock();
                         };
 
 debugger;
-                        if (itemsLoadedCount < 50) {
+                        //if (itemsLoadedCount < 50) {
                             c.read_loop_minutesIntoPast = 60 * g.readHistory_numHours;
-                            c.read_loop_millisecondsToDoNext = 1000;
-                        } else if (itemsLoadedCount < 200) {
-                            c.read_loop_minutesIntoPast = 60 * (g.readHistory_numHours/2);
-                            c.read_loop_millisecondsToDoNext = 1000;
-                        } else {
-                            c.read_loop_minutesIntoPast = 60;
-                            c.read_loop_millisecondsToDoNext = 2 * 60 * 1000;
-                        };
+                            c.read_loop_millisecondsToDoNext = 5 * 60 * 1000;
+                        //} /*else {//if (itemsLoadedCount < 200) {
+                            //c.read_loop_minutesIntoPast = 60 * (g.readHistory_numHours/2);
+                            //c.read_loop_millisecondsToDoNext = 1000;
+                        //} /*else {
+                            //c.read_loop_minutesIntoPast = 60;
+                            //c.read_loop_millisecondsToDoNext = 2 * 60 * 1000;
+                        //};
 
                         na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news'].settings.current.db = na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news'].settings.current.db.concat(data);
 
@@ -764,6 +770,7 @@ debugger;
                         var
                         unread = dc[ks[0]];
                         c.unread = unread;
+                        na.m.log (100, 'c.unread='+unread);
 
 
                         var
@@ -798,14 +805,15 @@ debugger;
                         //$('.newsApp__header__timer').html(c.countDownStr);
 
                         if (!c.dtCurrent) c.dtCurrent = new Date();
+                        /*
                         c.dtEnd = c.dtCurrent;
                         c.dtCurrent = new Date(c.dtEnd.getTime() - (1000 * 60 * 60 * 1.5));//c.read_loop_minutesIntoPast));
-                        //if (c.unread < 100) {
-                          //  na1.loadNews_read_loop();
-                        //} else {
+                        if (c.unread < 100) {
+                            na1.loadNews_read_loop();
+                        } else {
                             clearTimeout (c.timerLoadNews_read_loop);
                             c.timerLoadNews_read_loop = setTimeout (na1.loadNews_read_loop, c.read_loop_millisecondsToDoNext);
-                        //}
+                        }*/
                     }, 200);
                 },
                 error : function (xhr, textStatus, errorThrown) {
@@ -933,7 +941,7 @@ debugger;
 
                     na1.countDown();
 
-                    na1.loadNews_read_loop();
+                    //na1.loadNews_read_loop();
                 }
             }, c.dnf.removed?0:randomValue2);
 

@@ -1051,7 +1051,7 @@ na.te = na.themeEditor = {
             na.site.loadTheme (function () { // **POSSIBLY** NOT NEEDED
                 var btn = $('#'+na.te.s.c.selectedButtonID)[0];
                 if (btn) na.te.onclick(btn, false);
-            }, s.themeName);
+            }, na.site.globals.themeName);
 
 
             na.site.setSiteLoginLogout();

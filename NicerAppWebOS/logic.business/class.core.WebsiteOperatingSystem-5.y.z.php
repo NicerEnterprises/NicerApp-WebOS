@@ -1265,6 +1265,9 @@ class NicerAppWebOS {
             ) continue;
 
             $css = $this->getPageCSS_specific($selector);
+            if (is_array($css)) {
+                $selectors2[$idx]['hasData'] = true;
+            }
             if ($debug) { echo '<pre style="color:cyan;background:navy;">'; var_dump($css); echo '</pre>'; }
         }
 
@@ -1346,8 +1349,8 @@ class NicerAppWebOS {
                     $r .= "\tspecificityName : \"".$specificityName."\",".PHP_EOL;
                     $r .= "\tbackground : '".$theme['background']."',".PHP_EOL;
                     $r .= "\tbackgroundSearchKey : '".$theme['backgroundSearchKey']."',".PHP_EOL;
-                    $r .= "\tthemes : ".json_encode($css['themes'], JSON_PRETTY_PRINT).",".PHP_EOL;
                     $r .= "\tthemeName : '".$themeName."',".PHP_EOL;
+                    $r .= "\tthemes : ".json_encode($css['themes'], JSON_PRETTY_PRINT).",".PHP_EOL;
                     //$r .= "\tspecificityName : \"".$specificityName."\",".PHP_EOL;
                     //$r .= "\tspecificityName_revert : \"".$specificityName."\",".PHP_EOL;
                     //echo '<pre style="background:navy;color:lime;border-radius:10px;">'; var_dump ($css); echo '</pre>';

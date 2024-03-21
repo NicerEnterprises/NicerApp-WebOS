@@ -126,7 +126,7 @@
         'btnDeleteThisTheme',
         'vividButton_icon_50x50 grouped btnDelete forum', '_50x50', 'grouped',
         '',
-        'na.site.onclick_btnDeleteThisThemes(event)',
+        'na.site.onclick_btnDeleteThisTheme(event)',
         '',
         '',
 

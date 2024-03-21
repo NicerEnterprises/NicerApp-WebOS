@@ -356,7 +356,7 @@ na.site = {
                 //na.site.globals.background = defaultBG;
 
                 var bg = na.site.globals.themes[na.site.globals.themeName].background;
-                var bg = na.site.globals.background;
+                //var bg = na.site.globals.background;
                 if (!bg) {
                     na.site.globals.background = defaultBG;
                     bg = defaultBG;
@@ -411,9 +411,9 @@ na.site = {
 
         setInterval (na.site.updateDateTime, 1000); // 1000 milliseconds (1 second).
 
-        debugger;
         na.site.transformLinks ($('#siteContent')[0]);
-		History.Adapter.bind(window,'statechange', na.site.stateChange); // use HTML5 History API if available:
+
+        History.Adapter.bind(window,'statechange', na.site.stateChange); // use HTML5 History API if available:
     },
 
     onload_phase2 : function (div, calculationResults, sectionIdx, section, divOrderIdx) {
@@ -1017,6 +1017,7 @@ na.site = {
         $('.themeItem').remove();
         for (var themeName in na.site.globals.themes) {
             var theme = na.site.globals.themes[themeName];
+            debugger;
             for (var i in na.site.globals.themesDBkeys) {
                 var it = na.site.globals.themesDBkeys[i];
                 if (
@@ -1902,6 +1903,7 @@ na.site = {
             //if (!na.site.settings.current.startingApps) debugger;
             return r;
         }, function () { //[1]
+            debugger;
                 var c = na.site.settings.current;
 
                 if (dat) for (var divID in dat) {
@@ -1913,7 +1915,6 @@ na.site = {
                             if (typeof handlers.onload == 'function') {
                                 c.divsInitializing.push ({appID:appID,divID:divID});
                                 na.m.log (50, fncn+' : #'+divID+' : Now calling na.apps.loaded["'+appID+'"].settings.loadedIn["#'+divID+'"].onload();');
-                                debugger;
                                 //setTimeout(function(){
                                     handlers.onload ({
                                         callbackParams : [ divID ],
@@ -3343,6 +3344,7 @@ na.site = {
             !theme
             || typeof theme=='number' // when called via na.site.loadContent()
         ) theme = na.site.globals.themeName;
+        debugger;
 
         na.themeEditor.settings.current.selectedThemeName = theme;
         
@@ -3357,7 +3359,6 @@ na.site = {
             } else {
                 var ct = null;
             }
-            debugger;
             na.site.loadTheme_doGetPageSpecificSettings (function() {
 
                 specificityName = na.site.globals.specificityName;
@@ -3465,7 +3466,8 @@ na.site = {
         u = na.site.settings.current.url,
         apps = na.site.globals.app,
         acData = {
-            orientation : na.site.settings.current.orientation//,
+            orientation : na.site.settings.current.orientation,
+            theme : na.site.globals.themeName
             //theme : theme//,
             //dialogs : JSON.stringify (na.desktop.settings.visibleDivs)
         };
@@ -3479,7 +3481,7 @@ na.site = {
         else app = apps;
         //if (app) acData.app = app;
 
-
+debugger;
         if (s) {
             if (s.view) acData.view = s.view;
             if (s.role) acData.role = s.role;
@@ -3503,6 +3505,8 @@ na.site = {
                 }
             }
         } else debugger;
+
+        na.te.onload('siteContent'); // do this or theme saving wont work!
 
         var
         url = '/NicerAppWebOS/logic.AJAX/ajax_database_loadTheme.php',
@@ -3565,8 +3569,7 @@ na.site = {
                 };*/
                 //na.site.setSpecificity (true);
                 na.site.loadTheme_applySettings (dat, callback, loadBackground);
-                debugger;
-                na.te.onload('siteContent'); // do this or theme saving wont work!
+                //na.te.onload('siteContent'); // do this or theme saving wont work!
             },
             error : function (xhr, textStatus, errorThrown) {
                 debugger;
