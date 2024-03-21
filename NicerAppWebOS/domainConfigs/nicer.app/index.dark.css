@@ -206,7 +206,7 @@ div.label {
     font-weight : bold;
 }
 
-a:not(.naVividTextCSS, .contentSectionTitle3_a, .jstree-anchor) {
+a:not(.nomod, .naVividTextCSS, .contentSectionTitle3_a, .jstree-anchor) {
     --bg-size: 400%;
     --color-one-blue: #0000FF;
     --color-two-white: #AAA;
@@ -224,7 +224,7 @@ a:not(.naVividTextCSS, .contentSectionTitle3_a, .jstree-anchor) {
     z-index : 750000;
     position : relative;
 }
-a:not(.naVividTextCSS, .contentSectionTitle3_a, .jstree-anchor):visited {
+a:not(.nomod, .naVividTextCSS, .contentSectionTitle3_a, .jstree-anchor):visited {
   --bg-size: 400%;
   --color-one-grey: grey;
   --color-two-white : white;
@@ -242,7 +242,7 @@ a:not(.naVividTextCSS, .contentSectionTitle3_a, .jstree-anchor):visited {
   font-size : 120%;
   position : relative;
 }
-a:not(.naVividTextCSS, .contentSectionTitle3_a, .jstree-anchor):hover {
+a:not(.nomod, .naVividTextCSS, .contentSectionTitle3_a, .jstree-anchor):hover {
   --bg-size: 400%;
   --color-one-green: #50FF50;
   --color-two-white : #AAA;
@@ -725,7 +725,7 @@ ul.index > li {
 
 @keyframes move-bg {
   to {
-    background-position: var(--bg-size) 0;
+    background-position: -400% 100%;
   }
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -734,7 +734,7 @@ ul.index > li {
   }
   @keyframes move-bg {
     to {
-      background-position: var(--bg-size) 0;
+      background-position: -400% 100%;
     }
   }
 }

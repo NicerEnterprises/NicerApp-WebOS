@@ -3994,7 +3994,6 @@ na.site = {
         ret[selector] = {
             border : $(selector).css('border'),
             borderRadius : $(selector).css('borderRadius'),
-            boxShadow : $(selector).css('boxShadow'),
             color : $(selector).css('color'),
             fontSize : $(selector).css('fontSize'),
             fontWeight : $(selector).css('fontWeight'),
