@@ -497,7 +497,7 @@ na.site = {
                         setTimeout (function() {
                             na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
                         }, 100);
-                    }, undefined, false, false, na.site.globals.onloadSpecificityName);
+                    });//, undefined, false, false, na.site.globals.onloadSpecificityName);
 
                     na.site.settings.current.startupErrorsOccurred = 'maybe';
                     //na.site.seeIfAnyStartupErrorsOccurred();
@@ -2110,6 +2110,7 @@ na.site = {
                     //if (na.site.globals.themesDBkeys) na.te.specificitySelected(evt);
 
                     if (debugThemeLoading) debugger;
+                    debugger;
                     if (na.site.settings.current.postLoginSaveTheme) {
                         na.site.globals.backgroundSearchKey = $.cookie('siteBackground_search');
                         na.site.globals.background = $.cookie('siteBackground_url');
@@ -3561,6 +3562,7 @@ na.site = {
                 };*/
                 //na.site.setSpecificity (true);
                 na.site.loadTheme_applySettings (dat, callback, loadBackground);
+                debugger;
                 na.te.onload('siteContent'); // do this or theme saving wont work!
             },
             error : function (xhr, textStatus, errorThrown) {
@@ -3839,7 +3841,6 @@ na.site = {
         s = na.themeEditor.settings.current.specificity,
         u = na.site.settings.current.url,
         apps = na.site.globals.app;
-        debugger;
 
         if (typeof theme=='undefined') theme = 'default';
 

@@ -38,7 +38,7 @@ na.backgrounds = {
     },
     next : function (div, search, url, saveTheme, callback, callStack) {
         if (na.site.globals.debug_backgroundChanges) debugger;
-        //debugger;
+        debugger;
         //return false;
 
 
