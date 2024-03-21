@@ -1185,7 +1185,7 @@ na.site = {
             
         }*/
         var btn = $('#'+na.te.settings.current.selectedButtonID)[0];
-        //if (btn) debugger;
+        if (btn) debugger;
         na.te.onclick(btn, false);
 
 
@@ -1321,6 +1321,8 @@ na.site = {
                 $(el).attr('targetDisabled',$(el).attr('target'));
                 $(el).attr('target','');
                 
+            } else {
+                $(el).attr('onclick', 'window.open(this.href, this.target);');
             }
         });
     },

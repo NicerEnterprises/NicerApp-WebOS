@@ -260,7 +260,9 @@ a:not(.nomod, .naVividTextCSS, .contentSectionTitle3_a, .jstree-anchor):hover {
   font-size : 120%;
   position : relative;
 }
-
+h3.contentSectionTitle3, .contentSectionTitle3_span {
+    pointer-events : none;
+}
 
 h1.pageTitle {
     margin-block-start : 0px;

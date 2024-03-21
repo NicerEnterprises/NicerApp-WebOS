@@ -499,7 +499,9 @@ na.te = na.themeEditor = {
     initSelectorsTree : function (dat) {
         na.te.s.c.dbSelectors = dat;
         $('#themeEditor_jsTree_selectors').css({
-            height : $('#siteToolbarLeft .vividDialogContent').height() - $('#jsTree_navBar').height()
+            height :
+                $('#siteToolbarLeft .vividDialogContent').height()
+                - $('#jsTree_navBar').height()
         }).jstree('destroy').jstree({
             core : {
                 data : dat,
@@ -526,7 +528,6 @@ na.te = na.themeEditor = {
             ]
         }).on('changed.jstree', function (e, data) {
             na.te.s.c.selectedSelector = data;
-            debugger;
             na.te.enableDisableButtons('selectedSelector');
         });
     },
