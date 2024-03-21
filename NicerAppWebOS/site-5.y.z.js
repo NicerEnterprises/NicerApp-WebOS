@@ -355,7 +355,13 @@ na.site = {
                 //na.site.globals.backgroundSearchKey = 'landscape';
                 //na.site.globals.background = defaultBG;
 
+                var bg = na.site.globals.themes[na.site.globals.themeName].background;
                 var bg = na.site.globals.background;
+                if (!bg) {
+                    na.site.globals.background = defaultBG;
+                    bg = defaultBG;
+                }
+                debugger;
 
                 var bsk = na.site.globals.backgroundSearchKey;
                 if (
@@ -366,7 +372,7 @@ na.site = {
                 na.backgrounds.next (
                     '#siteBackground',
                     na.site.globals.backgroundSearchKey,
-                    defaultBG,
+                    bg,
                     //needNewBackground ? null : na.site.globals.background,
                     false,
                     function () {
@@ -475,6 +481,7 @@ na.site = {
                         na.site.initializeApps(null, null, null, null, na.site.resizeApps);
                     }, 50);
                 } else {
+                    /*
                     if (typeof na.site.globals.background=='string' && na.site.globals.background!=='')
                     na.backgrounds.next (
                         '#siteBackground',
@@ -484,12 +491,12 @@ na.site = {
                         false,
                         function () {
                         }
-                    );
+                    );*/
 
                     na.site.loadTheme(function() {
                         setTimeout (function() {
                             na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
-                        }, 500);
+                        }, 100);
                     }, undefined, false, false, na.site.globals.onloadSpecificityName);
 
                     na.site.settings.current.startupErrorsOccurred = 'maybe';
@@ -989,6 +996,8 @@ na.site = {
                         : i == l
             );
 
+            if (na.site.globals.themesDBkeys[i].hasData) $(divEl).addClass('hasData');
+
             if (selectMe) {
                 //debugger;
                 $(divEl).addClass('selected');
@@ -1020,6 +1029,7 @@ na.site = {
                     if (!$('.na_themes_dropdown__themes > .vividDropDownBox_selector > .vividScrollpane:contains("'+themeName+'")')[0]) {
                         var divEl2 = document.createElement('div');
                         $(divEl2).html(themeName).attr('value',i);
+                        if (it.hasData) $(divEl2).addClass('hasData');
 
                         if (themeName==na.site.globals.themeName) {
                             $(divEl2).addClass('selected');
@@ -3424,7 +3434,7 @@ na.site = {
     loadTheme_do : function (callback, specificityName, theme, loadBackground) {
         var
         fncn = 'na.site.loadTheme_do(callback,theme)',
-        s = na.site.globals.specificity,
+        s = na.site.globals.themeDBkeys,
         u = na.site.settings.current.url,
         apps = na.site.globals.app,
         acData = {
@@ -3444,6 +3454,7 @@ na.site = {
         //if (app) acData.app = app;
 
 
+        debugger;
         if (s) {
             if (s.view) acData.view = s.view;
             if (s.role) acData.role = s.role;
@@ -3529,7 +3540,7 @@ na.site = {
                 };*/
                 //na.site.setSpecificity (true);
                 na.site.loadTheme_applySettings (dat, callback, loadBackground);
-                //na.te.onload('siteContent');
+                na.te.onload('siteContent'); // do this or theme saving wont work!
             },
             error : function (xhr, textStatus, errorThrown) {
                 debugger;
@@ -3585,6 +3596,7 @@ na.site = {
 
         }
 
+        debugger;
         if (loadBackground && dat.background /*&& dat.background!==na.site.globals.background*/) { /* doesn't jive with na.site.loadContent() */
             na.backgrounds.next (
                 '#siteBackground',
@@ -3806,6 +3818,9 @@ na.site = {
         s = na.themeEditor.settings.current.specificity,
         u = na.site.settings.current.url,
         apps = na.site.globals.app;
+        debugger;
+
+        if (typeof theme=='undefined') theme = 'default';
 
         if (!na.te.s.c.forDialogID && !na.te.s.c.forElements) na.te.onload();
 
@@ -3821,8 +3836,8 @@ na.site = {
         if (!s) return false;        
         if (!theme) theme = $('.na_themes_dropdown__themes > .vividDropDownBox_selected > .vividScrollpane').html();
         
-        //clearTimeout (na.site.settings.current.saveThemeTimeout);
-        //na.site.settings.current.saveThemeTimeout = setTimeout(function() {
+        clearTimeout (na.site.settings.current.saveThemeTimeout);
+        na.site.settings.current.saveThemeTimeout = setTimeout(function() {
             var tApp = null;
             if (
                 na.site.globals.themes
@@ -3935,7 +3950,7 @@ na.site = {
             };
             debugger;
             $.ajax(ac2);
-        //}, 750);
+        }, 335);
     },
 
     loadTheme_fetchDialogs : function (themeData) {
@@ -3994,6 +4009,7 @@ na.site = {
         ret[selector] = {
             border : $(selector).css('border'),
             borderRadius : $(selector).css('borderRadius'),
+            boxShadow : $(selector).css('boxShadow'),
             color : $(selector).css('color'),
             fontSize : $(selector).css('fontSize'),
             fontWeight : $(selector).css('fontWeight'),

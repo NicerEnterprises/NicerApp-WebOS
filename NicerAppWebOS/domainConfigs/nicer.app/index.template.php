@@ -563,7 +563,7 @@ echo $naWebOS->html_vividButton (
     '',
     '',
 
-    423, 'Set border shadow.',
+    423, 'Set box shadow.',
 
     'btnCssVividButton_outerBorder.png',
     'btnCssVividButton.png',

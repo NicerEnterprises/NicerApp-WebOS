@@ -424,8 +424,11 @@ ul.index > li {
 #nb_url2_value, #url2_value, .vividDropDownBox_selected {
     background: linear-gradient(0deg, rgba(2,0,36,0.5) 0%, rgba(9,9,121,0.5) 35%, rgba(0,212,255,0.5) 100%);
 }
-.vividDropDownBox_selector > .vividScrollpane > div:hover, .vividListSelector > .vividScrollpane > div:hover {
+.vividDropDownBox_selector > .vividScrollpane > div.hasData, .vividListSelector > .vividScrollpane > div.hasData {
     background : linear-gradient(0deg, rgba(2,150,36,0) 0%, rgba(2,150,36,.55) 25%, rgba(0,50,155,.55) 50%, rgba(2,150,36,.55) 75%, rgba(2,150,36,0) 100%);
+}
+.vividDropDownBox_selector > .vividScrollpane > div:hover, .vividListSelector > .vividScrollpane > div:hover {
+    background: linear-gradient(0deg, rgba(100,250,10,0) 0%, rgba(100,250,10,0.55) 25%, rgba(100,250,10,0.5) 50%, rgba(100,250,10,0.55) 75%, rgba(100,250,10,0) 100%);
 }
 .vividDropDownBox_selector > .vividScrollpane > div.selected, .vividListSelector > .vividScrollpane > div.selected {
     background : linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 25%, rgba(0,50,155,.4) 50%, rgba(255,255,255,.4) 75%, rgba(255,255,255,0) 100%);

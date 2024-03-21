@@ -1266,7 +1266,26 @@ class NicerAppWebOS {
 
             $css = $this->getPageCSS_specific($selector);
             if ($debug) { echo '<pre style="color:cyan;background:navy;">'; var_dump($css); echo '</pre>'; }
+        }
+
+        foreach ($selectors2 as $idx => $selector) {
+            if (
+                !array_key_exists('has_read_permission',$selector)
+                || !$selector['has_read_permission']
+            ) continue;
+
+            if (
+                !$doIncludeClientOnlyThemes
+                && strpos($selector['specificityName'], ' client')!==false
+            ) continue;
+
+            if (
+                $stickToCurrentSpecificity
+                && $selector['specificityName']!==$specificityName
+            ) continue;
+            $css = $this->getPageCSS_specific($selector);
             if (is_array($css)) {
+                $selectors2[$idx]['hasData'] = true;
                 foreach ($css['themes'] as $themeName => $theme) { break; };
                 $specificityName = (
                     array_key_exists($themeName, $css['themes'])
@@ -1277,6 +1296,7 @@ class NicerAppWebOS {
             } else {
                 $specificityName = $selector['specificityName'];
             }
+
             //{ echo '<pre>667 : $idx='.$idx; echo '$selector='; var_dump($selector); var_dump($css); echo '</pre>'; };
             if ($debug) {
                 echo '<h1>'.$specificityName.'</h1>'; echo PHP_EOL;
@@ -1318,11 +1338,12 @@ class NicerAppWebOS {
 
                 $_SESSION['themeName'] = $themeName;
                 $_SESSION['specificityName'] = $selector['specificityName'];
-                if ($debug) { echo '<pre style="color:green">'; var_dump ($css); echo '</pre>'; die(); }
+                if ($debug) { echo '<pre style="color:green">'; var_dump ($css); echo '</pre>'; }
                 $r .= 'na.site.globals = $.extend(na.site.globals, {'.PHP_EOL;
                     //$r .= "\tdebug : ".json_encode($dbg).",".PHP_EOL;
                     $r .= "\tuseVividTexts : ".$useVividTexts.",".PHP_EOL;
                     $r .= "\tuseLoadContent : ".$useLoadContent.",".PHP_EOL;
+                    $r .= "\tspecificityName : \"".$specificityName."\",".PHP_EOL;
                     $r .= "\tbackground : '".$theme['background']."',".PHP_EOL;
                     $r .= "\tbackgroundSearchKey : '".$theme['backgroundSearchKey']."',".PHP_EOL;
                     $r .= "\tthemes : ".json_encode($css['themes'], JSON_PRETTY_PRINT).",".PHP_EOL;
@@ -1330,7 +1351,6 @@ class NicerAppWebOS {
                     //$r .= "\tspecificityName : \"".$specificityName."\",".PHP_EOL;
                     //$r .= "\tspecificityName_revert : \"".$specificityName."\",".PHP_EOL;
                     //echo '<pre style="background:navy;color:lime;border-radius:10px;">'; var_dump ($css); echo '</pre>';
-                    $r .= "\tspecificityName : \"".$specificityName."\",".PHP_EOL;
                     //$r .= "\tspecificityNames : ".json_encode($selectorNames).",".PHP_EOL;
                     $r .= "\tthemesDBkeys : ".json_encode($selectors2, JSON_PRETTY_PRINT).",".PHP_EOL;
                     $r .= "\tnaLAN : ".($naLAN ? 'true' : 'false').','.PHP_EOL;

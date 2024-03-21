@@ -113,8 +113,8 @@ na.backgrounds = {
             var
             url = hits[Math.floor(Math.random() * Math.floor(hits.length))];
         };
-        //debugger;
-        //na.m.log (20, fncn+' : url='+url, true);
+        debugger;
+        na.m.log (20, fncn+' : url='+url, true);
 
         na.backgrounds.settings.div = div;
 
@@ -152,7 +152,7 @@ na.backgrounds = {
 
                             if (typeof callback == 'function') callback();
                         });
-                    }, 500);
+                    }, 200);
                     
                 } else if (url.match('youtube')) {
                     $(bgDiv).add(bgDiv2).css({display:'none'});
@@ -202,7 +202,7 @@ na.backgrounds = {
                                 $(bgl).hide();
                                 if (typeof callback == 'function') callback();
                             });
-                        }, 500);
+                        }, 200);
                     };
                     $(bgl).css({position:'absolute',display:'none',opacity:1}).hide();
                     bgl.src = url;
