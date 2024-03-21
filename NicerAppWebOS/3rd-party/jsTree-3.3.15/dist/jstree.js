@@ -819,7 +819,6 @@
 													this.open_node(tmp[i], false, 0);
 												}
 											}
-											debugger;
 											this.trigger('changed', { 'action' : 'ready', 'selected' : this._data.core.selected });
 										}
 										/**
@@ -2148,7 +2147,6 @@
 			}
 			m[data.id] = data;
 			if(data.state.selected) {
-				debugger;
 				this._data.core.selected.push(data.id);
 			}
 			return data.id;

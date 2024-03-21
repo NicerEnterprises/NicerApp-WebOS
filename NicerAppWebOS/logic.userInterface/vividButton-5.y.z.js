@@ -269,7 +269,6 @@ class naVividButton {
     
     select () {
         $(this.el).addClass('selected');
-        debugger;
         $('.vividButton_icon_borderCSS'+this.suffix, this.el).css({backgroundImage : 'radial-gradient(circle 70px at center, rgba(255, 166, 0, 1), rgba(255,166,0,1)', boxShadow : '0px 0px 2px 2px rgba(255,166,0,0.7)'});
     }    
 

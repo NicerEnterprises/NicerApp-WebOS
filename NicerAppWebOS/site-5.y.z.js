@@ -411,6 +411,7 @@ na.site = {
 
         setInterval (na.site.updateDateTime, 1000); // 1000 milliseconds (1 second).
 
+        debugger;
         na.site.transformLinks ($('#siteContent')[0]);
 		History.Adapter.bind(window,'statechange', na.site.stateChange); // use HTML5 History API if available:
     },
@@ -1184,7 +1185,7 @@ na.site = {
             
         }*/
         var btn = $('#'+na.te.settings.current.selectedButtonID)[0];
-        if (btn) debugger;
+        //if (btn) debugger;
         na.te.onclick(btn, false);
 
 
@@ -1305,6 +1306,7 @@ na.site = {
 
     transformLinks : function (rootElement) {
         if (!na.site.globals.useLoadContent) return false;
+        if ($(rootElement).is('#siteContent')) debugger;
         $('a', rootElement).not('.contentMenu, .noPushState, .hmNavE').each(function(idx, el){
             
             let x = el.href, y = el.target;
@@ -1816,6 +1818,7 @@ na.site = {
                     if (!divID2 || divID2==='') debugger;
 
                     var vdc = $('#'+divID2+' .vividDialogContent');
+                    debugger;
                     if (dat[divID2]) {
                         vdc.html(dat[divID2]).fadeIn('normal').delay(100);
                         na.m.log (22,fncn+' : "'+divID2+'" filled with HTML.', false);
@@ -3464,7 +3467,6 @@ na.site = {
             //theme : theme//,
             //dialogs : JSON.stringify (na.desktop.settings.visibleDivs)
         };
-        debugger;
         if (
             typeof specificityName=='undefined'
             || specificityName===null
@@ -3476,7 +3478,6 @@ na.site = {
         //if (app) acData.app = app;
 
 
-        debugger;
         if (s) {
             if (s.view) acData.view = s.view;
             if (s.role) acData.role = s.role;

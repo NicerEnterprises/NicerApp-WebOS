@@ -1326,7 +1326,7 @@ another example:
                         $ft = filetype($path.$file);
 
                         if (!$recursive && !in_array ($ft, $fileTypesFilter)) $pass = false;
-                        if ($debug) { echo '<pre style="color:red">'; var_dump ($ft); var_dump($fileTypesFilter); echo '</pre>'; };
+                        if ($debug) { echo '<pre style="color:red;background:yellow;">'; var_dump ($pass); var_dump ($ft); var_dump($fileTypesFilter); echo '</pre>'; };
                         if ($ft=="dir") $filepath = $path.$file."/"; else $filepath = $path.$file;
 
                         if ($debug) {
@@ -1337,6 +1337,7 @@ another example:
                             var_dump ($pass); echo PHP_EOL;
                         }
                         if ($pass/* && !$recursive*/) $pass = preg_match ($fileSpecRE, $filepath) === 1 || $recursive;
+                        if ($debug) { echo 't123a'; var_dump ($pass); var_dump ($fileSpecRE); var_dump ($filepath); var_dump ($recursive); echo PHP_EOL; };
                         if ($debug) { echo '#p1='; var_dump ($pass); echo PHP_EOL; }
                         if ($pass && !is_null($excludeFolders) && $excludeFolders!=='') $pass = preg_match ($excludeFolders, $filepath) === 0 || $recursive;
                         if ($debug) { echo '#p2='; var_dump ($pass); echo PHP_EOL; }
@@ -1397,7 +1398,7 @@ another example:
                             'pass' => $pass,
                             'c' => (is_null($depth) || $level < $depth)
                             ];
-                            echo '<pre>'; var_dump ($dbg); echo '</pre>';
+                            echo '<pre>t555 : '; var_dump ($dbg); echo '</pre>';
                         }
 
                         if (

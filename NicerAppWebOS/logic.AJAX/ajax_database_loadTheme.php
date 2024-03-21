@@ -37,11 +37,12 @@ global $naWebOS;
 $db = $naWebOS->dbs->findConnection('couchdb');
 $cdb = $db->cdb;
 $dbName = $db->dataSetName('themes');
-$cdb->setDatabase($dbName, false);
 try {
-    $call = $cdb->getAllDocs();
+    $cdb->setDatabase($dbName, false);
+    //$call = $cdb->getAllDocs();
     //var_dump ($call); exit();
-    $callOK = $call->status === '200';
+    //$callOK = $call->status === '200';
+    $callOK = true;
 } catch (Exception $e) {
     echo 'info : database does not yet exist ('.$dbName.').<br/>'.PHP_EOL;
     echo '<pre style="color:red">'.PHP_EOL; var_dump ($e); echo PHP_EOL.'</pre>'.PHP_EOL;

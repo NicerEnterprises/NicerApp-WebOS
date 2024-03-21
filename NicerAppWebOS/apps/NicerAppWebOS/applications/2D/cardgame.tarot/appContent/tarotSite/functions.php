@@ -262,14 +262,14 @@ function t2_html_menu_decks_recurse ($decks, $path="") {
 }
 
 function t2_getNumberOfReadings () {
-	$readings = getFilePathList(dirname(__FILE__),false,'/^tarot_reading_.*\.json$/',null, array('file'));
+	$readings = getFilePathList(dirname(__FILE__),false,'/.*tarot_reading_.*\.json$/',null, array('file'));
 	return count($readings);
 }
 
 function t2_html_menu_readings() {
 	global $naWebOS;
 	$html = '';
-	$readings = getFilePathList(dirname(__FILE__),false,'/^tarot_reading_.*\.json$/',null, array('file'));
+	$readings = getFilePathList(dirname(__FILE__),false,'/.*tarot_reading_.*\.json$/',null, array('file'));
 	asort($readings);
 	foreach ($readings as $idx=>$readingJSONfilepath) {
 		$r = str_replace(dirname(__FILE__).'/tarot_reading_','',$readingJSONfilepath);
