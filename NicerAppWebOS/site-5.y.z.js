@@ -1247,6 +1247,27 @@ na.site = {
         };
         $.ajax(ajaxCmd);
     },
+    onclick_btnDeleteThisTheme : function (event) {
+        var
+         url = '/NicerAppWebOS/logic.AJAX/ajax_database_deleteThisTheme.php',
+        ajaxCmd = {
+            type : 'POST',
+            url : url,
+            data : {
+                specificityName : na.site.globals.specificityName,
+                theme : na.site.globals.themeName
+            },
+            success : function (data, ts, xhr) {
+                debugger;
+                if (data.indexOf('status : Success')!==-1) na.site.loadTheme(null, null, true, true, false);
+            },
+            error : function (xhr, textStatus, errorThrown) {
+                debugger;
+                na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
+            }
+        };
+        $.ajax(ajaxCmd);
+    },
     onclick_btnDeleteAllUserThemes : function (event) {
         var
          url = '/NicerAppWebOS/logic.AJAX/ajax_database_deleteAllUserThemes.php',

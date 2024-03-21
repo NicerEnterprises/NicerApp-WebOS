@@ -120,6 +120,30 @@
         'grouped btnDelete themes',
         ''
     );
+    echo $naWebOS->html_vividButton (
+        0, 'align-items:center;justify-content:center;margin-right:10px;margin-left:10px;',
+
+        'btnDeleteThisTheme',
+        'vividButton_icon_50x50 grouped btnDelete forum', '_50x50', 'grouped',
+        '',
+        'na.site.onclick_btnDeleteThisThemes(event)',
+        '',
+        '',
+
+        202, 'Delete this theme.',
+
+
+        'btnCssVividButton_outerBorder.png',
+        'btnCssVividButton.blue1b.png',
+        null,//'btnCssVividButton_iconBackground.png',
+        'btnTrashcan_red.png',
+
+        '',
+
+        'Delete this theme.',
+        'grouped btnDelete themes',
+        ''
+    );
     if ($naLAN) echo $naWebOS->html_vividButton (
         0, 'align-items:center;justify-content:center;margin-right:10px;margin-left:10px;',
 
@@ -130,7 +154,7 @@
         '',
         '',
 
-        202, 'Delete all user themes.',
+        203, 'Delete all user themes.',
 
 
         'btnCssVividButton_outerBorder.png',
@@ -154,7 +178,7 @@
         '',
         '',
 
-        202, 'Delete all of my client-specific themes.',
+        204, 'Delete all of my client-specific themes.',
 
 
         'btnCssVividButton_outerBorder.png',
@@ -180,7 +204,7 @@
         '',
         '',
 
-        204, 'View PHP errors.',
+        205, 'View PHP errors.',
 
         'btnCssVividButton_outerBorder.png',
         'btnCssVividButton.yellow1a.png',
