@@ -761,7 +761,7 @@ class naVividMenu__behavior_rainbowPanels {
                         ? 0
                         : it.level===2
                             ? itp_bcr.left
-                            : ( $(it.b.el).outerWidth() * 0.7 * it.column ) + (2 * it.column * na.d.g.margin )
+                            : itp_bcr.left + ($(it.b.el).outerWidth() * 0.7)
                 )
             ),
             x1t = x1_bcr.top - tel_bcr.top,
