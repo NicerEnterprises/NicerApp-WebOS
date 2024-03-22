@@ -734,6 +734,7 @@ class naVividMenu__behavior_rainbowPanels {
                 : ($(x1.b.el).width() * (it.numColumns)) + na.d.g.margin + (na.d.g.margin*it.numColumns);
 
             //$(panel).css({width:cssPanelWidth, height : 'auto'}).delay(50);
+                debugger;
             var
             x1_bcr = x1.b.el.getBoundingClientRect(),
             x2_bcr = x2.b.el.getBoundingClientRect(),
@@ -759,21 +760,22 @@ class naVividMenu__behavior_rainbowPanels {
                     : it.level === 1
                         ? 0
                         : it.level===2
-                            ? 0
+                            ? itp_bcr.left
                             : ( $(it.b.el).outerWidth() * 0.7 * it.column ) + (2 * it.column * na.d.g.margin )
                 )
             ),
             x1t = x1_bcr.top - tel_bcr.top,
             x1l =
-                dim.verDirection=='south' && dim.horDirection=='east' && it.level > 2
+                dim.horDirection=='east' && it.level > 1
                 ? x1_bcr.left + tel_bcr.left
                 : tel_bcr.left,
             x2t = x2_bcr.top - tel_bcr.top,
-            x2l = dim.verDirection=='south' && dim.horDirection=='east' && it.level > 2
+            x2l = dim.horDirection=='east' && it.level > 1
                 ? x2_bcr.left + tel_bcr.left
                 : tel_bcr.left;
             //if (pit.label=='Background') debugger;
             //if (pit.label=='Landscape') debugger;
+                debugger;
             var
             cssPanel = {
                 position : 'absolute',
@@ -784,19 +786,21 @@ class naVividMenu__behavior_rainbowPanels {
                 height : 'auto',
                 padding : 5,
 
-                left : (
+                left : left,/*(
                     it.level > 2
                     ? dim.horDirection=='east'
-                        ? itp_bcr.left
-                            + ($(x2.b.el).outerWidth()*0.85)
-                        : itp_bcr.left
-                            - (2 * na.d.g.margin)
+                        ? x2l
+                        : x1l
+                        //? itp_bcr.left
+                            //+ ($(x2.b.el).outerWidth()*0.85)
+                        //: itp_bcr.left
+                            //- (2 * na.d.g.margin)
 
                     : dim.horDirection=='east'
-                        ? x2l + (2 * na.d.g.margin)
-                        : x1l - (2 * na.d.g.margin)
+                        ? x2l //+ (2 * na.d.g.margin)
+                        : x1l //- (2 * na.d.g.margin)
 
-                ),
+                ),*/
                 top : (
                     it.level > 2
                     ? dim.verDirection=='north'
@@ -806,6 +810,7 @@ class naVividMenu__behavior_rainbowPanels {
                         ? p_bcr.top - $(panel).height() - 305 - (1.5 * na.d.g.margin)
                         : p_bcr.top + 20 + (1.5 * na.d.g.margin)
                 ),
+
                 width : 170,
 
                 zIndex : it.b.el.style.zIndex-1
@@ -817,7 +822,6 @@ class naVividMenu__behavior_rainbowPanels {
             panelID = it.parents ? t.el.id+'__panel__'+it.parents[0].idx : t.el.id+'__panel__'+t.el.id,
             itID = t.el.id+'__'+pit.idx,
             html = '<div id="'+panelID+'" class="vividMenu_subMenuPanel">&nbsp;</div>';
-            debugger;
             if (t.percentageFor_rainbowPanels===0) {
                 cssPanel.borderRadius = 0;
                 cssPanel.background = background3;
