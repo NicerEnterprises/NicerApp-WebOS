@@ -38,7 +38,6 @@ na.backgrounds = {
     },
     next : function (div, search, url, saveTheme, callback, callStack) {
         if (na.site.globals.debug_backgroundChanges) debugger;
-        debugger;
         //return false;
 
 
@@ -113,7 +112,6 @@ na.backgrounds = {
             var
             url = hits[Math.floor(Math.random() * Math.floor(hits.length))];
         };
-        debugger;
         na.m.log (20, fncn+' : url='+url, true);
 
         na.backgrounds.settings.div = div;
