@@ -8,11 +8,11 @@ html, body {
 .central-featured-lang :hover {background-color:transparent;}
 .central-featured-lang:hover, .other-project-link:hover {background-color:rgba(0,0,100,0.5);}
  .mw-parser-output #mp-topbanner {
-     /*background : rgba(200,200,255,0.555);*/
+     background : rgba(200,200,255,0.555);
  }
 
 .mw-parser-output #mp-right, .infobox td, .infobox th {
-    /*background : rgba(100,100,255,0.4);*/
+    background : rgba(100,100,255,0.4);
 }
 .infobox td, .infobox th, .mw-parser-output p {
     border-radius : 5px;
@@ -25,7 +25,7 @@ html, body {
 }
 
 .mw-parser-output #mp-left, .mw-parser-output p {
-    /*background : rgba(100,255,100,0.4);*/
+    background : rgba(100,255,100,0.4);
 }
 
 .infobox, .vector-pinned-container, .vector-body-before-content, .vector-page-toolbar-container, .vector-toc, .hatnote {

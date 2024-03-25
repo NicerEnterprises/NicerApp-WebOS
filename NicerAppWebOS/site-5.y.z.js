@@ -1329,6 +1329,7 @@ na.site = {
     },
     
     loadContent : function (event, url, callback_phase1, callback_phase2) {
+        debugger;
         na.apps.mustHaveAtLeast_number = 0;
         na.site.settings.current.url = url;
         //if (na.site.globals.debug['na.site.loadContent']) alert (url);
@@ -1428,7 +1429,7 @@ na.site = {
             url1 = state.url.replace(document.location.origin,'')./*replace('/view/', '').*/replace(/^\//,'');
         }
         
-        if (url1==='') url1 = '/';
+        if (url1.trim()==='') url1 = '/';
 
         na.m.log (200, 'na.s.c.stateChange(2) : na.site.settings.current.url='+state.url);
         na.site.settings.current.url = state.url;

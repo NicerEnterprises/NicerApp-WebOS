@@ -759,7 +759,7 @@ class naVividMenu__behavior_rainbowPanels {
                         : $(it.b.el).outerWidth() * 0.7
                     : it.level === 1
                         ? 0
-                        : it.level===2
+                        : it.level === 2
                             ? itp_bcr.left
                             : itp_bcr.left + ($(it.b.el).outerWidth() * 0.7)
                 )
@@ -1427,7 +1427,8 @@ class naVividMenu__behavior_rainbowPanels {
             window.open(a.attr('href'),a.attr('windowName')).focus();
         } else {
             var href = a.attr('href');
-            if (href.match(/javascript:/)) eval(href.replace('javascript:','')); else window.location.href = href;
+            debugger;
+            if (href.match(/javascript:/)) eval(href.replace('javascript:','')); else na.site.loadContent (event, href);
         }
     }
 

@@ -231,6 +231,7 @@ na.desktop = {
         var anims = na.d.calculateWhichTopIconsToShow();
         if (animate===null) animate = anims;
         na.m.log (100, 'called : na.desktop.resize (callback, animate, reset); - animationSpeed='+na.d.g.animationSpeed, false);
+        debugger;
         na.d.goto(na.d.s.visibleDivs,callback, animate, reset);
     },
     
