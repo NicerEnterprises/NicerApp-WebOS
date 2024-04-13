@@ -166,7 +166,7 @@
     background : rgba(0,0,0,0.555);
     box-shadow : inset 0px 0px 3px 2px rgba(0,0,0,0.8);
 }
-p > .newsApp__item__paint {
+.newsApp__item__paint {
     background : none;
     box-shadow : none;
 }
@@ -212,10 +212,15 @@ p > .newsApp__item__paint {
     width: 100%;
     height : 100%;
     position: absolute;
+    border-radius : 18px;
     box-shadow : inset 0px 0px 7px 5px rgba(0,0,0,0.8) !important;
 }
 .newsApp__item__noPaint {
     position : relative;
+}
+.newsApp__item__noPaint a {
+    text-decoration : none;
+    margin : 8px;
 }
 .newsApp__item__footer {
     padding : 5px;
@@ -350,7 +355,7 @@ background-size: 200%;
     }
     100% {
         background : url(/NicerAppWebOS/siteMedia/backgrounds/tiled/grey/seamless_light_background_texture.jpg);
-        opacity : 0.7;
+        opacity : 1;
     }
 }
 .newsApp__item__contentContainer {

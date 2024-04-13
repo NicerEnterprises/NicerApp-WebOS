@@ -26,15 +26,23 @@ NA_MAIN_USER is the Operating System main user that you want the webserver files
 >
 > apt upgrade
 >
-> apt install apache2 nginx php8 curl git
+> apt install apache2 nginx php8 curl git unzip zip
 >
 > cd /var/www
 >
 > mkdir MYDOMAIN.TLD
 >
-> cd MYDOMAIN.TLD
->
 > git clone https://github.com/NicerEnterprises/NicerApp-WebOS MYDOMAIN.TLD
+>
+> mkdir MYDOMAIN.TLD/downloads
+>
+> curl -LO https://nicer.app/downloads/3rd-party.zip MYDOMAIN.TLD/downloads
+>
+> unzip MYDOMAIN.TLD/downloads/3rd-party.zip MYDOMAIN.TLD/NicerAppWebOS
+>
+> mv -r MYDOMAIN.TLD/NicerAppWebOS/var/www/nicer.app/NicerAppWebOS MYDOMAIN.TLD/NicerAppWebOS
+>
+> rm -rf MYDOMAIN.TLD/NicerAppWebOS/var
 >
 > ... = /var/www/MYDOMAIN.TLD
 > 
