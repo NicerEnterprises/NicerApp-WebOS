@@ -1618,9 +1618,9 @@ debugger;
             html += '&nbsp;</div>';
         html += '</div>';
         if (typeof it.de=='string' && it.de.trim()!=='') {
-            if (typeof it.t=='string' && it.t!='' && it.de.indexOf(it.t)===-1) html+= '<div class="newsApp__item__title newsApp__item__noPaint"><div class="newsApp__item__title_bg">&nbsp;</div><div class="newsApp__item__link"><a class="nomod" target="newsAppItem_'+it.idx+'" href="' + it._id+'" onclick="if (na.te.s.c.which==\'selectedSelector\') { na.te.onclick_btnAddGraphics(event); event.preventDefault();}" >' + it.t.replace(/\&#39;/g, '\'').replace(/#39;/g, '\'')+ '</a></div></div>';
+            if (typeof it.t=='string' && it.t!='' && it.de.indexOf(it.t)===-1) html+= '<div class="newsApp__item__title newsApp__item__noPaint"><div class="newsApp__item__title_bg">&nbsp;</div><div class="newsApp__item__link"><div class="newsApp__item__title__container"><a class="nomod" target="newsAppItem_'+it.idx+'" href="' + it._id+'" onclick="if (na.te.s.c.which==\'selectedSelector\') { na.te.onclick_btnAddGraphics(event); event.preventDefault();}" >' + it.t.replace(/\&#39;/g, '\'').replace(/#39;/g, '\'')+ '</a></div></div></div>';
         } else {
-            if (typeof it.t=='string' && it.t!='') html+= '<div class="newsApp__item__title newsApp__item__noPaint"><div class="newsApp__item__title_bg">&nbsp;</div><a class="nomod" target="newsAppItem_'+it.idx+'" href="' + it._id+'">' + it.t.replace(/\&#39;/g, '\'').replace(/#39;/g, '\'') + '</a></div>';
+            if (typeof it.t=='string' && it.t!='') html+= '<div class="newsApp__item__title newsApp__item__noPaint"><div class="newsApp__item__title_bg">&nbsp;</div><div class="newsApp__item__title__container"><a class="nomod" target="newsAppItem_'+it.idx+'" href="' + it._id+'">' + it.t.replace(/\&#39;/g, '\'').replace(/#39;/g, '\'') + '</a></div></div>';
         }
         if (typeof it.de=='string' && it.de.trim()!=='') html+= '<div class="newsApp__item__contentContainer"><div class="newsApp__item__mediaSingle"></div><div id="newsApp_item_'+it.idx+'__scrollpane" class="newsApp__item__desc vividScrollpane" style="width:100%;"><div>' + it.de.replace(/\&#39;/g, '\'').replace(/#39;/g, '\'').replace(/\<a/g, '<a target="_new" ') + '</div></div></td></tr></table><div class="newsApp__item__noPaint" style="height:5px;overflow:hidden;"></div></div>';
         var appSettings = na.site.globals.app[na.site.globals.appPrefix+'applications/2D/news'];
@@ -1661,12 +1661,14 @@ debugger;
         $('.newsApp__item__desc',el).css({maxHeight:mh});
         $('.newsApp__item__contentContainer',el).css({maxHeight:mh});
 
-        $(el).find('div, p, span')
-            .not('.vividScrollpane, .newsApp__item__title_bg, .newsApp__item__outer__bg, .newsApp__item__outer__bgFile1, .newsApp__item__outer__bgFile2, .newsApp__item__noPaint')
+        /*
+        $(el).find('div, span')
+            .not('.vividScrollpane, .newsApp__item__title_bg, .newsApp__item__outer__bg, .newsApp__item__outer__bgFile1, .newsApp__item__outer__bgFile2, .newsApp__item__noPaint, a')
             .each(function(idx,el2) {
-                if (!$(el2).find('*')[1]) /*if (!$(el2).parent().is('div, p, cite'))*/ $(el2).addClass('newsApp__item__paint');
+                if (!$(el2).find('*').not('a')[1]) if (!$(el2).parents().is('div, p, cite, a')) $(el2).addClass('newsApp__item__paint');
                 if ($(el2).html().trim()=='') $(el2).remove();
             });
+        */
         $('.newsApp__item__title > p > a', el).each(function(idx,el) {
             var $p = $(el).parent('.newsApp__item__title > p');
             if ($p[0].innerHTML.replace(/<a>?.*<\/a>/g, '').replace(/<br\/>/g,'').trim() === '') {
