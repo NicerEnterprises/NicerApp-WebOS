@@ -34,6 +34,7 @@ chmod -R 644 .git .gitignore .htaccess .htaccess.gzipping
 
 sudo find $ROOT_PATH -type d -exec chmod u+x,g+x {} \;
 
+sudo find $ROOT_PATH/NicerAppWebOS/scripts.install -type f -iname "*.sh" -exec chmod $NA_SHELLSCRIPTS_PERMISSIONS {} \;
 sudo find $ROOT_PATH/NicerAppWebOS/scripts.maintenance -type f -iname "*.sh" -exec chmod $NA_SHELLSCRIPTS_PERMISSIONS {} \;
 
 echo "SETTING PERMISSIONS FOR /var/log/apache2/NicerEnterprises-NicerApp-WebOS.log"

@@ -5,7 +5,7 @@ echo "Your website will be installed under /var/www"
 echo "Question 1of7 : What is the name of your website (your MYDOMAIN.COM / MYDOMAIN.TLD)?"
 read DOMAIN_TLD
 
-read "Question 2of7 : Under what domain name (localhost / MYDOMAIN.COM) or IP address do you want to publish your website?"
+echo "Question 2of7 : Under what domain name (localhost / MYDOMAIN.COM) or IP address do you want to publish your website?"
 read SERVER_NAME
 
 echo "Question 3of7 : What email address do you wish to use for webserver level errors and notifications?"
@@ -55,9 +55,7 @@ php apache2.virtualHost.php $SERVER_NAME $APACHE_EMAIL $DOMAIN_TLD
 #git clone https://github.com/zingchart/zingtouch
 
 cd /var/www/$DOMAIN_TLD/NicerAppWebOS/3rd-party/3D
-if [ -d libs ]
-    mkdir libs
-fi
+mkdir libs
 cd libs
 git clone https://github.com/mrdoob/three.js three.js
 
@@ -107,5 +105,10 @@ chmod a+x /var/www/$DOMAIN_TLD/NicerAppWebOS/maintenance.scripts/setPermissions.
 /var/www/$DOMAIN_TLD/NicerAppWebOS/maintenance.scripts/setPermissions.sh
 
 echo "Installation of the pre-requisites is (hopefully) complete now."
-echo "You must now complete the database installation by populating it with initial data, by browsing to https://$DOMAIN_TLD/NicerAppWebOS/db_init.php"
+echo "You must now complete the database installation by populating it with 2 admin users : DOMAIN_TLD___OWNER_NAME (with your OWNER_PASSWORD for password), and DOMAIN_TLD___Guest (with password : Guest) and initial data, by browsing to https://$DOMAIN_TLD/NicerAppWebOS/db_init.php".
 
+echo "After running db_init.php, you must still add a cron job to get automated news fetching going. Use 'crontab -e' on the linux commandline for that, and add"
+echo "SHELL=/bin/bash"
+echo "to the top of the file, and"
+echo "*/5 * * * * source /var/www/DOMAIN_TLD/NicerAppWebOS/scripts.install/install.cron.d/nicerapp__init_globals.sh && php \"/var/www/DOMAIN_TLD/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news/crontabEntry_manageDatabase.php\" >> \"$NA_LOGS_PATH/$dateMinutesSeconds-news_crontabEntry_manageDatabase.txt\" 2>&1"
+echo "to the bottom of it."
