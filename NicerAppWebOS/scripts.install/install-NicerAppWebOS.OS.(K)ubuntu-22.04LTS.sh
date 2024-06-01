@@ -42,6 +42,7 @@ service apache2 restart
 # installing the NicerAppWebOS source files
 cd /var/www
 git clone https://github.com/NicerEnterprises/NicerApp-WebOS $DOMAIN_TLD
+
 git clone https://github.com/NicerEnterprises/businessLogic-forPHP-generic-databases $DOMAIN_TLD/NicerAppWebOS
 
 cd $DOMAIN_TLD/NicerAppWebOS/install.scripts
