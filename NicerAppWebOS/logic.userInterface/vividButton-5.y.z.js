@@ -433,7 +433,8 @@ class naVividButton_icon_svg {
             type : buttonType,
             btnCode : btnCode,
             circumstance : 'normal',
-            to : { circumstance : 'hover' }
+            to : { circumstance : 'hover' },
+            t : this
         };
         t.settings.buttons['#'+buttonHTMLid] = na.ui.vb.settings.buttons['#'+buttonHTMLid];
         let b = t.settings.buttons['#'+buttonHTMLid];
@@ -455,15 +456,10 @@ class naVividButton_icon_svg {
         if (typeof layer.startupCode=='function') layer.startupCode();
 
 
-        /*$(el).hover (function() {
-            t.hoverOver (b);
-        }, function() {
-            t.hoverOut (b);
-        });*/
-        $('.circleIcon_svg',el).hover(function() {
-            t.hoverOver (b);
-        }, function() {
-            t.hoverOut (b);
+        $('.circleIcon_svg',el).hover(function(evt) {
+            t.hoverOver (b,evt);
+        }, function(evt) {
+            t.hoverOut (b,evt);
         });
 
         $(el).click(function() { t.onclick(event) });
@@ -483,23 +479,12 @@ class naVividButton_icon_svg {
         return false;
     }
 
-    hoverOver (b) {
+    hoverOver (b,evt) {
         var
         t = this;
         b.circumstance = 'normal';
         b.to.circumstance = 'hover';
 
-        /*
-        clearTimeout (t.settings.timeoutSetHoverClass);
-        t.settings.timeoutSetHoverClass = setTimeout(function(){
-            if (t.settings.hoverOutFiredRecently) {
-                var l2 = b.btnCode.layers.circleIcon_svg;
-                if (typeof l2.onmouseout=='function') l2.onmouseout();
-            } else {
-                $(b.el).addClass('hover');
-            }
-        }, 1000);*/
-
         var
         c = b.btnCode.states[b.state].circumstances,
         scl = b.btnCode.states[b.state].circumstances[b.circumstance].layers.circleIcon_background,
@@ -509,46 +494,25 @@ class naVividButton_icon_svg {
 
         ato.step = 0;
         if (
-            !$(b.el).is('.'+b.btnCode.selectedState)
-            //&& !$(b.el).is('.'+b.btnCode.startupState)
+            !$(b.el).is('.disabled')
+            && !b.btnCode.handlesOwnHighlighting
         ) {
-            if (
-                !$(b.el).is('.disabled')
-                //&& !$(b.el).is('.selected')
-                && !$(b.el).is('.'+b.btnCode.startupState)
-
-            ) {
-                l.animDirection = 'increase';
-                t.anim_increaseGradient(b, l, ato);
-            } else {
-                l.animDirection = 'decrease';
-                b.circumstance = 'hover';
-                b.to.circumstance = 'normal';
-                t.anim_decreaseGradient(b, l, ato);
-            };
-        };
+            l.animDirection = 'increase';
+            t.anim_increaseGradient(b, l, ato);
+        }
 
         var l2 = b.btnCode.layers.circleIcon_svg;
-        if (!$(b.el).is('.disabled') && typeof l2.onmouseover=='function') l2.onmouseover();
+        if (!$(b.el).is('.disabled') && typeof l2.onmouseover=='function') l2.onmouseover(evt);
 
         $(b.el).addClass('hover');
     }
 
-    hoverOut (b) {
+    hoverOut (b,evt) {
         var
         t = this;
-       // if ($(b.el).is('.selected')) return false;
-        //if ($(b.el).is('.recentlyClicked')) return false;
         b.circumstance = 'hover';
         b.to.circumstance = 'normal';
         $(b.el).removeClass('selected');
-
-        /*
-        t.settings.hoverOutFiredRecently = true;
-        clearTimeout (t.settings.timeoutSetHoverOut);
-        t.settings.timeoutSetHoverOut = setTimeout(function(){
-            t.settings.hoverOutFiredRecently = false;
-        }, 1000);*/
 
         var
         c = b.btnCode.states[b.state].circumstances,
@@ -558,30 +522,21 @@ class naVividButton_icon_svg {
         if (!ato) debugger;
 
         ato.step = 0;
-        l.animDirection = 'decrease';
         if (
-            (
-                !$(b.el).is('.disabled')
-                //&& !$(b.el).is('.selected')
-//                 //&& !$(b.el).is('.recentlyClicked')
-                && !$(b.el).is('.'+b.btnCode.selectedState)
-                //&& !$(b.el).is('.'+b.btnCode.startupState)
-            )
-
+            !$(b.el).is('.disabled')
+            && !b.btnCode.handlesOwnHighlighting
         ) {
+            l.animDirection = 'decrease';
             t.anim_decreaseGradient(b, l, ato);
         }
 
         var l2 = b.btnCode.layers.circleIcon_svg;
         if (
             typeof l2.onmouseout == 'function'
-            && (
-                !$(b.el).is('.disabled')
-                //|| $(b.el).is('.'+b.btnCode.startupState)
-            )
+            && !$(b.el).is('.disabled')
             && $(b.el).is('.hover')
 
-        ) l2.onmouseout();
+        ) l2.onmouseout(evt);
 
         $(b.el).removeClass('hover').removeClass('recentlyClicked');
     }
@@ -590,24 +545,32 @@ class naVividButton_icon_svg {
         var
         t = this;
         var b = na.ui.vb.settings.buttons['#'+$(evt.currentTarget)[0].id];
-        var selected = (b && b.state == b.btnCode.selectedState);
+        var selected = (b.state == b.btnCode.selectedState);
 
         b.circumstance = 'normal';
         b.to.circumstance = 'hover';
 
 
         b.state = selected?b.btnCode.startupState:b.btnCode.selectedState;
-        selected = (b.state == b.btnCode.selectedState);
 
-        if (selected) $(b.el).addClass('selected'); else $(b.el).removeClass('selected');
+        if (selected) {
+            $(b.el)
+                .addClass('selected')
+                .addClass(b.btnCode.selectedState)
+                .removeClass (b.btnCode.startupState);
 
+        } else {
+            $(b.el)
+                .removeClass('selected')
+                .removeClass(b.btnCode.selectedState)
+                .addClass (b.btnCode.startupState);
+        }
 
         var
         buttonType = $(b.el).attr('buttonType'),
         b = t.settings.buttons['#'+b.el.id];
 
 
-        //$('.circleIcon_background', b.el)[0].style.background = ato.steps[0];
         let
         c = b.btnCode.states[b.btnCode.selectedState].circumstances,
         l = b.btnCode.states[b.btnCode.selectedState].circumstances[selected?'normal':'hover'].layers,
@@ -615,38 +578,14 @@ class naVividButton_icon_svg {
         ato = l.circleIcon_background.animTo[selected?'hover':'normal'];
 
 
-        if (selected) {
-            //if ( !$(b.el).is('.hover') ) {
-                b.circumstance = 'normal';
-                b.to.circumstance = 'hover';
-
-                ato.step = 0;
-                l.animDirection = 'increase';
-                t.anim_increaseGradient(b, l, ato);
-            //}
-        } else {
-            ato.step = 0;
-            l.animDirection = 'decrease';
-            t.anim_decreaseGradient(b, l, ato);
-        }
-
         l = b.btnCode.layers.circleIcon_svg;
         if (typeof l.onclick=='function') {
-            l.onclick();
+            l.onclick(evt);
         }
 
         setTimeout (function() {
             $(b.el).removeClass(b.btnCode.startupState).removeClass(b.btnCode.selectedState).addClass(b.state);
         }, 100);
-        if ( $(b.el).is('.featureIsActive') ) $(b.el).removeClass('featureIsActive'); else $(b.el).addClass('featureIsActive');
-
-        //if (!selected) {
-            $(b.el).addClass('recentlyClicked');
-            clearTimeout (t.settings.timeoutRecentlyClicked);
-            t.settings.timeoutRecentlyClicked = setTimeout(function() {
-                $(b.el).removeClass('recentlyClicked');
-            }, 300);
-        //}
     }
 
     anim_increaseGradient (b, l, ato) {
@@ -839,3 +778,19 @@ class naVividButton_icon_svg {
 
 
 }
+if (!na.ui) na.ui = {};
+if (!na.ui.vividButton) na.ui.vividButton = na.ui.vb = {
+
+    globals : {
+        debug : true,
+        themes : {}
+    },
+
+    buttonTypes : {},
+
+    settings : {
+        buttonIdx : 0,
+        buttons : {}
+    }
+};
+if (!na.ui.vividButton.buttonTypes) na.ui.vividButton.buttonTypes = {};

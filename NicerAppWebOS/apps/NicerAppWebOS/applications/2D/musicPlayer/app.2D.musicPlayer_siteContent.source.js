@@ -71,7 +71,8 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
                         function () {
                             $('#mp3s .vividButton, #app__musicPlayer__player .vividButton4').each(function(idx,el) {
                                 $(el).css({width:w});
-                                na.site.settings.buttons['#'+el.id] = new naVividButton(el);
+                                if (!na.site.settings.buttons['#'+el.id])
+                                    na.site.settings.buttons['#'+el.id] = new naVividButton(el);
                             });
                         }, 100); // milliseconds delay number (milliseconds between check of 2nd parameter function call)
                     na.mp.setupDragNDrop();

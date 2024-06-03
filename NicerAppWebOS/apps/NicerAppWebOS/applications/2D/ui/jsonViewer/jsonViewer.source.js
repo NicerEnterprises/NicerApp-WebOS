@@ -95,6 +95,10 @@ nicerapp.hms = nicerapp.jsonViewer = {
 		jQuery('#'+cmdID).innerHTML = '';
 	},
 
+	quitAllProcessing : function () {
+		na.hms.settings.scheduledToProcess = [];
+	},
+
 	processWhenReady : function (cmd) {
 		var pIdx = na.hms.settings.scheduledToProcess.length;
 		na.hms.settings.scheduledToProcess[pIdx] = cmd;
@@ -199,6 +203,7 @@ nicerapp.hms = nicerapp.jsonViewer = {
 			// start a thread to decode the dump data.
 			dataID = cmd.id + '_data_';
 			var e = document.getElementById(cmd.id + '_data_0');
+			debugger;
 			if (e) {
 				cmd.waits['data'] = 'data';
 
@@ -233,7 +238,9 @@ nicerapp.hms = nicerapp.jsonViewer = {
 					}
 				);*/
 			} else {
-				var hmd = cmd.hmd;
+				/*
+				var hmd = cmd.hmd || cmd.hms;
+				debugger;
 				if (typeof hmd == 'object') {} else if (typeof hmd == 'string') {
 					var p1 = na.hms.tools.strpos(cmd.hmd, '[');
 					var p2 = na.hms.tools.strpos(cmd.hmd, '{');
@@ -254,8 +261,8 @@ nicerapp.hms = nicerapp.jsonViewer = {
 						}
 					};
 				} else {
-					na.hms.tools.displayError('Invalid hmd type.');
-				}
+					na.hms.tools.displayError(cmd, 'Invalid hmd type.');
+				}*/
 			};
 			na.hms.tools.waitForParsing(cmd);
 		};

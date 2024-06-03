@@ -1,6 +1,0 @@
-/var/www/nicer.app
-/var/www/nicer.app
-/var/www/nicer.app
-/var/www/nicer.app
-/var/www/nicer.app
-/var/www/nicer.app

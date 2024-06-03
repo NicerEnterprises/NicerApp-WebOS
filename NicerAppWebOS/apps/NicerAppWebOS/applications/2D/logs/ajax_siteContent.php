@@ -146,7 +146,7 @@ if (!$naLAN) die('403 Forbidden.');
     }
 
     $html = '';
-    $html .= '<script type="text/javascript">setTimeout (function() {na.site.settings.current.running_loadTheme = false; na.site.settings.current.loadingApps = false; na.hms.startProcessing()}, 1500); na.site.transformLinks(); na.site.startTooltips(event,$("#siteContent")[0]);</script>';
+    $html .= '<script type="text/javascript">na.m.clearAllConditions(); na.hms.quitAllProcessing(); na.m.waitForCondition("scope0", function() { return document.getElementById("scope0_data_0") }, function() {na.site.settings.current.running_loadTheme = false; na.site.settings.current.loadingApps = false; na.hms.startProcessing(); na.site.transformLinks(); na.site.startTooltips(event,$("#siteContent")[0]);}, 150); </script>';
     echo $html;
 
 

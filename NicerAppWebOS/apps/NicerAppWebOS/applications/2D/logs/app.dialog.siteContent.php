@@ -109,12 +109,12 @@ if ($appRec['page']=='index') {
         if (array_key_exists('request', $docB)) echo hmJSON ($docB['request'], 'Request response');
         if (array_key_exists('httpOpts', $docB)) echo hmJSON ($docB['httpOpts'], 'HTTP options');
         if (array_key_exists('httpResponse', $docB)) echo hmJSON ($docB['httpResponse'], 'HTTP response');
-        //else { echo '<pre>'; var_dump ($docB); echo '</pre>'; };
+        // { echo '<pre>'; var_dump ($docB); echo '</pre>'; };
         echo '</div>';
 
     }
     $html = '';
-    $html .= '<script type="text/javascript">setTimeout (function() {na.site.settings.current.running_loadTheme = false; na.site.settings.current.loadingApps = false; na.hms.startProcessing(); $(\'.logEntry.flex\').detach().appendTo(\'#siteToolbarLeft .vividDialogContent\'); }, 500); na.site.transformLinks()</script>';
+    $html .= '<script type="text/javascript">na.m.clearAllConditions(); na.hms.quitAllProcessing(); na.m.waitForCondition("scope0", function() { return document.getElementById("scope0_data_0") }, function() {na.site.settings.current.running_loadTheme = false; na.site.settings.current.loadingApps = false; na.hms.startProcessing(); na.site.transformLinks(); na.site.startTooltips(event,$("#siteContent")[0]);}, 150); </script>';
     echo $html;
 
 

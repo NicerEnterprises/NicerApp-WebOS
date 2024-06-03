@@ -75,9 +75,9 @@ na.site = {
 
         na.site.settings.defaultStatusMsg = (
             $.cookie('agreedToPolicies')!=='true'
-            ? '<table style=""><tr><td><a href="/" style="padding:0;text-shadow:0px 0px 5px rgba(0,0,0,0.8);">'+na.site.globals.domain+'</a> only uses cookies for remembering user settings.</td>'
+            ? '<table style=""><tr><td><a href="/" class="bright" style="padding:0;text-shadow:0px 0px 5px rgba(0,0,0,0.8);">'+na.site.globals.domain+'</a> only uses cookies for remembering user settings.</td>'
                 + '<td style="width:66px;"><div class="vividButton" theme="dark" style="position:relative;color:white;width:40px;height:20px;" onclick="na.site.dismissCookieWarning();">Ok</div></td></table>'
-            : '<table style="height:100%;"><tr><td>Opensourced <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" target="_new" class="nomod noPushState contentSectionTitle1_a"><span class="contentSectionTitle1_span">here</span></a>, Copyright (C) 2002-2024 by Nicer Enterprises</td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
+            : '<table style="height:100%;"><tr><td>Opensourced <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" target="_new" class="bright nomod noPushState contentSectionTitle1_a"><span class="contentSectionTitle1_span">here</span></a>, Copyright (C) 2002-2024 by Nicer Enterprises</td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
         );
 
 

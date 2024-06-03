@@ -5,7 +5,7 @@
 //	Written & copyrighted (c) 2010-2013 by Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
 //	License: LGPL, free for any type of use
 //	Disclaimer: NO WARRANTY EXPRESSED OR IMPLIED. USE ONLY AT YOUR OWN RISK.
-//	Download: http://seductiveapps.com/jsonViewer/
+//	Download: http://nicerapp.com/jsonViewer/
 
 // ---
 //      PUBLIC functions :
@@ -85,11 +85,11 @@ function jsonViewer_dump ($var, $title, $options=null, $outputSettings=array('di
 	json_encode_xxl_output ('<span id="'.$htmlID.'_shortMsg" class="hmPIshortMsg"> </span>', $outputSettings);  
 	json_encode_xxl_output ('</div>', $outputSettings);
 	$jesx_idPrefix = $htmlID.'_tracedata_';
-	$traceJSON = seductiveapps_json_prepare($trace);
+	$traceJSON = nicerapp_json_prepare($trace);
 	json_encode_xxl ($traceJSON, $outputSettings);
 	$jesx_idPrefix = $htmlID.'_data_';
 	//echo '<pre>'; var_dump ($var); echo '</pre>';
-	$var = seductiveapps_json_prepare($var);
+	$var = nicerapp_json_prepare($var);
 	json_encode_xxl ($var, $outputSettings);
 	json_encode_xxl_output ("\n".'</div>'."\n", $outputSettings);
 	json_encode_xxl_output ('</div>', $outputSettings);
@@ -151,12 +151,12 @@ return $r;
 		);
 }
 
-function seductiveapps_json_prepare ($v) {
-  $r = seductiveapps_json_prepare_forPHP ($v);
+function nicerapp_json_prepare ($v) {
+  $r = nicerapp_json_prepare_forPHP ($v);
   return $r;
 }
 
-function seductiveapps_json_prepare_forPHP ($v, $level=0) {
+function nicerapp_json_prepare_forPHP ($v, $level=0) {
   if (is_array($v)) {
     foreach ($v as $k=>$w) {
 		if ($k!==0 && ($k=='' || is_null($k))) {
@@ -164,7 +164,7 @@ function seductiveapps_json_prepare_forPHP ($v, $level=0) {
 			$k='__nullKey__';
 		};
 		//var_dump (array('$k'=>$k,'$level'=>$level));
-		$v[$k] = seductiveapps_json_prepare_forPHP ($w, $level+1);
+		$v[$k] = nicerapp_json_prepare_forPHP ($w, $level+1);
     }
   } elseif (is_object($v)) {
 		$v = '[php object]';
@@ -583,7 +583,7 @@ function jsonViewer_selfTest ($p, $q, $options=null, $outputSettings=array('dire
 				'here' => $hmOutput);
       
       $test['img as key'] = array (
-				'<div style="z-index:0;width:100%;height:100%;color:black;font-size:120%;font-weight:bold;background:url(http://seductiveapps.com/seductiveapps/com/ui/tools/jsonViewer/bg.gif) repeat;">key with backdrop;</div>' => 'xyz',
+				'<div style="z-index:0;width:100%;height:100%;color:black;font-size:120%;font-weight:bold;background:url(http://nicerapp.com/nicerapp/com/ui/tools/jsonViewer/bg.gif) repeat;">key with backdrop;</div>' => 'xyz',
       );
 
       $test['json in key, theme override in sub'] = array(

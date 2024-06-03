@@ -725,7 +725,15 @@ ul.index > li {
 
 
 
-
+a.bright {
+    color : rgba(0,240,255,1);
+}
+a.bright:hover {
+    color : rgba(0,255,240,1);
+}
+a.bright:visited {
+    color : rgba(0,255,200,1);
+}
 
 
 @keyframes move-bg {

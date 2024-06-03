@@ -416,6 +416,10 @@ na.m = {
         return false;
     },
 
+    clearAllConditions : function () {
+        na.m.settings.waitForCondition = {};
+    },
+
 	waitForCondition : function (label, condition, callback, frequency, context) {
 		var
 		_fncn = 'na.m.waitForCondition(): ',

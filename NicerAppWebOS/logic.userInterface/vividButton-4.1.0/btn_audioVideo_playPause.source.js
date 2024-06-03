@@ -40,57 +40,17 @@ na.ui.vividButton.buttonTypes['btn_audioVideo_playPause'] = {
         circleIcon_svg : {
             layerID : 'b.btnCode.layers.circleIcon_svg',
             animType : 'svg',
-            //src : '/NicerAppWebOS/logic.userInterface/naVividButton-4.0.0/btn.audioVideo.playPause.svg',
             src : '/NicerAppWebOS/logic.userInterface/vividButton-4.1.0/btn_audioVideo_playPause.svg',
             startupCode : function () {
                 //$('#from_pause_to_play')[0].beginElement();
                 //$('#line2').addClass('atPlay');
             },
-            onclick : function () {
+            onclick : function (evt) {
+                var b = na.ui.vb.settings.buttons['#'+$(evt.currentTarget)[0].id];
+
                 if (na.ui.vb.globals.debug) debugger;
-                if ($('#btnPlayPause').is('.selected')) {
-                    $('#btnPlayPause').removeClass('selected');
-                    if (!$('#btnPlayPause').is('.paused')) {
-                        if (!$('#line2').is('.atPlay')) {
-                            $('#from_pause_to_play')[0].beginElement(); 
-                            $('#line2').addClass('atPlay');
-                        }
-                    }
-                } else {
-                    $('#btnPlayPause').addClass('selected');
-                    if (
-                        $('#btnPlayPause').is('.paused')
-                    ) {
-                        if (!$('#line2').is('.atPlay')) {
-                            $('#from_play_to_pause')[0].beginElement(); 
-                            $('#line2').addClass('atPlay');
-                        }
-                    } else {
-                        $('#from_play_to_pause')[0].beginElement();
-                        $('#line2').removeClass('atPlay');
-                    }
-                }
-            },
-            onmouseover : function () {
-                if (na.ui.vb.globals.debug) debugger;
-                if (
-                    $('#btnPlayPause').is('.playing')
-                ) {
-                    if ($('#line2').is('.atPlay')) {
-                        $('#from_play_to_pause')[0].beginElement();
-                        $('#line2').removeClass('atPlay');
-                    } /*else {
-                        $('#from_pause_to_play')[0].beginElement();
-                        $('#line2').addClass('atPlay');
-                    }*/
-                        
-                }
-            },
-            onmouseout : function () {
-                if (na.ui.vb.globals.debug) debugger;
-                if ( 
-                    $('#btnPlayPause').is('.selected')
-                ) {
+
+                if ($('#btnPlayPause').is('.playing')) {
                     if (!$('#line2').is('.atPlay')) {
                         $('#from_pause_to_play')[0].beginElement();
                         $('#line2').addClass('atPlay');
@@ -99,23 +59,66 @@ na.ui.vividButton.buttonTypes['btn_audioVideo_playPause'] = {
                         $('#line2').removeClass('atPlay');
                     }
                 } else {
-                    /*
                     if (
-                        /*!$('#btnPlayPause').is('.recentlyClicked')
-                        &&* / !$('#line2').is('.atPlay')
+                        $('#btnPlayPause').is('.paused')
                     ) {
-                        $('#from_pause_to_play')[0].beginElement();
-                        $('#line2').addClass('atPlay');
-                    }*/
-                    if (
-                        /*!$('#btnPlayPause').is('.recentlyClicked')
-                        &&*/ $('#btnPlayPause').is('.paused')
-                        //&& $('#line2').is('.atPlay')
-                        && !$('#line2').is('.atPlay')
-                    ) {
+                        if (!$('#line2').is('.atPlay')) {
+                            $('#from_pause_to_play')[0].beginElement();
+                            $('#line2').addClass('atPlay');
+                        } else {
+                            $('#from_play_to_pause')[0].beginElement();
+                            $('#line2').removeClass('atPlay');
+                        }
+                    }
+                }
+            },
+            onmouseover : function (evt) {
+                var b = na.ui.vb.settings.buttons['#'+$(evt.currentTarget)[0].id];
+
+                if (na.ui.vb.globals.debug) debugger;
+                if (
+                    $('#btnPlayPause').is('.playing')
+                ) {
+                    if ($('#line2').is('.atPlay')) {
+                        $('#from_play_to_pause')[0].beginElement();
+                        $('#line2').removeClass('atPlay');
+                    } else {
                         $('#from_pause_to_play')[0].beginElement();
                         $('#line2').addClass('atPlay');
                     }
+                        
+                } else {
+                    if (!$('#line2').is('.atPlay')) {
+                        $('#from_pause_to_play')[0].beginElement();
+                        $('#line2').addClass('atPlay');
+                    } else {
+                        $('#from_play_to_pause')[0].beginElement();
+                        $('#line2').removeClass('atPlay');
+                    }
+
+                }
+            },
+            onmouseout : function (evt) {
+                var b = na.ui.vb.settings.buttons['#'+$(evt.currentTarget)[0].id];
+
+                if (na.ui.vb.globals.debug) debugger;
+                if ( 
+                    $('#btnPlayPause').is('.playing')
+                ) {
+                    if (!$('#line2').is('.atPlay')) {
+                        $('#from_pause_to_play')[0].beginElement();
+                        $('#line2').addClass('atPlay');
+                    } else {
+                        $('#from_play_to_pause')[0].beginElement();
+                        $('#line2').removeClass('atPlay');
+                    }
+
+                } else {
+                    if (!$('#line2').is('.atPlay')) {
+                        $('#from_pause_to_play')[0].beginElement();
+                        $('#line2').addClass('atPlay');
+                    }
+
                 }
             }
         }

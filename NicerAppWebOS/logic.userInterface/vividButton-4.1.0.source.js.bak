@@ -6,7 +6,7 @@ if (!na.ui.vividButton)
 na.ui.vividButton = na.ui.vb = {
     
     globals : {
-        debug : false,
+        debug : true,
         themes : {}
     },
     
@@ -62,10 +62,10 @@ na.ui.vividButton = na.ui.vb = {
         }, function() {
             na.ui.vb.hoverOut (b);
         });*/
-        $('.circleIcon_svg',el).hover(function() {
-            na.ui.vb.hoverOver (b);
-        }, function() {
-            na.ui.vb.hoverOut (b);
+        $('.circleIcon_svg',el).hover(function(evt) {
+            na.ui.vb.hoverOver (b,evt);
+        }, function(evt) {
+            na.ui.vb.hoverOut (b,evt);
         });
 
         $(el).click(function() { na.ui.vb.onclick(event) });
@@ -80,7 +80,7 @@ na.ui.vividButton = na.ui.vb = {
         return false;
     },
     
-    hoverOver : function (b) {
+    hoverOver : function (b,evt) {
         b.circumstance = 'normal';
         b.to.circumstance = 'hover';
 
@@ -117,12 +117,12 @@ na.ui.vividButton = na.ui.vb = {
 
         if (na.ui.vb.globals.debug) debugger;
         var l2 = b.btnCode.layers.circleIcon_svg;
-        if (!$(b.el).is('.disabled') && typeof l2.onmouseover=='function') l2.onmouseover();
+        if (!$(b.el).is('.disabled') && typeof l2.onmouseover=='function') l2.onmouseover(evt);
     },
     
-    hoverOut : function (b) {
-        if ($(b.el).is('.selected')) return false;
-        if ($(b.el).is('.recentlyClicked')) return false;
+    hoverOut : function (b,evt) {
+        //if ($(b.el).is('.selected')) return false;
+        //if ($(b.el).is('.recentlyClicked')) return false;
         b.circumstance = 'hover';
         b.to.circumstance = 'normal';
 
@@ -167,7 +167,7 @@ na.ui.vividButton = na.ui.vb = {
             )
             && $(b.el).is('.hover')
             
-        ) l2.onmouseout();
+        ) l2.onmouseout(evt);
         
         $(b.el).removeClass('hover').removeClass('recentlyClicked');
     },
@@ -175,16 +175,28 @@ na.ui.vividButton = na.ui.vb = {
     onclick : function (evt) {
         var b = na.ui.vb.settings.buttons['#'+$(evt.currentTarget)[0].id];
         var selected = (b.state == b.btnCode.selectedState);
+        debugger;
         
         b.circumstance = 'normal';
         b.to.circumstance = 'hover';
 
 
+        selected = !selected;
         b.state = selected?b.btnCode.startupState:b.btnCode.selectedState;
-        selected = (b.state == b.btnCode.selectedState);
         debugger;
         
-        if (selected) $(b.el).addClass('selected'); else $(b.el).removeClass('selected');
+        if (selected) {
+            $(b.el)
+                .addClass('selected')
+                .addClass(b.btnCode.selectedState)
+                .removeClass (b.btnCode.normalState);
+
+        } else {
+            $(b.el)
+                .removeClass('selected')
+                .removeClass(b.btnCode.selectedState)
+                .addClass (b.btnCode.normalState);
+        }
         
         
         var
@@ -235,7 +247,7 @@ na.ui.vividButton = na.ui.vb = {
         if (na.ui.vb.globals.debug) debugger;
         l = b.btnCode.layers.circleIcon_svg;
         if (typeof l.onclick=='function') {
-            l.onclick();
+            l.onclick(evt);
         }
         
     },
