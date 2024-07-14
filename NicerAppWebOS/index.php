@@ -1,5 +1,8 @@
+<!--
+<h1>Site currently down for maintenance.</h1>
+<p>it will take maybe a few days to make some structural changes to the code on nicer.app, new.nicer.app and said.by<p>
+-->
 <?php 
-
     global $useRememberMe;
     $useRememberMe = true;
 
@@ -14,5 +17,4 @@
 
     $r = $naWebOS->getSite();
     echo $r;
-    
 ?>

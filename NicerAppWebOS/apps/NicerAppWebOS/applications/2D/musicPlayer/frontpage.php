@@ -76,7 +76,7 @@
     <div class="container">
     <div class="bg">
         <h1 id="pageTitle" class="naVividTextCSS" style="font-size:200%;">nicer.app music collections</h1>
-        <p>
+        <p style="width:350px">
         <a class="contentSectionTitle3_a naVividTextCSS" href="<?php echo $naURLs['music_index__Sabaton']?>"><span class="contentSectionTitle3_span">Sabaton - 2022 recent hits</span></a>
         <br/><br/>
         <a class="contentSectionTitle3_a naVividTextCSS" href="<?php echo $naURLs['music_index__DJ_Firesnake']?>"><span class="contentSectionTitle3_span">DJ FireSnake</span></a>
@@ -96,6 +96,9 @@
         <a class="contentSectionTitle3_a naVividTextCSS" href="<?php echo $naURLs['music_index__Black_Horse__Mongolian_Traditional_Classical_Music_Art']?>"><span class="contentSectionTitle3_span">Black Horse - Mongolian Traditional Classical Music Art</span></a>
         <br/><br/>
         <a class="contentSectionTitle3_a naVividTextCSS" href="<?php echo $naURLs['music_index__Beautiful_Chill_Mixes']?>"><span class="contentSectionTitle3_span">Beautiful Chill Mixes</span></a>
+        </p>
+        <p style="width:350px;">
+        Copyright Disclaimer: - Under section 107 of the copyright Act 1976, <a href="https://en.wikipedia.org/wiki/Fair_use" class="contentSectionTitle2_a" target="fairUse">which was reaffirmed in a 2021 court decision</a>, allowance is made for FAIR USE for purpose such a as criticism, comment, news reporting, teaching, scholarship and research. Fair use is a use permitted by copyright statues that might otherwise be infringing. Non- Profit, educational or personal use tips the balance in favor of FAIR USE.
         </p>
     </div>
     </div>

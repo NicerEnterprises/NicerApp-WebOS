@@ -17,7 +17,7 @@ LICENSE : see https://nicer.app/docs-license
 
 <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
 <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-<meta name="description" content="Use a video or (tled) photo background as wallpaper for your webpages. Comes with it's own theme editor." />
+<meta name="description" content="Use a video or (tiled) photo background as wallpaper for your webpages. Comes with it's own theme editor." />
 {$viewport}
 <meta name="HandheldFriendly" content="true" />
 {$cssLinks}

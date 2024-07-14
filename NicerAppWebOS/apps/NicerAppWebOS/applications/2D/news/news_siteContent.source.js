@@ -1553,7 +1553,7 @@ debugger;
         ),
         w = Math.floor(Math.random() * (max - min2 + 1)) + min2,
         tw = 400,//$('.newsApp__item__title',el).outerWidth(),
-        w1 = $('#siteContent .vividDialogContent').width()-50,
+        w1 = $('#siteContent .vividDialogContent').width()-70,
 
 
         min = 0.2,
@@ -1622,7 +1622,7 @@ debugger;
         } else {
             if (typeof it.t=='string' && it.t!='') html+= '<div class="newsApp__item__title newsApp__item__noPaint"><div class="newsApp__item__title_bg">&nbsp;</div><div class="newsApp__item__title__container"><a class="nomod" target="newsAppItem_'+it.idx+'" href="' + it._id+'">' + it.t.replace(/\&#39;/g, '\'').replace(/#39;/g, '\'') + '</a></div></div>';
         }
-        if (typeof it.de=='string' && it.de.trim()!=='') html+= '<div class="newsApp__item__contentContainer"><div class="newsApp__item__mediaSingle"></div><div id="newsApp_item_'+it.idx+'__scrollpane" class="newsApp__item__desc vividScrollpane" style="width:100%;"><div>' + it.de.replace(/\&#39;/g, '\'').replace(/#39;/g, '\'').replace(/\<a/g, '<a target="_new" ') + '</div></div></td></tr></table><div class="newsApp__item__noPaint" style="height:5px;overflow:hidden;"></div></div>';
+        if (typeof it.de=='string' && it.de.trim()!=='') html+= '<div class="newsApp__item__contentContainer"><div class="newsApp__item__mediaSingle"></div><div id="newsApp_item_'+it.idx+'__scrollpane" class="newsApp__item__desc vividScrollpane" style=""><div>' + it.de.replace(/\&#39;/g, '\'').replace(/#39;/g, '\'').replace(/\<a/g, '<a target="_new" ') + '</div></div></td></tr></table><div class="newsApp__item__noPaint" style="height:5px;overflow:hidden;"></div></div>';
         var appSettings = na.site.globals.app[na.site.globals.appPrefix+'applications/2D/news'];
         //debugger;
         if (appSettings.seoValue) {

@@ -47,7 +47,7 @@ $pageTitle = str_replace('_', '&nbsp;', $pageTitle);
             <div id="siteContent__header" class="saHeaderInDialog" style="display:none;flex-direction:column;width:100%;">
                 <div class="content_containerDiv_container evenly">
                     <div class="content_containerDiv_item" style="order:1;margin-right:7px;">
-                        <h1 id="newsApp_title" class="newsApp_header backdropped" style="padding:0px;margin:0px;vertical-align:middle;"><?php echo $pageTitle;?></h1>
+                        <h1 id="newsApp_title" class="newsApp_header pageTitle backdropped" style="vertical-align:middle;"><?php echo $pageTitle;?></h1>
                     </div>
                     <div id="div_newsApp_searchbar" class="content_containerDiv_item backdropped" style="order:2;display:none;">
                         <label for="newsApp_searchbar" id="label_newsApp_searchbar" class="label_newsApp" style="font-size:120%;font-weight:bold;padding:5px;">Search for : </label>

@@ -583,9 +583,7 @@ class naVividButton_icon_svg {
             l.onclick(evt);
         }
 
-        setTimeout (function() {
-            $(b.el).removeClass(b.btnCode.startupState).removeClass(b.btnCode.selectedState).addClass(b.state);
-        }, 100);
+
     }
 
     anim_increaseGradient (b, l, ato) {

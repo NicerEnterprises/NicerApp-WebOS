@@ -8,7 +8,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
 		whatsThis : 'Complete application code for the music playback-and-download site on http://nicer.app/musicPlayer',
 		copyright : 'Copyrighted (c) 2011-2021 by Rene AJM Veerman - rene.veerman.netherlands@gmail.com',
 		license : 'http://nicer.app/LICENSE.txt',
-		version : '3.1.1',
+		version : '3.1.14',
 		firstReleased : '2011',   
 		lastUpdated : '2022-04-28(Thursday) 05:10 Central European Summer Time',
 		knownBugs : [
@@ -144,8 +144,6 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
         $('#textCheck').remove();                
         var html = '<div id="'+t.el.id+'_'+idx+'" class="vividButton" theme="'+t.t+'" style="opacity:0.0001;height:'+(h+30)+'px">'+$(li).children('a')[0].outerHTML+'</div>';
         $(npi).css({height:h+100});    
-            
-            
             
 		pl.appendChild (npi);
         na.mp.onWindowResize();
@@ -682,7 +680,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
         });
 	 
         $('#horizontalMover').css({
-			left : masterLeftOffset,
+			left : masterLeftOffset + 13,
             top : 22
 		});
 

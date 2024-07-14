@@ -1,4 +1,5 @@
 var NicerApp_WebOS = nicerapp = na = {};
+
 na.site = {
     about : {
         firstCreated : '10 January 2002',
@@ -11,11 +12,13 @@ na.site = {
     },
     
     globals : {
+        themeName : 'default',
         background : '/NicerAppWebOS/siteMedia/backgrounds/tiled/grey/seamless_texture_of_ice.jpg',
         debug : {
             backgroundChanges : false
         },
         downloadErrors : false,
+
 
         appPrefix : '/NicerAppWebOS/apps/NicerAppWebOS/',
         smallDeviceWidth : 1081,
@@ -466,7 +469,7 @@ na.site = {
                             }
                         );
 
-                        na.site.loadTheme(na.site.loadTheme_initializeExtras, undefined, false, false, na.site.globals.onloadSpecificityName);
+                        //na.site.loadTheme(na.site.loadTheme_initializeExtras, undefined, false, false, na.site.globals.onloadSpecificityName); // not needed here?
 
                         na.site.settings.current.startupErrorsOccurred = 'maybe';
                         //na.site.seeIfAnyStartupErrorsOccurred();
@@ -494,11 +497,13 @@ na.site = {
                         }
                     );*/
 
-                    na.site.loadTheme(function() {
+                    /* not needed here?
+                     na.site.loadTheme(function() {
                         setTimeout (function() {
                             na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
                         }, 100);
                     });//, undefined, false, false, na.site.globals.onloadSpecificityName);
+                    */
 
                     na.site.settings.current.startupErrorsOccurred = 'maybe';
                     //na.site.seeIfAnyStartupErrorsOccurred();

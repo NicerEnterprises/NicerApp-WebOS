@@ -18,6 +18,10 @@
     This is the <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" class="nomod noPushState" target="v5">5th major version</a> of this software, <a href="https://github.com/NicerEnterprises/NicerApp-WebOS-v6.y.z" class="nomod noPushState" target="v6">version 6</a> can be found <a class="nomod noPushState" href="https://new.nicer.app" target="newNA">here</a>.
     </p>
 
+    <p>
+    Due to maitenance difficulties (a desktop operating system upgrade with side-effects), not all of these pages and sites work correctly at the moment.
+    </p>
+
     <h2 class="contentSectionTitle1"><span class="contentSectionTitle1_span">Available Apps</span></h2>
 
     <a href="<?php echo $naURLs['music'];?>" class="contentSectionTitle3_a"><h3 class="contentSectionTitle3"><span class="contentSectionTitle3_span">Music</span></h3></a>

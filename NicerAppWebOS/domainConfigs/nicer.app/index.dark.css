@@ -301,6 +301,9 @@ li > div > div:not(.jstree-wholerow), li > div:not(.jstree-wholerow), .contentSe
     box-shadow : none;
     margin : 0px;
 }
+.vividMenu_item {
+    box-shadow: rgba(255, 255, 255, 0.4) 2px 2px 4px 4px inset, rgba(0, 0, 0, 0.55) 2px 2px 1px 1px;
+}
 .vividButton, .vividButton a, .vividButton span,
 .vividButtonSelected, .vividButtonSelected a, .vividButtonSelected span,
 .vividMenu_item, .vividMenu_item a, .vividMenu_item span {

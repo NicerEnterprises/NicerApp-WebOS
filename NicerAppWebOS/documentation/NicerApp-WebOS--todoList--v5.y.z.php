@@ -27,7 +27,7 @@
             UPDATE : I can strip the code that I need[1] from the way tinymce does the work for it's link-dialog and color highlighting dropdown dialog, but this will not be easy; due to the many work arounds needed at the browser level, tinymce is about 27500 lines of code, much of which comes into play during simple tasks like this.<br/>
             <br/>
             [1] I need 'id' and 'classNames' input fields in the tinymce toolbar (to tie edited content into my universal web theme editor for my CMS/WebOS), creating a tinymce-4.9.11-na-1.0.0 branch of the <a href="https://www.tiny.cloud/" class="noPushState" target="tinymce">tinymce</a> MIT licensed v4.9 code.<br/>
-            i've taken the liberty of web form contacting the tinymce sales team to ask if they can implement this for universal web theme editor makers for free.
+            I've taken the liberty of web form contacting the tinymce sales team to ask if they can implement this for universal web theme editor builders for free.
             </div></li>
 
             <li class="todoList_l1"><div>(STALLED, awaiting completion of item 3.1 on this list)<br/>
