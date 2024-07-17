@@ -1,13 +1,13 @@
 <li id="subMenu__new-background" class="subMenu"><a class="noPushState" href="javascript:na.backgrounds.next('#siteBackground');">Background</a>
     <ul>
-        <li><a class="noPushState" href="javascript:na.backgrounds.describeCurrentBackground();">Describe</a></li>
+        <!--<li><a class="noPushState" href="javascript:na.backgrounds.describeCurrentBackground();">Describe</a></li>-->
         <li><a class="noPushState" href="javascript:na.backgrounds.next('#siteBackground', 'landscape darkmode');">Dark mode</a>
             <ul>
                 <li><a class="noPushState" href="javascript:na.backgrounds.next('#siteBackground', 'landscape darkmode art');">Art</a></li>
                 <li><a class="noPushState" href="javascript:na.backgrounds.next('#siteBackground', 'landscape darkmode scenery');">Scenery</a></li>
             </ul>
         </li>
-        <li><a class="noPushState" href="javascript:na.backgrounds.next('#siteBackground', 'youtube');">HD Video</a>
+        <li><a class="noPushState" href="javascript:debugger;na.backgrounds.next('#siteBackground', 'youtube');">HD Video</a>
             <ul>
             <li><a class="noPushState" href="javascript:na.backgrounds.next('#siteBackground', 'youtube 4K');">4K</a>
                 <ul>

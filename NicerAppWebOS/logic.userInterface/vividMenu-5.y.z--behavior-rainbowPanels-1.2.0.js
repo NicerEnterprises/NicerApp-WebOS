@@ -9,8 +9,8 @@ class naVividMenu__behavior_rainbowPanels {
         t.theme = $(el).attr('theme');
         t.type = $(el).attr('type') === 'vertical' ? 'vertical' : 'horizontal';
         t.debugMe = true;
-        t.useDelayedShowingAndHiding = false;
-        t.useFading = false;
+        t.useDelayedShowingAndHiding = true;
+        t.useFading = true;
         t.fadingSpeed = 'fast';
         t.sensitivitySpeed = 250;
         t.percentageFor_rainbowPanels =
@@ -131,13 +131,12 @@ class naVividMenu__behavior_rainbowPanels {
         html = '',
         rootItems = 0,
         LIs = $('.vividMenu_mainUL', t.el).find('li');
-        debugger;
 
         LIs.each(function(idx,li) {
             $(li).attr('id', t.el.id+'__li__'+idx);
             var btnType = $(li).attr('buttonType');
             if (!btnType || btnType=='') btnType = 'vividButton_text';
-            var html2 = '<div id="'+t.el.id+'__'+idx+'" class="vividButton '+btnType+' vividMenu_item backdropped"  theme="dark" style="display:none;"><div class="vividDialogBackground1" style="z-index:-1"></div>'+$(li).children('a')[0].outerHTML.replace('<a ', '<a style="z-index:-1" ').replace($(li).children('a')[0].innerHTML+'</a>', '<span class="contentSectionTitle3_span" style="z-index:-1">'+$(li).children('a')[0].innerText+'</span></a>').replace('class="', 'class="linkToNewPage contentSectionTitle3_a ')+'</div>';
+            var html2 = '<div id="'+t.el.id+'__'+idx+'" class="vividButton '+btnType+' vividMenu_item backdropped"  theme="dark" style="display:none;"><div class="vividDialogBackground1" style="z-index:-1"></div>'+$(li).children('a')[0].outerHTML.replace('<a ', '<a ').replace($(li).children('a')[0].innerHTML+'</a>', '<span class="contentSectionTitle3_span" style="z-index:-1">'+$(li).children('a')[0].innerText+'</span></a>').replace('class="', 'class="linkToNewPage contentSectionTitle3_a ')+'</div>';
             html += html2;
 
             t.items[idx] = {
@@ -239,7 +238,7 @@ class naVividMenu__behavior_rainbowPanels {
 
         $(it.b.el).css({opacity:1, width : 150, height : '120%'});
 
-        if (it.label!=='Select Font') debugger;
+        //if (it.label!=='Select Font') debugger;
         if (na.m.userDevice.isPhone) {
             $(it.b.el).bind('click', function() {
                 var
@@ -350,14 +349,15 @@ class naVividMenu__behavior_rainbowPanels {
         } else {
             $(it.b.el).bind('mouseenter', function(event) {
                 event.stopPropagation();
-debugger;
-
+                debugger;
 
                 var
                 idx = parseInt(event.currentTarget.id.replace(/.*__/,'')),
                 id = event.currentTarget.id.replace('__'+idx,''),
                 t = na.site.settings.menus['#'+id],
                 it = t.items[idx];
+
+                t.updateItemStates();
 
                 if (t.debugMe) na.m.log(20,'naVividMenu.createVividButton : mouseenter '+it.label, false);
 
@@ -409,22 +409,20 @@ debugger;
                 t.shownChildren[event.currentTarget.id] = event.currentTarget;
 
                 if (t.useDelayedShowingAndHiding) {
-                    /*for (var id in t.timeout_showSubMenu) {
+                    for (var id in t.timeout_showSubMenu) {
                         clearTimeout (t.timeout_showSubMenu[id]);
-                    };*/
+                    };
 
                     if (t.debugMe) na.m.log (20, 'naVividMenu.createVividButton() : bind("mouseover") : showing sub-menu for "'+it.label+'" after '+t.sensitivitySpeed+'ms.', false);
                     t.timeout_showSubMenu[it.idx] = setTimeout(function(t,idx,evt){
 
                         if (t.debugMe) na.m.log (20, 'naVividMenu.createVividButton() : bind("mouseover") : showing sub-menu for "'+it.label+'".', false);
-                        debugger;
                         t.onmouseover (evt);
                         delete t.timeout_showSubMenu[idx];
                     }, t.sensitivitySpeed, t, it.idx, $.extend({},event));
                 } else {
                     if (t.debugMe) na.m.log (20, 'naVividMenu.createVividButton() : bind("mouseover") : showing sub-menu for "'+it.label+'".', false);
 
-                    debugger;
                     t.onmouseover (event);
 
                 }
@@ -440,6 +438,8 @@ debugger;
                 t = na.site.settings.menus['#'+id],
                 it = t.items[idx];
                 //if (it.label=='Background'||it.label=='Landscape') debugger;
+
+                t.updateItemStates();
 
                 if (t.currentEl_cssItem) $(event.currentTarget).css(t.currentEl_cssItem);
                 if (!it) return false;
@@ -857,7 +857,6 @@ debugger;
                 : $(x1.b.el).width() + na.d.g.margin;
 
             //$(panel).css({width:cssPanelWidth, height : 'auto'}).delay(50);
-                debugger;
             var
             x1_bcr = x1.b.el.getBoundingClientRect(),
             x2_bcr = x2.b.el.getBoundingClientRect(),
@@ -903,7 +902,6 @@ debugger;
                 : tel_bcr.left;
             //if (pit.label=='Background') debugger;
             //if (pit.label=='Landscape') debugger;
-                debugger;
             var
             cssPanel = {
                 position : 'absolute',
@@ -950,7 +948,6 @@ debugger;
             panelID = it.parents ? t.el.id+'__panel__'+it.parents[0].idx : t.el.id+'__panel__'+t.el.id,
             itID = t.el.id+'__'+pit.idx,
             html = '<div id="'+panelID+'" class="vividMenu_subMenuPanel">&nbsp;</div>';
-            debugger;
             if (t.percentageFor_rainbowPanels===0) {
                 cssPanel.borderRadius = 0;
                 cssPanel.background = background3;
@@ -1318,7 +1315,6 @@ debugger;
 
     onmouseout (event) {
         var toHide = this.mustHide (this, this.currentEl.it, event);
-        debugger;
         this.onmouseout_do($.extend({},event), toHide);
         return true;
 
@@ -1554,6 +1550,7 @@ debugger;
             $('.vividMenu_item')
             .add('.vividMenu_subMenuPanel')
             .add(prevKids)
+            //.add(t.prevEl)
             .not(myKids)
             .not(rootLevel)
             .not('#'+t.el.id+'__panel__'+t.el.id)
@@ -1572,6 +1569,7 @@ debugger;
 
     onclick(it) {
         var a = $(it.b.el).children('a');
+        debugger;
         if (
             typeof a.attr('windowName') == 'string'
             && a.attr('windowName')!==''
@@ -1587,20 +1585,31 @@ debugger;
 
     updateItemStates() {
         var t = this;
-        $(this.el).find('li > a').each(function(idx,li) {
-            let
-            isc = $(li).attr('vividMenu_isSelected_condition');
+        clearTimeout (t.timeout_updateItemStates);
+        t.timeout_updateItemStates = setTimeout (function() {
+            $(t.el).find('li > a').each(function(idx,li) {
+                let
+                isc = $(li).attr('vividMenu_isSelected_condition');
 
-            if (isc) {
                 var
-                menuItem = t.items[idx].b.el,
-                r = eval(isc);
+                r = false,
+                menuItem = $('#'+t.el.id+'__'+idx)[0];
 
-                if (r)
+                if (isc) {
+                    r = eval(isc);
+                }
+
+                if (r) {
+                    debugger;
                     $(menuItem).addClass('vividButtonSelected').removeClass('vividButton');
+                }
                 else
-                    $(menuItem).removeClass('vividButtonSelected').addClass('vividButton')
-            }
-        });
+                    $(menuItem).removeClass('vividButtonSelected').addClass('vividButton').css({
+                        border : 'none',
+                        boxShadow : 'rgba(255, 255, 255, 0.4) 2px 2px 4px 4px inset, rgba(0, 0, 0, 0.55) 2px 2px 1px 1px'
+                    });
+
+            });
+        }, 100);
     }
 }

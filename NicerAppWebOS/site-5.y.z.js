@@ -187,7 +187,7 @@ na.site = {
         //na.site.setStatusMsg(na.site.settings.defaultStatusMsg, false); // calls na.desktop.resize() as well
         $('#siteStatusbar .vividDialogContent').html(na.site.settings.defaultStatusMsg);
         
-        /*
+        /*debugger;
         if (typeof $.cookie('loginName')=='string') {
             $('#username').val($.cookie('loginName'));
             $('#password').val($.cookie('pw'));
@@ -415,6 +415,8 @@ na.site = {
         setInterval (na.site.updateDateTime, 1000); // 1000 milliseconds (1 second).
 
         na.site.transformLinks ($('#siteContent')[0]);
+        debugger;
+        na.site.transformLinks ($('#siteMenu_items')[0]);
 
         History.Adapter.bind(window,'statechange', na.site.stateChange); // use HTML5 History API if available:
     },
@@ -1022,7 +1024,6 @@ na.site = {
         $('.themeItem').remove();
         for (var themeName in na.site.globals.themes) {
             var theme = na.site.globals.themes[themeName];
-            debugger;
             for (var i in na.site.globals.themesDBkeys) {
                 var it = na.site.globals.themesDBkeys[i];
                 if (
@@ -1191,7 +1192,6 @@ na.site = {
             
         }*/
         var btn = $('#'+na.te.settings.current.selectedButtonID)[0];
-        if (btn) debugger;
         na.te.onclick(btn, false);
 
 
@@ -1312,7 +1312,7 @@ na.site = {
 
     transformLinks : function (rootElement) {
         if (!na.site.globals.useLoadContent) return false;
-        if ($(rootElement).is('#siteContent')) debugger;
+        //if ($(rootElement).is('#siteContent')) debugger;
         $('a', rootElement).not('.contentMenu, .noPushState, .hmNavE').each(function(idx, el){
             
             let x = el.href, y = el.target;
@@ -1328,13 +1328,19 @@ na.site = {
                 $(el).attr('target','');
                 
             } else {
-                $(el).attr('onclick', 'window.open(this.href, this.target);');
+                //$(el).attr('onclick', 'window.open(this.href, this.target);');
+                let h = document.location.href;
+                //el.href = '#';
+                /*
+                $(el).attr('targetDisabled',$(el).attr('target'));
+                $(el).attr('target','');
+                */
             }
         });
     },
     
     loadContent : function (event, url, callback_phase1, callback_phase2) {
-        debugger;
+        //debugger;
         na.apps.mustHaveAtLeast_number = 0;
         na.site.settings.current.url = url;
         //if (na.site.globals.debug['na.site.loadContent']) alert (url);
@@ -1793,7 +1799,6 @@ na.site = {
         c.scriptsToLoadTotal = 0;
         c.scriptsLoaded = false;
         c.scriptsToLoad = 0;
-        debugger;
         for (let divID in dat) {
             i++;
             if (divID==='head') {
@@ -1827,7 +1832,6 @@ na.site = {
                     if (!divID2 || divID2==='') debugger;
 
                     var vdc = $('#'+divID2+' .vividDialogContent');
-                    debugger;
                     if (dat[divID2]) {
                         vdc.html(dat[divID2]).fadeIn('normal').delay(100);
                         na.m.log (22,fncn+' : "'+divID2+'" filled with HTML.', false);
@@ -1848,7 +1852,6 @@ na.site = {
                                     script.onload = function () {
                                         var c = na.site.settings.current;
                                         c.scriptsLoaded++;
-                                        debugger;
                                         if (c.scriptsLoaded === c.scriptsToLoadTotal) {
                                             c.scriptsLoaded = true;
                                             c.startingApps = false;
@@ -1909,7 +1912,6 @@ na.site = {
             //if (!na.site.settings.current.startingApps) debugger;
             return r;
         }, function () { //[1]
-            debugger;
                 var c = na.site.settings.current;
 
                 if (dat) for (var divID in dat) {
@@ -3631,7 +3633,6 @@ debugger;
 
         }
 
-        debugger;
         if (loadBackground && dat.background /*&& dat.background!==na.site.globals.background*/) { /* doesn't jive with na.site.loadContent() */
             na.backgrounds.next (
                 '#siteBackground',

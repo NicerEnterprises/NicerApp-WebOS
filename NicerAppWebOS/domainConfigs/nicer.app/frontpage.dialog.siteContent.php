@@ -19,7 +19,7 @@
     </p>
 
     <p>
-    Due to maitenance difficulties (a desktop operating system upgrade with side-effects), not all of these pages and sites work correctly at the moment.
+    Due to maintenance difficulties (a desktop operating system upgrade with side-effects), not all of these pages and sites work correctly at the moment.
     </p>
 
     <h2 class="contentSectionTitle1"><span class="contentSectionTitle1_span">Available Apps</span></h2>

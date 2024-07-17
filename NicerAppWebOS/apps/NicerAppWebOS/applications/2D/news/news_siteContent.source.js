@@ -157,7 +157,6 @@ na.m.preventScreenLock();
         //dtQuit = new Date(dtBegin.getTime() - 1000 * 60 * 60 * 1.5), //(na.m.userDevice.isPhone ? 2.5 : 24.5)),
         urlp = na1.getURLparameters(),
         settings = urlp[0];
-        debugger;
         
         na.analytics.logMetaEvent ('start app : applications/2D/news.v'+na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news'].about.version);
         
@@ -189,7 +188,6 @@ na.m.preventScreenLock();
         
         c.firstRun = true;
         c.loads = 0;
-debugger;
         na1.loadNews_read_loop ();
 
         var
@@ -563,7 +561,6 @@ debugger;
         
         var
         unread = parseInt(dc[ks[0]]);
-        debugger;
         c.unread = unread;
         if (!c.dtEnd || unread < 100) {
             if (!c.dtCurrent) c.dtCurrent = new Date();
@@ -588,7 +585,6 @@ debugger;
         if (c.firstRun) {
             c.firstRun = false;
             c.failedLoads = 0;
-            debugger;
             na1.loadNews_get_forDateTimeRange(c.dtCurrent, c.dtEnd, settings);
         }
 
@@ -699,7 +695,6 @@ debugger;
                     var dat = JSON.parse(data,null,4);
                     dat.fncn = fncn;
                     na.m.log (2, dat);
-                    debugger;
                     setTimeout (function() {
                         try {
                             dataText = data;
@@ -707,7 +702,6 @@ debugger;
                         } catch (err) {
                             debugger;
                         }
-debugger;
                         if (data.length > 0) {
                             na.m.walkArray (data, data, undefined, na1.loadNews_get_forDateTimeRange_walkValue);
 
@@ -718,7 +712,6 @@ debugger;
                             itemsLoadedCount = 0;
                         };
 
-debugger;
                         //if (itemsLoadedCount < 50) {
                             c.read_loop_minutesIntoPast = 60 * g.readHistory_numHours;
                             c.read_loop_millisecondsToDoNext = 5 * 60 * 1000;
@@ -1219,6 +1212,7 @@ debugger;
             };
         }
 
+
         clearTimeout (c.timeout_onresize_loadTheme);
         c.timeout_onresize_loadTheme = setTimeout (function() {
             na.m.waitForCondition('na1.onresize() : safe to call na.site.loadTheme_applySettings?', function() {
@@ -1230,7 +1224,7 @@ debugger;
                 na.site.loadTheme_applySettings (na.site.globals.themes[na.site.globals.themeName], null, false);
                 //na.te.reApplySelectorsTree();
             }, 100);
-        }, 200);
+        }, 800);
         return true;
     },
 
