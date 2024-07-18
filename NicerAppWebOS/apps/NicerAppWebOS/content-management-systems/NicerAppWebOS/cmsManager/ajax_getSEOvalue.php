@@ -34,8 +34,8 @@ if (!array_key_exists('seoValue', $_REQUEST)) {
         $doneCounter++;
     }
 
-    $seoValue = $newID;
-    echo $seoValue;
+    $SEO_value = $newID;
+    echo $SEO_value;
 } else {
 
     $findCommand = [
@@ -72,10 +72,10 @@ if (!array_key_exists('seoValue', $_REQUEST)) {
             $r = null;
             if (property_exists($call2->body, 'viewSettings')) {
                 foreach ($call2->body->viewSettings as $fp => $vs) {
-                    if (property_exists($vs,'seoValue')) $r = $vs->seoValue;
+                    if (property_exists($vs,'SEO_value')) $r = $vs->SEO_value;
                 }
                 //$vs = $call2->body->viewSettings;
-                //if (property_exists($vs,'seoValue')) $r = $vs->seoValue;
+                //if (property_exists($vs,'SEO_value')) $r = $vs->SEO_value;
             }*/
             if (property_exists($call2->body,'seoValue')) $r = $call2->body->seoValue;
         } elseif (count($call->body->docs)>1) {

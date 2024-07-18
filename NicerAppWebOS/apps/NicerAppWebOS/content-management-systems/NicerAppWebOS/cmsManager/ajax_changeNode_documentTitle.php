@@ -59,15 +59,15 @@ if (
         //var_dump ($call->body->docs); //die();
         $call2 = $cdb->get ($call->body->docs[0]->_id);
         //var_dump ($call2->body); //die();
-        $call2->body->seoValue = $_POST['seoValue'];
+        $call2->body->SEO_value = $_POST['seoValue'];
         /*
         //var_dump ($call2->body); //die();
         $r = null;
         if (property_exists($call2->body, 'viewSettings')) {
             foreach ($call2->body->viewSettings as $fp => &$vs) {
-                $vs->seoValue = $_POST['seoValue'];
+                $vs->SEO_value = $_POST['seoValue'];
             }
-            //$call2->body->viewSettings->seoValue = $_POST['seoValue'];
+            //$call2->body->viewSettings->SEO_value = $_POST['seoValue'];
 */
             try { $call3 = $cdb->post($call2->body); } catch (Exception $e) {
                 cdb_error (500, $e, 'Could not add record'); exit();

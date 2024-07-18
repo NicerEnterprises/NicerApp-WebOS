@@ -1,7 +1,7 @@
 <?php
 $rootPath = realpath(dirname(__FILE__).'/../../../../..');
 require_once ($rootPath.'/boot.php');
-$debug = true;
+$debug = false;
 global $naWebOS;
 $cdb = $naWebOS->dbs->findConnection('couchdb')->cdb;
 //echo '<pre>'; var_dump ($dbg); die();
@@ -29,8 +29,10 @@ try { $parent = $cdb->get($_POST['parent']); } catch (Exception $e) {
 if (
     $parent->body->type !== 'naFolder'
     && $parent->body->type !== 'naMediaAlbum'
+    && $parent->body->type !== 'naUserRootFolder'
+    && $parent->body->type !== 'naGroupRootFolder'
 ) {
-    if ($debug) cdb_error (403, null, 'parent record is not of the correct type ("naFolder" or "naMediaAlbum")'); exit();
+    if ($debug) cdb_error (403, null, 'parent record is not of the correct type ("naFolder", "naMediaAlbum", "naUserRootFolder" or "naGroupRootFolder")'); exit();
 }
 
 if (
@@ -98,6 +100,8 @@ $recordToAdd = array (
     'text' =>  $textFinal,
     'state' => $state
 );
+
+
 //echo '<pre>'; var_dump ($recordToAdd); die();
 
 try { $call = $cdb->post($recordToAdd); } catch (Exception $e) {
@@ -110,6 +114,29 @@ try { $call = $cdb->post($recordToAdd); } catch (Exception $e) {
 //$msg = '$call='.json_encode($call, JSON_PRETTY_PRINT);
 //echo '<pre>'; var_dump ($dbName); echo json_encode($recordToAdd, JSON_PRETTY_PRINT); echo '<br/>'; var_dump ($msg); var_dump (debug_backtrace(), JSON_PRETTY_PRINT); echo '</pre>'; die();
 //trigger_error ($msg, E_USER_NOTICE);
+
+$order = json_decode($_POST['order'], true);
+
+$call3a = $cdb->getAllDocs();
+//if ($debug) { echo 't321:<pre>'; var_dump ($call); echo '</pre>';  };
+
+foreach ($call3a->body->rows as $idx => $doc) {
+    $call2a = $cdb->get($doc->id);
+    //if ($debug) { echo 't322:<pre>'; var_dump ($call2); echo '</pre>';  };
+    $doc2 = $call2a->body;
+    if ($doc2->parent == $_POST['parent']) {
+        $doc2->order = getOrder ($order, $doc2->_id);
+        if ($debug) { var_dump ($doc2->order); echo '<br/>'.PHP_EOL; }
+        $cdb->post ($doc2);
+    }
+}
+
+    function getOrder ($order, $docID) {
+        foreach ($order as $idx2 => $orderID)
+            if ($docID==$orderID) return $idx2;
+    }
+
+
 
 if ($_POST['type'] == 'naDocument') {
     $u = array_key_exists('cdb_loginName',$_SESSION) ? $_SESSION['cdb_loginName'] : $cdbConfig['username'];

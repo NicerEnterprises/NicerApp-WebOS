@@ -489,7 +489,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 $('#url1_dropdown_selector option').each(function(idx,optEl) {
                     if ($(optEl).html()==data) $(optEl).addClass('selected');
                 });
-                $('#url2_value').val(rec.original.seoValue);
+                $('#url2_value').val(rec.original.seo_value);
 
                 $('#nb_url0').html('/'+url0+'/');
                 $('#nb_documentLabel').val(rec.original.text);
@@ -500,7 +500,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 $('#nb_url1_dropdown_selector option').each(function(idx,optEl) {
                     if ($(optEl).html()==data) $(optEl).addClass('selected');
                 });
-                $('#nb_url2_value').val(rec.original.seoValue);
+                $('#nb_url2_value').val(rec.original.seo_value);
 
 
                 var
@@ -1230,7 +1230,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
         
         //var url = '/'+user+'/in/'+sel.original.dataID;//na.m.base64_encode_url (JSON.stringify(arr));
         na.cms.saveEditorContent(sel, function(rec) {
-            var url = '/'+user.replace(/ /g, '-')+'/'+$('#nb_url1_dropdown_selected')[0].innerText+'/'+rec.original.seoValue;
+            var url = '/'+user.replace(/ /g, '-')+'/'+$('#nb_url1_dropdown_selected')[0].innerText+'/'+rec.original.seo_value;
             na.site.loadContent(null, url);
 
         });

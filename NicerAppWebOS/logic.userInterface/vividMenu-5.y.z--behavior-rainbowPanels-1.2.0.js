@@ -474,10 +474,10 @@ class naVividMenu__behavior_rainbowPanels {
         itp = null,
         i = it.levelIdx;
         if (typeof useFading=='undefined') useFading = true;
-        //if (!it.b) {
+        if (!it.b) {
             t.createVividButton (t, it.idx, it.li);
             if (!t.prevDisplayedEl) t.prevDisplayedEl = it.b.el;
-        //}
+        }
 
         if (it.parents && it.parents[0]) {
             var
@@ -523,6 +523,7 @@ class naVividMenu__behavior_rainbowPanels {
                 //left : p_bcr.left-tel_bcr.left+(it.level>2?$(it.b.el).width()*.7:10),
                 //top : $(window).height() - 170 -  (p_bcr.height+na.d.g.margin)
             });
+            debugger;
             if (!it.b.el.parentNode) {
                 $(it.b.el).appendTo(container);
                 if (t.debugMe) na.m.log (20, 'naVividMenu.showMenuItem() : placing "'+it.label+'" into #'+container.id, false);
@@ -596,12 +597,13 @@ class naVividMenu__behavior_rainbowPanels {
                 numRows = $('#'+t.el.id+' > .vividMenu_mainUL > li').length;
                 numColumns = 1;
             }
+            debugger;
             if (!it.b.el.parentNode) {
                 na.m.log (20, 'naVividMenu.showMenuItem() : placing "'+it.label+'" into #'+container.id, false);
-                $(it.b.el).css({display:'inline-block',position:'absolute'}).appendTo(container);
+                $(it.b.el).css({display:'inline-block',position:'absolute'}).detach().appendTo(container);
             } else if (it.b.el.parentNode.id!==container.id) {
                 na.m.log (20, 'naVividMenu.showMenuItem() : placing "'+it.label+'", parent.id=#'+it.b.el.parentNode.id+' into #'+container.id, false);
-                $(it.b.el).css({display:'inline-block',position:'absolute'}).appendTo(container);
+                $(it.b.el).css({display:'inline-block',position:'absolute'}).detach().appendTo(container);
             }
              //$(it.b.el).detach().appendTo(container);
 
@@ -646,6 +648,7 @@ class naVividMenu__behavior_rainbowPanels {
             : 'relative'
         );
 
+        debugger;
         $(it.b.el).css ({
             opacity : 1,
             display : 'block',
@@ -1249,8 +1252,9 @@ class naVividMenu__behavior_rainbowPanels {
             it2 = t.items[pit.it.idx],
             panelID = t.el.id+'__panel__'+pit.it.idx;
 
-            $('#'+panelID+' .vividMenu_item').remove();
+            //$('#'+panelID+' .vividMenu_item').remove();
 
+            debugger;
             if (myKids && myKids.length > 0)
             for (var i=0; i<myKids.length; i++) {
                 var
@@ -1261,7 +1265,7 @@ class naVividMenu__behavior_rainbowPanels {
                     var r = t.showMenuItem (t, it, dim, evt);
                     t.prevDisplayedEl = it.b.el;
 
-                //}, kidIdx * 10, t, it, dim, evt);
+                //}, i * 10, t, it, dim, evt);
             }
             t.prevDisplayedEl = t.currentEl;
 

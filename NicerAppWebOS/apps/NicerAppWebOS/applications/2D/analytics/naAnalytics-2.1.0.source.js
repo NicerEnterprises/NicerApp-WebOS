@@ -228,7 +228,7 @@ na.an = na.analytics = {
             datetimeStr = na.analytics.dt2str (datetime),
             dateStr = na.analytics.date2str (datetime),
             doc = {
-                _id : 'dt_'+datetime.getTime(),
+                _id : 'dt_'+datetime.getTime()+'_'+datetime.getMilliseconds(),
                 jsSessionID : s.jsSessionID,
                 datetime : datetime.getTime(),
                 datetimeStr : datetimeStr,

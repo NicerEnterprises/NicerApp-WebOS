@@ -191,8 +191,17 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                         }
                     },
                     plugins : [
-                        "contextmenu", "dnd", "search", "state", "types", "wholerow"
-                    ]
+                        "contextmenu", "dnd", "search", "state", "types", "wholerow", "sort"
+                    ],
+                    'sort' : function(a, b) {
+                        a1 = this.get_node(a);
+                        b1 = this.get_node(b);
+                        if (a1.parent == b1.parent){
+                            return (a1.order < b1.order) ? 1 : -1;
+                        } else {
+                            return 1;
+                        }
+                    }
                 }).on('ready.jstree', function (e, data) {
                     var tree = $('#jsTree').jstree(true);
                     for (var i=0; i<tree.settings.core.data.length; i++) {
@@ -318,6 +327,13 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                     oldPath = na.cms.currentPath(tree.get_node(data.old_parent)),
                     newPath = na.cms.currentPath(tree.get_node(data.parent)),
                     url2 = '/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/NicerAppWebOS/cmsManager/ajax_moveNode.php',
+                    order = [];
+                    var jsonNodes = tree.get_json('#', { flat: true });
+                    for (var i=0; i<jsonNodes.length; i++) {
+                        if (jsonNodes[i].parent == data.parent) order.push (jsonNodes[i].id);
+                    };
+
+                    var
                     ac = {
                         type : 'POST',
                         url : url2,
@@ -327,9 +343,11 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                             oldPath : oldPath,
                             newParent : data.parent,
                             newPath : newPath,
-                            target : data.node.original._id || original.id
+                            target : data.node.original._id || original.id,
+                            order : JSON.stringify(order)
                         },
                         success : function (data, ts, xhr) {
+                            na.cms.refresh();
                         },
                         error : function (xhr, textStatus, errorThrown) {
                             na.site.ajaxFail(fncn, url2, xhr, textStatus, errorThrown);
@@ -344,6 +362,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 $('#siteToolbarLeft .lds-facebook').fadeOut('slow');
             },
             error : function (xhr, textStatus, errorThrown) {
+                debugger;
                 na.site.ajaxFail(fncn, url1, xhr, textStatus, errorThrown);
             }
         };
@@ -398,6 +417,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
         $('.mce-toolbar-grp, .mce-statusbar').each(function() {
             mce_bars_height += $(this).height();
         });
+        debugger;
 
         var
         l = data.selected.length,
@@ -416,7 +436,6 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
             url0 = '',
             sel = tree.get_node(tree.get_selected()[0]);
 
-            debugger;
             if (sel)
             for (var i=0; i<sel.parents.length; i++) {
                 var p = tree.get_node(sel.parents[i]);
@@ -424,14 +443,19 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 if (p.type == 'naGroupRootFolder') url0 = p.text;
             }
 
-            if (rec && rec.original
+            if (rec
                 && (
-                    rec.original.type=='naDocument'
-                    || rec.original.type=='naMediaAlbum'
+                    rec.type=='naUserRootFolder'
+                    || rec.type=='naGroupRootFolder'
+                    || rec.type=='naFolder'
+                    || rec.type=='naDocument'
+                    || rec.type=='naMediaAlbum'
                 )
             ) {
                 //na.site.setSpecificity(); // ENDLESS LOOP IN /cms
                 na.cms.treeButtonsEnableDisable (rec);
+                debugger;
+                na.cms.settings.current.selectedTreeNode = rec;
 
                 $('#documentLabel').val(rec.original.text);
                 $('#documentTitle').val(rec.original.pageTitle);
@@ -442,7 +466,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 $('#url1_dropdown_selector option').each(function(idx,optEl) {
                     if ($(optEl).html()==data) $(optEl).addClass('selected');
                 });
-                $('#url2_value').val(rec.original.seoValue);
+                $('#url2_value').val(rec.original.seo_value);
 
                 $('#nb_url0').html('/'+url0+'/');
                 $('#nb_documentLabel').val(rec.original.text);
@@ -475,9 +499,19 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 };
                 $.ajax(ac);
 
-
-                na.cms.settings.current.selectedTreeNode = rec;
-                if (rec.original.type=='naDocument') {
+                $('#mediaFolder_navBar').css({display:'flex'});
+                $('#jQueryFileUpload').css({display:'block'});
+                    $('#btnUpload').css({display:'block'});
+                    $('#btnViewMedia').css({display:'block'});
+                if (rec.original.type=='naFolder') {
+                    $('#folder').css({display:'block'});
+                    $('#upload').css({display:'block'});
+                    $('#mediaFolder_navBar').css({display:'flex'});
+                    $('#jQueryFileUpload').css({display:'none'});
+                    $('#btnUpload').css({display:'none'});
+                    $('#btnViewMedia').css({display:'none'});
+                    $('#document').css({display:'none'});
+                } else if (rec.original.type=='naDocument') {
                     na.cms.loadEditorContent(rec);
 
                     $('#folder').css({display:'none'});
@@ -614,7 +648,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                                         });
                                     }
                                     var editorHeight = $('#siteContent .vividDialogContent').height() - $('#document_navBar').height() - 15;
-                                    $('#jsTree').css({ height : $('#siteToolbarLeft .vividDialogContent').height() - $('#jsTree_navBar').height() - 20 });
+                                    $('#jsTree').css({ height : $('#siteToolbarLeft .vividDialogContent').height() - $('#jsTree_navBar').height() - 30 });
                                     var mce_bars_height = 0;
                                     //alert ($('#document_navBar').height());
                                     $('.mce-toolbar-grp, .mce-statusbar').each(function() { mce_bars_height += $(this).height(); });
@@ -930,7 +964,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 newRelFilePath : newRelFilePath
             },
             data : {
-                database : sel.original.database,
+                database : sel.original.database.replace(/_documents_/, '_tree_'),
                 id : data.node.id,
                 node_title_new : data.text,
                 node_title_old : data.old,
@@ -1039,6 +1073,13 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
         rec = na.cms.settings.current.selectedTreeNode,
         relFilePath = na.cms.currentPath(rec),
         url = '/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/NicerAppWebOS/cmsManager/ajax_addNode.php',
+        order = [];
+        var jsonNodes = tree.get_json('#', { flat: true });
+        for (var i=0; i<jsonNodes.length; i++) {
+            if (jsonNodes[i].parent == sel.parent) order.push (jsonNodes[i].id);
+        };
+
+        var
         ac = {
             type : 'POST',
             url : url,
@@ -1046,7 +1087,8 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 database : sel.original.database,
                 parent : sel.original._id || original.id,
                 relFilePath : relFilePath,
-                type : 'naFolder'
+                type : 'naFolder',
+                order : JSON.stringify(order)
             },
             success : function (data, ts, xhr) {
                 na.cms.refresh();
@@ -1066,13 +1108,21 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
         tree = $('#jsTree').jstree(true),
         sel = tree.get_node(tree.get_selected()[0]),
         url = '/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/NicerAppWebOS/cmsManager/ajax_addNode.php',
+        order = [];
+        var jsonNodes = tree.get_json('#', { flat: true });
+        for (var i=0; i<jsonNodes.length; i++) {
+            if (jsonNodes[i].parent == sel.parent) order.push (jsonNodes[i].id);
+        };
+
+        var
         ac = {
             type : 'POST',
             url : url,
             data : {
                 database : sel.original.database,
                 parent : sel.original._id || original.id,
-                type : 'naDocument'
+                type : 'naDocument',
+                order : JSON.stringify(order)
             },
             success : function (data, ts, xhr) {
                 na.cms.refresh();
@@ -1092,6 +1142,13 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
         rec = na.cms.settings.current.selectedTreeNode,
         relFilePath = na.cms.currentPath(rec),
         url = '/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/NicerAppWebOS/cmsManager/ajax_addNode.php',
+        order = [];
+        var jsonNodes = tree.get_json('#', { flat: true });
+        for (var i=0; i<jsonNodes.length; i++) {
+            if (jsonNodes[i].parent == sel.parent) order.push (jsonNodes[i].id);
+        };
+
+        var
         ac = {
             type : 'POST',
             url : url,
@@ -1099,7 +1156,8 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 database : sel.original.database,
                 parent : sel.original._id || original.id,
                 type : 'naMediaAlbum',
-                relFilePath : relFilePath
+                relFilePath : relFilePath,
+                order : JSON.stringify(order)
             },
             success : function (data, ts, xhr) {
                 var 

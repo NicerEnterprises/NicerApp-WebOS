@@ -1,1 +1,1 @@
-Blogging features of nicer.app
+Blogging features of said.by

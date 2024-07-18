@@ -1,5 +1,6 @@
 <?php 
 require_once (realpath(dirname(__FILE__).'/../../../../..').'/boot.php');
+$debug = false;
 
 global $naWebOS;
 $cdb = $naWebOS->dbs->findConnection('couchdb')->cdb;
@@ -31,11 +32,32 @@ foreach ($tables as $idx=>$dbName) {
 
     //echo '$dbName='.$dbName.'</br>'.PHP_EOL;
 
-    try { $docs = $cdb->getAllDocs(true); } catch (Exception $e) { echo $e->getMessage(); };
-    $data = $docs->body->rows;
+    //try { $docs = $cdb->getAllDocs(true); } catch (Exception $e) { echo $e->getMessage(); };
+    //$data = $docs->body->rows;
+
+    try {
+        $findCommand = [
+            'selector' => [
+                '$or' => [
+                    [ 'database' => $dbName ],
+                    [ 'database' => str_replace('_tree_','_documents_',$dbName) ]
+                ]
+            ]/* TODO : FIX INTRUSION INTO COUCHDB?..,
+            'sort' => [
+                ['parent' => 'asc'],
+                ['order' => 'asc']
+            ],
+            'use_index' => '_design/c1b49fc16a4b40c3e3cb2a894bd5aef317a3253f'
+            */
+        ];
+        $call2 = $cdb->find($findCommand);
+        if ($debug) { echo 't333:'; var_dump ($call2); };
+        $data = $call2->body->docs;
+    } catch (Exception $e) { echo $e->getMessage(); }
+
     //var_dump ($data);
     foreach ($data as $idx2=>$recordSummary) {
-        $ret = array_merge ($ret, array(json_decode(json_encode($recordSummary->doc),true)));
+        $ret = array_merge ($ret, array(json_decode(json_encode($recordSummary),true)));
     }
 }
 

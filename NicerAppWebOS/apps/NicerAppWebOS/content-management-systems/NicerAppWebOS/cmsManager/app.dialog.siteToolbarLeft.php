@@ -12,7 +12,7 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
 ?>
 <div class="lds-facebook"><!-- thanks for allowing CC0 license usage : https://loading.io/css/ --><div></div><div></div><div></div></div> 
 <link rel="stylesheet" href="/NicerAppWebOS/3rd-party/jsTree-3.3.15/dist/themes/default/style.css" /> <!-- has style.min.css -->
-<script type="text/javascript" src="/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/NicerAppWebOS/usersGroupsManager/na.usersGroupsManager.source.js"></script>
+<!--<script type="text/javascript" src="/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/NicerAppWebOS/usersGroupsManager/na.usersGroupsManager.source.js"></script>-->
 <div id="jsTree_navBar">
     <div id="btnAddUser_menu" class="vividMenu noInitialShowing" style="display:none;position:absolute;height:100px; z-index:800000" type="vertical">
     <ul id="btnAddUser_menu_ul" class="vividMenu_mainUL" style="display:none;">

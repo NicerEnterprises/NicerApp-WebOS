@@ -96,15 +96,15 @@ if (
         $data['url1'] = $_POST['url1'];
         $data['seoValue'] = $_POST['seoValue'];
         $data['pageTitle'] = $_POST['pageTitle'];
-        $data['viewSettings']['seoValue'] = $_POST['seoValue'];
+        $data['viewSettings']['seo_value'] = $_POST['seoValue'];
 /*
         //var_dump ($call2->body); //die();
         $r = null;
         if (property_exists($call2->body, 'viewSettings')) {
             foreach ($call2->body->viewSettings as $fp => &$vs) {
-                $vs->seoValue = $_POST['seoValue'];
+                $vs->SEO_value = $_POST['seoValue'];
             }
-            //$call2->body->viewSettings->seoValue = $_POST['seoValue'];
+            //$call2->body->viewSettings->SEO_value = $_POST['seoValue'];
 */
             try { $call3 = $cdb->post($data); } catch (Exception $e) {
                 cdb_error (500, $e, 'Could not add record'); exit();
