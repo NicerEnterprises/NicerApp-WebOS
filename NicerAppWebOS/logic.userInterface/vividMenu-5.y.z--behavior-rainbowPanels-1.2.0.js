@@ -238,25 +238,34 @@ class naVividMenu__behavior_rainbowPanels {
 
         $(it.b.el).css({opacity:1, width : 150, height : '120%'});
 
-        //if (it.label!=='Select Font') debugger;
+        if (it.label!=='Select Font') debugger;
         if (na.m.userDevice.isPhone) {
-            $(it.b.el).bind('click', function() {
+            $(it.b.el).add('a',it.b.el).bind('click', function() {
+                debugger;
                 var
-                idx = parseInt(event.currentTarget.id.replace(/.*__/,'')),
-                id = event.currentTarget.id.replace('__'+idx,''),
+                el =
+                    $(event.currentTarget).parents('.vividButton')[0]
+                    || $(event.currentTarget).parents('.vividButtonSelected')[0]
+                    || event.currentTarget,
+                idx = parseInt(el.id.replace(/.*__/,'')),
+                id = el.id.replace('__'+idx,''),
                 t = na.site.settings.menus['#'+id],
                 it = t.items[idx];
                 //if (it.label=='Background'||it.label=='Landscape') debugger;
 
-                if (t.clickedItem===it.b.el) {
+                event.preventDefault();
+                if (
+                    it.b
+                    && t.clickedItem===it.b.el
+                    && event.currentTarget!==it.b.el
+                ) {
                     t.onclick(it);
                 } else {
-                    t.clickedItem = it.b.el;
-                    event.stopPropagation();
+                    t.clickedItem = it.b ? it.b.el : undefined;
 
                     // mouseleave
 
-                    if (t.currentEl_cssItem) $(event.currentTarget).css(t.currentEl_cssItem);
+                    if (t.currentEl_cssItem) $(el).css(t.currentEl_cssItem);
                     if (!it) return false;
 
                     if (it.level > 1 ) {
@@ -296,7 +305,7 @@ class naVividMenu__behavior_rainbowPanels {
                         .removeClass('contentSectionTitle3_span')
                         .addClass('contentSectionTitle1_span');
 
-                    if (t.currentEl_cssItem) $(event.currentTarget).css(t.currentEl_cssItem);
+                    if (t.currentEl_cssItem) $(el).css(t.currentEl_cssItem);
                     if (!it) return false;
 
                     for (var elIdx in t.timeout_hideSubMenu) {
@@ -321,9 +330,9 @@ class naVividMenu__behavior_rainbowPanels {
 
                     t.prevEl = t.currentEl;
                     if (t.currentEl_cssItem) $(t.prevEl).css(t.currentEl_cssItem);
-                    t.currentEl = event.currentTarget;
+                    t.currentEl = el;
 
-                    t.shownChildren[event.currentTarget.id] = event.currentTarget;
+                    t.shownChildren[el.id] = el;
 
                     if (t.useDelayedShowingAndHiding) {
                         /*for (var id in t.timeout_showSubMenu) {
@@ -1215,7 +1224,11 @@ class naVividMenu__behavior_rainbowPanels {
         var
         t = this,
         evt = event,
-        el = event.currentTarget,
+        el = (
+            $(evt.currentTarget).parents('.vividButton')[0]
+            || $(evt.currentTarget).parents('.vividButtonSelected')[0]
+            || evt.currentTarget
+        ),
         myKids = t.children[el.parent?el.parent.el.id:el.idx];
 
         if (!t.timeout_onmouseover) t.timeout_onmouseover = {};
@@ -1252,7 +1265,7 @@ class naVividMenu__behavior_rainbowPanels {
             it2 = t.items[pit.it.idx],
             panelID = t.el.id+'__panel__'+pit.it.idx;
 
-            //$('#'+panelID+' .vividMenu_item').remove();
+            //$('#'+panelID+' .vividMenu_item').remove(); // PREVENTS 2nd SHOWING OF SUB-MENUS.
 
             debugger;
             if (myKids && myKids.length > 0)
@@ -1346,7 +1359,11 @@ class naVividMenu__behavior_rainbowPanels {
     onmouseout_do (evt, toHide) {
         var
         t = this,
-        el = evt.currentTarget,
+        el = (
+            $(evt.currentTarget).parents('.vividButton')[0]
+            || $(evt.currentTarget).parents('.vividButtonSelected')[0]
+            || evt.currentTarget
+        ),
         it = t.items[el.it.idx],
         menu = $('#menu_'+t.el.id)[0];
 
@@ -1423,18 +1440,18 @@ class naVividMenu__behavior_rainbowPanels {
         });
 
 
-        if (evt.currentTarget) {
+        if (el) {
             var currPanel =
-                evt.currentTarget.it.parents && evt.currentTarget.it.parents.length > 0
-                ? $('#'+t.el.id+'__panel__'+evt.currentTarget.it.parents[0].idx)[0]
+                el.it.parents && el.it.parents.length > 0
+                ? $('#'+t.el.id+'__panel__'+el.it.parents[0].idx)[0]
                 : null;
             if (currPanel) currs.push(currPanel);
-            currPanel = $('#'+t.el.id+'__panel__'+evt.currentTarget.it.idx)[0];
+            currPanel = $('#'+t.el.id+'__panel__'+el.it.idx)[0];
             if (currPanel && !currs.includes(currPanel)) currs.push(currPanel);
 
-            if (evt.currentTarget.it.parents && evt.currentTarget.it.parents.length > 0) {
-                for (var i=0; i < evt.currentTarget.it.parents.length; i++) {
-                    var p = evt.currentTarget.it.parents[i];
+            if (el.it.parents && el.it.parents.length > 0) {
+                for (var i=0; i < el.it.parents.length; i++) {
+                    var p = el.it.parents[i];
                     //console.log ('t222',p);
                     parentPanels.push ($('#'+t.el.id+'__panel__'+p.idx)[0]);
                 }
