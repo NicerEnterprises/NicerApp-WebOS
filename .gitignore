@@ -30,7 +30,7 @@ NicerAppWebOS/siteLogs/2023/*
 NicerAppWebOS/siteLogs/2024/*
 NicerAppWebOS/siteLogs/*.html
 NicerAppWebOS/siteLogs/*.txt
-NicerAppWebOS/script.maintenance/pw*.*
+NicerAppWebOS/scripts.maintenance/pw*.*
 NicerAppWebOS/vividUI
 NicerAppWebOS_addons/
 NicerAppWebOS/3rd-party/3D/libs
