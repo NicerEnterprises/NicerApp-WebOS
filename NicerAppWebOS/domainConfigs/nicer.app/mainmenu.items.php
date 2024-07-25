@@ -402,7 +402,7 @@
                         'meta' => [
                             'mustBeLoggedIn' => true
                         ],
-                        'blogEditor' => [
+                        'cmsManager' => [
                             'page' => 'index',
                             'seoValue' => [ 'me' ]
                         ]
@@ -411,6 +411,7 @@
             ]
         ],
 
+        /*
         "ugm" => [
             'apps-current' => [
                 'NicerApp-WebOS__pageSettings' => [
@@ -421,14 +422,14 @@
                         'meta' => [
                             'mustBeLoggedIn' => true
                         ],
-                        'cmsManager' => [
+                        'blogEditor' => [
                             'page' => 'index',
                             'seoValue' => [ 'cms', 'ugm', 'ug', 'users', 'users-groups', 'usersGroups' ]
                         ]
                      ]
                 ]
             ]
-        ],
+        ],*/
 
         "docs__overview" => [
             'apps-current' => [

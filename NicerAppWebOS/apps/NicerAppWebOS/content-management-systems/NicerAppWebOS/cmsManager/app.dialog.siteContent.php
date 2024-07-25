@@ -81,6 +81,7 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
                     <span id="nb_url0" class="vividTheme_input_urls" style="width:auto;"></span>
                     <!--<label id="url1_label" for="documentTitle">SEO-1, URL-1</label>-->
                     <select id="nb_url1_select" class="select themeEditor mainBar_forThemeEditor" onchange="na.cms.onchange_documentHeaders(event);" style="order:2;display:none;">
+                        <option id="nb_url1_select__about" name="url1_select__about" value="about">about</option>
                         <option id="nb_url1_select__in" name="url1_select__in" value="in">in</option>
                         <option id="nb_url1_select__on" name="url1_select__on" value="on">on</option>
                         <option id="nb_url1_select__during" name="url1_select__during" value="during">during</option>

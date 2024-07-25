@@ -242,11 +242,11 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                             && na.cms.settings.current.selectedTreeNode.type=='naDocument'
                         ) na.cms.saveEditorContent(na.cms.settings.current.selectedTreeNode, function(){
                             na.cms.settings.current.selectedTreeNode = rec;
-                            na.cms.onchange_selectedNode (settings, data, rec, function() {
-                                na.cms.refresh(function() {
-                                  na.cms.onchange_jsTreeNode(settings, data,rec);
-                                });
-                            });
+                            //na.cms.onchange_selectedNode (settings, data, rec, function() {
+                                //na.cms.refresh(function() {
+                            //      na.cms.onchange_jsTreeNode(settings, data,rec);
+                                //});
+                            //});
                         })
                         else if (rec) na.cms.onchange_jsTreeNode(settings, data, rec);
 
@@ -871,12 +871,10 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 } catch (error) {
                     console.log ('na.cms.saveEditorContent() : FAILED :', error);
                 }
-                /* broke down 2024-07-19.
                 for (var ct in dat.rec) {
-                    for (var tn in dat.rec[ct].document) rec.original.id = dat.rec[ct].document[tn]._id; // TODO : this prevents different dataIDs in different ct environments from being used. needs a fix, eventually. by changing the dataID field in ___cms_tree__ and ___cms_documents__ to a JSON array (ct => dataID).
+                    for (var tn in dat.rec[ct].document) rec.original.id = dat.rec[ct].document[tn].id; // TODO : this prevents different dataIDs in different ct environments from being used. needs a fix, eventually. by changing the dataID field in ___cms_tree__ and ___cms_documents__ to a JSON array (ct => dataID).
                     break;
-                }*/
-                debugger;
+                }
                 if (typeof callback=='function') callback(rec);
             },
             error : function (xhr, textStatus, errorThrown) {

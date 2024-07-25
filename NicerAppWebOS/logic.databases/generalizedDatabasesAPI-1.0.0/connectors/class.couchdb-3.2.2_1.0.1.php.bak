@@ -37,8 +37,11 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         $this->cdb->useSSL($cRec['useSSL']);
 
     //if (php_sapi_name() === 'cli') return 'php_sapi_name()='.php_sapi_name(); // BAD!
-        //echo 't77;<pre style="color:navy">'; var_dump ($cRec); var_dump ($username); echo '</pre>';
-        if (!is_null($cRec)) $naLoginResult = cdb_login ($this->cdb, $cRec, $cRec['username']); else $naLoginResult = cdb_login ($this->cdb, null, null);
+        //echo 'Credentials for '.$username.' :<br/><pre style="color:navy">'; var_dump ($cRec); echo '</pre>';
+        if (!is_null($cRec))
+            $naLoginResult = cdb_login ($this->cdb, $cRec, $cRec['username']);
+        else
+            $naLoginResult = cdb_login ($this->cdb, null, null);
 
         if (!$naLoginResult) die ('500 - could not login to NicerApp WebOS.');
 
@@ -53,7 +56,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         }
 
         $u = $this->cdb->getSession()->body->userCtx;
-        //echo '<pre style="color:red">'; var_dump ($u); die();
+        //echo '<pre style="color:red;background:yellow;">'; var_dump ($u); //die();
         $this->username = $u->name;
         $this->roles = $u->roles;
 
@@ -189,6 +192,8 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             echo '</pre>';
         }
         //echo '<pre style="color:green;">'.$username.'</pre>';
+        //echo '<pre style="color:orange;">'.json_encode(debug_backtrace(),JSON_PRETTY_PRINT).'</pre>';
+
         if (!is_null($usersFinal))
         foreach ($usersFinal as $username1 => $userDoc) {
             $dbg = [
@@ -328,6 +333,8 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             }
         }
 
+
+
         $dataSetName = $this->dataSetName('groups');
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
@@ -393,9 +400,9 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
                 } catch (Exception $e) { 
                     if ($this->debug) { echo $e->getMessage(); echo '<br/>'; $do = false; exit(); }
                 }
-            } else {
+            }/* else {
                 echo '<span style="color:yellow;background:navy">NOT deleted database '.$dataSetName.'</span><br/>'.PHP_EOL;
-            }
+            }*/
         }
         return true;
     }
@@ -405,7 +412,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         //try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName,true);
         //echo '<pre>'; var_dump ($this->security_guest); echo '</pre>'; die();
-        if (is_null($this->security_guest)) { trigger_error ('FATAL ERROR : $this->security_guest is null. see $this->setGlobals()', E_USER_ERROR); die(); }
+        if (is_null($this->security_guest)) { trigger_error ('$this->security_guest is null. see $this->setGlobals().<br/>'.PHP_EOL.'$this->connectionSettings=<pre>'.json_encode($this->connectionSettings,JSON_PRETTY_PRINT).'</pre>', E_USER_ERROR); die(); }
         try { 
             $call = $this->cdb->setSecurity ($this->security_guest);
         } catch (Exception $e) {
@@ -471,7 +478,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { 
             $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
-            echo '<pre style="color:red">tj22:'; echo ($e->getMessage()); echo '</pre>'; exit();
+            echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit();
         }
         /*
         $do = false; try { $doc = $this->cdb->get('aaa'); } catch (Exception $e) { $do = true; };
@@ -513,25 +520,12 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         */
 
         $do = false; try { $doc = $this->cdb->get('caa'); } catch (Exception $e) { $do = true; };
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 0, "_id" : "caa", "id" : "caa", "parent" : "#", "text" : "Groups", "state" : { "opened" : true }, "type" : "naSystemFolder" }';
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "caa", "id" : "caa", "parent" : "#", "text" : "Groups", "state" : { "opened" : true }, "type" : "naSystemFolder" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
 
         $do = false; try { $doc = $this->cdb->get('baa'); } catch (Exception $e) { $do = true; };
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 1, "_id" : "baa", "id" : "baa", "parent" : "#", "text" : "Users", "state" : { "opened" : true }, "type" : "naSystemFolder" }';
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "baa", "id" : "baa", "parent" : "#", "text" : "Users", "state" : { "opened" : true }, "type" : "naSystemFolder" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
-
-        $rec = [
-            'index' => [
-                'fields' => [ [ 'parent' => 'asc' ], [ 'order' => 'asc' ] ]
-            ],
-            'name' => 'parentOrderIndex',
-            'type' => 'json'
-        ];
-        try {
-            $this->cdb->setIndex ($rec);
-        } catch (Exception $e) {
-            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
-        }
 
         echo 'Created database '.$dataSetName.'<br/>';
     }
@@ -547,29 +541,16 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         }
 
         $do = false; try { $doc = $this->cdb->get('cab'); } catch (Exception $e) { $do = true; };
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 0, "_id" : "cab", "id" : "cab", "parent" : "caa", "text" : "Guests", "state" : { "opened" : true }, "type" : "naGroupRootFolder" }';
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "cab", "id" : "cab", "parent" : "caa", "text" : "Guests", "state" : { "opened" : true }, "type" : "naGroupRootFolder" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
 
         $do = false; try { $doc = $this->cdb->get('cba'); } catch (Exception $e) { $do = true; };
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 0, "_id" : "cba", "id" : "cba", "parent" : "cab", "text" : "Blog", "state" : { "opened" : true }, "type" : "naFolder" }';
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "cba", "id" : "cba", "parent" : "cab", "text" : "Blog", "state" : { "opened" : true }, "type" : "naFolder" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
 
         $do = false; try { $doc = $this->cdb->get('cbb'); } catch (Exception $e) { $do = true; };
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 1, "_id" : "cbb", "id" : "cbb", "parent" : "cab", "text" : "Media Albums", "state" : { "opened" : true }, "type" : "naFolder" }';
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "cbb", "id" : "cbb", "parent" : "cab", "text" : "Media Albums", "state" : { "opened" : true }, "type" : "naFolder" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
-
-        $rec = [
-            'index' => [
-                'fields' => [ [ 'parent' => 'asc' ], [ 'order' => 'asc' ] ]
-            ],
-            'name' => 'parentOrderIndex',
-            'type' => 'json'
-        ];
-        try {
-            $this->cdb->setIndex ($rec);
-        } catch (Exception $e) {
-            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
-        }
 
         echo 'Created database '.$dataSetName.'<br/>';
     }
@@ -587,30 +568,16 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         $do = false; try { $doc = $this->cdb->get('bab'); } catch (Exception $e) { $do = true; };
         global $naWebOS;
         $un = $naWebOS->ownerInfo['OWNER_NAME'];
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 0, "_id" : "bab", "id" : "bab", "parent" : "baa", "text" : "'.$un.'", "state" : { "opened" : true }, "type" : "naUserRootFolder" }';
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "bab", "id" : "bab", "parent" : "baa", "text" : "'.$un.'", "state" : { "opened" : true }, "type" : "naUserRootFolder" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
 
         $do = false; try { $doc = $this->cdb->get('bba'); } catch (Exception $e) { $do = true; };
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 0, "_id" : "bba", "id" : "bba", "parent" : "bab", "text" : "Blog", "state" : { "opened" : true }, "type" : "naFolder" }';
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "bba", "id" : "bba", "parent" : "bab", "text" : "Blog", "state" : { "opened" : true }, "type" : "naFolder" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
 
         $do = false; try { $doc = $this->cdb->get('bbb'); } catch (Exception $e) { $do = true; };
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 1, "_id" : "bbb", "id" : "bbb", "parent" : "bab", "text" : "Media Albums", "state" : { "opened" : true }, "type" : "naFolder" }';
-
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "bbb", "id" : "bbb", "parent" : "bab", "text" : "Media Albums", "state" : { "opened" : true }, "type" : "naFolder" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
-
-        $rec = [
-            'index' => [
-                'fields' => [ [ 'parent' => 'asc' ], [ 'order' => 'asc' ] ]
-            ],
-            'name' => 'parentOrderIndex',
-            'type' => 'json'
-        ];
-        try {
-            $this->cdb->setIndex ($rec);
-        } catch (Exception $e) {
-            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
-        }
 
         echo 'Created database '.$dataSetName.'<br/>';
     }
@@ -628,34 +595,21 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         }
 
         $do = false; try { $doc = $this->cdb->get('dab'); } catch (Exception $e) { $do = true; };
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 1, "_id" : "dab", "id" : "dab", "parent" : "baa", "text" : "Guest", "state" : { "opened" : true }, "type" : "naUserRootFolder" }';
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "dab", "id" : "dab", "parent" : "baa", "text" : "Guest", "state" : { "opened" : true }, "type" : "naUserRootFolder" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
 
         $do = false; try { $doc = $this->cdb->get('dba'); } catch (Exception $e) { $do = true; };
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 0, "_id" : "dba", "id" : "dba", "parent" : "dab", "text" : "Blog", "state" : { "opened" : true }, "type" : "naFolder" }';
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "dba", "id" : "dba", "parent" : "dab", "text" : "Blog", "state" : { "opened" : true }, "type" : "naFolder" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
 
         $do = false; try { $doc = $this->cdb->get('dbb'); } catch (Exception $e) { $do = true; };
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 0, "_id" : "dbb", "id" : "dbb", "parent" : "dba", "url1" : "on", "seoValue" : "frontpage", "pageTitle" : "Front page", "text" : "Front page", "state" : { "selected" : true }, "type" : "naDocument" }';
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "dbb", "id" : "dbb", "parent" : "dba", "url1" : "on", "seoValue" : "frontpage", "pageTitle" : "Front page", "text" : "Front page", "state" : { "selected" : true }, "type" : "naDocument" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
 
         $do = false; try { $doc = $this->cdb->get('dbc'); } catch (Exception $e) { $do = true; };
-        $data = '{ "database" : "'.$dataSetName.'", "order" : 1, "_id" : "dbc", "id" : "dbc", "parent" : "dab", "text" : "Media Albums", "state" : { "opened" : true }, "type" : "naFolder" }';
+        $data = '{ "database" : "'.$dataSetName.'", "_id" : "dbc", "id" : "dbc", "parent" : "dab", "text" : "Media Albums", "state" : { "opened" : true }, "type" : "naFolder" }';
         if ($do) try { $this->cdb->post($data); } catch (Exception $e) { echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; };
 
-
-        $rec = [
-            'index' => [
-                'fields' => [ [ 'parent' => 'asc' ], [ 'order' => 'asc' ] ]
-            ],
-            'name' => 'parentOrderIndex',
-            'type' => 'json'
-        ];
-        try {
-            $this->cdb->setIndex ($rec);
-        } catch (Exception $e) {
-            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
-        }
 
         echo 'Created database '.$dataSetName.'<br/>';
     }
@@ -710,20 +664,9 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         echo 'Created database '.$dataSetName.'<br/>';
     }
 
-    public function createDataSet_ip_info() {
-        // TODO : error handling
-
-        $dataSetName = $this->dataSetName('ip_info');
-        try {
-            $this->cdb->deleteDatabase ($dataSetName);
-        } catch (Exception $e) { echo $e->getMessage(); };
-
-        $this->cdb->setDatabase($dataSetName, true);
-    }
-
     public function createDataSet_themes() {
         // TODO : error handling
-        $debug = true;//$this->debug
+
         $dataSetName = $this->dataSetName('themes');
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
@@ -733,7 +676,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { 
             $call = $this->cdb->setSecurity ($this->security_guest);
         } catch (Exception $e) {
-            if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
+            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
 
         $rec = array(
@@ -767,11 +710,11 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             ))
 */
         );
-        if ($debug) { echo '<pre style="color:yellow;background:navy">'; var_dump ($rec);/* var_dump ($this->cdb);*/ echo '</pre>';  }
+        if ($this->debug) { echo '<pre style="color:yellow;background:navy">'; var_dump ($rec);/* var_dump ($this->cdb);*/ echo '</pre>'; die(); }
         try {
             $this->cdb->post($rec);
         } catch (Exception $e) {
-            if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
+            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
         $rec = array(
             '_id' => cdb_randomString(20),
@@ -803,11 +746,11 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             ))
 */
         );
-        if ($debug) { echo '<pre style="color:blue">'; var_dump ($rec); /* var_dump ($this->cdb);*/ echo '</pre>'; }
+        if ($this->debug) { echo '<pre style="color:blue">'; var_dump ($rec); var_dump ($cdb); echo '</pre>'; }
         try {
             $this->cdb->post($rec);
         } catch (Exception $e) {
-            if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
+            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
 
 
@@ -841,11 +784,11 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
                 )
             )
         );
-        if ($debug) { echo '<pre style="color:blue">'; var_dump ($rec); var_dump ($cdb); echo '</pre>'; }
+        if ($this->debug) { echo '<pre style="color:blue">'; var_dump ($rec); var_dump ($cdb); echo '</pre>'; }
         try {
             $this->cdb->post($rec);
         } catch (Exception $e) {
-            if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
+            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
         $rec = array(
             '_id' => cdb_randomString(20),
@@ -877,11 +820,11 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
                 )
             )
         );
-        if ($debug) { echo '<pre style="color:blue">'; var_dump ($rec); var_dump ($cdb); echo '</pre>'; }
+        if ($this->debug) { echo '<pre style="color:blue">'; var_dump ($rec); var_dump ($cdb); echo '</pre>'; }
         try {
             $this->cdb->post($rec);
         } catch (Exception $e) {
-            if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
+            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
 
         $rec = [
@@ -910,7 +853,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try {
             $this->cdb->setIndex ($rec);
         } catch (Exception $e) {
-            if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
+            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
 
 
@@ -1186,7 +1129,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
         $rec = [
             'index' => [
-                'fields' => [ 's1', 's2', 'i', 'type', 'isIndex', 'isBot', 'isLAN']
+                'fields' => [ 's2', 'i', 'isIndex', 'isBot', 'isLAN']
             ],
             'name' => 'all',
             'type' => 'json'
@@ -1214,6 +1157,32 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         echo 'Created and populated database '.$dataSetName.'<br/>';
     }
 
+    public function createDataSet_ip_info() {
+        $dataSetName = $this->dataSetName('ip_info');
+        try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
+        $this->cdb->setDatabase($dataSetName, true);
+        try {
+            $call = $this->cdb->setSecurity ($this->security_guest);
+        } catch (Exception $e) {
+            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
+        }
+
+        $rec = [
+            'index' => [
+                'fields' => [ 'ip' ]
+            ],
+            'name' => 'ipIndex',
+            'type' => 'json'
+        ];
+        try {
+            $this->cdb->setIndex ($rec);
+        } catch (Exception $e) {
+            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
+        }
+
+        echo 'Created and populated database '.$dataSetName.'<br/>';
+    }
+
     public function createDataSet_data_by_users() {
         $dataSetName = $this->dataSetName('data_by_users');
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
@@ -1226,7 +1195,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
         $rec = [
             'index' => [
-                'fields' => [ 'user', 'role', 'url1', 'SEO_value' ]
+                'fields' => [ 'user', 'role', 'url1', 'seoValue' ]
             ],
             'name' => 'primaryIndex',
             'type' => 'json'
@@ -1444,7 +1413,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         return true;
     }
 
-    public function delete_allThemes_byName ($themeName) {
+    public function delete_allThemes_byName ($themeName, $specificityName) {
         if ($themeName=='default') {
             echo 'ERROR : can not the delete themes which are named "default".<br/>'.PHP_EOL;
             return false;
@@ -1459,7 +1428,10 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             try { $call2 = $this->cdb->get($row->id); } catch (Exception $e) { return false; }
             //var_dump ($call2);
             if (property_exists($call2->body,'theme')) {
-                if ($call2->body->theme==$themeName) {
+                if (
+                    $call2->body->theme==$themeName
+                    && $call2->body->specificityName==$specificityName
+                ) {
                     $response = $this->cdb->delete ($call2->body->_id, $call2->body->_rev);
                     //try { $call3 = $this->cdb->get($row->id); } catch (Exception $e) { $call3 = false; }
                     //while ($call3 && $call3->body->ok) {
@@ -1706,13 +1678,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             'url1' => $url1,
             'seoValue' => str_replace('\\','',$seoValue),
             'pageTitle' => str_replace('\\','',$_POST['pageTitle']),
-            'text' =>
-                isset($documentFromDB)
-                && array_key_exists('text', $documentFromDB)
-                && is_string($documentFromDB['text'])
-                && $documentFromDB['text']!==''
-                    ? $documentFromDB['text']
-                    : 'New'
+            'text' => isset($documentFromDB) && array_key_exists('text', $documentFromDB) && is_string($documentFromDB['text']) && $documentFromDB['text']!=='' ? $documentFromDB['text'] : 'New'
         ];
         /*
         $document = array (

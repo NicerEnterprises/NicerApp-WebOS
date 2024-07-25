@@ -768,90 +768,12 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_METHOD} ^(GET)$
 RewriteCond %{HTTP:X-Requested-With} XMLHttpRequest
-RewriteRule ^me$ /view-content/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9ibG9nRWRpdG9yIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbIm1lIl19fQ [N]
+RewriteRule ^me$ /view-content/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbIm1lIl19fQ [N]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteRule ^me$ /view/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9ibG9nRWRpdG9yIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbIm1lIl19fQ [N]
-
-
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteCond %{HTTP:X-Requested-With} XMLHttpRequest
-RewriteRule ^cms$ /view-content/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteRule ^cms$ /view/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
-
-
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteCond %{HTTP:X-Requested-With} XMLHttpRequest
-RewriteRule ^ugm$ /view-content/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteRule ^ugm$ /view/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
-
-
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteCond %{HTTP:X-Requested-With} XMLHttpRequest
-RewriteRule ^ug$ /view-content/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteRule ^ug$ /view/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
-
-
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteCond %{HTTP:X-Requested-With} XMLHttpRequest
-RewriteRule ^users$ /view-content/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteRule ^users$ /view/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
-
-
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteCond %{HTTP:X-Requested-With} XMLHttpRequest
-RewriteRule ^users-groups$ /view-content/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteRule ^users-groups$ /view/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
-
-
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteCond %{HTTP:X-Requested-With} XMLHttpRequest
-RewriteRule ^usersGroups$ /view-content/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_METHOD} ^(GET)$
-RewriteRule ^usersGroups$ /view/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbImNtcyIsInVnbSIsInVnIiwidXNlcnMiLCJ1c2Vycy1ncm91cHMiLCJ1c2Vyc0dyb3VwcyJdfX0 [N]
+RewriteRule ^me$ /view/eyJcL05pY2VyQXBwV2ViT1NcL2FwcHNcL05pY2VyQXBwV2ViT1NcL2NvbnRlbnQtbWFuYWdlbWVudC1zeXN0ZW1zXC9OaWNlckFwcFdlYk9TXC9jbXNNYW5hZ2VyIjp7InBhZ2UiOiJpbmRleCIsInNlb1ZhbHVlIjpbIm1lIl19fQ [N]
 
 
 

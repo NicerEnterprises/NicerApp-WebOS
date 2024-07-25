@@ -89,8 +89,6 @@
         <br/><br/>
         <a class="contentSectionTitle3_a naVividTextCSS" href="<?php echo $naURLs['music_index__Creedence']?>"><span class="contentSectionTitle3_span">Creedence Clearwater Revival</span></a>
         <br/><br/>
-        <a class="contentSectionTitle3_a naVividTextCSS" href="<?php echo $naURLs['music_index__DBZ']?>"><span class="contentSectionTitle3_span">DBZ AMV GMV XXG</span></a>
-        <br/><br/>
         <a class="contentSectionTitle3_a naVividTextCSS" href="<?php echo $naURLs['music_index__Early_21st_Century']?>"><span class="contentSectionTitle3_span">Early 21st Century</span></a>
         <br/><br/>
         <a class="contentSectionTitle3_a naVividTextCSS" href="<?php echo $naURLs['music_index__Black_Horse__Mongolian_Traditional_Classical_Music_Art']?>"><span class="contentSectionTitle3_span">Black Horse - Mongolian Traditional Classical Music Art</span></a>

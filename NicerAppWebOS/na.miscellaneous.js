@@ -282,9 +282,9 @@ na.m = {
         return dateObj.getFullYear() + "-" +
             ("0" + (dateObj.getMonth()+1)).slice(-2) + "-" +
             ("0" + dateObj.getDate()).slice(-2) + "(" + dns[dateObj.getDay()] + ') ' +
-            ("0" + dateObj.getHours()).slice(-2) + ":" +
-            ("0" + dateObj.getMinutes()).slice(-2) + ":" +
-            ("0" + dateObj.getSeconds()).slice(-2) +
+            ("0" + dateObj.getHours()).slice(-2) + "h" +
+            ("0" + dateObj.getMinutes()).slice(-2) + "m" +
+            ("0" + dateObj.getSeconds()).slice(-2) + "s" +
             (
                 includeTimezone
                     ? ' (UTC' + (-1*dateObj.getTimezoneOffset())+'m)'
