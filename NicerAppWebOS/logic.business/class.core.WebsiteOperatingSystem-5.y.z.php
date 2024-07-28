@@ -663,6 +663,7 @@ class NicerAppWebOS {
     public function getContent__standardErrorMessage ($msg) {
         $ret = [];
         $file = $this->basePath.'/NicerAppWebOS/domainConfigs/'.$this->domain.'/errorMessage.default.php';
+        //echo '<pre style="color:red;">'; var_dump ($msg); exit();
         if (!file_exists($file) || !is_readable($file)) {
             $html = $msg;
             $ret['siteContent'] = $html;
@@ -712,7 +713,7 @@ class NicerAppWebOS {
         if (!is_string($viewID) || $viewID==='') {
             $msg = $fncn.' : FAILED (invalid or empty viewID parameter).';
             trigger_error ($msg, E_USER_ERROR);
-            return $this->getContent_standardErrorMessage ($msg);
+            return $this->getContent__standardErrorMessage ($msg);
         } else {
             if ($viewID==='/') {
                 // output frontpage.dialog.*.php
@@ -825,7 +826,7 @@ class NicerAppWebOS {
             ];
             $msg = $fncn.' : FAILED : '.json_encode($dbg);
             trigger_error ($msg, E_USER_ERROR);
-            return $this->getContent_standardErrorMessage ($msg);
+            return $this->getContent__standardErrorMessage ($msg);
         } else {
 
             // fetch dataRecord
@@ -833,7 +834,7 @@ class NicerAppWebOS {
                 'selector' => [ 'user' => str_replace('-',' ',$username), 'url1' => $url1, 'seoValue' => $dataID ],
                 'fields' => ['_id']
             ];
-            //echo '<pre style="padding:8px;border-radius:10px;background:rgba(255,255,255,0.5);color:green;">'; var_dump ($findCommand); echo '</pre>';
+            //echo '<pre style="padding:8px;border-radius:10px;background:rgba(255,255,255,0.5);color:green;">'; var_dump ($findCommand); echo '</pre>'; die();
             try {
                 $call = $cdb->find ($findCommand);
             } catch (Exception $e) {
@@ -1151,24 +1152,24 @@ class NicerAppWebOS {
         global $naDebugAll;
         global $naLAN;
         $debug = false;
+
         $db = $this->dbs->findConnection('couchdb');
         $viewFolder = '[UNKNOWN VIEW]';
 
         $selectors2 = $d['selectors'];
         //$selectorNames = $d['selectorNames'];
-        //$debug = true;
         foreach ($selectors2 as $idx => $selector) {
             if ($debug) { echo $idx.'<br/>'.PHP_EOL; };
 
             $permissions = $selector['permissions'];
-            //echo '<pre style="color:cyan;background:navy;">'; var_dump ($permissions); echo '</pre>';
+            if ($debug) { echo '<pre style="color:cyan;background:navy;">'; var_dump ($selector); echo '</pre>'; }
 
             foreach (['read','write'] as $idx3=>$pt) {
             $hasPermission = false;
             foreach ($permissions as $permissionType => $permissionsRec) {
                 if ($permissionType==$pt) {
                     foreach ($permissionsRec as $accountType => $accountsList) {
-                        //echo '<pre style="color:lime;background:navy;">'; var_dump ($permissionsRec); echo '</pre>';
+                        if ($debug) { echo '<pre style="color:lime;background:navy;">'; var_dump ($permissionsRec); echo '</pre>'; }
                         foreach ($accountsList as $idx2 => $userOrGroupID) {
                             if ($accountType == 'users') {
                                 $adjustedUserOrGroupID = $db->translate_plainUserName_to_couchdbUserName($userOrGroupID);
@@ -1182,7 +1183,7 @@ class NicerAppWebOS {
                             if ($accountType == 'roles') {
                                 //if ($debug) { echo '$this->dbs->roles='; var_dump($this->dbs->roles); };
                                 if (is_string($this->dbs)) {
-                                    echo $fncn.' : WARNING : invalid database connection ($this->dbs='.json_encode($this->dbs).').';
+                                    if ($debug) { echo $fncn.' : WARNING : invalid database connection ($this->dbs='.json_encode($this->dbs).').'; }
                                     die(); // or exit();
                                 }
                                 foreach ( $this->dbs->findConnection('couchdb')->roles
@@ -1234,6 +1235,7 @@ class NicerAppWebOS {
         $db = $this->dbs->findConnection('couchdb');
 
         $d1 = $this->getPageCSS_permissionsList($js);
+        if ($debug) { echo '<pre style="color:yellow;background:navy">'; var_dump ($d1['selectors']); echo '</pre>'; };
         $d2 = $this->getPageCSS_checkPermissions($d1);
         $selectors = $d2['selectors'];
         if ($debug) { echo '<pre style="color:lime;background:green">'; var_dump ($selectors); echo '</pre>'; };
@@ -1644,6 +1646,14 @@ class NicerAppWebOS {
             $url = $_SESSION['url'] = $url;
         }
 
+        global $naIP;
+        $username100 = (
+            array_key_exists('cdb_loginName', $_COOKIE)
+            ? $_COOKIE['cdb_loginName']
+            : ''
+        );
+        $username101 = $db->translate_couchdbUserName_to_plainUserName ($username100);
+
         $appName = preg_replace('/.*\//','',$viewFolder);
         //echo PHP_EOL.PHP_EOL.'T123::'.'$appName='.$appName.'<br/>'.PHP_EOL.PHP_EOL;
         //if ($debug) { echo '<pre>'; var_dump ($url); echo PHP_EOL; var_dump ($this->view); echo '</pre>'.PHP_EOL; }
@@ -1767,6 +1777,22 @@ class NicerAppWebOS {
                 0 => 'site (for all viewers)',
                 1 => 'current page (for all viewers)'
             );
+
+            $jsonURL = json_decode (base64_decode_url(str_replace('/view/','',$url)),true);
+            //echo '<pre>'; var_dump ($url); echo PHP_EOL; var_dump ($jsonURL); die();
+            $pass = false;
+            if (is_array($jsonURL)) {
+                foreach ($jsonURL as $k => $v) {
+                    if (is_array($v)) {
+                        $pass = $k === '/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/NicerAppWebOS/cmsText';
+                    }
+                }
+            }
+            if ($pass) {
+                $selectors[1]['permissions']['write']['users'] = [ $username100 ];
+            }
+
+
             $preferredSelectorName = 'site (for all viewers)';
         //}
 
@@ -1786,14 +1812,6 @@ class NicerAppWebOS {
             if (array_key_exists(2,$selectors)) $selectors[2]['display'] = false;
         };
         //echo '<pre>'; var_dump ($selectors);
-
-        global $naIP;
-        $username100 = (
-            array_key_exists('cdb_loginName', $_COOKIE)
-            ? $_COOKIE['cdb_loginName']
-            : ''
-        );
-        $username101 = $db->translate_couchdbUserName_to_plainUserName ($username100);
 
 
 
@@ -2151,7 +2169,7 @@ class NicerAppWebOS {
             if (array_key_exists('theme', $selector)) $sel['theme'] = $selector['theme']; //else $sel['theme'] = [ '$exists' => false ];
             if (array_key_exists('ip', $selector)) $sel['ip'] = $selector['ip']; else $sel['ip'] = [ '$exists' => false ];
             global $naIP;
-            if (strpos($selector['specificityName'], 'on the client')!==false) {
+            if (strpos($selector['specificityName'], 'at the client')!==false) {
                 $selector['ip'] = $naIP;
                 //$selector['ua'] = $_SERVER['HTTP_USER_AGENT'];
             }

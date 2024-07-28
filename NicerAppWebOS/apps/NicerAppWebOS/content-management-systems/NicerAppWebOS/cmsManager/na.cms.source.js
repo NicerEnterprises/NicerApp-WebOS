@@ -870,6 +870,8 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                     var dat = JSON.parse(data);
                 } catch (error) {
                     console.log ('na.cms.saveEditorContent() : FAILED :', error);
+                    na.site.fail ('na.cms.saveEditorContent() : FAILED : '+data);
+                    return false;
                 }
                 /* broke down 2024-07-19.
                 for (var ct in dat.rec) {
@@ -1038,7 +1040,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
             type : 'POST',
             url : url,
             data : {
-                database : sel.original.database,
+                database : sel.original.database.replace('_documents_','_tree_'),
                 id : sel.original._id || original.id,
                 url1 : $('#nb_url1_dropdown_selected').html(),
                 seoValue : $('#nb_url2_value').val(),
@@ -1046,7 +1048,12 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 text : $('#nb_documentLabel').val()
             },
             success : function (data, ts, xhr) {
-                na.cms.refresh(callback);
+                if (data.indexOf('status : Success')!==-1) {
+                    na.cms.refresh(callback);
+                } else {
+                    na.site.fail ('na.cms.onchange_documentHeaders() : FAILED : '+data);
+                    return false;
+                }
             },
             error : function (xhr, textStatus, errorThrown) {
                 na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
@@ -1116,6 +1123,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
             if (jsonNodes[i].parent == sel.parent) order.push (jsonNodes[i].id);
         };
 
+        debugger;
         var
         ac = {
             type : 'POST',
@@ -1194,7 +1202,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
     
     onclick_btnDeleteRecord : function () {
         var 
-        fncn = 'na.cms.onclick_delete()',
+        fncn = 'na.cms.onclick_btnDeleteRecord()',
         tree = $('#jsTree').jstree(true),
         sel = tree.get_node(tree.get_selected()[0]),
         rec = na.cms.settings.current.selectedTreeNode,

@@ -6,38 +6,91 @@ if (!array_key_exists('database',$_POST)) {
     $dbg = [
         '$_REQUEST' => $_REQUEST
     ];
-    cdb_error (403, null, 'Hacking attempt detected (attempt to access database with '.json_encode($dbg).'). Event logged.');
+    cdb_error (403, null, 'Hacking attempt detected (attempt to access CouchDB database with '.json_encode($dbg).'). Event logged.');
 }
-//if (strpos($_POST['database'], '_tree')===false)
-    //cdb_error (403, null, 'Hacking attempt detected (attempt to access database '.$_POST['database'].'). Event logged.');
+if (strpos($_POST['database'], '_tree')===false)
+    cdb_error (403, null, 'Hacking attempt detected (attempt to access CouchDB database '.$_POST['database'].'). Event logged.');
 
 
 
-$debug = true;
+$debug = false;
 global $naWebOS;
 $db = $naWebOS->dbs->findConnection('couchdb');
 
-//echo '<pre>'; var_dump ($_SESSION); die();
-
 $cdb = $db->cdb;
 
-$cdb->setDatabase($_POST['database'],false);
-$call = $cdb->get ($_POST['id']);
-$call->body->text = $_POST['text'];
-$call->body->url1 = $_POST['url1'];
-$call->body->seoValue = $_POST['seoValue'];
-$call->body->pageTitle = $_POST['pageTitle'];
 
-try { $call = $cdb->post($call->body); } catch (Exception $e) {
-    cdb_error (500, $e, 'Could not add record to database='.$_POST['database']); exit();
+
+
+$dataSetName = str_replace('_tree_','_documents_',$_POST['database']);
+$cdb->setDatabase($dataSetName,false);
+$findCommand = [
+    'selector' => [
+        'url1' => $_POST['url1'],
+        'seoValue' => $_POST['seoValue']
+    ],
+    'fields' => [ '_id', 'id' ]
+];
+$go = false;
+try {
+    $call0 = $cdb->find ($findCommand);
+} catch (Exception $e) {
+    $go = true;
+};
+if ($debug) {
+    var_dump ($dataSetName);
+    var_dump ($findCommand);
+    var_dump ($call0);
 }
-if ($debug) { echo '$call='; var_dump ($call); echo PHP_EOL.PHP_EOL; }
+$go = (
+    count($call0->body->docs) === 0
+    || (
+        count($call0->body->docs) === 1
+        && $call0->body->docs[0]['id'] == $_POST['id']
+    )
+);
+if (!$go) {
+    echo 'Document with URL /'.$_POST['user'].'/'.$_POST['url1'].'/'.$_POST['seoValue'].' already exists.';
+    exit();
+}
 
 
 
 
 
-$dataSetName = $db->dataSetName('data_by_users'); // i know, couchdb calls a 'table' a 'database'. and that sux.
+
+$cdb->setDatabase($_POST['database'],false);
+try {
+    $call = $cdb->get ($_POST['id']);
+    $call->body->text = $_POST['text'];
+    $call->body->url1 = $_POST['url1'];
+    $call->body->seoValue = $_POST['seoValue'];
+    $call->body->pageTitle = $_POST['pageTitle'];
+    try { $call = $cdb->post($call->body); } catch (Exception $e) {
+        cdb_error (500, $e, 'Could not update record with id="'.$_POST['id'].'" to CouchDB database='.$_POST['database']); exit();
+    }
+    if ($debug) { echo '$call='; var_dump ($call); echo PHP_EOL.PHP_EOL; }
+} catch (Exception $e) {
+    $newData = [
+        '_id' => $_POST['id'],
+        'id' => $_POST['id'],
+        'text' => $_POST['text'],
+        'url1' => $_POST['url1'],
+        'seoValue' => $_POST['seoValue'],
+        'pageTitle' => $_POST['pageTitle']
+    ];
+    try { $call = $cdb->post($newData); } catch (Exception $e) {
+        cdb_error (500, $e, 'Could not add record with id="'.$_POST['id'].'" to CouchDB database='.$_POST['database']); exit();
+    }
+    if ($debug) { echo '$call='; var_dump ($call); echo PHP_EOL.PHP_EOL; }
+}
+
+
+
+
+// a table in SQL is a couchdb database and a dataSet in generalizedDatabasesAPI.
+// a row with it's columns in SQL is a couchdb field set, and a dataSubSet in generalizedDatabasesAPI.
+$dataSetName = $db->dataSetName('data_by_users');
 
 $cdb->setDatabase ($dataSetName, false);
 

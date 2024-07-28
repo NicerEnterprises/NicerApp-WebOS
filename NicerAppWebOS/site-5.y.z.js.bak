@@ -1,4 +1,5 @@
 var NicerApp_WebOS = nicerapp = na = {};
+
 na.site = {
     about : {
         firstCreated : '10 January 2002',
@@ -11,11 +12,13 @@ na.site = {
     },
     
     globals : {
+        themeName : 'default',
         background : '/NicerAppWebOS/siteMedia/backgrounds/tiled/grey/seamless_texture_of_ice.jpg',
         debug : {
             backgroundChanges : false
         },
         downloadErrors : false,
+
 
         appPrefix : '/NicerAppWebOS/apps/NicerAppWebOS/',
         smallDeviceWidth : 1081,
@@ -75,9 +78,9 @@ na.site = {
 
         na.site.settings.defaultStatusMsg = (
             $.cookie('agreedToPolicies')!=='true'
-            ? '<table style=""><tr><td><a href="/" style="padding:0;text-shadow:0px 0px 5px rgba(0,0,0,0.8);">'+na.site.globals.domain+'</a> only uses cookies for remembering user settings.</td>'
+            ? '<table style=""><tr><td><a href="/" class="bright" style="padding:0;text-shadow:0px 0px 5px rgba(0,0,0,0.8);">'+na.site.globals.domain+'</a> only uses cookies for remembering user settings.</td>'
                 + '<td style="width:66px;"><div class="vividButton" theme="dark" style="position:relative;color:white;width:40px;height:20px;" onclick="na.site.dismissCookieWarning();">Ok</div></td></table>'
-            : '<table style="height:100%;"><tr><td>Opensourced <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" target="_new" class="nomod noPushState contentSectionTitle1_a"><span class="contentSectionTitle1_span">here</span></a>, Copyright (C) 2002-2024 by Nicer Enterprises</td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
+            : '<table style="height:100%;"><tr><td>Opensourced <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" target="_new" class="bright nomod noPushState contentSectionTitle1_a"><span class="contentSectionTitle1_span">here</span></a>, Copyright (C) 2002-2024 by Nicer Enterprises</td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
         );
 
 
@@ -184,7 +187,7 @@ na.site = {
         //na.site.setStatusMsg(na.site.settings.defaultStatusMsg, false); // calls na.desktop.resize() as well
         $('#siteStatusbar .vividDialogContent').html(na.site.settings.defaultStatusMsg);
         
-        /*
+        /*debugger;
         if (typeof $.cookie('loginName')=='string') {
             $('#username').val($.cookie('loginName'));
             $('#password').val($.cookie('pw'));
@@ -355,7 +358,13 @@ na.site = {
                 //na.site.globals.backgroundSearchKey = 'landscape';
                 //na.site.globals.background = defaultBG;
 
-                var bg = na.site.globals.background;
+                var bg = na.site.globals.themes[na.site.globals.themeName].background;
+                //var bg = na.site.globals.background;
+                if (!bg) {
+                    na.site.globals.background = defaultBG;
+                    bg = defaultBG;
+                }
+                debugger;
 
                 var bsk = na.site.globals.backgroundSearchKey;
                 if (
@@ -366,7 +375,7 @@ na.site = {
                 na.backgrounds.next (
                     '#siteBackground',
                     na.site.globals.backgroundSearchKey,
-                    defaultBG,
+                    bg,
                     //needNewBackground ? null : na.site.globals.background,
                     false,
                     function () {
@@ -406,7 +415,10 @@ na.site = {
         setInterval (na.site.updateDateTime, 1000); // 1000 milliseconds (1 second).
 
         na.site.transformLinks ($('#siteContent')[0]);
-		History.Adapter.bind(window,'statechange', na.site.stateChange); // use HTML5 History API if available:
+        debugger;
+        na.site.transformLinks ($('#siteMenu_items')[0]);
+
+        History.Adapter.bind(window,'statechange', na.site.stateChange); // use HTML5 History API if available:
     },
 
     onload_phase2 : function (div, calculationResults, sectionIdx, section, divOrderIdx) {
@@ -459,7 +471,7 @@ na.site = {
                             }
                         );
 
-                        na.site.loadTheme(na.site.loadTheme_initializeExtras, undefined, false, false, na.site.globals.onloadSpecificityName);
+                        //na.site.loadTheme(na.site.loadTheme_initializeExtras, undefined, false, false, na.site.globals.onloadSpecificityName); // not needed here?
 
                         na.site.settings.current.startupErrorsOccurred = 'maybe';
                         //na.site.seeIfAnyStartupErrorsOccurred();
@@ -475,6 +487,7 @@ na.site = {
                         na.site.initializeApps(null, null, null, null, na.site.resizeApps);
                     }, 50);
                 } else {
+                    /*
                     if (typeof na.site.globals.background=='string' && na.site.globals.background!=='')
                     na.backgrounds.next (
                         '#siteBackground',
@@ -484,16 +497,15 @@ na.site = {
                         false,
                         function () {
                         }
-                    );
+                    );*/
 
-
-                    na.site.loadTheme(function() {
+                    /* not needed here?
+                     na.site.loadTheme(function() {
                         setTimeout (function() {
-                            na.te.onload('siteContent'); // do this or cms features wont work
                             na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
-                        }, 500);
-                    }, undefined, false, false, na.site.globals.onloadSpecificityName);
-
+                        }, 100);
+                    });//, undefined, false, false, na.site.globals.onloadSpecificityName);
+                    */
 
                     na.site.settings.current.startupErrorsOccurred = 'maybe';
                     //na.site.seeIfAnyStartupErrorsOccurred();
@@ -992,6 +1004,8 @@ na.site = {
                         : i == l
             );
 
+            if (na.site.globals.themesDBkeys[i].hasData) $(divEl).addClass('hasData');
+
             if (selectMe) {
                 //debugger;
                 $(divEl).addClass('selected');
@@ -1002,6 +1016,7 @@ na.site = {
                 na.te.settings.current.specificity = na.site.globals.themeDBkeys;
             };
 
+            //debugger;
             $('.na_themes_dropdown__specificity > .vividDropDownBox_selector > .vividScrollpane').append($(divEl).clone(true,true));
         };
 
@@ -1022,6 +1037,7 @@ na.site = {
                     if (!$('.na_themes_dropdown__themes > .vividDropDownBox_selector > .vividScrollpane:contains("'+themeName+'")')[0]) {
                         var divEl2 = document.createElement('div');
                         $(divEl2).html(themeName).attr('value',i);
+                        if (it.hasData) $(divEl2).addClass('hasData');
 
                         if (themeName==na.site.globals.themeName) {
                             $(divEl2).addClass('selected');
@@ -1143,12 +1159,9 @@ na.site = {
             $('#nb_url1_dropdown_selector > div, #url1_dropdown_selector > div').click(function(evt) {
                 $('#nb_url1_dropdown_selected, #url1_dropdown_selected').html($(this).html());
                 $('#nb_url1_dropdown_selector > div, #url1_dropdown_selector > div').removeClass('selected');
-                $(this).add(
-                    $('#'+$(this).parent()[0].id.replace('nb_',''))
-                ).addClass('selected');
-
+                $(this).add($('#'+$(this).parent()[0].id.replace('nb_',''))).addClass('selected');
                 $('#nb_url2_value').css({width:120});
-                na.cms.onchange_documentHeaders(evt,na.cms.onresize);
+                na.blog.onchange_documentHeaders(evt,na.blog.onresize);
             });
 
 
@@ -1179,7 +1192,6 @@ na.site = {
             
         }*/
         var btn = $('#'+na.te.settings.current.selectedButtonID)[0];
-        //if (btn) debugger;
         na.te.onclick(btn, false);
 
 
@@ -1242,6 +1254,27 @@ na.site = {
         };
         $.ajax(ajaxCmd);
     },
+    onclick_btnDeleteThisTheme : function (event) {
+        var
+         url = '/NicerAppWebOS/logic.AJAX/ajax_database_deleteThisTheme.php',
+        ajaxCmd = {
+            type : 'POST',
+            url : url,
+            data : {
+                specificityName : na.site.globals.specificityName,
+                theme : na.site.globals.themeName
+            },
+            success : function (data, ts, xhr) {
+                debugger;
+                if (data.indexOf('status : Success')!==-1) na.site.loadTheme(null, null, true, true, false);
+            },
+            error : function (xhr, textStatus, errorThrown) {
+                debugger;
+                na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
+            }
+        };
+        $.ajax(ajaxCmd);
+    },
     onclick_btnDeleteAllUserThemes : function (event) {
         var
          url = '/NicerAppWebOS/logic.AJAX/ajax_database_deleteAllUserThemes.php',
@@ -1279,6 +1312,7 @@ na.site = {
 
     transformLinks : function (rootElement) {
         if (!na.site.globals.useLoadContent) return false;
+        //if ($(rootElement).is('#siteContent')) debugger;
         $('a', rootElement).not('.contentMenu, .noPushState, .hmNavE').each(function(idx, el){
             
             let x = el.href, y = el.target;
@@ -1292,16 +1326,21 @@ na.site = {
                 $(el).attr('onclick', h);
                 $(el).attr('targetDisabled',$(el).attr('target'));
                 $(el).attr('target','');
+                
             } else {
-                let h = "javascript:na.site.loadContent(event,'"+el.href.replace(document.location.origin,'').replace('/view/','')+"');";
+                //$(el).attr('onclick', 'window.open(this.href, this.target);');
+                let h = document.location.href;
+                //el.href = '#';
+                /*
                 $(el).attr('targetDisabled',$(el).attr('target'));
                 $(el).attr('target','');
-                $(el).attr('onclick', h);
+                */
             }
         });
     },
     
     loadContent : function (event, url, callback_phase1, callback_phase2) {
+        //debugger;
         na.apps.mustHaveAtLeast_number = 0;
         na.site.settings.current.url = url;
         //if (na.site.globals.debug['na.site.loadContent']) alert (url);
@@ -1353,7 +1392,7 @@ na.site = {
             History.pushState (null, '', document.location.origin+'/view/'+url);
         } else debugger;
         
-        event.preventDefault();
+        //event.preventDefault();
     },
     
 	stateChange : function(){ 
@@ -1401,7 +1440,7 @@ na.site = {
             url1 = state.url.replace(document.location.origin,'')./*replace('/view/', '').*/replace(/^\//,'');
         }
         
-        if (url1==='') url1 = '/';
+        if (url1.trim()==='') url1 = '/';
 
         na.m.log (200, 'na.s.c.stateChange(2) : na.site.settings.current.url='+state.url);
         na.site.settings.current.url = state.url;
@@ -1511,7 +1550,7 @@ na.site = {
                     $('.lds-facebook').fadeOut('normal');
 
                     if (xhr.status===302) {
-                        var msg = na.m.log (11, fncn+' : REDIRECTED (HTTP 302) -- probably an SEO_value URL -- now calling na.site.loadContent_displayContent(eventData,  xhr.responseText, textStatus, xhr);', false);
+                        var msg = na.m.log (11, fncn+' : REDIRECTED (HTTP 302) -- probably an seoValue URL -- now calling na.site.loadContent_displayContent(eventData,  xhr.responseText, textStatus, xhr);', false);
                         
                         eventData.reports.plaintext.push (msg);
                         
@@ -1661,7 +1700,6 @@ na.site = {
                     //{ getPageSpecificSettings : [na.m.newEventFunction (na.site.getPageSpecificSettings)] }
                     { loadTheme : [na.m.newEventFunction (function() {
                         na.m.waitForCondition ('loadContent_displayContent : na.m.HTMLidle() && !na.site.settings.current.running_loadContent?', function () { var r1 = na.m.HTMLidle(); var r2=!na.site.settings.current.running_loadContent; return r1 && r2;}, function () {
-                            debugger;
                             na.site.loadTheme (null, null, true, true);
                         }, 100);
                     })] },
@@ -1761,7 +1799,6 @@ na.site = {
         c.scriptsToLoadTotal = 0;
         c.scriptsLoaded = false;
         c.scriptsToLoad = 0;
-        debugger;
         for (let divID in dat) {
             i++;
             if (divID==='head') {
@@ -1815,7 +1852,6 @@ na.site = {
                                     script.onload = function () {
                                         var c = na.site.settings.current;
                                         c.scriptsLoaded++;
-                                        debugger;
                                         if (c.scriptsLoaded === c.scriptsToLoadTotal) {
                                             c.scriptsLoaded = true;
                                             c.startingApps = false;
@@ -1887,7 +1923,6 @@ na.site = {
                             if (typeof handlers.onload == 'function') {
                                 c.divsInitializing.push ({appID:appID,divID:divID});
                                 na.m.log (50, fncn+' : #'+divID+' : Now calling na.apps.loaded["'+appID+'"].settings.loadedIn["#'+divID+'"].onload();');
-                                debugger;
                                 //setTimeout(function(){
                                     handlers.onload ({
                                         callbackParams : [ divID ],
@@ -2089,6 +2124,7 @@ na.site = {
                     //if (na.site.globals.themesDBkeys) na.te.specificitySelected(evt);
 
                     if (debugThemeLoading) debugger;
+                    debugger;
                     if (na.site.settings.current.postLoginSaveTheme) {
                         na.site.globals.backgroundSearchKey = $.cookie('siteBackground_search');
                         na.site.globals.background = $.cookie('siteBackground_url');
@@ -3316,6 +3352,7 @@ na.site = {
             !theme
             || typeof theme=='number' // when called via na.site.loadContent()
         ) theme = na.site.globals.themeName;
+        debugger;
 
         na.themeEditor.settings.current.selectedThemeName = theme;
         
@@ -3330,7 +3367,6 @@ na.site = {
             } else {
                 var ct = null;
             }
-            debugger;
             na.site.loadTheme_doGetPageSpecificSettings (function() {
 
                 specificityName = na.site.globals.specificityName;
@@ -3434,15 +3470,15 @@ na.site = {
     loadTheme_do : function (callback, specificityName, theme, loadBackground) {
         var
         fncn = 'na.site.loadTheme_do(callback,theme)',
-        s = na.site.globals.specificity,
+        s = na.site.globals.themeDBkeys,
         u = na.site.settings.current.url,
         apps = na.site.globals.app,
         acData = {
-            orientation : na.site.settings.current.orientation//,
+            orientation : na.site.settings.current.orientation,
+            theme : na.site.globals.themeName
             //theme : theme//,
             //dialogs : JSON.stringify (na.desktop.settings.visibleDivs)
         };
-        debugger;
         if (
             typeof specificityName=='undefined'
             || specificityName===null
@@ -3453,7 +3489,7 @@ na.site = {
         else app = apps;
         //if (app) acData.app = app;
 
-
+debugger;
         if (s) {
             if (s.view) acData.view = s.view;
             if (s.role) acData.role = s.role;
@@ -3477,6 +3513,8 @@ na.site = {
                 }
             }
         } else debugger;
+
+        na.te.onload('siteContent'); // do this or theme saving wont work!
 
         var
         url = '/NicerAppWebOS/logic.AJAX/ajax_database_loadTheme.php',
@@ -3539,7 +3577,7 @@ na.site = {
                 };*/
                 //na.site.setSpecificity (true);
                 na.site.loadTheme_applySettings (dat, callback, loadBackground);
-                na.te.onload('siteContent'); // do this or cms features wont work
+                //na.te.onload('siteContent'); // do this or theme saving wont work!
             },
             error : function (xhr, textStatus, errorThrown) {
                 debugger;
@@ -3817,6 +3855,8 @@ na.site = {
         u = na.site.settings.current.url,
         apps = na.site.globals.app;
 
+        if (typeof theme=='undefined') theme = 'default';
+
         if (!na.te.s.c.forDialogID && !na.te.s.c.forElements) na.te.onload();
 
         if (!theme) theme = na.site.globals.themeName;
@@ -3831,8 +3871,8 @@ na.site = {
         if (!s) return false;        
         if (!theme) theme = $('.na_themes_dropdown__themes > .vividDropDownBox_selected > .vividScrollpane').html();
         
-        //clearTimeout (na.site.settings.current.saveThemeTimeout);
-        //na.site.settings.current.saveThemeTimeout = setTimeout(function() {
+        clearTimeout (na.site.settings.current.saveThemeTimeout);
+        na.site.settings.current.saveThemeTimeout = setTimeout(function() {
             var tApp = null;
             if (
                 na.site.globals.themes
@@ -3945,7 +3985,7 @@ na.site = {
             };
             debugger;
             $.ajax(ac2);
-        //}, 750);
+        }, 335);
     },
 
     loadTheme_fetchDialogs : function (themeData) {

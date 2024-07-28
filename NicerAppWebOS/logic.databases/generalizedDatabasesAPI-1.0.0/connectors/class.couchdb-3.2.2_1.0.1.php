@@ -723,7 +723,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
     public function createDataSet_themes() {
         // TODO : error handling
-        $debug = true;//$this->debug
+        $debug = $this->debug;
         $dataSetName = $this->dataSetName('themes');
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
@@ -841,7 +841,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
                 )
             )
         );
-        if ($debug) { echo '<pre style="color:blue">'; var_dump ($rec); var_dump ($cdb); echo '</pre>'; }
+        if ($debug) { echo '<pre style="color:blue">'; var_dump ($rec); var_dump ($this->cdb); echo '</pre>'; }
         try {
             $this->cdb->post($rec);
         } catch (Exception $e) {
@@ -1656,9 +1656,38 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         //echo '<pre style="color:blue">'; var_dump ($_POST); echo '</pre>';
         //echo '<pre style="color:purple">'; var_dump ($cdb); echo '</pre>';
         $cdb->setDatabase($_POST['database'],false);
+
         $dataID = array_key_exists('dataID',$_POST) ? $_POST['dataID'] : $naWebOS->getDataID($_POST['database'], 'dataID');
         $url1 = array_key_exists('url1',$_POST) ? $_POST['url1'] : 'in';
         $seoValue = array_key_exists('seoValue',$_POST) ? $_POST['seoValue'] : $naWebOS->getDataID($_POST['database'], 'seoValue');
+
+        /* not sure if it needs this code, because ajax_changeNode_documentHeaders in ..../cmsManager already does this!
+        $findCommand = [
+            'selector' => [
+                'url1' => $url1,
+                'seoValue' => $seoValue
+            ],
+            'fields' => [ '_id' ]
+        ];
+        $go = false;
+        try {
+            $call0 = $cdb->find ($findCommand);
+        } catch (Exception $e) {
+            $go = true;
+        };
+        $debugMe1 = false;
+        if ($debugMe1) {
+            var_dump ($dataSetName);
+            var_dump ($findCommand);
+            var_dump ($call0);
+        }
+        $go = count($call0->body->docs) <= 1;
+        if (!$go) {
+            echo 'Document with URL /'.$_POST['user'].'/'.$_POST['url1'].'/'.$_POST['seoValue'].' already exists.';
+            exit();
+        }*/
+
+
         $document = array (
             'database' => $_POST['database'],
             '_id' => $_POST['id'],
@@ -1686,12 +1715,15 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
         };
         $documentToPost = array_merge(isset($documentFromDB)?$documentFromDB:[], $document);
+        //echo 't333: '; var_dump ($documentToPost);
         try { $call = $cdb->post($documentToPost); } catch (Exception $e) { cdb_error (500, $e, 'Could not add/update record '.json_encode($_POST)); exit(); };
+
 
         $dataSet2Name = str_replace('_documents', '_tree', $_POST['database']);
         $cdb->setDatabase($dataSet2Name,false);
         $document = null;
-        try { $call = $cdb->get ($_POST['id']); $documentFromDB = (array)$call->body; } catch (Exception $e) { };// cdb_error (500, $e, 'Could not find record (id='.$_POST['id'].') in '.$dataSetName); exit(); };
+        try { $call = $cdb->get ($_POST['id']); $documentFromDB = (array)$call->body; } catch (Exception $e) { $documentFromDB = []; /*cdb_error (500, $e, 'Could not find record (id='.$_POST['id'].') in '.$dataSetName); exit(); */};
+
 
         //var_dump ($documentFromDB); die();
 

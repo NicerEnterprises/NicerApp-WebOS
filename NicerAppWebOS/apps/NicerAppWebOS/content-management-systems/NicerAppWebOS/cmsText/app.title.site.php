@@ -25,6 +25,8 @@ global $naWebOS;
 $cdb = $naWebOS->dbsAdmin->findConnection('couchdb')->cdb;
 
 $cdb->setDatabase(str_replace('_tree', '_documents', $view['database']),false);
+//echo '<pre style="color:lime;background:rgba(0,0,50,0.7);">'; var_dump ($view); echo '</pre>';
+
 try { $call = $cdb->get ($view['id']); } catch (Exception $e) { echo $e->getMessage(); exit(); };
 
 echo $call->body->pageTitle.' on Said.by';

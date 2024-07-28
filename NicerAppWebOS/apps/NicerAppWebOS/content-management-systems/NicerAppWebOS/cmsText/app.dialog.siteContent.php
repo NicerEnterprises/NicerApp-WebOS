@@ -39,7 +39,7 @@ $doc = $call->body->document;
 
 
 
-$p = preg_match_all ('/<p>.*?:({"mediaFolder":".*?"}):.*?<\/p>/', $doc, $matches, PREG_OFFSET_CAPTURE);
+$p = preg_match_all ('/<p>.*?:({"mediaFolder":".*?",".*?":["\d]*.*["\d]*}):.*?<\/p>/', $doc, $matches, PREG_OFFSET_CAPTURE);
 //echo '<pre style="color:yellow;background:black;">'; var_dump ($matches); echo '</pre><br/>'; exit();
 foreach ($matches[1] as $idx => $match) {
 
@@ -49,7 +49,7 @@ foreach ($matches[1] as $idx => $match) {
         //echo '<pre style="color:yellow;background:navy;">'; var_dump (htmlentities($doc)); echo '</pre><br/>'; //exit();
         //echo '<pre style="color:lime;background:navy;">'; var_dump ($matches[0][$idx]); echo '</pre><br/>';exit();
 
-        $doc = str_replace ($matches[0][$idx][0], naPhotoAlbum($cmd['mediaFolder']), $doc);
+        $doc = str_replace ($matches[0][$idx][0], naPhotoAlbum($cmd), $doc);
         //echo '<pre style="color:yellow;background:navy;">'; var_dump (htmlentities($doc)); echo '</pre><br/>'; //exit();
     }
 }
