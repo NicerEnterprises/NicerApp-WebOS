@@ -1348,12 +1348,13 @@ na.site = {
         
    // debugger;
         if (!url.match(/\/view\//) && url.indexOf('/')===0) {
+            event.preventDefault();
             History.pushState (null, '', document.location.origin+url);
         } else if (url.indexOf('/')===-1) {
+            event.preventDefault();
             History.pushState (null, '', document.location.origin+'/view/'+url);
         } else debugger;
-        
-        event.preventDefault();
+
     },
     
 	stateChange : function(){ 
@@ -1704,8 +1705,10 @@ na.site = {
             if (!na.site.settings.buttons['#'+el.id]) na.site.settings.buttons['#'+el.id] = new naVividButton(el);
         });
 
+        /* i have no idea anymore what this is supposed to do! ;)
         var sel = document.querySelectorAll('.contentSectionTitle3_a');
         if (sel) for (let i = 0; i < sel.length; i++) { var sel2 = sel[i]; sel2.addEventListener('click',na.m.handleGalleryLinkClick); }
+        */
 
         $('p, h1, h2, h3').addClass('todoList');
 
@@ -3442,7 +3445,7 @@ na.site = {
             //theme : theme//,
             //dialogs : JSON.stringify (na.desktop.settings.visibleDivs)
         };
-        debugger;
+        //debugger;
         if (
             typeof specificityName=='undefined'
             || specificityName===null
@@ -3476,7 +3479,7 @@ na.site = {
                     delete acData.url;
                 }
             }
-        } else debugger;
+        } // don't think we need this anymore either : //else debugger;
 
         var
         url = '/NicerAppWebOS/logic.AJAX/ajax_database_loadTheme.php',
@@ -3487,12 +3490,16 @@ na.site = {
             success : function (data, ts, xhr) {
                 // reload #cssPageSpecific and #jsPageSpecific
                 if (data=='status : Failed.') {
-                    na.m.log (10, 'na.site.loadTheme() : FAILED (HTTP SUCCESS, but no theme was found)');
+                    var msg = 'na.site.loadTheme() : FAILED (HTTP SUCCESS, but no theme was found)';
+                    na.m.log (10, msg);
+                    na.site.fail (msg);
                     na.site.loadTheme_applySettings (na.site.globals.themes[na.site.globals.themeName]);
                     if (typeof callback=='function') callback(true);
                     return false;
                 } else if (data==='') {
-                    na.m.log (10, 'na.site.loadTheme() : FAILED (HTTP SUCCESS, but no data returned at all)');
+                    var msg = 'na.site.loadTheme() : FAILED (HTTP SUCCESS, but no data returned at all)';
+                    na.m.log (10, msg);
+                    na.site.fail (msg);
                     na.site.loadTheme_applySettings (na.site.globals.themes[na.site.globals.themeName]);
                     na.site.loadTheme_initializeExtras();
                     if (typeof callback=='function') callback(true);
@@ -3501,7 +3508,10 @@ na.site = {
                 try {
                     var themes = JSON.parse(data);
                 } catch (error) {
-                    na.m.log (10, 'na.site.loadTheme() : FAILED (could not decode JSON data - '+error.message+')+');
+                    var msg =
+                        'na.site.loadTheme() : FAILED (could not decode JSON data - '+error.message+')';
+                    na.m.log (10, msg);
+                    na.site.fail (msg);
                     na.site.loadTheme_applySettings (na.site.globals.themes[na.site.globals.themeName]);
                     if (typeof callback=='function') callback(true);
 
@@ -3918,7 +3928,7 @@ na.site = {
                 url : url,
                 data : themeData,
                 success : function (data, ts, xhr) {
-                    debugger;
+                    //debugger;
                     if (data.match('status : Failed')) {
                         $('#siteLoginFailed').html('Could not save settings. Please login again.').fadeIn('normal', 'swing', function () {
                             setTimeout (function() {
@@ -3943,7 +3953,7 @@ na.site = {
                     na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
                 }                
             };
-            debugger;
+            //debugger;
             $.ajax(ac2);
         //}, 750);
     },

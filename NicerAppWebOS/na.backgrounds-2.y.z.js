@@ -37,7 +37,6 @@ na.backgrounds = {
         $.ajax(ajaxCmd);
     },
     next : function (div, search, url, saveTheme, callback, callStack) {
-        debugger;
         if (na.site.globals.debug_backgroundChanges) debugger;
         //return false;
 
@@ -110,7 +109,6 @@ na.backgrounds = {
                 };
             }
             
-            debugger;
             if (hits.length===0) return false;
  //debugger;
             var

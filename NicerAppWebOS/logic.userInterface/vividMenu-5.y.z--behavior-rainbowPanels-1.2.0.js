@@ -532,7 +532,7 @@ class naVividMenu__behavior_rainbowPanels {
                 //left : p_bcr.left-tel_bcr.left+(it.level>2?$(it.b.el).width()*.7:10),
                 //top : $(window).height() - 170 -  (p_bcr.height+na.d.g.margin)
             });
-            debugger;
+            //debugger;
             if (!it.b.el.parentNode) {
                 $(it.b.el).appendTo(container);
                 if (t.debugMe) na.m.log (20, 'naVividMenu.showMenuItem() : placing "'+it.label+'" into #'+container.id, false);
@@ -606,7 +606,7 @@ class naVividMenu__behavior_rainbowPanels {
                 numRows = $('#'+t.el.id+' > .vividMenu_mainUL > li').length;
                 numColumns = 1;
             }
-            debugger;
+            //debugger;
             if (!it.b.el.parentNode) {
                 na.m.log (20, 'naVividMenu.showMenuItem() : placing "'+it.label+'" into #'+container.id, false);
                 $(it.b.el).css({display:'inline-block',position:'absolute'}).detach().appendTo(container);
@@ -657,7 +657,7 @@ class naVividMenu__behavior_rainbowPanels {
             : 'relative'
         );
 
-        debugger;
+        //debugger;
         $(it.b.el).css ({
             opacity : 1,
             display : 'block',
