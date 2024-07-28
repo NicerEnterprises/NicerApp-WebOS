@@ -232,21 +232,28 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                         var l = data.selected.length, rec = null;
                         for (var i=0; i<l; i++) {
                             var d = data.selected[i], rec2 = data.instance.get_node(d);
-                            if (rec2 && rec2.original) rec = rec2;
+                            if (rec2 && rec2.original) {
+                                rec = rec2;
+                                na.cms.settings.current.selectedTreeNode = rec;
+                            }
                         }
 
+                        debugger;
                         if (
                             na.cms.settings.current.selectedTreeNode
                             && rec
                             && na.cms.settings.current.selectedTreeNode.id!==rec.id
                             && na.cms.settings.current.selectedTreeNode.type=='naDocument'
                         ) na.cms.saveEditorContent(na.cms.settings.current.selectedTreeNode, function(){
-                            na.cms.settings.current.selectedTreeNode = rec;
-                            na.cms.onchange_selectedNode (settings, data, rec, function() {
-                                na.cms.refresh(function() {
-                                  na.cms.onchange_jsTreeNode(settings, data,rec);
+                            debugger;
+                            //if (na.cms.settings.current.selectedTreeNode.id===rec.id) {
+                                na.cms.settings.current.selectedTreeNode = rec;
+                                na.cms.onchange_selectedNode (settings, data, rec, function() {
+                                    na.cms.refresh(function() {
+                                    na.cms.onchange_jsTreeNode(settings, data,rec);
+                                    });
                                 });
-                            });
+                            //}
                         })
                         else if (rec) na.cms.onchange_jsTreeNode(settings, data, rec);
 
@@ -1135,6 +1142,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 order : JSON.stringify(order)
             },
             success : function (data, ts, xhr) {
+                debugger;
                 na.cms.refresh();
             },
             error : function (xhr, textStatus, errorThrown) {
@@ -1220,7 +1228,8 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 var parent = $('#jsTree').jstree(true).get_node(na.cms.sel.original.parent);
                 debugger;
                 na.cms.onchange_selectedNode ( {}, null, parent, function() {
-                    setTimeout (na.cms.refresh, 1000);//function() {
+                    na.cms.refresh();
+                    //setTimeout (na.cms.refresh, 1000);//function() {
                     //      na.cms.onchange_jsTreeNode(settings, data,rec);
                     //});
                 });
