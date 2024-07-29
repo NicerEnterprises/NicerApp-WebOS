@@ -1267,7 +1267,6 @@ class naVividMenu__behavior_rainbowPanels {
 
             //$('#'+panelID+' .vividMenu_item').remove(); // PREVENTS 2nd SHOWING OF SUB-MENUS.
 
-            debugger;
             if (myKids && myKids.length > 0)
             for (var i=0; i<myKids.length; i++) {
                 var
@@ -1308,8 +1307,6 @@ class naVividMenu__behavior_rainbowPanels {
                     );
                 }
             } else {
-                debugger;
-
                 var
                 it2 = t.items[pit.idx],
                 panelID = t.el.id+'__panel__'+pit.idx,
@@ -1324,6 +1321,7 @@ class naVividMenu__behavior_rainbowPanels {
                     $(x1.b.el).offset().left - $(t.el).offset().left,
                     $(x1.b.el).offset().top - $(t.el).offset().top
                 );
+                t.showBackPanel(t, t.currentEl);
             }
 
             //t.showBackPanel(t, el);
