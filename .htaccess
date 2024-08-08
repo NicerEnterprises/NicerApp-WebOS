@@ -200,6 +200,9 @@ Options +FollowSymLinks
     RewriteCond %{REQUEST_METHOD} ^(GET)$
     RewriteRule ^nc$ NicerAppWebOS/index.php?uvt=n&lc=n&viewID=/ [L]
 
+    RewriteCond %{REQUEST_METHOD} ^(GET)$
+    RewriteRule ^dtl$ NicerAppWebOS/index.php?dtl=y [L]
+
     # /*--all other pages--*/
 
     # all other pages' data that got requested with (javascript) $.ajax aka na.site.loadContent()

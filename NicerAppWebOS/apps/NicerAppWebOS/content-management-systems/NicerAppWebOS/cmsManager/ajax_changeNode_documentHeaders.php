@@ -13,7 +13,7 @@ if (strpos($_POST['database'], '_tree')===false)
 
 
 
-$debug = false;
+$debug = true;
 global $naWebOS;
 $db = $naWebOS->dbs->findConnection('couchdb');
 
@@ -46,7 +46,7 @@ $go = (
     count($call0->body->docs) === 0
     || (
         count($call0->body->docs) === 1
-        && $call0->body->docs[0]['id'] == $_POST['id']
+        && $call0->body->docs[0]->id == $_POST['id']
     )
 );
 if (!$go) {

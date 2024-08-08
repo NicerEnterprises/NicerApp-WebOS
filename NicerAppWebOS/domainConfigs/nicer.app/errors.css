@@ -1,3 +1,31 @@
+.naDebugData {
+    margin : 5px;
+    background : navy;
+    color : yellow;
+    border-radius : 8px;
+}
+.naDebugData_getPageCSS {
+    margin : 5px;
+    background : green;
+    color : lime;
+    border-radius : 8px;
+}
+.naDebugData_getPageCSS_checkPermissions {
+    margin : 5px;
+    background : orange;
+    color : white;
+    border-radius : 8px;
+}
+.naDebugData_getPageCSS_specific {
+    margin : 5px;
+    background : purple;
+    color : white;
+    border-radius : 8px;
+}
+
+
+
+
 .phpError {
     margin : 10px;
     border : 1px solid navy;
