@@ -393,6 +393,8 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
         if (isset($call)) $cdb->post($rec);
     }
 
+    $now = DateTime::createFromFormat('U.u', microtime(true));
+    $s3 = (int)$now->format("u"); // milliseconds after 's2' listed below here.
     $err = [
         'type' => 'New request',
         's1' => (
@@ -401,6 +403,7 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
             : $_SESSION['started']
         ),
         's2' => time(),//microtime(true),
+        's3' => $s3,
         'i' => (
             session_status() === PHP_SESSION_NONE
             ? false

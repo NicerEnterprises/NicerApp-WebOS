@@ -113,11 +113,13 @@ echo $naWebOS->html_vividButton (
     $findCommand = [
         'selector' => [
             's2' => [ '$gt' => 0 ],
+            's3' => [ '$exists' => true ],
             'isIndex' => true
         ],
         'fields' => ['_id' ],
         'sort' => [
                 [ 's2' => 'desc' ],
+                [ 's3' => 'desc' ],
                 [ 'isIndex' => 'desc' ],
                 [ 'isBot' => 'desc' ],
                 [ 'isLAN' => 'desc' ]

@@ -101,14 +101,16 @@ if ($appRec['page']=='index') {
     // fetch dataRecord
     $findCommand = [
         'selector' => [
-            's2' => [ '$gt' => 0 ],
+            's2' => [ '$exists' => true ],
+            's3' => [ '$exists' => true ],
             'isIndex' => true,
             'isBot' => false,
             'isLAN' => false
         ],
-        'fields' => ['_id', 's2', 'isIndex', 'isBot', 'isLAN' ],
+        'fields' => ['_id', 's2', 's3', 'isIndex', 'isBot', 'isLAN' ],
         'sort' => [
             [ 's2' => 'desc' ],
+            [ 's3' => 'desc' ],
             [ 'isIndex' => 'desc' ],
             [ 'isBot' => 'desc' ],
             [ 'isLAN' => 'desc' ]
@@ -122,7 +124,7 @@ if ($appRec['page']=='index') {
     try {
         $call = $cdb->find ($findCommand);
     } catch (Exception $e) {
-        echo '<pre>tt33 ';var_dump ($cdb);echo '</pre>';
+        //echo '<pre>tt33 ';var_dump ($cdb);echo '</pre>';
         //echo '<pre>'; echo json_encode(debug_backtrace(), JSON_PRETTY_PRINT); echo '</pre>';
         $msg = $fncn.' FAILED (siteToolbarLeft) while trying to find in \''.$dbName.'\' : '.$e->getMessage();
         echo $msg;

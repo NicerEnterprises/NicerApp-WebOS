@@ -1348,10 +1348,10 @@ na.site = {
         
    // debugger;
         if (!url.match(/\/view\//) && url.indexOf('/')===0) {
-            event.preventDefault();
+            if (event) event.preventDefault();
             History.pushState (null, '', document.location.origin+url);
         } else if (url.indexOf('/')===-1) {
-            event.preventDefault();
+            if (event) event.preventDefault();
             History.pushState (null, '', document.location.origin+'/view/'+url);
         } else debugger;
 

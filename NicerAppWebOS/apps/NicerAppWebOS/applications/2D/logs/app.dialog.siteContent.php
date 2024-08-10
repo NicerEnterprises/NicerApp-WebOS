@@ -15,7 +15,8 @@ if ($appRec['page']=='index') {
         // fetch dataRecord
         $findCommand2 = [
             'selector' => [
-                's2' => [ '$gt' => 0 ],
+                's2' => [ '$exists' => true ],
+                's3' => [ '$exists' => true ],
                 'isIndex' => true,
                 'isBot' => false,
                 'isLAN' => false
@@ -23,6 +24,7 @@ if ($appRec['page']=='index') {
             'fields' => ['_id', 's2', 'isIndex', 'isBot', 'isLAN' ],
             'sort' => [
                 [ 's2' => 'desc' ],
+                [ 's3' => 'desc' ],
                 [ 'isIndex' => 'desc' ],
                 [ 'isBot' => 'desc' ],
                 [ 'isLAN' => 'desc' ]
@@ -34,7 +36,7 @@ if ($appRec['page']=='index') {
     try {
         $call = $cdb->find ($findCommand2);
     } catch (Exception $e) {
-        echo '<pre>app.dialog.siteContent.php::';var_dump ($cdb);echo '</pre>';
+        //echo '<pre>app.dialog.siteContent.php::';var_dump ($cdb);echo '</pre>';
 
         $msg = $fncn.' FAILED (siteContent) while trying to find in \''.$dbName.'\' : '.$e->getMessage();
         //trigger_error ($msg, E_USER_ERROR);
@@ -114,7 +116,7 @@ if ($appRec['page']=='index') {
 
     }
     $html = '';
-    $html .= '<script type="text/javascript">na.m.clearAllConditions(); na.hms.quitAllProcessing(); na.m.waitForCondition("scope0", function() { return document.getElementById("scope0_data_0") }, function() {na.site.settings.current.running_loadTheme = false; na.site.settings.current.loadingApps = false; na.hms.startProcessing(); na.site.transformLinks(); na.site.startTooltips(event,$("#siteContent")[0]);}, 150); </script>';
+    $html .= '<script type="text/javascript">na.m.clearAllConditions(); na.hms.quitAllProcessing(); na.m.waitForCondition("scope1", function() { return document.getElementById("scope1_data_0") && !na.site.settings.current.startingApps && na.site.settings.current.siteInitialized }, function() {na.site.settings.current.running_loadTheme = false; na.site.settings.current.loadingApps = false; na.hms.startProcessing(); na.site.transformLinks(); na.site.startTooltips(event,$("#siteContent")[0]);}, 150); </script>';
     echo $html;
 
 

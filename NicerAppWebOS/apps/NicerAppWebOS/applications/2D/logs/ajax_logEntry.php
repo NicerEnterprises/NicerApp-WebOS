@@ -15,11 +15,13 @@ if (!$naLAN) die('403 Forbidden.');
     $findCommand = [
         'selector' => [
             'i' => $_GET['i'],
-            's2' => [ '$ne' => null ]
+            's2' => [ '$ne' => null ],
+            's3' => [ '$ne' => null ]
         ],
         'fields' => ['_id'],
         'sort' => [
                 [ 's2' => 'desc' ],
+                [ 's3' => 'desc' ],
                 [ 'isIndex' => 'desc' ],
                 [ 'isBot' => 'desc' ],
                 [ 'isLAN' => 'desc' ]

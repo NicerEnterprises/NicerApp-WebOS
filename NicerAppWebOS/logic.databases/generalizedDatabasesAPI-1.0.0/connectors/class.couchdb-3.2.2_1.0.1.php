@@ -719,6 +719,20 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         } catch (Exception $e) { echo $e->getMessage(); };
 
         $this->cdb->setDatabase($dataSetName, true);
+
+        $rec = [
+            'index' => [
+                'fields' => [ 'ip' ]
+            ],
+            'name' => 'primaryIndex',
+            'type' => 'json'
+        ];
+        try {
+            $this->cdb->setIndex ($rec);
+        } catch (Exception $e) {
+            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
+        }
+
     }
 
     public function createDataSet_themes() {
@@ -1199,7 +1213,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
         $rec = [
             'index' => [
-                'fields' => [ 's2', 'isIndex', 'isBot', 'isLAN' ]
+                'fields' => [ 's2', 's3', 'isIndex', 'isBot', 'isLAN' ]
             ],
             'name' => 'pageLoad',
             'type' => 'json'

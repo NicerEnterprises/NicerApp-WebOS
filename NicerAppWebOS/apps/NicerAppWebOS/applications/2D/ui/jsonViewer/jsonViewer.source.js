@@ -2,10 +2,10 @@
 nicerapp.hms = nicerapp.jsonViewer = {
 	about : {
 		whatsThis : 'hm() and na.hms = na.jsonViewer = a way to send larg	e recursive data objects to the browser from PHP and view them in a collapsed-expansible view with many bells and whistles.',
-		copyright : '(c) (r) 2010-2013 by [the owner of nicerapp.com] <nicerapp@gmail.com>',
-		license : 'http://nicerapp.com/nicerapp/license.txt',
+		copyright : '(C) (R) 2010-2024 by rene.veerman.netherlands@gmail.com',
+		license : 'http://nicerapp.com/license',
 		noWarranty : 'NO WARRANTY EXPRESSED OR IMPLIED. USE ONLY AT YOUR OWN RISK.',
-		version: '1.6.7',
+		version: '1.7.0',
 		dependencies: {
 			'jQuery.com': 'version>=1.4'
 		},
