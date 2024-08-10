@@ -14,7 +14,7 @@ nicerapp.hms = nicerapp.jsonViewer = {
 		knownBugs : {
 			0 : "Not too many I hope. Regardless, work on this component continues in the next few weeks."
 		},
-		downloadURL : 'http://nicerapp.com/'
+		downloadURL : 'http://nicer.app/'
 	},
 
 	options: {
