@@ -414,7 +414,11 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
         $rec = [
             'index' => [
-                'fields' => [ [ 'date' => 'asc' ], [ 'datetime' => 'asc' ] ]
+                'fields' => [
+                    [ 'date' => 'asc' ],
+                    [ 'datetime' => 'asc' ],
+                    [ 'milliseconds' => 'asc' ]
+                ]
             ],
             'name' => 'primaryIndex',
             'type' => 'json'
