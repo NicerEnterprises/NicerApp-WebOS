@@ -219,10 +219,14 @@ class NicerAppWebOS {
         $this->showAllErrors = !array_key_exists('sae', $_REQUEST) || $_REQUEST['sae']==='y';
         //echo '<pre>1234:'; var_dump ($_GET); echo '</pre>';
 
-        if (array_key_exists('viewID', $_GET)) {
+        if (
+            array_key_exists('viewID', $_GET)
+            || $_GET['seoValue']===''
+        ) {
             if (
                 $_GET['viewID']==''
                 || $_GET['viewID']=='/'
+                || $_GET['seoValue']===''
             ) {
                 $view = [
                     '/' => [
@@ -647,6 +651,8 @@ class NicerAppWebOS {
             trigger_error ($msg, E_USER_ERROR);
             return $this->getContent__standardErrorMessage($msg);
         } else {
+            if ($_GET['seoValue']=='') $_GET['seoValue'] = '/';
+
             if (
                 $this->nonEmptyStringField('username',$_GET)
                 && $this->nonEmptyStringField('url1',$_GET)

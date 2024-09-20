@@ -829,7 +829,7 @@ na.site = {
                                     $('#siteLogin #rememberme')[0].checked = true;
                                     na.site.login(null, false);
                                 });
-                            }, (na.site.globals.tis.errorMsgs_long));
+                            }, (na.site.globals.tims.errorMsgs_long));
                         });
                     })
                     else na.site.settings.current.testDBsuccessful = true;
@@ -3298,11 +3298,11 @@ na.site = {
                                             left : ( $(window).width() - $('#siteLogin').width() ) / 2
                                         });
                                     });
-                                }, na.site.globals.tis.errorMsgs_short);
+                                }, na.site.globals.tims.errorMsgs_short);
                             } else {
                                 setTimeout (function() {
                                     $('#siteLoginFailed').css({opacity:1}).fadeOut('normal', 'swing');
-                                }, na.site.globals.tis.errorMsgs_short);
+                                }, na.site.globals.tims.errorMsgs_short);
                             }
                         });
                     });

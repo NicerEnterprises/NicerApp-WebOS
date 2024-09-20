@@ -15,7 +15,8 @@
     <p>
     Take a video or (tiled) background of any resolution, and project information onto that using any weblanguage you want.<br/>
     Written in a style simple enough for children to learn from.<br/>
-    This is the <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" class="nomod noPushState" target="v5">5th major version</a> of this software, <a href="https://github.com/NicerEnterprises/NicerApp-WebOS-v6.y.z" class="nomod noPushState" target="v6">version 6</a> can be found <a class="nomod noPushState" href="https://new.nicer.app" target="newNA">here</a>.
+    <!--This is the <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" class="nomod noPushState" target="v5">5th major version</a> of this software, <a href="https://github.com/NicerEnterprises/NicerApp-WebOS-v6.y.z" class="nomod noPushState" target="v6">version 6</a> can be found <a class="nomod noPushState" href="https://new.nicer.app" target="newNA">here</a>.-->
+    This is the 5th major version of this software, version 6 can be found <a class="nomod noPushState" href="https://new.nicer.app" target="newNA">here</a>.
     </p>
 
     <p>

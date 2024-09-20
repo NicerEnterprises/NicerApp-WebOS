@@ -5,8 +5,6 @@
 
 <h1 class="contentSectionTitle2"><span class="contentSectionTitle2_span">NicerApp WebOS Development Direction</span></h1><br/><br/>
 
-<p class="todoList">FYI : major release time is Christmas Day each year.</p>
-
 <ol class="todoList">
     <li class="todoList"><div>(CURRENT) (2024) Write the <a class="nomod noPushState" href="https://new.nicer.app" target="nna">next major version</a>.
         <ol class="todoList_l1">
@@ -17,14 +15,14 @@
             <li class="todoList_l1"><div>how to move DIV dialogs/windows in and out of view on a screen that may change it's orientation at any time, on demand.</div></li>.
         </ol>
     </li>
-    <li class="todoList"><div>(CURRENT) (Jan 2024) Fix bugs in the Theme Editor and page loading mechanism of v5.y.z</div></li>
+    <li class="todoList"><div>(NEARLY DONE) (Aug 2024) Fix bugs in the Theme Editor and page loading mechanism of v5.y.z</div></li>
 
+    <li class="todoList"><div>(CURRENT) (Aug 2024) Add SQL capabilities to .../logic.databases</div></li>
 
     <li class="todoList"><div>(CURRENT) (2023 Oct,Nov,Dec) Upgrade the blogging features.
         <ol class="todoList_l1">
-            <li class="todoList_l1"><div>(STALLED) Create a custom HTML WYSIWYG rich-text editor component of my own, that ties into the NicerApp Theme Editor.<br/>
+            <li class="todoList_l1"><div>(Jan 2025) Create a new HTML WYSIWYG rich-text editor component (that will be entirely created from scratch by me, ensuring i have the copyright and rights reserved for this component), that ties into the NicerApp Theme Editor.<br/>
             This is stalled because browser makers need to start supporting a window.getSelection() that returns a .anchorOffset and .extentOffset that works on the .innerHTML instead of the .innerText of any given element (usually the .commonAncestorElement).<br/>
-            UPDATE : I can strip the code that I need[1] from the way tinymce does the work for it's link-dialog and color highlighting dropdown dialog, but this will not be easy; due to the many work arounds needed at the browser level, tinymce is about 27500 lines of code, much of which comes into play during simple tasks like this.<br/>
             <br/>
             [1] I need 'id' and 'classNames' input fields in the tinymce toolbar (to tie edited content into my universal web theme editor for my CMS/WebOS), creating a tinymce-4.9.11-na-1.0.0 branch of the <a href="https://www.tiny.cloud/" class="noPushState" target="tinymce">tinymce</a> MIT licensed v4.9 code.<br/>
             I've taken the liberty of web form contacting the tinymce sales team to ask if they can implement this for universal web theme editor builders for free.
@@ -96,7 +94,7 @@
     </div>
     </li>
 
-    <li class="todoList"><div>Build a comments engine and user-interface (again).</div></li>
+    <li class="todoList"><div>Build a comments engine and user-interface again, this time comments get stored in a database instead of on the server filesystem.</div></li>
 
     <li class="todoList"><div>Figure out a way to store the width and height of each background found in the filesystem in the output of .../NicerAppWebOS/domainConfigs/DOMAIN.TLD/ajax_backgrounds_recursive.php and .../NicerAppWebOS/domainConfigs/DOMAIN.TLD/ajax_backgrounds.php.<br/>
     (NOT DONE) Then use this information in the backgrounds menu to select only elligible backgrounds, and popup an error message 'No backgrounds found, reverting to search key = {$someSearchKey}' when no backgrounds are found for the current search / menu-option.</div></li>

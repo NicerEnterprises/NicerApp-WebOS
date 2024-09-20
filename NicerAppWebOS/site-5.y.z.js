@@ -2,7 +2,7 @@ var NicerApp_WebOS = nicerapp = na = {};
 na.site = {
     about : {
         firstCreated : '10 January 2002',
-        copyright : '<table style="height:100%;"><tr><td>Copyright (C) 2002-2024 by Nicer Enterprises</td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>',
+        copyright : '<table style="height:100%;"><tr><td>Copyright (C) 2002-2024 by <a href="mailto:nicer.enterprises.netherlands@gmail.com">Nicer Enterprises</a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>',
     },
     
     errors : {
@@ -20,7 +20,7 @@ na.site = {
         appPrefix : '/NicerAppWebOS/apps/NicerAppWebOS/',
         smallDeviceWidth : 1081,
         reallySmallDeviceWidth : 700,
-        tis : { // timeInMilliseconds
+        tims : { // timeInMilliseconds
             errorMsgs_short : 1.5 * 1000,
 
             errorMsgs_long : 3 * 1000
@@ -77,7 +77,7 @@ na.site = {
             $.cookie('agreedToPolicies')!=='true'
             ? '<table style=""><tr><td><a href="/" style="padding:0;text-shadow:0px 0px 5px rgba(0,0,0,0.8);">'+na.site.globals.domain+'</a> only uses cookies for remembering user settings.</td>'
                 + '<td style="width:66px;"><div class="vividButton" theme="dark" style="position:relative;color:white;width:40px;height:20px;" onclick="na.site.dismissCookieWarning();">Ok</div></td></table>'
-            : '<table style="height:100%;"><tr><td>Opensourced <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" target="_new" class="nomod noPushState contentSectionTitle1_a"><span class="contentSectionTitle1_span">here</span></a>, Copyright (C) 2002-2024 by Nicer Enterprises</td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
+            : '<table style="height:100%;"><tr><td>Copyright (C) and All Rights Reserved (R) 2002-2024 by <a href="mailto:nicer.enterprises.netherlands@gmail.com">Nicer Enterprises</a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
         );
 
 
@@ -817,7 +817,7 @@ na.site = {
                                     $('#siteLogin #rememberme')[0].checked = true;
                                     na.site.login(null, false);
                                 });
-                            }, (na.site.globals.tis.errorMsgs_long));
+                            }, (na.site.globals.tims.errorMsgs_long));
                         });
                     })
                     else na.site.settings.current.testDBsuccessful = true;
@@ -3265,11 +3265,11 @@ na.site = {
                                             left : ( $(window).width() - $('#siteLogin').width() ) / 2
                                         });
                                     });
-                                }, na.site.globals.tis.errorMsgs_short);
+                                }, na.site.globals.tims.errorMsgs_short);
                             } else {
                                 setTimeout (function() {
                                     $('#siteLoginFailed').css({opacity:1}).fadeOut('normal', 'swing');
-                                }, na.site.globals.tis.errorMsgs_short);
+                                }, na.site.globals.tims.errorMsgs_short);
                             }
                         });
                     });

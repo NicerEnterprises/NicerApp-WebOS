@@ -1,18 +1,7 @@
-BASED ON https://opensource.org/licenses/MIT
+Copyright (c)/(C) and All Rights Reserved (r)/(R) {i am not a lawyer, nor can i afford one at the moment} 2002-2024 by Nicer Enterprises - <a href="mailto:nicer.enterprises.netherlands@gmail.com">nicer.enterprises.netherlands@gmail.com</a>
+Opensourced at <a href="https://github.com/NicerEnterprises/" target="ghna" class="nomod noPushState">https://github.com/NicerEnterprises/</a>.
 
-Copyright 2002-2024 Nicer Enterprises.
-CEO, CTO & CFO : Rene A.J.M. Veerman, rene.veerman.netherlands@gmail.com
+This software is currently in alpha phase. That means while most of the features work, there probably are still some undiscovered bugs to fix.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software
-and associated documentation files (the “Software”), to deal in the Software without restriction,
-including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
-and/or sell (modified) copies of the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
-AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+For more information, please email me for price quotes, as all NicerApp installations will need to be (initially) supervised by me myself. For those who know coding (one of my target audiences), you can try to get it up and running yourself. At github, you'll find detailed README files that are kept up to date with the <a href="kubuntu.com" target="kubuntuOS" class="nomod noPushState">free Kubuntu.com OS</a>.
+I charge 49 Euros per hour of work, 99 euro per month for hosting, and 10% of profits generated with the aid of my software.

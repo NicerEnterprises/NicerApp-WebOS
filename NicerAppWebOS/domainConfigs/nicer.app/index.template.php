@@ -6,13 +6,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" style="width:100%;height:100%;">
 <head>
 <!--
-https://nicer.app and https://said.by are Copyrighted (C) and have All Rights Reserved (R) 2002-2023
-by Rene A.J.M. Veerman from The Netherlands.
+https://nicer.app and https://said.by are Copyrighted (C) and have All Rights Reserved (R) 2002-2024
+by Rene A.J.M. Veerman <rene.veerman.netherlands@gmail.com>.
 
 THIS IS NOW A CLOSED-SOURCE PROJECT.
 SEE THE NEW LICENSE CONTENT FILE ON THE WEBFACING FRONT PAGE OF THIS WEBSITE.
 
-LICENSE : see https://nicer.app/docs-license
+LICENSE : see https://nicer.app/license
 -->
 
 <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
