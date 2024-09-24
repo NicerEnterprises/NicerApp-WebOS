@@ -15,12 +15,14 @@
     <p>
     Take a video or (tiled) background of any resolution, and project information onto that using any weblanguage you want.<br/>
     Written in a style simple enough for children to learn from.<br/>
-    <!--This is the <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" class="nomod noPushState" target="v5">5th major version</a> of this software, <a href="https://github.com/NicerEnterprises/NicerApp-WebOS-v6.y.z" class="nomod noPushState" target="v6">version 6</a> can be found <a class="nomod noPushState" href="https://new.nicer.app" target="newNA">here</a>.-->
-    This is the 5th major version of this software, version 6 can be found <a class="nomod noPushState" href="https://new.nicer.app" target="newNA">here</a>.
+    This is the <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" class="nomod noPushState" target="v5">5th major version</a> of this software, <a href="https://github.com/NicerEnterprises/NicerApp-WebOS-v6.y.z" class="nomod noPushState" target="v6">version 6</a> can be found <a class="nomod noPushState" href="https://new.nicer.app" target="newNA">here</a>.
+    <!--This is the 5th major version of this software, version 6 can be found <a class="nomod noPushState" href="https://new.nicer.app" target="newNA">here</a>.-->
     </p>
 
     <p>
-    Due to maintenance difficulties (a desktop operating system upgrade with side-effects), not all of these pages and sites work correctly at the moment.
+    Due to maintenance difficulties (a desktop operating system upgrade with side-effects), not all of these pages and sites work correctly at the moment.<br/>
+    UPDATE (20-09-2024) : these problems are persisting longer than usual this year. this can and will happen to many website-owners (who specialize in apps development) on my type of operating system every 2 years, from April to late September, but hopefully not much longer than that.<br/>
+    I am currently awaiting for my database server providers to upgrade their software to this latest major upgrade of my core PC operating system.
     </p>
 
     <h2 class="contentSectionTitle1"><span class="contentSectionTitle1_span">Available Apps</span></h2>

@@ -4,4 +4,4 @@ Opensourced at <a href="https://github.com/NicerEnterprises/" target="ghna" clas
 This software is currently in alpha phase. That means while most of the features work, there probably are still some undiscovered bugs to fix.
 
 For more information, please email me for price quotes, as all NicerApp installations will need to be (initially) supervised by me myself. For those who know coding (one of my target audiences), you can try to get it up and running yourself. At github, you'll find detailed README files that are kept up to date with the <a href="kubuntu.com" target="kubuntuOS" class="nomod noPushState">free Kubuntu.com OS</a>.
-I charge 49 Euros per hour of work, 99 euro per month for hosting, and 10% of profits generated with the aid of my software.
+I charge 49 Euros per hour of work, 99 euro per month for hosting, and 10% of any commercial profits generated with the aid of my software.
