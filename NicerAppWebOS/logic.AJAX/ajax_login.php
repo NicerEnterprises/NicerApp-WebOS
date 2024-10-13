@@ -46,6 +46,7 @@ try {
 
 $dbName = $cdbDomain.'___cms_tree___user___'.strtolower($username);
 //var_dump ($dbName); var_dump($_POST);
+
 $cdb->setDatabase($dbName, false);
 try {
     //var_dump ($cdb->getAllDocs());

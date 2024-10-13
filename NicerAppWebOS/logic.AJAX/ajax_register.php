@@ -23,7 +23,8 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
 global $naWebOS;
 $cdbDomain = $naWebOS->domainForDB;
 
-$cdb = $naWebOS->dbsAdmin->findConnection('couchdb')->cdb;
+$db = $naWebOS->dbsAdmin->findConnection('couchdb');
+$cdb = $db->cdb;
 
 // create users
 $username = $_POST['loginName'];
@@ -36,11 +37,34 @@ $security_user = '{ "admins": { "names": ["'.$cdbDomain.'___'.$username.'"], "ro
 $uid = 'org.couchdb.user:'.$cdbDomain.'___'.$username;
 $got = true;
 $cdb->setDatabase('_users',false);
-try { $call = $cdb->get($uid); } catch (Exception $e) { $got = false; }
+try {
+    $call = $cdb->get($uid);
+    //echo '<pre style="color:lime;background:navy;">ajax_register.php:$call='.json_encode($call,JSON_PRETTY_PRINT).'</pre>'; exit();
+    //echo '<pre style="color:lime;background:navy;">ajax_register.php:$call='; var_dump($call,JSON_PRETTY_PRINT); echo '</pre>'; exit();
+} catch (Exception $e) { $got = false; }
+
+$id = $uid;
+$rev = false;
+if ($got) {
+    $id = $call->body->_id;
+    $rev = $call->body->_rev;
+    $got = false;
+    /* DON'T DO THIS BY DEFAULT!
+    try {
+        $call = $cdb->delete ($id, $rev);
+        //echo '<pre style="color:lime;background:navy;">ajax_register.php:$call='.json_encode($call,JSON_PRETTY_PRINT).'</pre>'; exit();
+        //echo '<pre style="color:yellow;background:navy;">ajax_register.php:$call='; var_dump($call,JSON_PRETTY_PRINT); echo '</pre>'; exit();
+    } catch (Exception $e) {
+        $got = true;
+    }
+    */
+}
+
+
 if (!$got) {
     try {
         $rec = array (
-            '_id' => $uid,
+            '_id' => $id,
             'name' => $cdbDomain.'___'.$username,
             'password' => $_POST['pw'],
             'realname' => $username,
@@ -51,14 +75,13 @@ if (!$got) {
             ],
             'type' => "user"
         );
+        if ($rev) $rec['_rev'] = $rev;
         //echo '<pre style="color:blue;">'; var_dump ($rec); echo '</pre>';
         $call = $cdb->post ($rec);
-        if ($call->body->ok) echo 'Created user record.<br/>'; else echo '<span style="color:red">Could not create user record.</span><br/>';
+        if ($call->body->ok) echo 'Created or updated user record.<br/>'; else echo '<span style="color:red">Could not create or update user record.</span><br/>';
     } catch (Exception $e) {
-        echo '<pre style="color:red">Could not create user record : $e->getMessage()='.$e->getMessage().'</pre>';
+        echo '<pre style="color:red">Could not create or update user record : $e->getMessage()='.$e->getMessage().'</pre>';
     }
-} else {
-    if ($debug) echo 'Already have this user record.<br/>'.PHP_EOL;
 }
 
 $dbName = $cdbDomain.'___cms_tree___user___'.strtolower($username);
