@@ -2,10 +2,12 @@
 require_once (realpath(dirname(__FILE__).'/../../../../..').'/boot.php');
 $debug = false;
 
+session_start();
+//var_dump ($_SESSION); exit();
 global $naWebOS;
 $cdb = $naWebOS->dbs->findConnection('couchdb')->cdb;
-$username = array_key_exists('cdb_loginName',$_SESSION) ? $_SESSION['cdb_loginName'] : $cdbConfig['username'];
-//echo '<pre>t342:';var_dump ($_SESSION);echo '</pre>';die();
+$username = array_key_exists('cdb_loginName',$_COOKIE) ? $_COOKIE['cdb_loginName'] : $cdbConfig['username'];
+//echo '<pre>t342:';var_dump ($username);echo '</pre>';exit();
 $username = preg_replace ('/.*___/', '', $username);
 $username = str_replace(' ', '__', $username);
 $username = str_replace('.', '_', $username);
@@ -25,10 +27,12 @@ foreach ($tables as $idx=>$dbName) {
     $msg = 'ajax_getTreeNodes.php : $dbName='.$dbName;
     //trigger_error ($msg, E_USER_NOTICE);
     //echo $msg.'<br/>';
-    $r = $cdb->setDatabase ($dbName, false);
+    try {
+        $r = $cdb->setDatabase ($dbName, false);
+    }
     //var_dump ($r);
-        //catch (Throwable $e) { echo '$dbName='.$dbName.'</br>'.PHP_EOL; echo $e->getMessage(); }
-        //catch (Exception $e) { echo '$dbName='.$dbName.'</br>'.PHP_EOL; echo $e->getMessage(); };
+        catch (Throwable $e) { echo '$dbName='.$dbName.'</br>'.PHP_EOL; echo $e->getMessage(); }
+        catch (Exception $e) { echo '$dbName='.$dbName.'</br>'.PHP_EOL; echo $e->getMessage(); };
 
     //echo '$dbName='.$dbName.'</br>'.PHP_EOL;
 
@@ -53,7 +57,7 @@ foreach ($tables as $idx=>$dbName) {
         $call2 = $cdb->find($findCommand);
         if ($debug) { echo 't333:'; var_dump ($call2); };
         $data = $call2->body->docs;
-    } catch (Exception $e) { echo $e->getMessage(); }
+    } catch (Exception $e) { echo '$dbName='.$dbName.', $e='.$e->getMessage(); }
 
     //var_dump ($data);
     foreach ($data as $idx2=>$recordSummary) {

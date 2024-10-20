@@ -48,13 +48,14 @@ class naVividDialog {
                 && !$('.vdSettings',t.el)[0]
             ) $(t.el).prepend(html).delay(200);
             $('.vdSettings', t.el).fadeIn('slow');
-            setTimeout(function() {
-                $(t.el).css({overflow:'visible'});
-            }, 800);
+            //setTimeout(function() {
+            //}, 800);
         } else {
             $(t.el).find('.vdSettings').remove();
             $(t.el).prepend(html);
         }
+                debugger;
+                $(t.el).css({overflow:'visible', visibility:'visible', display:'block'});
 
 
         var

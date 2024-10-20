@@ -416,6 +416,9 @@ na.site = {
        // debugger;
         if (!na.site.settings.current.onload_phase2__alreadyCalled) na.site.settings.current.onload_phase2__alreadyCalled = true; else return false;
 
+        //na.site.resizeApps();
+        $('.vividDialog').css({overflow:'visible'});
+
         na.site.onresize_doContent();
 
         na.site.reloadMenu();
@@ -475,24 +478,26 @@ na.site = {
                         na.site.initializeApps(null, null, null, null, na.site.resizeApps);
                     }, 50);
                 } else {
-                    if (typeof na.site.globals.background=='string' && na.site.globals.background!=='')
-                    na.backgrounds.next (
-                        '#siteBackground',
-                        na.site.globals.backgroundSearchKey,
-                        na.site.globals.background,
-                        //needNewBackground ? null : na.site.globals.background,
-                        false,
-                        function () {
-                        }
-                    );
+                    if (typeof na.site.globals.background=='string' && na.site.globals.background!=='') {
+                        na.backgrounds.next (
+                            '#siteBackground',
+                            na.site.globals.backgroundSearchKey,
+                            na.site.globals.background,
+                            //needNewBackground ? null : na.site.globals.background,
+                            false,
+                            function () {
+                            }
+                        );
 
+                    } else {
 
-                    na.site.loadTheme(function() {
-                        setTimeout (function() {
-                            na.te.onload('siteContent'); // do this or cms features wont work
-                            na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
-                        }, 500);
-                    }, undefined, false, false, na.site.globals.onloadSpecificityName);
+                        na.site.loadTheme(function() {
+                            setTimeout (function() {
+                                na.te.onload('siteContent'); // do this or cms features wont work
+                                na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
+                            }, 500);
+                        }, undefined, false, false, na.site.globals.onloadSpecificityName);
+                    };
 
 
                     na.site.settings.current.startupErrorsOccurred = 'maybe';

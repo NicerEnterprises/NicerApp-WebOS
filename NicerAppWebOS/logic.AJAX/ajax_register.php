@@ -28,8 +28,8 @@ $cdb = $db->cdb;
 
 // create users
 $username = $_POST['loginName'];
-$username = str_replace(' ', '_', $username);
-$username = str_replace('.', '__', $username);
+$username = str_replace(' ', '__', $username);
+$username = str_replace('.', '_', $username);
 
 $security_role = '{ "admins": { "names": [], "roles": ["guests"] }, "members": { "names": [], "roles": [] } }';
 $security_user = '{ "admins": { "names": ["'.$cdbDomain.'___'.$username.'"], "roles": ["'.$cdbDomain.'___Guests", "'.$cdbDomain.'___Users"] }, "members": { "names": ["'.$cdbDomain.'___'.$username.'"], "roles": ["'.$cdbDomain.'___Guests", "'.$cdbDomain.'___Users"] } }';
@@ -46,7 +46,7 @@ try {
 $id = $uid;
 $rev = false;
 if ($got) {
-    $id = $call->body->_id;
+    $id = $call->body->_id; // should be the same as $uid really.
     $rev = $call->body->_rev;
     $got = false;
     /* DON'T DO THIS BY DEFAULT!
@@ -106,7 +106,7 @@ if ($do) try { $cdb->post($data); } catch (Exception $e) { if ($debug) {echo '<p
 
 $rec2a_id = cdb_randomString(20);
 $do = false; try { $doc = $cdb->get($rec2a_id); } catch (Exception $e) { $do = true; };
-$data = '{ "database" : "'.$dbName.'", "_id" : "'.$rec2a_id.'", "id" : "'.$rec2a_id.'", "parent" : "'.$rec2_id.'", "text" : "New", "state" : { "opened" : true, "selected" : true }, "type" : "naDocument" }';
+$data = '{ "database" : "'.$dbName.'", "_id" : "'.$rec2a_id.'", "id" : "'.$rec2a_id.'", "parent" : "'.$rec2_id.'", "text" : "New Document", "url1" : "in", "seoValue" : "New Document", "state" : { "opened" : true, "selected" : true }, "type" : "naDocument" }';
 if ($do) try { $cdb->post($data); } catch (Exception $e) { if ($debug) {echo '<pre>'.json_encode(json_decode($data),JSON_PRETTY_PRINT).'</pre>'; echo $e->getMessage(); echo '<br/>'; }};
 
 $rec3_id = cdb_randomString(20);

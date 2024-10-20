@@ -86,7 +86,7 @@ na.desktop = {
                 opacity : 0.0001
             }
         },                
-        margin : 8
+        margin : (na.m.userDevice.isPhone?10:20)
     },
     settings : {
         animate : na.m.userDevice.isPhone,

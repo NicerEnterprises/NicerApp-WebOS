@@ -11,6 +11,11 @@ if ($debug) {
     error_reporting(E_ALL);
 }
 
+if (session_status() === PHP_SESSION_NONE) {
+    ini_set('session.gc_maxlifetime', 3600 * 24 * 7);
+    session_start();
+} else session_regenerate_id();
+
 $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_request_headers()['X-Forwarded-For'] : $_SERVER['REMOTE_ADDR']);
 /*if (
     $ip !== '::1'
@@ -29,8 +34,8 @@ $cdb = $naWebOS->dbs->findConnection('couchdb')->cdb;
 
 
 $username = $_POST['loginName'];
-$username = str_replace(' ', '_', $username);
-$username = str_replace('.', '__', $username);
+$username = str_replace(' ', '__', $username);
+$username = str_replace('.', '_', $username);
 
 //echo $cdbDomain.'___'.$username.'<br/>';
 $_SESSION['cdb_pw'] = $_POST['pw'];
@@ -67,14 +72,12 @@ try {
 //var_dump ($cdb->getAllDocs());
 //var_dump ($callOK);
 if ($callOK) {
-    if (session_status() === PHP_SESSION_NONE) {
-        ini_set('session.gc_maxlifetime', 3600 * 24 * 7);
-        session_start();
-    } else session_regenerate_id();
+
 
     //echo '<pre>'; var_dump($_POST); echo '</pre>'; exit();
 
     $_SESSION['cdb_loginName'] = $_POST['loginName'];
+    //var_dump ($_SESSION); exit();
     //setcookie("cbd_loginName", "", time() - 3600);
     //usleep(50);
     setcookie('cdb_loginName', $_POST['loginName'], time() + 604800, '/');
