@@ -161,7 +161,7 @@ if ($appRec['page']=='index') {
     }
 
     echo PHP_EOL;
-    echo '<script type="text/javascript">setTimeout(function() { na.desktop.settings.visibleDivs.push(\'#siteToolbarLeft\');na.desktop.resize();},1000);</script>';
+    echo '<script type="text/javascript">setTimeout(function() { na.desktop.settings.visibleDivs.push(\'#siteToolbarLeft\');na.site.onresize({});},1000);</script>';
 }
 ?>
 <script type="text/javascript" src="/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/logs/naLog.source.js"></script>

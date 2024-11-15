@@ -30,26 +30,25 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
 global $naWebOS;
 $cdbDomain = $naWebOS->domainForDB;//str_replace('.','_',$naWebOS->domain);
 
-$cdb = $naWebOS->dbs->findConnection('couchdb')->cdb;
+$db = $naWebOS->dbs->findConnection('couchdb');
+$cdb = $db->cdb;
 
-
-$username = $_POST['loginName'];
-$username = str_replace(' ', '__', $username);
-$username = str_replace('.', '_', $username);
+$username = $db->translate_plainUserName_to_couchdbUserName ($_POST['loginName']);
+$username1 = preg_replace('/.*___/', '', $username);
 
 //echo $cdbDomain.'___'.$username.'<br/>';
 $_SESSION['cdb_pw'] = $_POST['pw'];
 
 try {
-    $_SESSION['cdb_loginName'] = $cdbDomain.'___'.$username;
-    $cdb_authSession_cookie = $cdb->login($cdbDomain.'___'.$username, $_POST['pw'], Sag::$AUTH_COOKIE);
+    $_SESSION['cdb_loginName'] = $username;
+    $cdb_authSession_cookie = $cdb->login($username, $_POST['pw'], Sag::$AUTH_COOKIE);
 } catch (Exception $e) {
     echo 'status : Failed<br/>'.PHP_EOL;
-    echo '$cdbDomain."___".$username='.$cdbDomain.'___'.$username.', $e->getMessage() = '.$e->getMessage();
+    echo '$cdbDomain."___".$username='.$username.', $e->getMessage() = '.$e->getMessage();
     exit();
 }
 
-$dbName = $cdbDomain.'___cms_tree___user___'.strtolower($username);
+$dbName = $cdbDomain.'___cms_tree___user___'.strtolower($username1);
 //var_dump ($dbName); var_dump($_POST);
 
 $cdb->setDatabase($dbName, false);
@@ -61,7 +60,8 @@ try {
     echo 'status : Failed'.PHP_EOL;
     $dbg = [
         'database' => $dbName,
-        'username' => $cdbDomain.'___'.$username,
+        'username' => $username,
+        'username1' => $username1,
         'password' => 'HIDDEN',
         '$e->getMessage()' => $e->getMessage()
     ];

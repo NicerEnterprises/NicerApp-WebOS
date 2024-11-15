@@ -72,8 +72,8 @@ global $naWebOS;
                     '$regex' => '^/'.str_replace('_',' ',str_replace('__','/',$_REQUEST['section'])).'.*'
                 ]
             ),
-            'limit' => 500,
-            'use_index' => 'primaryIndex',
+            'limit' => 5000,
+            'use_index' => '_design/f8296ee26307f4441eaf3723ab3c982e996830a1',
             'fields' => array ('_id', '_rev', 't', 'de', 'm', 'am', 'pd', 'pubDate', 'da', 'dd', 'c', 'cc' )
         );
         if (!is_null($bookmark)) $findCommand['bookmark'] = $bookmark;
@@ -83,7 +83,7 @@ global $naWebOS;
             $naWebOS->dbs->findConnection('couchdb')->cdb->setDatabase ($dbName, false);
             $call = $naWebOS->dbs->findConnection('couchdb')->cdb->find ($findCommand);
             //file_put_contents(dirname(__FILE__).'/call.json', $dbName.PHP_EOL.json_encode($findCommand,JSON_PRETTY_PRINT).PHP_EOL.json_encode($call, JSON_PRETTY_PRINT));
-            if ($debug && count($call->body->docs)>0) { echo '$findCommand='; var_dump ($findCommand); echo PHP_EOL.'$call='; var_dump ($call); echo PHP_EOL.PHP_EOL; }
+            if ($debug) { echo '$findCommand='; var_dump ($findCommand); echo PHP_EOL.'$call='; var_dump ($call); echo PHP_EOL.PHP_EOL; }
         } catch (Exception $e) {
             global $naErr;
             if (

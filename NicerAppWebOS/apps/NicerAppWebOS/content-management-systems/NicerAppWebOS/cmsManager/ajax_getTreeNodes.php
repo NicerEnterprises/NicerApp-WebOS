@@ -5,18 +5,21 @@ $debug = false;
 session_start();
 //var_dump ($_SESSION); exit();
 global $naWebOS;
-$cdb = $naWebOS->dbs->findConnection('couchdb')->cdb;
+$db = $naWebOS->dbs->findConnection('couchdb');
+$cdb = $db->cdb;
+
 $username = array_key_exists('cdb_loginName',$_COOKIE) ? $_COOKIE['cdb_loginName'] : $cdbConfig['username'];
 //echo '<pre>t342:';var_dump ($username);echo '</pre>';exit();
-$username = preg_replace ('/.*___/', '', $username);
-$username = str_replace(' ', '__', $username);
-$username = str_replace('.', '_', $username);
+//$username = str_replace(' ', '__', $username);
+//$username = str_replace('.', '_', $username);
+$username1a = $db->translate_plainUserName_to_couchdbUserName ($username);
+$username1 = preg_replace ('/.*___/', '', $username1a);
 
 $cdb_domain = $naWebOS->domainForDB;
 $tables = array (
     $cdb_domain.'___cms_tree',
     $cdb_domain.'___cms_tree___role___guests',
-    $cdb_domain.'___cms_tree___user___'.strtolower($username)
+    $cdb_domain.'___cms_tree___user___'.strtolower($username1)
     //$naWebOS->domain.'___cms_tree__user__administrator',
     //$naWebOS->domain.'___cms_tree__user__guest'
 );

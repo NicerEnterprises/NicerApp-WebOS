@@ -43,9 +43,10 @@ use Defuse\Crypto\Crypto;
     $dbName = $cdbDomain.'___webmail_accounts';
     $cdb->setDatabase ($dbName, false);
     
-    $username = $_SESSION['cdb_loginName'];
-    $username = str_replace(' ', '__', $username);
-    $username = str_replace('.', '_', $username);
+    //$username = $_SESSION['cdb_loginName'];
+    //$username = str_replace(' ', '__', $username);
+    //$username = str_replace('.', '_', $username);
+    $username = $db->translate_plainUserName_to_couchdbUserName ($_SESSION['cdb_loginName']);
     
     try {
         $call = $cdb->get($username);

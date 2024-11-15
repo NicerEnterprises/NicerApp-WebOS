@@ -271,11 +271,11 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         global $naWebOS;
         $dn = $this->dataSetName_domainName($naWebOS->domain);
         $un = str_replace($dn.'___', '', $un);
-        return $dn.'___'.str_replace('.','__',str_replace(' ', '_', $un));
+        return $dn.'___'.str_replace(' ','__',str_replace('.', '_', $un));
     }
     public function translate_couchdbUserName_to_plainUserName ($un) {
         $un = preg_replace('/.*___/','', $un);
-        return str_replace('_',' ',str_replace('__', '.', $un));
+        return str_replace('_','.',str_replace('__', ' ', $un));
     }
 
     public function translate_plainGroupName_to_couchdbGroupName ($gn) {
@@ -414,11 +414,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
         $rec = [
             'index' => [
-                'fields' => [
-                    [ 'date' => 'asc' ],
-                    [ 'datetime' => 'asc' ],
-                    [ 'milliseconds' => 'asc' ]
-                ]
+                'fields' => [ [ 'date' => 'asc' ], [ 'datetime' => 'asc' ] ]
             ],
             'name' => 'primaryIndex',
             'type' => 'json'
@@ -723,20 +719,6 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         } catch (Exception $e) { echo $e->getMessage(); };
 
         $this->cdb->setDatabase($dataSetName, true);
-
-        $rec = [
-            'index' => [
-                'fields' => [ 'ip' ]
-            ],
-            'name' => 'primaryIndex',
-            'type' => 'json'
-        ];
-        try {
-            $this->cdb->setIndex ($rec);
-        } catch (Exception $e) {
-            if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
-        }
-
     }
 
     public function createDataSet_themes() {
@@ -1217,7 +1199,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
         $rec = [
             'index' => [
-                'fields' => [ 's2', 's3', 'isIndex', 'isBot', 'isLAN' ]
+                'fields' => [ 's2', 'isIndex', 'isBot', 'isLAN' ]
             ],
             'name' => 'pageLoad',
             'type' => 'json'
@@ -1530,8 +1512,9 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             } else {
                 $loginMethod = 3;
                 $username = 'Guest';
-                $username = str_replace(' ', '__', $username);
-                $username = str_replace('.', '_', $username);
+                //$username = str_replace(' ', '__', $username);
+                //$username = str_replace('.', '_', $username);
+                $username = $cdb->translate_plainUserName_to_couchdbUserName ($username);
                 $pw = 'Guest';
 
                 $fail = 'Could not login to database yet, not even under a "Guest" account for this domain.';

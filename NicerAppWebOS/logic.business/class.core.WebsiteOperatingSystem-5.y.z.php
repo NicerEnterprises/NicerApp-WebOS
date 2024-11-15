@@ -49,10 +49,19 @@ class NicerAppWebOS {
         $this->cssTheme = 'dark';
         if (array_key_exists ('siteTheme', $_POST)) $this->cssTheme = $_POST['siteTheme'];
         if (array_key_exists ('siteTheme', $_COOKIE)) $this->cssTheme = $_COOKIE['siteTheme'];
-        $p1 = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..');
-        $p2 = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..');
-        $this->domain = str_replace($p1.DIRECTORY_SEPARATOR,'', $p2);
-        //var_dump ($this->domain); die();
+
+        //$p1 = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..');
+        //$p2 = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..');
+        //$this->domain = str_replace($p1.DIRECTORY_SEPARATOR,'', $p2);
+
+
+
+        $this->domain = preg_replace ('/^\/var\/www\/(.*?)\/.*/', '$1', $_SERVER['PWD']);
+        if ($this->domain=='') {
+            $this->domain = str_replace('/var/www/','',$_SERVER['DOCUMENT_ROOT']);
+        }
+        //var_dump ($this->domain); exit();
+        //echo '<pre>'; var_dump ($_SESSION); exit();
 
         $this->browserDebug = false;
         $dfd = strtolower($this->domain);
@@ -138,7 +147,7 @@ class NicerAppWebOS {
             try {
                 $this->dbs = new class_NicerAppWebOS_database_API ('Guest');
                 //echo '<pre>'; var_dump ($this->dbs);die();
-                setcookie('cdb_loginName', $this->dbs->findConnection('couchdb')->username, time() + 604800, '/');
+                //setcookie('cdb_loginName', $this->dbs->findConnection('couchdb')->username, time() + 604800, '/');
 
 
 
@@ -1732,7 +1741,8 @@ class NicerAppWebOS {
             ? $_COOKIE['cdb_loginName']
             : ''
         );
-        $username101 = $db->translate_couchdbUserName_to_plainUserName ($username100);
+        $username101a = $db->translate_couchdbUserName_to_plainUserName ($username100);
+        $username101 = $db->translate_plainUserName_to_couchdbUserName ($username101a);
 
         $appName = preg_replace('/.*\//','',$viewFolder);
         //echo PHP_EOL.PHP_EOL.'T123::'.'$appName='.$appName.'<br/>'.PHP_EOL.PHP_EOL;

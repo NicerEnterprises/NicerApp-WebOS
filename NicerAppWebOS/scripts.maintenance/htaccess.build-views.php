@@ -25,7 +25,7 @@ $lineEnding = ' [N]';
 
 $fc .= 
     '<IfModule mod_rewrite.c>'.PHP_EOL
-    .'# .../NicerAppWebOS/domainConfigs/nicer.app/mainmenu.items.php::$na_apps_structure as RewriteRules back into /*--NICERAPP_BASICS--*/'.PHP_EOL.PHP_EOL;
+    .'# .../NicerAppWebOS/domainConfigs/nicer.app/mainmenu.items.php::$na_apps_structure as RewriteRules back into /*--NICERAPP_BASICS--* /'.PHP_EOL.PHP_EOL;
 
 $fc2 = '"url","apps"'.PHP_EOL;
 
@@ -273,7 +273,5 @@ echo 'Total : '.$totalCount.PHP_EOL;
 //echo $bytes.' bytes written to .../.htaccess and .../.htaccess-reverse'.PHP_EOL;
 //$bytes = file_put_contents (realpath(dirname(__FILE__).'/../..').'/NicerAppWebOS/siteCache/mainmenu.reverse.csv', $fc2);
 //echo $bytes.' bytes written to .../NicerAppWebOS/siteCache/mainmenu.reverse.csv'.PHP_EOL;
-
-
 
 ?>

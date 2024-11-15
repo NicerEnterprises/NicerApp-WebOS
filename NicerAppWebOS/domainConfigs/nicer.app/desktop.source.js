@@ -18,7 +18,7 @@ na.desktop = {
         },
         defaultPos : {
             '#siteDateTime' : {
-                top : -100,
+                top : 20,
                 left : 10,
                 opacity : 0.0001
             },
@@ -86,7 +86,7 @@ na.desktop = {
                 opacity : 0.0001
             }
         },                
-        margin : (na.m.userDevice.isPhone?10:20)
+        margin : (na.m.userDevice.isPhone?10:25)
     },
     settings : {
         animate : na.m.userDevice.isPhone,
@@ -153,7 +153,7 @@ na.desktop = {
         h = $(window).height(),
         wt = 0;
         
-        $('#siteDateTime').css({display:'block', top : -100});
+        $('#siteDateTime').css({display:'block', top : 20});
         $('.vividButton_icon_50x50_siteTop').each(function(idx,el){
             var el = $('#'+el.id);
             wt += el.width();
@@ -287,7 +287,7 @@ na.desktop = {
 
         na.d.g.defaultPos = {
             '#siteDateTime' : {
-                top : -100,
+                top : 20,
                 left : 10,
                 opacity : 0.0001
             },
@@ -815,7 +815,7 @@ na.desktop = {
                    // if (divID=='#siteContent' || divID=='#siteToolbarThemeEditor') debugger;
                     switch (sn.edge) {
                         case 'top':
-                            if (sn.element==='body') divs[divID].top = na.d.g.margin; else divs[divID].top = divs[sn.element].top + na.d.g.margin;
+                            if (sn.element==='body') divs[divID].top = na.d.g.margin; else divs[divID].top = divs[sn.element].top + $(sn.element).height() + na.d.g.margin;
                             break;
                         case 'bottom':
                             if (sn.element==='body') {
@@ -895,12 +895,12 @@ na.desktop = {
                         //divs[divID].top += na.d.g.margin;
                         break;
                     case '#siteContent':
-                        divs[divID].height -= (2 * na.d.g.margin);
+                        divs[divID].height -= na.d.g.margin;
                         //divs[divID].left += na.d.g.margin;
                         //divs[divID].width -= (2 * na.d.g.margin);
                         //if (visibleDivs.includes('#siteDateTime')) {
-                            divs[divID].top += na.d.g.margin;
-                            divs[divID].height -= na.d.g.margin;
+                                //divs[divID].top += na.d.g.margin;
+                                //divs[divID].height -= na.d.g.margin;
                         //}
                         if (
                             visibleDivs.includes('#siteComments')
@@ -915,8 +915,8 @@ na.desktop = {
                         break;
                     case '#siteToolbarLeft':
                     case '#siteToolbarThemeEditor':
-                        divs[divID].top -= (na.d.g.margin);
-                        divs[divID].height -= (3*na.d.g.margin);
+                        //divs[divID].top += (na.d.g.margin);
+                        divs[divID].height -= (2*na.d.g.margin);
                         break;
                     case '#siteVideoSearch':
                     case '#siteToolbarRight':
@@ -945,7 +945,8 @@ na.desktop = {
                         break;
                 }
             }
-                na.m.log (10010, fncn+' : calculated divs', false);
+            //debugger;
+            na.m.log (10010, fncn+' : calculated divs', false);
 
 
                 

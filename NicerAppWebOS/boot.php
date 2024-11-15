@@ -44,6 +44,7 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
     $naGlobals = [
         'cdb_designDoc_logentries' => '_design/4ed57c36e325319b9e5b0730589fb06ae6b177ee'
     ];
+    //var_dump ($naGlobals); echo PHP_EOL; exit();
 
 
     //require_once ($rootPath_na.'/NicerAppWebOS/apps/NicerAppWebOS/application-programmer-interfaces/technology/codeTranslationSystems/boot.php');
@@ -68,12 +69,12 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
 
     $naDebugAll = true;
     global $naDebugAll;
+    global $naBypassMainErrorHandler;
     if ($naDebugAll) {
-        ini_set('display_errors', 1); // 0 == false, 1 == true
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
+            ini_set('display_errors', 1); // 0 == false, 1 == true
+            ini_set('display_startup_errors', 1);
+            error_reporting(E_ALL);
 
-        global $naBypassMainErrorHandler;
         if (!isset($naBypassMainErrorHandler) || $naBypassMainErrorHandler)
             $old_error_handler = set_error_handler ('mainErrorHandler');
 
@@ -84,6 +85,8 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
         */
     }
     ini_set ('log_errors', true);
+    //var_dump (["test1a"=>true]); echo PHP_EOL; exit();
+
 
     if (php_sapi_name() !== 'cli') {
         if (session_status() === PHP_SESSION_NONE) {
@@ -106,8 +109,9 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
         if ($_SERVER['SCRIPT_NAME']=='/NicerAppWebOS/index.php') {
         }
     }
-    
-    $filePerms_ownerUser = 'reneajmveerman';
+    //var_dump (["test1b"=>true]); echo PHP_EOL; exit();
+
+    $filePerms_ownerUser = 'reneav';
     $filePerms_ownerGroup = 'www-data'; 
     $filePerms_perms_readonly = 0640;
     $filePerms_perms_readWrite = 0640;
@@ -120,8 +124,10 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
     global $filePerms_perms_readWrite;
 
     global $naWebOS;
+    //var_dump (["test2a"=>true]); echo PHP_EOL; exit();
+
     $naWebOS = new NicerAppWebOS();
-    //echo '<pre>t555'; var_dump ($_SERVER); die();
+    //echo '<pre>t555'; var_dump ($_SERVER); exit();
     if ($_SERVER['SCRIPT_NAME']=='/NicerAppWebOS/index.php') {
         $_SESSION['started'] = time();//microtime(true);
         $_SESSION['startedID'] = cdb_randomString(50);

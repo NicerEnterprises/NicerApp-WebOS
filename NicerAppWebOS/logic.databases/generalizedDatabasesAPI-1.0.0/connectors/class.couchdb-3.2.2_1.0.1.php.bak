@@ -1483,9 +1483,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
                 if ($loggedIn) $r .= 'status : Success'; else $r .= 'Browser cookies do not contain (valid) database connection settings.<br/>(problem #1, rememberMeByBirke->isSuccess()='.($isSuccess?'true':'false').', rememberMeByBirke->isExpired()='.($isExpired?'true':'false').').';
             } else {
                 $loginMethod = 3;
-                $username = 'Guest';
-                $username = str_replace(' ', '__', $username);
-                $username = str_replace('.', '_', $username);
+                $username = $db->translate_plainUserName_to_couchdbUserName ('Guest');
                 $pw = 'Guest';
 
                 $fail = 'Could not login to database yet, not even under a "Guest" account for this domain.';

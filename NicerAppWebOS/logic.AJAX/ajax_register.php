@@ -27,14 +27,13 @@ $db = $naWebOS->dbsAdmin->findConnection('couchdb');
 $cdb = $db->cdb;
 
 // create users
-$username = $_POST['loginName'];
-$username = str_replace(' ', '__', $username);
-$username = str_replace('.', '_', $username);
+$username = $db->translate_plainUserName_to_couchdbUserName ($_POST['loginName']);
+$username1 = preg_replace('/.*___/', '', $username);
 
 $security_role = '{ "admins": { "names": [], "roles": ["guests"] }, "members": { "names": [], "roles": [] } }';
 $security_user = '{ "admins": { "names": ["'.$cdbDomain.'___'.$username.'"], "roles": ["'.$cdbDomain.'___Guests", "'.$cdbDomain.'___Users"] }, "members": { "names": ["'.$cdbDomain.'___'.$username.'"], "roles": ["'.$cdbDomain.'___Guests", "'.$cdbDomain.'___Users"] } }';
 
-$uid = 'org.couchdb.user:'.$cdbDomain.'___'.$username;
+$uid = 'org.couchdb.user:'.$username;
 $got = true;
 $cdb->setDatabase('_users',false);
 try {
@@ -65,7 +64,7 @@ if (!$got) {
     try {
         $rec = array (
             '_id' => $id,
-            'name' => $cdbDomain.'___'.$username,
+            'name' => $username,
             'password' => $_POST['pw'],
             'realname' => $username,
             'email' => $_POST['email'],
@@ -84,7 +83,7 @@ if (!$got) {
     }
 }
 
-$dbName = $cdbDomain.'___cms_tree___user___'.strtolower($username);
+$dbName = $cdbDomain.'___cms_tree___user___'.strtolower($username1);
 try { $cdb->deleteDatabase ($dbName); } catch (Exception $e) { };
 $cdb->setDatabase($dbName, true);
 try {
@@ -122,7 +121,7 @@ if ($do) try { $cdb->post($data); } catch (Exception $e) { if ($debug) { echo '<
 
 echo 'Created database '.$dbName.'<br/>'.PHP_EOL;
 
-$dbName = $cdbDomain.'___cms_documents___user___'.strtolower($username);
+$dbName = $cdbDomain.'___cms_documents___user___'.strtolower($username1);
 try { $cdb->deleteDatabase ($dbName); } catch (Exception $e) { };
 $cdb->setDatabase($dbName, true);
 try {

@@ -2,7 +2,7 @@
 require_once (dirname(__FILE__).'/../../../../../boot.php');
 global $naWebOS;
 global $naLAN;
-if (!$naLAN) die('403 Forbidden.');
+if (!$naLAN) exit('403 Forbidden.');
 
     $db = $naWebOS->dbs->findConnection('couchdb');
     $cdb = $db->cdb;
@@ -37,7 +37,7 @@ if (!$naLAN) die('403 Forbidden.');
         //trigger_error ($msg, E_USER_ERROR);
         echo $msg;
         //return false;
-        die();
+        exit();
     }
 
 
@@ -133,5 +133,5 @@ if (!$naLAN) die('403 Forbidden.');
         }
 */
     }
-    $html .= '<script type="text/javascript">setTimeout (function() {na.site.settings.current.running_loadTheme = false; na.site.settings.current.loadingApps = false; na.hms.startProcessing()}, 1500); na.site.transformLinks()</script>';
+    $html .= '<script type="text/javascript">clearTimeout (timeout_hms); var timeout_hms = setTimeout (function() {na.site.settings.current.running_loadTheme = false; na.site.settings.current.loadingApps = false; debugger; na.hms.startProcessing()}, 200); na.site.transformLinks()</script>';
     echo $html;

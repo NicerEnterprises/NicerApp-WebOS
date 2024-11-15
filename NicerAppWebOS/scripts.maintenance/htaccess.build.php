@@ -1,5 +1,7 @@
 <?php
 $rootPath_2vuslwos = realpath(dirname(__FILE__).'/../..');
+$naBypassMainErrorHandler = true;
+global $naBypassMainErrorHandler;
 require_once ($rootPath_2vuslwos.'/NicerAppWebOS/boot.php');
     global $filePerms_ownerUser;
     global $filePerms_ownerGroup;

@@ -1,5 +1,7 @@
 <?php
-require_once (realpath(dirname(__FILE__).'/../../../../../../').'/NicerAppWebOS/boot.php');
+$fn = realpath(dirname(__FILE__).'/../../../../../../').'/NicerAppWebOS/boot.php';
+
+require_once ($fn);
 require_once (dirname(__FILE__).'/class.newsApp-3.php');
 $fncn = 'nicerapp/apps/nicer.app/applications/2D/news/crontabEntry_manageDatabase.php';
 

@@ -94,7 +94,7 @@ Regardless of what mix-up of database servers that you use for your site,
 one guiding principle of developing web-apps with nicerapp is that we shield our database servers from the outside world as much as possible.
 
 This means all requests for data by the browsers go via the **browser's jQuery.com** (.../NicerAppWebOS/3rd-party/jQuery) **AJAX** (asynchronous javascript and XML) code **to PHP scripts** that are all specific to the requested functionality, **and from there to the actual database server** and back to PHP and finally to the **browser**, which in non-debug mode **gets back only FAILED or SUCCESS (or the requested data)**.
-All error handling, database sanity, and cleanliness code is in the PHP scripts and the PHP libraries[2] used to access the database.
+All error handling, database sanitation, and cleanliness code is in the PHP scripts and the PHP libraries[2] used to access the database.
 
 [2] 
 couchdb : https://github.com/NicerAppWebOS/sag

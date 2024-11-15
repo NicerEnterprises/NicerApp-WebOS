@@ -24,13 +24,12 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
 
 global $naWebOS;
 
-$cdbDomain = str_replace('.','_',$naWebOS->domain);
+$cdbDomain = $naWebOS->domainForDB;
 
-$cdb = $naWebOS->dbs->findConnection('couchdb')->cdb;
+$db = $naWebOS->dbs->findConnection('couchdb');
+$cdb = $db->cdb;
 
-$username = $_SESSION['cdb_loginName'];
-$username = str_replace(' ', '__', $username);
-$username = str_replace('.', '_', $username);
+$username = $db->translate_plainUserName_to_couchdbUserName ($_SESSION['cdb_loginName']);
 
 $dbName = $cdbDomain.'___themedata';
 $cdb->setDatabase($dbName, false);

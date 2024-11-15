@@ -45,10 +45,12 @@ na.backgrounds = {
 
         if (!callStack) callStack = '';
         if (!search) search = na.site.globals.backgroundSearchKey;
-        if (!search) {
-            search = 'landscape';
-            na.site.globals.backgroundSearchKey = search;
-        };
+        if (!search) search = 'landscape';
+        if (!search.match('fire')) search = search + ' -fire';
+        if (!search.match('halloween')) search = search + ' -halloween';
+        if (!search.match('christmas')) search = search + ' -christmas';
+        na.site.globals.backgroundSearchKey = search;
+
         if (saveTheme!==false) saveTheme = true;
         
         var
@@ -64,7 +66,7 @@ na.backgrounds = {
         });
         
         na.bg.s.lastMenuSelection = search;
-        
+
         var useRoot = true;
         if (typeof url !== 'string' || url === '') {
             for (var collectionIdx=0; collectionIdx<bgs.length; collectionIdx++) {

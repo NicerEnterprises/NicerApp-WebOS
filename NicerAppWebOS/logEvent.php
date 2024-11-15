@@ -37,7 +37,7 @@ if (preg_match('/^\d/', $dbName)) $dbName='number_'.$dbName;
 
 $cdb->setDatabase($dbName,false);
 $doc = json_decode($_POST['doc'], true);
-try { $call = $cdb->post($doc); } catch (Exception $e) { cdb_error (500, $e, 'Could not add record to database='.$dbName); exit(); };
+try { $call = $cdb->post($doc); } catch (Exception $e) { cdb_error (500, $e, 'Could not add record to database "'.$dbName.'"'); exit(); };
 
 echo 'Success'; // echo json_encode($recordToAdd); <-- not needed, js will refresh the entire tree (accounting for multiple users working on the same tree at the same time)
 ?>
