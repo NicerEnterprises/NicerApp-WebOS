@@ -12,7 +12,7 @@ class naVividMenu__behavior_rainbowPanels {
         t.useDelayedShowingAndHiding = true;
         t.useFading = true;
         t.fadingSpeed = 'fast';
-        t.sensitivitySpeed = 250;
+        t.sensitivitySpeed = 250; // in milliseconds only!
         t.percentageFor_rainbowPanels =
             !na.site.settings.theme || na.site.settings.theme.menusUseRainbowPanels
             ? 100
@@ -1239,8 +1239,8 @@ class naVividMenu__behavior_rainbowPanels {
             delete t.panelsShown[panelID];
         }
 
-        if (t.timeout_onmouseover[el.it.idx]) clearTimeout (t.timeout_onmouseover[el.it.idx]);
-        t.timeout_onmouseover[el.it.idx] = setTimeout(function(t, el, evt) {
+        //if (t.timeout_onmouseover[el.it.idx]) clearTimeout (t.timeout_onmouseover[el.it.idx]);
+        //t.timeout_onmouseover[el.it.idx] = setTimeout(function(t, el, evt) {
             if (t.debugMe) na.m.log (20, 'naVividMenu.onmouseover() : showing sub-menu for "'+el.it.label+'"', false);
 
             t.prevDisplayedEl = t.currentEl;
@@ -1324,8 +1324,8 @@ class naVividMenu__behavior_rainbowPanels {
                 t.showBackPanel(t, t.currentEl);
             }
 
-            //t.showBackPanel(t, el);
-        }, 100, t, el, $.extend({},event));
+            t.showBackPanel(t, el);
+        //}, 10, t, el, $.extend({},event));
     }
 
     onmouseout (event) {
