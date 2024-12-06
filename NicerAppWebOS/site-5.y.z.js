@@ -1139,7 +1139,6 @@ na.site = {
             });
 
             var loginName = $.cookie && $.cookie('cdb_loginName') || 'Guest';
-            debugger;
             $('#url0').html('/'+loginName.replace(/.*___/g,'').replace(/__/g,'-')+'/');
 
             $('#nb_url1_dropdown, #url1_dropdown').hover(function() {
