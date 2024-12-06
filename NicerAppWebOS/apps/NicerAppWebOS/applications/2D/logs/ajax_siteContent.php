@@ -86,7 +86,7 @@ if (!$naLAN) die('403 Forbidden.');
             $now2 = $now->format("Y-m-d H:i:s");
 
             echo '<div id="'.$doc->_id.'" i="'.$call2->body->i.'" class="tooltip" style="margin:10px;margin-left:'.$marginLeft.'px" onclick="naLog.onclick_logEntry(event);" title="'.$tooltip.'" alt="'.$tooltip.'">';
-            echo '<h2><span class="datetimeAccurate">'.$now2.'</span> <span class="ip">'.$call2->body->ip.'</span> '.$url.'</h2>';
+            echo '<h2><span class="datetimeAccurate">'.$now2.'</span> <span class="ip">'.$call2->body->ip.'</span> <span class="url">'.$url.'</span></h2>';
             //echo hmJSON ($docA['request'], 'Request response');
             echo '</div>';
         }

@@ -1047,24 +1047,29 @@ a.bright:visited {
         }
     }
 
-    @media(max-width: 3850px) {
+
+    /*
+     * TODO : why isn't this working for #siteComments?
+     * remove this code comment when done plz */
+    @media(min-width: 100px) and (min-height: 1000px) {
         .vividDialog::before {
-            -webkit-mask-image: url(/NicerAppWebOS/siteMedia/vividDialog_borderMask_3840x2160.png);
-            mask-image: url(/NicerAppWebOS/siteMedia/vividDialog_borderMask_3840x2160.png);
+            -webkit-mask-image: url("/NicerAppWebOS/siteMedia/vividDialog_borderMask_500x1000.png");
+            mask-image: url("/NicerAppWebOS/siteMedia/vividDialog_borderMask_500x1000.png");
         }
     }
-    @media(max-width: 1930px) {
+    @media(min-width: 1400px) {
         .vividDialog::before {
             -webkit-mask-image: url("/NicerAppWebOS/siteMedia/vividDialog_borderMask_1920x1080.png");
             mask-image: url("/NicerAppWebOS/siteMedia/vividDialog_borderMask_1920x1080.png");
         }
     }
-    @media(max-width: 400px) {
+    @media(min-width: 2800px) {
         .vividDialog::before {
-            -webkit-mask-image: url("/NicerAppWebOS/siteMedia/vividDialog_borderMask_300x500.png");
-            mask-image: url("/NicerAppWebOS/siteMedia/vividDialog_borderMask_300x500.png");
+            -webkit-mask-image: url(/NicerAppWebOS/siteMedia/vividDialog_borderMask_3840x2160.png);
+            mask-image: url(/NicerAppWebOS/siteMedia/vividDialog_borderMask_3840x2160.png);
         }
     }
+
 
 /* na.analytics */
 .geoIP {

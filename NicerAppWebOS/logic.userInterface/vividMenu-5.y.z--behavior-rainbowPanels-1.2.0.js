@@ -1321,7 +1321,7 @@ class naVividMenu__behavior_rainbowPanels {
                     $(x1.b.el).offset().left - $(t.el).offset().left,
                     $(x1.b.el).offset().top - $(t.el).offset().top
                 );
-                t.showBackPanel(t, t.currentEl);
+                //t.showBackPanel(t, t.currentEl);
             }
 
             t.showBackPanel(t, el);

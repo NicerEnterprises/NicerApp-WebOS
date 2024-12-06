@@ -54,8 +54,7 @@ class naVividDialog {
             $(t.el).find('.vdSettings').remove();
             $(t.el).prepend(html);
         }
-                debugger;
-                $(t.el).css({overflow:'visible', visibility:'visible', display:'block'});
+        $(t.el).css({overflow:'visible', visibility:'visible', display:'block'});
 
 
         var

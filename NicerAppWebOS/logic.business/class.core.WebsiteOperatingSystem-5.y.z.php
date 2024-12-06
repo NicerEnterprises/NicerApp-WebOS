@@ -1,6 +1,7 @@
 <?php
 $rootPath_na = realpath(dirname(__FILE__).'/../..'); global $rootPath_na;
 
+
 class NicerAppWebOS {
     public $cn = '.../NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php::class NicerAppWebOS';
     public $version = '5.5.4';
@@ -455,6 +456,8 @@ class NicerAppWebOS {
             '{$domain}' => $this->domain,
             '{$cssLinks}' => $cssLinks,
             '{$javascriptLinks}' => $javascriptLinks,
+            '{$commentsHEAD}' => $this->comments->html_displayHEAD(),
+            '{$div_siteComments}' => $this->comments->html_siteComments(),
             '{$customerHTML}' => $templateCustomer,
             '{$pageSpecificCSS}' => $this->getPageCSS(),
             '{$theme}' => $this->cssTheme,
@@ -483,6 +486,7 @@ class NicerAppWebOS {
             $arr = array ( '{$div_'.$divName.'}' => $contentForDiv );
             $replacements = array_merge ($replacements, $arr);
         }
+
         $search3 = array_keys($replacements);
         $replace3 = array_values($replacements);
         $html = require_return($templateFile, false);
@@ -1455,7 +1459,7 @@ class NicerAppWebOS {
                 if ($doSetSpecificity) {
                     $r .= '$(document).ready(function() {'.PHP_EOL;
                     //$r .= "\tna.m.waitForCondition('HTML BODY : document.ready -> na.site.setSpecificity', na.m.HTMLidle, na.site.setSpecificity, 50);".PHP_EOL;
-                    $r .= "\tna.site.setSpecificity();".PHP_EOL;
+                    //$r .= "\tna.site.setSpecificity();".PHP_EOL;
                     $r .= "});".PHP_EOL;
                 }
                 $r .= '</script>'.PHP_EOL;
@@ -1641,7 +1645,7 @@ class NicerAppWebOS {
                     };
                     $r .= '$(document).ready(function() {'.PHP_EOL;
                         $r .= "\t//setTimeout(function() {".PHP_EOL;
-                        $r .= "\t\tna.site.setSpecificity();".PHP_EOL;
+                        //$r .= "\t\tna.site.setSpecificity();".PHP_EOL;
                         $r .= "\t//}, 10);".PHP_EOL;
                     $r .= "});".PHP_EOL;
                     $r .= '</script>'.PHP_EOL;

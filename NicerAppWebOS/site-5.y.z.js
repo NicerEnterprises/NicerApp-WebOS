@@ -26,7 +26,7 @@ na.site = {
             errorMsgs_long : 3 * 1000
         }
     },
-    
+
     settings : {
         dialogs : {},
         buttons : {},
@@ -418,6 +418,7 @@ na.site = {
 
         //na.site.resizeApps();
         $('.vividDialog').css({overflow:'visible'});
+        $('#siteComments .vdTools').remove();
 
         na.site.onresize_doContent();
 
@@ -1137,7 +1138,9 @@ na.site = {
                 if ($(optEl2)[0].selected) $('#nb_url1_dropdown_selected, #url1_dropdown_selected').html(el.innerHTML);
             });
 
-            $('#url0').html('/'+$.cookie('cdb_loginName').replace(/.*___/g,'').replace(/__/g,'-')+'/');
+            var loginName = $.cookie && $.cookie('cdb_loginName') || 'Guest';
+            debugger;
+            $('#url0').html('/'+loginName.replace(/.*___/g,'').replace(/__/g,'-')+'/');
 
             $('#nb_url1_dropdown, #url1_dropdown').hover(function() {
                 $('#nb_url1_dropdown_selector, #url1_dropdown_selector').fadeIn('normal');

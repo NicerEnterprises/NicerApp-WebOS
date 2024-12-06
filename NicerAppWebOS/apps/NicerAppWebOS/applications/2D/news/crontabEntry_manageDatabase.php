@@ -1,9 +1,16 @@
 <?php
 $fn = realpath(dirname(__FILE__).'/../../../../../../').'/NicerAppWebOS/boot.php';
+//echo $fn; exit();
+
+global $naBypassMainErrorHandler;
+$naBypassMainErrorHandler = false;
+global $naBypassMainErrorHandler;
 
 require_once ($fn);
+//echo $fn; exit();
 require_once (dirname(__FILE__).'/class.newsApp-3.php');
 $fncn = 'nicerapp/apps/nicer.app/applications/2D/news/crontabEntry_manageDatabase.php';
+//echo $fncn; exit();
 
 $newsApp3_factorySettings_fn = dirname(__FILE__).'/config.factorySettings.json';
 $newsApp3_factorySettings = json_decode(file_get_contents($newsApp3_factorySettings_fn), true);
@@ -32,9 +39,9 @@ if (file_exists($fnLock)) {
     $doo = file_exists($fnLock);
     //while ($doo) {
         startDuration('fetch');
-        //$logstr = '\033[42;1;4m'.$fncn.' : Fetching news for '.file_get_contents(dirname(__FILE__).'/mainmenu.valueCount.txt').' RSS pages, '.file_get_contents(dirname(__FILE__).'/mainmenu.keyCount.txt').' menu-items.\033[37;49m'.PHP_EOL;
-        //echo $logstr;
-        //error_log ($logstr);
+        $logstr = '\033[42;1;4m'.$fncn.' : Fetching news for '.file_get_contents(dirname(__FILE__).'/mainmenu.valueCount.txt').' RSS pages, '.file_get_contents(dirname(__FILE__).'/mainmenu.keyCount.txt').' menu-items.\033[37;49m'.PHP_EOL;
+        echo $logstr;
+        error_log ($logstr);
         $newCount = $newsApp3->fetch();
         //echo '<pre style="color:blue">'; var_dump ($newsApp3->d); echo '</pre>'.PHP_EOL; exit();
         $doo = file_exists($fnLock);
@@ -47,8 +54,8 @@ if (file_exists($fnLock)) {
             $secondsSpent = round($duration - ($minutesSpent * 60));
             
             $logstr = 'Fetching RSS data for '.file_get_contents(dirname(__FILE__).'/mainmenu.valueCount.txt').' RSS pages, '.file_get_contents(dirname(__FILE__).'/mainmenu.keyCount.txt').' menu-items, '.$newCount.' new news-items, took '.$minutesSpent.' minutes, '.$secondsSpent.' seconds.'.PHP_EOL;
-            //echo $logstr;
-            //error_log ($logstr);
+            echo $logstr;
+            error_log ($logstr);
         
             $logstr = 'Writing data to database.'.PHP_EOL;
             //echo $logstr;

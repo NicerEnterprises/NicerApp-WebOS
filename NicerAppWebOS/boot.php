@@ -37,7 +37,8 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
     // Sag, the business code layer that i use towards the couchdb.apache.org database system.
     require_once($rootPath_na.'/NicerAppWebOS/3rd-party/sag/src/Sag.php');
     require_once ($rootPath_na.'/NicerAppWebOS/Sag-support-functions.php');
-    require_once ($rootPath_na.'/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/comments/boot.php');
+    require_once ($rootPath_na.'/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/comments-2.0.0/boot.php');
+    //echo 'YES'.$rootPath_na; exit();
 
 
     global $naGlobals;
@@ -54,6 +55,7 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
 
     // the main() class
     require_once($rootPath_na.'/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php');
+    //echo 'ohhNo'.$rootPath_na; exit();
 
     global $naIP;
     if (
@@ -444,7 +446,7 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
     // you will find : require_once(dirname(__FILE__).'/apps/nicer.app/api.paymentSystems/boot.php');
     
     ini_set('memory_limit','256M');
-    set_time_limit(60); // 60 seconds
+    set_time_limit(10); // 10 seconds
 
     //echo '<pre>'; var_dump ($_SERVER); exit();
     

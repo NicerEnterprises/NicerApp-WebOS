@@ -77,7 +77,7 @@ if ($appRec['page']=='index') {
                 $url = $docA['httpOpts']['CURLOPT_URL'];
 
 
-        echo '<h2 class="logEntry '.$class.' tooltip flex" s1="'.$call2->body->s1.'" i="'.$call2->body->i.'" title="'.$tooltip.'" alt="'.$tooltip.'"  onclick="naLog.onclick_logEntry(event);"><span class="datetimeAccurate">'.$now2.'</span> <span class="ip">'.$call2->body->ip.'</span><br/>'.$url.'</h2>';
+        //echo '<h2 class="logEntry '.$class.' tooltip flex" s1="'.$call2->body->s1.'" i="'.$call2->body->i.'" title="'.$tooltip.'" alt="'.$tooltip.'"  onclick="naLog.onclick_logEntry(event);"><span class="datetimeAccurate">'.$now2.'</span> <span class="ip">'.$call2->body->ip.'</span><br/>'.$url.'</h2>';
 
         $marginLeft = 10;
         if (!$doc->isIndex) $marginLeft = 50;
@@ -98,7 +98,7 @@ if ($appRec['page']=='index') {
             $now2 = $now->format("Y-m-d H:i:s");
 
             echo '<div id="'.$doc->_id.'" i="'.$call2->body->i.'" style="margin:10px;margin-left:'.$marginLeft.'px" onclick="naLog.onclick_logEntry(event);">';
-            echo '<h2><span class="datetimeAccurate">'.$now2.'</span> <span class="ip">'.$call2->body->ip.'</span> '.$url.'</h2>';
+            echo '<h2><span class="datetimeAccurate">'.$now2.'</span> <span class="ip">'.$call2->body->ip.'</span> <span class="url">'.$url.'</span></h2>';
             //echo hmJSON ($docA['request'], 'Request response');
             echo '</div>';
         }

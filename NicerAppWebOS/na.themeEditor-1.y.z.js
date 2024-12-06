@@ -1159,7 +1159,7 @@ na.te = na.themeEditor = {
                 $('#theme_'+i).html (na.te.s.c.selectedThemeName);
                 
                 na.site.setSiteLoginLogout();
-                //setTimeout (na.site.setSpecificity,250);
+                setTimeout (na.site.setSpecificity,250);
             },
             error : function (xhr, textStatus, errorThrown) {
                 na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);

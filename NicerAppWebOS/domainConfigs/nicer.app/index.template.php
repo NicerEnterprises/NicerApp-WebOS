@@ -31,7 +31,9 @@ na.site.globals = $.extend(na.site.globals, {
     domain : '{$domain}'
 });
 $(document).ready(function() {
-    na.site.onload(event);
+    setTimeout(function(evt) {
+        na.site.onload(evt);
+    }, 2000, event);
 });
 </script>
 

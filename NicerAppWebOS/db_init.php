@@ -30,6 +30,7 @@ global $naWebOS;
 $un1 = strtolower(trim($naWebOS->ownerInfo['OWNER_NAME']));
 $un1 = str_replace(' ', '_', $un1);
 $un1 = str_replace('.', '__', $un1);
+$db1 = $naWebOS->domainForDB.'___'.trim($naWebOS->ownerInfo['OWNER_NAME']);
 
 $dbs = [
     'analytics',
@@ -45,6 +46,7 @@ $dbs = [
     'cms_documents___role___guests',
     'cms_documents___user___administrator___'.$un1,
     'cms_documents___user___guest',
+    'cms_comments',
     'themes',
     'api_wallpaperscraper__plugin_bingImages',
     'api_wallpaperscraper__plugin_googleImages',
@@ -73,6 +75,7 @@ $dbsReset = [
     'cms_documents___role___guests',
     'cms_documents___user___administrator___'.$un1,
     'cms_documents___user___guest',
+    'cms_comments',
     'themes',
     'api_wallpaperscraper__plugin_bingImages',
     'api_wallpaperscraper__plugin_googleImages',
@@ -163,7 +166,8 @@ if (mustDo('cms')) {
         'cms_tree___user___guest',
         'cms_documents___role___guests',
         'cms_documents___user___administrator___'.$un1,
-        'cms_documents___user___guest'
+        'cms_documents___user___guest',
+        'cms_comments'
     ]);
 };
 
