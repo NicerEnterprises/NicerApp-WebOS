@@ -69,7 +69,7 @@ class naVividMenu__behavior_rainbowPanels {
             if ($(t.el).is('.noInitialShowing')) {
                 $(t.el).css ({
                     left : $(t.el.parentNode).position().left + 10,
-                    top : $(t.el.parentNode).position().top + 60,
+                    top : $(t.el.parentNode).position().top + 30,
                     width : 200
                 });
 
@@ -791,7 +791,7 @@ class naVividMenu__behavior_rainbowPanels {
             };
         } else {
             $(panel).bind('mouseover', function (event) {
-                //t.cancelHidings(t);
+                t.cancelHidings(t);
                 //debugger;
                 $('#'+t.el.id+'__backPanel').remove();
                 t.showBackPanel(t, t.currentEl);
@@ -842,7 +842,7 @@ class naVividMenu__behavior_rainbowPanels {
             } else {
                 var p_bcr = {
                     left : $(t.el).offset().left,
-                    top : $(t.el).offset().top,
+                    top : 0,//$(t.el).offset().top,
                     width : $(it.b.el).width(),
                     height : $(it.b.el).height()
                 }
@@ -943,10 +943,10 @@ class naVividMenu__behavior_rainbowPanels {
                     it.level > 2
                     ? dim.verDirection=='north'
                         ? p_bcr.top - $(panel).height() - 5 - (1.5 * na.d.g.margin)
-                        : p_bcr.top + 20 + (1.5 * na.d.g.margin)
+                        : p_bcr.top + 10 + na.d.g.margin
                     : dim.verDirection=='north'
                         ? p_bcr.top - $(panel).height() - 305 - (1.5 * na.d.g.margin)
-                        : p_bcr.top + 20 + (1.5 * na.d.g.margin)
+                        : p_bcr.top + 10 + na.d.g.margin
                 ),
 
                 width : 170,
