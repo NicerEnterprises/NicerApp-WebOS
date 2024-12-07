@@ -37,7 +37,7 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
     // Sag, the business code layer that i use towards the couchdb.apache.org database system.
     require_once($rootPath_na.'/NicerAppWebOS/3rd-party/sag/src/Sag.php');
     require_once ($rootPath_na.'/NicerAppWebOS/Sag-support-functions.php');
-    require_once ($rootPath_na.'/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/comments-2.0.0/boot.php');
+    require_once ($rootPath_na.'/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/siteComments-2.0.0/boot.php');
     //echo 'YES'.$rootPath_na; exit();
 
 

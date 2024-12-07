@@ -38,10 +38,10 @@ class class_NicerApp_WebOS_siteComments {
         $r = $naWebOS->html ($il, '<link type="text/css" rel="stylesheet" media="screen" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">');
         $r.= $naWebOS->html ($il, '<link type="text/css" rel="StyleSheet" media="screen" href="/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/siteComments-2.0.0/comments-globals.css?changed='.date('Ymd-His', filemtime(dirname(__FILE__).'/comments-globals.css')).'">');
         $r.= $naWebOS->html ($il, '<link type="text/css" rel="StyleSheet" media="screen" href="/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/siteComments-2.0.0/comments-'.$theme.'.css?changed='.date('Ymd-His', filemtime(dirname(__FILE__).'/comments-'.$theme.'.css')).'">');
-        $r.= $naWebOS->html ($il, '<script type="text/javascript"  src="/NicerAppWebOS/3rd-party/tinymce-4.9.11/js/tinymce/tinymce.min.js" onload="na.comments.onload_editorLoaded();"></script>');
+        $r.= $naWebOS->html ($il, '<script type="text/javascript"  src="/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/siteComments-2.0.0/naComments-2.0.0.source.js?changed='.date('Ymd-His', filemtime(dirname(__FILE__).'/naComments-2.0.0.source.js')).'"></script>');
+        $r.= $naWebOS->html ($il, '<script type="text/javascript"  src="/NicerAppWebOS/3rd-party/tinymce-4.9.11/js/tinymce/tinymce.min.js" onload="setTimeout(na.comments.onload_editorLoaded,250);"></script>');
         $r.= $naWebOS->html ($il, '<link rel="stylesheet" href="/NicerAppWebOS/3rd-party/tinymce-4/themes/charcoal/skin.min.css">');
         $r.= $naWebOS->html ($il, '<script src="/NicerAppWebOS/3rd-party/jQuery/jquery-ui-1.12.1/jquery-ui.js"></script>');
-        $r.= $naWebOS->html ($il, '<script type="text/javascript"  src="/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/siteComments-2.0.0/naComments-2.0.0.source.js?changed='.date('Ymd-His', filemtime(dirname(__FILE__).'/naComments-2.0.0.source.js')).'"></script>');
         return $r;
     }
     

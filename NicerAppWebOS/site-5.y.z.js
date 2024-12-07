@@ -1199,10 +1199,15 @@ na.site = {
     setSiteLoginLogout : function () {
         $('#btnLoginLogout').hover(function() {
             var 
+            loggedInAs = $.cookie && $.cookie('cdb_loginName')!=''
+                ? $.cookie('cdb_loginName').replace(/.*___/g,'')
+                    .replace(/__/g,' ')
+                    .replace(/_/g,'.')
+                : 'Guest',
             html = 
                 '<div id="siteLoginLogout__background" class="vividDialogPopup_background" style="display:grid;"></div>'
                 +'<div id="labelLoggedInAs" class="siteLoginLogout_label" style="grid-column:1;grid-row:1">Logged in as : </div>'
-                +'<div id="loggedInAs" class="siteLoginLogout_labelText" style="grid-column:2;grid-row:1">'+$.cookie('cdb_loginName').replace(/.*___/g,'').replace(/__/g,' ').replace(/_/g,'.')+'</div><br/>'
+                +'<div id="loggedInAs" class="siteLoginLogout_labelText" style="grid-column:2;grid-row:1">'+loggedInAs+'</div><br/>'
                 +'<div id="labelSpecificityName" class="siteLoginLogout_label" style="grid-column:1;grid-row:2">Specificity : </div>'
                 +'<div id="specificityName" class="siteLoginLogout_labelText" style="grid-column:2;grid-row:2">'+na.site.globals.specificityName+'</div><br/>'
                 +'<div id="labelThemeName" class="siteLoginLogout_label" style="grid-column:1;grid-row:3">Theme : </div>'

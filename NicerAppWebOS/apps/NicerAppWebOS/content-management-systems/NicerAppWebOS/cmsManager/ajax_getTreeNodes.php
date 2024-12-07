@@ -8,12 +8,12 @@ global $naWebOS;
 $db = $naWebOS->dbs->findConnection('couchdb');
 $cdb = $db->cdb;
 
-$username = array_key_exists('cdb_loginName',$_COOKIE) ? $_COOKIE['cdb_loginName'] : $cdbConfig['username'];
+$username = array_key_exists('cdb_loginName',$_COOKIE) ? $_COOKIE['cdb_loginName'] : 'Guest';
 //echo '<pre>t342:';var_dump ($username);echo '</pre>';exit();
 //$username = str_replace(' ', '__', $username);
 //$username = str_replace('.', '_', $username);
 $username1a = $db->translate_plainUserName_to_couchdbUserName ($username);
-$username1 = preg_replace ('/.*___/', '', $username1a);
+$username1 = $db->translate_couchdbUserName_to_plainUserName ($username1a);
 
 $cdb_domain = $naWebOS->domainForDB;
 $tables = array (
