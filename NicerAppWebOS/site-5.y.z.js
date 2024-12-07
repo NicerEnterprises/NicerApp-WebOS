@@ -957,11 +957,12 @@ na.site = {
                     - w
                     - 20;
 
-            $(this).css({
+            if (na.m.userDevice.isPhone) $(this).css({
                 width: w2,
                 height : 'auto'
+            }); else $(this).css({
+                height : 'auto'
             });
-
         });
         for (var i in na.site.globals.themesDBkeys) {
             if (
@@ -1047,6 +1048,7 @@ na.site = {
         var
         t = $('#btnOptions_menu__themes_dropdown > .vividDropDownBox_selector > .vividScrollpane > div'),
         html = '';
+        debugger;
         for (var i=0; i<t.length; i++) {
             var
             sel = (
@@ -1196,7 +1198,6 @@ na.site = {
     
     setSiteLoginLogout : function () {
         $('#btnLoginLogout').hover(function() {
-            debugger;
             var 
             html = 
                 '<div id="siteLoginLogout__background" class="vividDialogPopup_background" style="display:grid;"></div>'

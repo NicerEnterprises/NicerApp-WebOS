@@ -1931,11 +1931,11 @@ class NicerAppWebOS {
                     'read' => [ 'users' => [ $username100 ] ],
                     'write' => [ 'users' => [ $username100 ] ]
                 ],
-                'specificityName' => 'site for user '.$username101,
+                'specificityName' => 'site for user '.$username101a,
                 'user' => $username100,
                 'display' => true
             );
-            $selectorNames[] = 'site for user '.$username101;
+            $selectorNames[] = 'site for user '.$username101a;
             //$preferredSelectorName = 'site user '.$username100;
 
             $selectors[] = array (
@@ -1943,12 +1943,12 @@ class NicerAppWebOS {
                     'read' => [ 'users' => [ $username100 ] ],
                     'write' => [ 'users' => [ $username100 ] ]
                 ],
-                'specificityName' => 'site for user '.$username101.' at the client',
+                'specificityName' => 'site for user '.$username101a.' at the client',
                 'user' => $username100,
                 'ip' => $naIP,
                 'display' => true
             );
-            $selectorNames[] = 'site for user '.$username101.' at the client';
+            $selectorNames[] = 'site for user '.$username101a.' at the client';
 
 
 
@@ -2067,12 +2067,12 @@ class NicerAppWebOS {
                         'read' => [ 'users' => [ $username100 ] ],
                         'write' => [ 'users' => [ $username100 ] ]
                     ],
-                    'specificityName' => 'app \''.$appName.'\' for user '.$username101,
+                    'specificityName' => 'app \''.$appName.'\' for user '.$username101a,
                     'app' => $viewFolder,
                     'user' => $username100,
                     'display' => true
                 );
-                $selectorNames[] = 'app \''.$appName.'\' for user '.$username101;
+                $selectorNames[] = 'app \''.$appName.'\' for user '.$username101a;
                 $selectors[] = array (
                     'permissions' => [
                         'read' => [ 'users' => [ $username100 ] ],
@@ -2085,7 +2085,7 @@ class NicerAppWebOS {
                             ]
                         ]
                     ],
-                    'specificityName' => 'app \''.$appName.'\' for user '.$username101.' at the client',
+                    'specificityName' => 'app \''.$appName.'\' for user '.$username101a.' at the client',
                     'app' => $viewFolder,
                     'user' => $username100,
                     'ip' => $naIP,
@@ -2099,15 +2099,15 @@ class NicerAppWebOS {
 
             $selectors[] = array (
                 'permissions' => [
-                    'read' => [ 'users' => [ $username100 ] ],
-                    'write' => [ 'users' => [ $username100 ] ]
+                    'read' => [ 'users' => [ $username101 ] ],
+                    'write' => [ 'users' => [ $username101 ] ]
                 ],
-                'specificityName' => 'current page for user '.$username101,
+                'specificityName' => 'current page for user '.$username101a,
                 'url' => $url,
-                'user' => $username100,
+                'user' => $username101,
                 'display' => true
             );
-            $selectorNames[] = 'current page for user '.$username101;
+            $selectorNames[] = 'current page for user '.$username101a;
             //$preferredSelectorName = 'current page for user '.$username100;
 
             $selectors[] = array (
@@ -2115,9 +2115,9 @@ class NicerAppWebOS {
                     'read' => [ 'users' => [ $username100 ] ],
                     'write' => [ 'users' => [ $username100 ] ]
                 ],
-                'specificityName' => 'current page for user '.$username101.' at the client',
+                'specificityName' => 'current page for user '.$username101a.' at the client',
                 'url' => $url,
-                'user' => $username100,
+                'user' => $username101,
                 'ip' => $naIP,
                 'display' => true
             );
