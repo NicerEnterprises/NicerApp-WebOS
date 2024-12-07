@@ -1740,6 +1740,7 @@ class NicerAppWebOS {
         }
 
         global $naIP;
+        global $naWebOS;
         $username100 = (
             array_key_exists('cdb_loginName', $_COOKIE)
             ? $_COOKIE['cdb_loginName']
@@ -1752,7 +1753,7 @@ class NicerAppWebOS {
             '$username101a' => $username101a,
             '$username101' => $username101
         ];
-        //echo PHP_EOL.PHP_EOL.'<pre>'; var_dump ($dbg); echo '</pre>';
+        //echo PHP_EOL.PHP_EOL.'<pre>'; var_dump ($dbg); echo '</pre>'; exit();
 
         $appName = preg_replace('/.*\//','',$viewFolder);
         //echo PHP_EOL.PHP_EOL.'T123::'.'$appName='.$appName.'<br/>'.PHP_EOL.PHP_EOL;
