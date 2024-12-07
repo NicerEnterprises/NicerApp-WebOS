@@ -1459,7 +1459,7 @@ class NicerAppWebOS {
                 if ($doSetSpecificity) {
                     $r .= '$(document).ready(function() {'.PHP_EOL;
                     //$r .= "\tna.m.waitForCondition('HTML BODY : document.ready -> na.site.setSpecificity', na.m.HTMLidle, na.site.setSpecificity, 50);".PHP_EOL;
-                    //$r .= "\tna.site.setSpecificity();".PHP_EOL;
+                    $r .= "\tna.site.setSpecificity();".PHP_EOL;
                     $r .= "});".PHP_EOL;
                 }
                 $r .= '</script>'.PHP_EOL;
@@ -1644,9 +1644,9 @@ class NicerAppWebOS {
                         $r .= '});'.PHP_EOL;
                     };
                     $r .= '$(document).ready(function() {'.PHP_EOL;
-                        $r .= "\t//setTimeout(function() {".PHP_EOL;
-                        //$r .= "\t\tna.site.setSpecificity();".PHP_EOL;
-                        $r .= "\t//}, 10);".PHP_EOL;
+                        $r .= "\tsetTimeout(function() {".PHP_EOL;
+                        $r .= "\t\tna.site.setSpecificity();".PHP_EOL;
+                        $r .= "\t}, 10);".PHP_EOL;
                     $r .= "});".PHP_EOL;
                     $r .= '</script>'.PHP_EOL;
                     $ret = $r.$ret;
@@ -1743,10 +1743,16 @@ class NicerAppWebOS {
         $username100 = (
             array_key_exists('cdb_loginName', $_COOKIE)
             ? $_COOKIE['cdb_loginName']
-            : ''
+            : $naWebOS->domainForDB.'___Guest'
         );
         $username101a = $db->translate_couchdbUserName_to_plainUserName ($username100);
         $username101 = $db->translate_plainUserName_to_couchdbUserName ($username101a);
+        $dbg = [
+            '$username100' => $username100,
+            '$username101a' => $username101a,
+            '$username101' => $username101
+        ];
+        //echo PHP_EOL.PHP_EOL.'<pre>'; var_dump ($dbg); echo '</pre>';
 
         $appName = preg_replace('/.*\//','',$viewFolder);
         //echo PHP_EOL.PHP_EOL.'T123::'.'$appName='.$appName.'<br/>'.PHP_EOL.PHP_EOL;
@@ -1856,7 +1862,8 @@ class NicerAppWebOS {
                             'roles' => [
                                 $db->translate_plainGroupName_to_couchdbGroupName('Owners'),
                                 $db->translate_plainGroupName_to_couchdbGroupName('Chief Officers'),
-                                $db->translate_plainGroupName_to_couchdbGroupName('Moderators')
+                                $db->translate_plainGroupName_to_couchdbGroupName('Moderators'),
+                                $db->translate_plainGroupName_to_couchdbGroupName('Guests'),
                             ]
                         ]
                     ],
@@ -1948,7 +1955,7 @@ class NicerAppWebOS {
 
             foreach ($this->dbs->findConnection('couchdb')->roles as $roleIdx => $role) {
                 $role2 = $this->dbs->findConnection('couchdb')->translate_couchdbGroupName_to_plainGroupName($role);
-                //if ($debug) { echo '<pre style="color:white;background:navy">'; var_dump ($role2); echo '</pre>'; }
+                //if (true || $debug) { echo '<pre style="color:white;background:navy">'; var_dump ($role2); echo '</pre>'; }
                 $selectors[] = array (
                     'permissions' => array (
                         'read' => [
@@ -2135,7 +2142,7 @@ class NicerAppWebOS {
         $hasJS = false;
         $hasCSS = false;
 
-        //if ($debug) { echo '<pre style="color:yellow;background:brown;">';var_dump ($selectors); echo '</pre>'; }
+        //if (true || $debug) { echo '<pre style="color:yellow;background:brown;">';var_dump ($selectors); echo '</pre>'; exit(); }
         return [
             //'selectorNames' => $selectorNames,
             'selectors' => $selectors//,

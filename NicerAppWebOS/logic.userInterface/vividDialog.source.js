@@ -14,7 +14,7 @@ class naVividDialog {
         };
         t.t = $(this.el).attr('theme');
         t.settings = { current : {} };
-        
+
         var html = '';
         if (!$(t.el).find('.vdBackground')[0]) html += '<div class="vdBackground"></div>';
         

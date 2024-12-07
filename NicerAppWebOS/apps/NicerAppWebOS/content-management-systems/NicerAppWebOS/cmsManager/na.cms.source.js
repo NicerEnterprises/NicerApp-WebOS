@@ -450,6 +450,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/Nic
                 if (p.type == 'naGroupRootFolder') url0 = p.text;
             }
 
+
             if (rec
                 && (
                     rec.type=='naUserRootFolder'

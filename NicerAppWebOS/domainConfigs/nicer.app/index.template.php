@@ -32,6 +32,7 @@ na.site.globals = $.extend(na.site.globals, {
 });
 $(document).ready(function() {
     //setTimeout(function(evt) {
+    debugger;
         na.site.onload(event);
     //}, 2000, event);
 });
