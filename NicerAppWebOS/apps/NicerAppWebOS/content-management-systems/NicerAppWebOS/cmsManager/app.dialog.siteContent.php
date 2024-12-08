@@ -28,6 +28,10 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
 
 <script type="text/javascript" src="/NicerAppWebOS/3rd-party/tinymce-4.9.11/js/tinymce/tinymce.js"></script>
 <!--<script src="https://cdn.tiny.cloud/1/89d73yohz5ameo5exzlj9d6kya9vij9mt8f5ipzzqjo0wkw5/tinymce/4/tinymce.min.js" referrerpolicy="origin"></script>-->
+<script type="text/javascript">
+    na.m.waitForCondition ('page loaded?', function() {
+        return na.site;
+    }, na.site.onload_phase2, 100);
 
 <div id="document_headers" class="vividDialogPopup">
     <div class="sections">
