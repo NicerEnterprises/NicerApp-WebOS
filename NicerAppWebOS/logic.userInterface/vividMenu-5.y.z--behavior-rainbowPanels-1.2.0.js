@@ -753,10 +753,12 @@ class naVividMenu__behavior_rainbowPanels {
     }
 
     cancelHidings (t) {
+        /*
         for (var idx in t.timeout_hideSubMenu) {
             clearTimeout(t.timeout_hideSubMenu[idx]);
         }
         t.timeout_hideSubMenu = {};
+        */
 
         for (var bp_id in t.timeout_hideAll) {
             if (!t.timeout_hideAll[bp_id]) {
@@ -1575,7 +1577,8 @@ class naVividMenu__behavior_rainbowPanels {
             .not('#'+t.el.id+'__panel__'+t.el.id)
             .not(myPeers)
             .not(rootPath);
-        //console.log ('hiding', currs);
+        console.log ('prevKids', prevKids);
+        console.log ('hiding', currs);
 
         if (t.useFading) {
             $(currs).stop(true,true).fadeOut(t.fadingSpeed);

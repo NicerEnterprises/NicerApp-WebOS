@@ -1317,8 +1317,10 @@ class NicerAppWebOS {
         //$selectorNames = &$d['selectorNames'];
         //$specificityName = 'current page for user '.$db->username.' at the client';
 
+        /*
         session_start();
         $_SESSION['selectors'] = json_encode($selectors);
+        */
         //$_SESSION['selectorNames'] = json_encode($selectorNames);
         $selectors2 = array_reverse($selectors, true);
         //if ($debug) { echo '<pre>t333:'; var_dump ($selectors2); echo '</pre>'; }
