@@ -1570,7 +1570,7 @@ class naVividMenu__behavior_rainbowPanels {
         var currs =
             $('.vividMenu_item')
             .add('.vividMenu_subMenuPanel')
-            .add(prevKids)
+            //.add(prevKids)
             //.add(t.prevEl)
             .not(myKids)
             .not(rootLevel)
