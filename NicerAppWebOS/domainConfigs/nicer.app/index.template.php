@@ -337,10 +337,10 @@ if (false && $naLAN) {
     );
 };
 ?>
+            <!--
             <div class="flexBreak"></div>
 
 
-            <!--
             <div style="order:0;display:flex;align-items:center;justify-content:center;">
                 <label for="themeEditor_specificity_dialog" class="labelthemeEditor2" style="order:0">Dialog
                     <input type="radio" id="themeEditor_photoSpecificity_dialog" name="sdad" class="radioInput" value="dialog" checked="checked" onchange="na.te.onchange_applicationRange(event);" style="order:0;display:none"/>
@@ -383,7 +383,49 @@ echo $naWebOS->html_vividButton (
 );
                 ?>
                 <!--<img src="/NicerAppWebOS/siteMedia/btnPickColor.png" class="vividButton" style="width:40px;"/>-->
-                <div id="siteToolbarThemeEditor__themes_dropdown" class="na_themes_dropdown na_themes_dropdown__themes vividScrollpane" style="position:relative;height:auto;white-space:normal;"></div>
+            </div>
+            <div class="flexBreak"></div>
+
+
+            <div style="display:flex;width:100%;align-items:center;">
+                <!--<label for="specificity" class="specificityLabel" style="order:1;vertical-align:middle;font-weight:bold">Specificity</label>
+                <select id="specificity" class="select themeEditor mainBar_forThemeEditor" onchange="na.te.specificitySelected(event)" style="order:1;display:none;"></select>-->
+                <!--<span class="siteToolbarThemeEditor__label__specificity">Specificity</span>-->
+                <div id="siteToolbarThemeEditor__specificity_dropdown" class="na_themes_dropdown na_themes_dropdown__specificity vividScrollpane" style="position:relative;height:auto;white-space:normal;"></div>
+                <div id="btnThemeEditor__specificity_lock" class="vividButton4" buttonType="btn_lock" onclick="na.site.settings.current.lockSpecificity = !na.site.settings.current.lockSpecificity;" style="top:-15px"></div>
+
+
+<?php
+global $naWebOS;
+echo $naWebOS->html_vividButton (
+    4, 'order:1;margin-left:10px',
+
+    'btnDeleteSpecificity',
+    'vividButton_icon_50x50 grouped btnDelete forum', '_50x50', 'grouped',
+    '',
+    'if (!$(this).is(\'.disabled\')) na.te.deleteSpecificity(event)',
+    '',
+    '',
+
+    402, 'Delete all themes for this specificity.',
+
+    'btnCssVividButton_outerBorder.png',
+    'btnCssVividButton.png',
+    null,//'btnCssVividButton_iconBackground.png',
+    'iconDelete.png',
+
+    '',
+
+    null,
+    null,
+    null
+);
+?>
+            </div>
+            <div style="display:flex;width:100%;align-items:center;">
+
+
+                <div id="siteToolbarThemeEditor__themes_dropdown" class="na_themes_dropdown na_themes_dropdown__themes vividScrollpane" style="position:relative;height:auto;white-space:normal;display:flex;width:100%;align-items:center;"></div>
 
 <?php
 global $naWebOS;
@@ -412,41 +454,7 @@ echo $naWebOS->html_vividButton (
 );
 ?>
             </div>
-            <div style="display:flex;width:100%;align-items:center;">
-                <!--<label for="specificity" class="specificityLabel" style="order:1;vertical-align:middle;font-weight:bold">Specificity</label>
-                <select id="specificity" class="select themeEditor mainBar_forThemeEditor" onchange="na.te.specificitySelected(event)" style="order:1;display:none;"></select>-->
-                <!--<span class="siteToolbarThemeEditor__label__specificity">Specificity</span>-->
-                <div id="btnThemeEditor__specificity_lock" class="vividButton4" buttonType="btn_lock" onclick="na.site.settings.current.lockSpecificity = !na.site.settings.current.lockSpecificity;"></div>
-                <div id="siteToolbarThemeEditor__specificity_dropdown" class="na_themes_dropdown na_themes_dropdown__specificity vividScrollpane" style="position:relative;height:auto;white-space:normal;"></div>
 
-                
-<?php
-global $naWebOS;
-echo $naWebOS->html_vividButton (
-    4, 'order:1;margin-left:10px',
-    
-    'btnDeleteSpecificity', 
-    'vividButton_icon_50x50 grouped btnDelete forum', '_50x50', 'grouped',
-    '',
-    'if (!$(this).is(\'.disabled\')) na.te.deleteSpecificity(event)',
-    '',
-    '',
-
-    402, 'Delete all themes for this specificity.',
-
-    'btnCssVividButton_outerBorder.png',
-    'btnCssVividButton.png',
-    null,//'btnCssVividButton_iconBackground.png',
-    'iconDelete.png',
-    
-    '',
-    
-    null,
-    null, 
-    null
-);
-?>
-            </div>
             <!--
             <div style="position:relative;display:flex;width:100%;align-items:center;margin-top:5px;height:60px;">
                 <img src="/NicerAppWebOS/siteMedia/btnSettings.png" style="width:44px;"/>

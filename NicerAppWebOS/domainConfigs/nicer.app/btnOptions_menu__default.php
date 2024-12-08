@@ -8,9 +8,9 @@
 
 <div class="btnOptions_menu__specificity__containerDiv" style="display:flex;align-items:center;height:auto;">
     <!--<span class="label_specificityOrThemeChange">Specificity</span><select id="specificityChange_specificityName" type="text"></select>-->
-    <div id="btnLockSpecificity" class="vividButton4" buttonType="btn_lock" onclick="na.site.settings.current.lockSpecificity = !na.site.settings.current.lockSpecificity;" style="top:-15px"></div>
     <span class="btnOptions_menu__label__specificity_dropdown">Specificity</span>
     <div id="btnOptions_menu__specificity_dropdown" class="na_themes_dropdown na_themes_dropdown__specificity"></div>
+    <div id="btnLockSpecificity" class="vividButton4" buttonType="btn_lock" onclick="na.site.settings.current.lockSpecificity = !na.site.settings.current.lockSpecificity;" style="top:-15px"></div>
 </div>
 <div class="btnOptions_menu__theme__containerDiv" style="display:flex;align-items:center;height:44px;">
     <!--<span class="label_specificityOrThemeChange">Theme</span><select id="themeChange_themeName" type="text" onchange="na.te.themeSelected(event);"></select>-->

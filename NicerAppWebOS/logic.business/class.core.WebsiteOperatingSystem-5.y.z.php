@@ -195,12 +195,12 @@ class NicerAppWebOS {
                 echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;padding:8px;">';
                 echo json_encode($e->getMessage());
                 echo '</pre>';
-                exit;
+                exit();
             } catch (Exception $e) {
                 echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;padding:8px;">';
                 echo json_encode($e->getMessage());
                 echo '</pre>';
-                exit;
+                exit();
             }
         }
         $this->dbs->setGlobals($this->dbs->findConnection('couchdb')->username);
@@ -490,6 +490,7 @@ class NicerAppWebOS {
         $search3 = array_keys($replacements);
         $replace3 = array_values($replacements);
         $html = require_return($templateFile, false);
+        //var_dump ($templateFile); exit(); //TODO : FIX PLEASE!
         //var_dump($html); exit();
         $html3 = str_replace ($search3, $replace3, $html);
         //var_dump($html3);
@@ -1113,6 +1114,7 @@ class NicerAppWebOS {
         $buttonText_style
     ) {
         $il = $relativeIndentLevel;
+        //var_dump ($buttonText); //TODO: FIX PLEASE!
         if ($buttonTitleAlt!== $buttonText) $buttonTitleAlt2 = $buttonTitleAlt; else $buttonTitleAlt2 = '';
         if (is_string($buttonText) && $buttonText!=='') $containerStyle = 'display:flex;'.$containerStyle;
         $r  = $this->html($il, '<div id="'.$id.'_container" class="'.str_replace('vividButton_icon','vividButton_container',$class).'" tabindex="'.$buttonTabIndex.'" style="'.$containerStyle.'" onclick="'.$button_event_onclick.'" onmouseover="'.$button_event_onmouseover.'" onmouseout="'.$button_event_onmouseout.'" title="'.$buttonTitleAlt2.'" alt="'.$buttonTitleAlt.'">');
@@ -1124,7 +1126,9 @@ class NicerAppWebOS {
         if (!is_null($buttonImgSrc)) $r .= $this->html($il+2,    '<img class="vividButton_icon_imgButtonIcon'.$subClassSuffix.' '.$iconComponents_subClassSuffix.'" srcPreload="/NicerAppWebOS/siteMedia/'.$buttonImgSrc.'"/>');
         if (!is_null($buttonOverlayHTML)) $r .= $this->html($il+2,    $buttonOverlayHTML);
         $r .= $this->html($il, '</div>');
+        //echo '45'; var_dump ($buttonText);
         if (is_string($buttonText) && $buttonText!=='') {
+            //echo '65';
             $textPartSuffix = '_text';
             $r .= $this->html($il+1, '<div id="'.$id.$textPartSuffix.'" class="vividButton_icon'.$subClassSuffix.'_text '.$buttonText_class.'" style="'.$buttonText_style.'" tabindex="'.$buttonTabIndex.'" title="'.$buttonTitleAlt2.'" alt="'.$buttonTitleAlt.'">');
             $r .= $this->html($il+2,    '<div>'.$buttonText.'</div>');
@@ -1196,6 +1200,7 @@ class NicerAppWebOS {
         $viewFolder = '[UNKNOWN VIEW]';
 
         $selectors2 = $d['selectors'];
+
         //$selectorNames = $d['selectorNames'];
         foreach ($selectors2 as $idx => $selector) {
             $permissions = $selector['permissions'];
@@ -1325,6 +1330,30 @@ class NicerAppWebOS {
         //if ($debug) 
         //echo '<pre>';var_dump ($selectors); exit();
 
+        foreach ($selectors2 as $idx => $selector) {
+            if ($debug) { echo '<pre style="color:yellow;background:navy;">'; var_dump ($selector); }
+            if (
+                !array_key_exists('has_read_permission',$selector)
+                || !$selector['has_read_permission']
+            ) continue;
+
+            if (
+                !$doIncludeClientOnlyThemes
+                && strpos($selector['specificityName'], ' client')!==false
+            ) continue;
+
+            if (
+                $stickToCurrentSpecificity
+                && $selector['specificityName']!==$specificityName
+            ) continue;
+
+            $css = $this->getPageCSS_specific($selector);
+            if (is_array($css)) {
+                $selectors2[$idx]['hasData'] = true;
+            }
+            if ($debug) { echo '<pre style="color:cyan;background:navy;">'; var_dump($css); echo '</pre>'; }
+        }
+
 
         
         foreach ($selectors2 as $idx => $selector) {
@@ -1348,13 +1377,20 @@ class NicerAppWebOS {
             ) continue;
 
             $css = $this->getPageCSS_specific($selector);
+            //if ($css!==false || $debug) {
             if ($debug) {
                 //echo '<pre style="color:cyan;background:navy;">'; var_dump($css); echo '</pre>';
                 $this->echoDebugData ($css, $fncn.' : 4', 'naDebugData_getPageCSS');
+                exit();
             }
 
             if (is_array($css)) {
-                foreach ($css['themes'] as $themeName => $theme) { break; };
+                $selectors2[$idx]['hasData'] = true;
+                if ($css['themes']!=false)
+                    foreach ($css['themes'] as $themeName => $theme) { break; }
+                else
+                    $themeName = 'default';
+
                 $specificityName = (
                     array_key_exists($themeName, $css['themes'])
                     && array_key_exists('specificityName', $css['themes'][$themeName])

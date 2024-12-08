@@ -10,7 +10,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
     public $debug = false;
     public $ip;
     public $security_admin = null;//'{ "admins": { "names": [], "roles": ["administrators"] }, "members": { "names": [], "roles": ["administrators","guests"] } }';
-    public $security_guest = null;//'{ "admins": { "names": [], "roles": ["guests"] }, "members": { "names": [], "roles": ["guests"] } }';
+    public $security_guest = '{ "admins": { "names": [], "roles": ["guests"] }, "members": { "names": [], "roles": ["guests"] } }';
     public $naWebOS;
     public $cdb;
     public $cdb_slr;
@@ -721,6 +721,19 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         $this->cdb->setDatabase($dataSetName, true);
     }
 
+    public function createDataSet_cms_comments() {
+        // TODO : error handling
+        $debug = $this->debug;
+        $dataSetName = $this->dataSetName('themes');
+        try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
+        $this->cdb->setDatabase($dataSetName, true);
+        try {
+            $call = $this->cdb->setSecurity ($this->security_guest);
+        } catch (Exception $e) {
+            if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
+        }
+    }
+
     public function createDataSet_themes() {
         // TODO : error handling
         $debug = $this->debug;
@@ -730,7 +743,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         //if ($this->debug) { echo '<pre style="color:orange;background:navy;">'; var_dump ($cdb); echo '</pre>';  }
         //if ($this->debug) { echo '<pre style="color:orange;background:navy;">'; var_dump (css_to_array(file_get_contents(dirname(__FILE__).'/themes/nicerapp_default.css'))); echo '</pre>';}
 
-        try { 
+        try {
             $call = $this->cdb->setSecurity ($this->security_guest);
         } catch (Exception $e) {
             if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }

@@ -1000,6 +1000,8 @@ na.site = {
                         : i == l
             );
 
+            if (na.site.globals.themesDBkeys[i].hasData) $(divEl).addClass('hasData');
+
             if (selectMe) {
                 //debugger;
                 $(divEl).addClass('selected');

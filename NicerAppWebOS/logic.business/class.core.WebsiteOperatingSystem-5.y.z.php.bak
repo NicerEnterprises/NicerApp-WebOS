@@ -459,6 +459,7 @@ class NicerAppWebOS {
         $search3 = array_keys($replacements);
         $replace3 = array_values($replacements);
         $html = require_return($templateFile, false);
+        //var_dump ($templateFile); exit(); //TODO : FIX PLEASE!
         //var_dump($html); exit();
         $html3 = str_replace ($search3, $replace3, $html);
         //var_dump($html3);

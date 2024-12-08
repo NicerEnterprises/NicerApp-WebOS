@@ -851,6 +851,38 @@ a.bright:visited {
   text-shadow : 2px 2px 2px rgba(0,0,0,0.55);
   position : relative;
 }
+.contentSectionTitle3_a1:hover span {
+  --bg-size: 400%;
+  --color-one-lime : lime;
+  --color-two-yellow : yellow;
+  background: linear-gradient(
+                90deg,
+                var(--color-one-lime),
+                var(--color-two-yellow),
+                var(--color-one-lime)
+              ) 0 0 / var(--bg-size) 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: cyan;
+  text-shadow : 2px 2px 2px rgba(0,0,0,0.55);
+  position : relative;
+}
+.contentSectionTitle3_a1 span {
+  --bg-size: 400%;
+  --color-one-lime : lime;
+  --color-two-yellow : yellow;
+  background: linear-gradient(
+                90deg,
+                var(--color-one-lime),
+                var(--color-two-yellow),
+                var(--color-one-lime)
+              ) 0 0 / var(--bg-size) 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: lime;
+  text-shadow : 2px 2px 2px rgba(0,0,0,0.55);
+  position : relative;
+}
 
 
 

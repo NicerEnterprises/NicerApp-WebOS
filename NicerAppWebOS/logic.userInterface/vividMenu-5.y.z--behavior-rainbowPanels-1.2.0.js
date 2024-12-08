@@ -1333,7 +1333,7 @@ class naVividMenu__behavior_rainbowPanels {
         this.onmouseout_do($.extend({},event), toHide);
         return true;
 
-        /*
+
         var t = this, el = event.currentTarget;
         if (!t.timeout_onmouseout) t.timeout_onmouseout = {};
 
@@ -1351,7 +1351,7 @@ class naVividMenu__behavior_rainbowPanels {
                 }
             }
         }, t.sensitivitySpeed, t, $.extend({},event));
-        */
+
     }
 
     onmouseout_do (evt, toHide) {
