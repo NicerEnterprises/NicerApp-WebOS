@@ -2,7 +2,7 @@ var NicerApp_WebOS = nicerapp = na = {};
 na.site = {
     about : {
         firstCreated : '10 January 2002',
-        copyright : '<table style="height:100%;"><tr><td>Copyright (C) 2002-2024 by <a href="mailto:nicer.enterprises.netherlands@gmail.com">Nicer Enterprises</a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>',
+        copyright : '<table style="height:100%;"><tr><td>Copyright (C) 2002-2024 by <a href="mailto:rene.veerman.netherlands@gmail.com">Rene A.J.M. Veerman &lt;rene.veerman.netherlands@gmail.com&gt;</a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>',
     },
     
     errors : {
@@ -77,7 +77,7 @@ na.site = {
             $.cookie('agreedToPolicies')!=='true'
             ? '<table style=""><tr><td><a href="/" style="padding:0;text-shadow:0px 0px 5px rgba(0,0,0,0.8);">'+na.site.globals.domain+'</a> only uses cookies for remembering user settings.</td>'
                 + '<td style="width:66px;"><div class="vividButton" theme="dark" style="position:relative;color:white;width:40px;height:20px;" onclick="na.site.dismissCookieWarning();">Ok</div></td></table>'
-            : '<table style="height:100%;"><tr><td>Copyright (C) and All Rights Reserved (R) 2002-2024 by <a href="mailto:nicer.enterprises.netherlands@gmail.com">Nicer Enterprises</a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
+            : '<table style="height:100%;"><tr><td>Copyright (C) and All Rights Reserved (R) 2002-2024 by <a href="mailto:rene.veerman.netherlands@gmail.com">Rene A.J.M. Veerman &lt;rene.veerman.netherlands@gmail.com&gt;</a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
         );
 
 
@@ -942,7 +942,6 @@ na.site = {
     
     setSpecificity : function(simple) {
         $('.na_themes_dropdown, #btnOptions_menu__themes_dropdown').html('<div class="vividDropDownBox_selected vividScrollpane" style="white-space:normal;"></div><div class="vividDropDownBox_selector"><div class="vividScrollpane" style="padding:0px;"></div></div>').delay(50);
-        debugger;
         $('.vividDropDownBox_selected, .vividDropDownBox_selector').each(function(idx,el) {
             var w = 0;
             $('.vividButton4, .vividButton, .vividButton_icon_50x50', $(el).parent().parent() ).each(function(idx2, el2) {
@@ -1050,7 +1049,6 @@ na.site = {
         var
         t = $('#btnOptions_menu__themes_dropdown > .vividDropDownBox_selector > .vividScrollpane > div'),
         html = '';
-        debugger;
         for (var i=0; i<t.length; i++) {
             var
             sel = (
