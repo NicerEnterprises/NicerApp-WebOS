@@ -414,11 +414,12 @@ na.site = {
         na.site.settings.current.siteResized = true;
         //na.desktop.setConfig ('content');
        // debugger;
+        $('.vividDialog').css({overflow:'visible'});
+        $('#siteComments .vdTools').remove();
+
         if (!na.site.settings.current.onload_phase2__alreadyCalled) na.site.settings.current.onload_phase2__alreadyCalled = true; else return false;
 
         //na.site.resizeApps();
-        $('.vividDialog').css({overflow:'visible'});
-        $('#siteComments .vdTools').remove();
 
         na.site.onresize_doContent();
 

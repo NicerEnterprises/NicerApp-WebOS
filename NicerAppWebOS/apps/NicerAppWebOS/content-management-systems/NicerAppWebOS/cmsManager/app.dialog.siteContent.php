@@ -30,8 +30,11 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
 <!--<script src="https://cdn.tiny.cloud/1/89d73yohz5ameo5exzlj9d6kya9vij9mt8f5ipzzqjo0wkw5/tinymce/4/tinymce.min.js" referrerpolicy="origin"></script>-->
 <script type="text/javascript">
     na.m.waitForCondition ('page loaded?', function() {
-        return na.site;
-    }, na.site.onload_phase2, 100);
+        return na.site && na.site.settings.current.onload_phase2__alreadyCalled && na.m.HTMLidle();
+    }, function() {
+        setTimeout(na.site.onload_phase2, 500);
+    }, 100);
+</script>
 
 <div id="document_headers" class="vividDialogPopup">
     <div class="sections">
