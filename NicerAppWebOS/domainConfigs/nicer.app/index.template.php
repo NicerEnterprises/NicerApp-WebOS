@@ -32,7 +32,6 @@ na.site.globals = $.extend(na.site.globals, {
 });
 $(document).ready(function() {
     //setTimeout(function(evt) {
-    debugger;
         na.site.onload(event);
     //}, 2000, event);
 });
@@ -275,39 +274,7 @@ echo $naWebOS->html_vividButton (
 
     <div id="siteToolbarThemeEditor" class="vdToolbar vividDialog">
     <div class="vividDialogContent vividScrollpane" style="overflow:visible;overflow-y:auto;">
-    <!--
-        <div class="sds_dialogTitle">
-<?php
-global $naWebOS;
-echo $naWebOS->html_vividButton (
-    4, 'width:100%;margin:5px;align-items:center;',
-    
-    'btnViewResult', 
-    'vividButton_icon_50x50 grouped btnDelete forum', '_50x50', 'grouped',
-    '',
-    'na.te.hide(event)',
-    '',
-    '',
-    
-    400, 'View result.',
-
-    'btnCssVividButton_outerBorder.png',
-    'btnCssVividButton.grey2a.png',
-    null,//'btnCssVividButton_iconBackground.png',
-    'btnBack.png',
-    
-    '',
-    
-    'View result',
-    'grouped btnHide themeEditor', 
-    ''
-);
-
-?>
-        </div>
-        <div class="flexBreak"></div>
-        -->
-        <div id="specificitySettings" class="themeEditorComponent_alwaysVisible" style="font-size:15px;flex-wrap:wrap;box-shadow:inset 0px 0px 4px 2px rgba(0,0,0,0.6);">
+    <div id="specificitySettings" class="themeEditorComponent_alwaysVisible" style="font-size:15px;flex-wrap:wrap;box-shadow:inset 0px 0px 4px 2px rgba(0,0,0,0.6);">
 <?php
 global $naLAN;
 if (false && $naLAN) {
@@ -351,7 +318,7 @@ if (false && $naLAN) {
             </div>
             -->
                 
-            <div style="display:flex;width:100%;align-items:center;margin-top:5px;">
+            <div style="display:flex;align-items:center;margin-top:5px;">
                 <!--<label id="labelTheme" for="themes" class="specificityLabel" style="order:2;font-weight:bold;">Theme</label>
                 <select id="themes" class="select themeEditor mainBar_forThemeEditor" onchange="na.te.themeSelected(event)" style="order:2">
                     <option id="theme_default" name="theme_default" value="default">default</option>
@@ -359,7 +326,7 @@ if (false && $naLAN) {
                 <!--<span class="siteToolbarThemeEditor__label__themes">Theme</span>-->
                 <?php
 echo $naWebOS->html_vividButton (
-    4, 'align-items:center;',
+    4, 'align-items:center;position:relative;',
 
     'btnViewResult',
     'vividButton_icon_50x50 grouped btnDelete forum', '_50x50', 'grouped',
@@ -382,12 +349,12 @@ echo $naWebOS->html_vividButton (
     ''
 );
                 ?>
-                <!--<img src="/NicerAppWebOS/siteMedia/btnPickColor.png" class="vividButton" style="width:40px;"/>-->
+                <!--<img src="/NicerAppWebOS/siteMedia/btnPickColor.png" class="vividButton" style="width:40px;"/>
             </div>
             <div class="flexBreak"></div>
 
-
-            <div style="display:flex;width:100%;align-items:center;">
+            <div style="display:flex;align-items:center;">
+            -->
                 <!--<label for="specificity" class="specificityLabel" style="order:1;vertical-align:middle;font-weight:bold">Specificity</label>
                 <select id="specificity" class="select themeEditor mainBar_forThemeEditor" onchange="na.te.specificitySelected(event)" style="order:1;display:none;"></select>-->
                 <!--<span class="siteToolbarThemeEditor__label__specificity">Specificity</span>-->
