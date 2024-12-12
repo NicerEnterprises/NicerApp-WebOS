@@ -1401,6 +1401,7 @@ class NicerAppWebOS {
                 );
             } else {
                 $specificityName = $selector['specificityName'];
+                $themeName = 'default';
             }
             //{ echo '<pre>667 : $idx='.$idx; echo '$selector='; var_dump($selector); var_dump($css); echo '</pre>'; };
             if ($debug) {

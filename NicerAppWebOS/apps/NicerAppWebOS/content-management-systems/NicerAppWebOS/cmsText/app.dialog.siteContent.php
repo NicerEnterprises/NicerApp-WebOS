@@ -24,6 +24,14 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
 
 
 ?>
+<script type="text/javascript">
+    na.m.waitForCondition ('page loaded?', function() {
+        return na.site && na.site.settings.current.onload_phase2__alreadyCalled && na.m.HTMLidle();
+    }, function() {
+        setTimeout(na.site.onload_phase2, 500);
+    }, 100);
+</script>
+
 <!--<div class="lds-facebook"><!-- thanks for allowing CC0 license usage : https://loading.io/css/ -- ><div></div><div></div><div></div></div> -->
 <!--<pre><?php //echo json_encode($view, JSON_PRETTY_PRINT);?></pre>-->
 

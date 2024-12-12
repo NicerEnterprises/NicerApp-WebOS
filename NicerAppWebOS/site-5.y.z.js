@@ -1015,6 +1015,7 @@ na.site = {
             $('.na_themes_dropdown__specificity > .vividDropDownBox_selector > .vividScrollpane').append($(divEl).clone(true,true));
         };
 
+        debugger;
         na.te.s.c.selectedThemeName = na.site.globals.themeName;
         $('.themeItem').remove();
         for (var themeName in na.site.globals.themes) {
