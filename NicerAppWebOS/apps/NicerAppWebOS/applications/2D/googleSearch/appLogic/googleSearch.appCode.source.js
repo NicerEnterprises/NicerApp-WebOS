@@ -30,7 +30,7 @@ na.apps.googleSearch = {
 			switch (page) {
 				case 'googleSearch' :
 					na.apps.settings.usingToolbar = true;
-					na.apps.googleSearch.createToolbar();					
+					na.apps.googleSearch.createToolbar();
 					na.s.c.setVisible ([{element:'#siteTools',visible:true}], true, na.m.traceFunction(function(){na.s.c.resizeToolbar(css);}));//,undefined, function() { na.apps.googleSearch.onPageCallback(callback) } );
 					break;
 				default:

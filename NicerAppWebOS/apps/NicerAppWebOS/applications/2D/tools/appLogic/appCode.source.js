@@ -30,7 +30,7 @@ sa.apps.tools = {
 			switch (page) {
 				case 'json' :
 					sa.apps.settings.usingToolbar = true;
-					sa.apps.tools.createToolbar();					
+					sa.apps.tools.createToolbar();
 					sa.s.c.setVisible ([{element:'#siteToolbar',visible:true}], true, sa.m.traceFunction(function(){sa.s.c.resizeToolbar(css);}));//,undefined, function() { sa.apps.tools.onPageCallback(callback) } );
 					break;
 				default:

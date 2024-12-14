@@ -1,3 +1,10 @@
+<script type="text/javascript">
+    na.m.waitForCondition ('page loaded?', function() {
+        return na.site && na.site.settings.current.onload_phase2__alreadyCalled && na.m.HTMLidle();
+    }, function() {
+        setTimeout(na.site.onload_phase2, 500);
+    }, 100);
+</script>
 <?php
 //define ('SA_SHOW_CONSTANTS', true); //un-comment this to only show the define()s that my nicerapp framework exposes
 //require_once ('nicerapp-2012/boot.php');

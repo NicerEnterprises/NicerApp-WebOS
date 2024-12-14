@@ -101,7 +101,7 @@ na.apps.loaded['app.2D.webmail.v1.0.0'] = {
                     na.desktop.registerCallback ('webmail start content init', '#siteToolbarLeft', function (cb, div, calculationResults, sectionIdx, section, divOrderIdx) {
                         if (div.id == 'siteToolbarLeft') {
                             na.apps.loaded['app.2D.webmail.v1.0.0'].onresize();
-                            na.apps.loaded['app.2D.webmail.v1.0.0'].init(); 
+                            na.apps.loaded['app.2D.webmail.v1.0.0'].init();
                             na.desktop.deleteCallback ('webmail start content init'); 
                         }
                     });
@@ -272,7 +272,7 @@ na.apps.loaded['app.2D.webmail.v1.0.0'] = {
     saveSettings : function (evt) {
         var add = $('#btnSaveSettings').attr('add') == 'true';
         debugger;
-        na.apps.loaded['app.2D.webmail.v1.0.0'].settings.config.mailServers[na.apps.loaded['app.2D.webmail.v1.0.0'].settings.currentConfig_mailserverIdx] = { 
+        na.apps.loaded['app.2D.webmail.v1.0.0'].settings.config.mailServers[na.apps.loaded['app.2D.webmail.v1.0.0'].settings.currentConfig_mailserverIdx] = {
             "Display Name" : $('#wms_displayName').val(),
             "userID" : $('#wms_userID').val(),
             "userPassword" : $('#wms_userPassword').val(),

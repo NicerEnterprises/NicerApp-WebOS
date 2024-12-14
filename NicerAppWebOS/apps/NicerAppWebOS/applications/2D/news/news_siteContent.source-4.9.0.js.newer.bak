@@ -91,7 +91,7 @@ na.apps.loaded['applications/2D/news'] = {
                     });
                     
                     clearInterval(na.apps.loaded['applications/2D/news'].settings.countDownInterval);
-                    clearTimeout (na.apps.loaded['applications/2D/news'].settings.refreshTimer);                    
+                    clearTimeout (na.apps.loaded['applications/2D/news'].settings.refreshTimer);
                     clearTimeout (c.adsTimer1);
                     clearTimeout (c.adsTimer2);
                     clearInterval(c.adsInterval1);
@@ -1347,7 +1347,7 @@ na.apps.loaded['applications/2D/news'] = {
     
     displayNews_getRandomItems_traverse : function (db, maxDepth, depth) {
         var 
-        na1 = na.apps.loaded['applications/2D/news'], g = na1.globals, s = na1.settings, c = s.current, 
+        na1 = na.apps.loaded['applications/2D/news'], g = na1.globals, s = na1.settings, c = s.current,
         keys = Object.keys(db),
         key = Math.floor(Math.random() * keys.length),
         it = db[keys[key]];
@@ -1369,7 +1369,7 @@ na.apps.loaded['applications/2D/news'] = {
             ? ';font-size:70%;'
             : ';font-size:100%;'
         ),
-        w = na.apps.loaded['applications/2D/news'].settings.itemWidth;        
+        w = na.apps.loaded['applications/2D/news'].settings.itemWidth;
         
         if (
                 ( !it.de || (typeof it.de=='string' && it.de=='') )

@@ -689,7 +689,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             'textBackgroundOpacity' => 0.38,
             'lastUsed' => time(),
             'themeSettings' => array_merge_recursive(
-                cssArray_seperate('Dialogs', [
+                cssArray_seperate('dialogs', [
                         '/\.vivid([\w]+)[\s\.\>\#\w]*/' ,
                         '/#site([\w]+)[\s\.\>\#\w]*/'
                     ], css_to_array (file_get_contents(
@@ -726,7 +726,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             'vdSettings_show' => 'transparent',
             'lastUsed' => time(),
             'themeSettings' => array_merge_recursive(
-                cssArray_seperate('Dialogs', [
+                cssArray_seperate('dialogs', [
                     '/\.vivid([\w]+)[\s\.\>\#\w]*/' ,
                     '/#site([\w]+)[\s\.\>\#\w]*/' ], css_to_array (file_get_contents(
                         realpath(dirname(__FILE__).'/../../../..')
@@ -763,7 +763,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             'menusUseRainbowPanels' => true,
             'textBackgroundOpacity' => 0.38,
             'themeSettings' => array_merge_recursive(
-                cssArray_seperate('Dialogs', [
+                cssArray_seperate('dialogs', [
                     '/\.vivid([\w]+)[\s\.\>\#\w]*/' ,
                     '/#site([\w]+)[\s\.\>\#\w]*/' ], css_to_array (file_get_contents(
                         realpath(dirname(__FILE__).'/../../../..')
@@ -799,7 +799,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             'menusUseRainbowPanels' => true,
             'textBackgroundOpacity' => 0.38,
             'themeSettings' => array_merge_recursive(
-                cssArray_seperate('Dialogs', [
+                cssArray_seperate('dialogs', [
                     '/\.vivid([\w]+)[\s\.\>\#\w]*/' ,
                     '/#site([\w]+)[\s\.\>\#\w]*/' ], css_to_array (file_get_contents(
                         realpath(dirname(__FILE__).'/../../../..')

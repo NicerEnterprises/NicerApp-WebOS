@@ -443,7 +443,8 @@ na.site = {
 
                 na.site.renderAllCustomHeadingsAndLinks();
 
-                //na.themeEditor.onload ('siteContent'); // must remain HERE, or else you'll not correctly load the theme settings for 'Extras'
+                na.themeEditor.onload ('siteContent'); // must remain HERE, or else you'll not correctly load the theme settings for 'Extras'
+                na.site.globals.themes.default = na.site.loadTheme_fetchDialogs(na.site.globals.themes.default);
                 na.te.s.c.specificity = na.site.globals.themeDBkeys; // IF NOT using the statement above here, DO USE THIS, or you end up loading ALL THEMES in ajax_loadTheme.php
 
                 $('#siteContent .vividDialogContent.vividScrollpane')[0].focus();
@@ -1706,7 +1707,7 @@ na.site = {
                     { reloadMenu : [na.m.newEventFunction(na.site.reloadMenu)] },
                     { loadTheme_cleanup : [na.m.newEventFunction (function() {
                         na.m.waitForCondition ('loadContent_displayContent : na.m.HTMLidle() && !na.site.settings.current.running_loadTheme?', function () { return na.m.HTMLidle() && !na.site.settings.current.running_loadTheme}, function () {
-                            na.site.globals.themes[na.site.globals.themeName].themeSettings.Apps = {};
+                            na.site.globals.themes[na.site.globals.themeName].themeSettings.apps = {};
                             na.themeEditor.onload(); // results in excess /view/logs data
                             na.site.globals.themes.default = na.site.loadTheme_fetchDialogs();
                         }, 100);
@@ -3998,7 +3999,7 @@ debugger;
                     Extras :  na.te.transform_jsTree_to_siteGlobalsThemes() // pulls data modified by end-users from the Theme Editor back into this na.site.saveTheme() AJAX call
                 };
             }
-            if (!themeData.themeSettings.Apps) themeData.themeSettings.Apps = {};
+            if (!themeData.themeSettings.apps) themeData.themeSettings.apps = {};
 
             var
             regExDialogs = /#site(.*)[\s\w\.\#\d\>]*/,

@@ -30,7 +30,7 @@
 			switch (page) {
 				case 'json' :
 					na.apps.settings.usingToolbar = true;
-					na.apps.tools.createToolbar();					
+					na.apps.tools.createToolbar();
 					na.s.c.setVisible ([{element:'#siteTools',visible:true}], true, na.m.traceFunction(function(){na.s.c.resizeToolbar(css);}));//,undefined, function() { na.apps.tools.onPageCallback(callback) } );
 					break;
 				default:

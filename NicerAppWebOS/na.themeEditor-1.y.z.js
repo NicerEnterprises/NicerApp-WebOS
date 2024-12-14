@@ -545,7 +545,7 @@ na.te = na.themeEditor = {
                     var d = data.selected[i], rec2 = data.instance.get_node(d);
                     if (rec2 && rec2.original) rec = rec2;
                 }
-                if (rec && rec.type=='naSelectorSet' && rec.text!=='Dialogs' && rec.text!=='App') {
+                if (rec && rec.type=='naSelectorSet' && rec.text!=='dialogs' && rec.text!=='App') {
                     na.te.enableButtons ([ '#btnAddCSS' ]);
                 }
                 if (rec && rec.type=='naCSS' && rec.text!=='main') {
@@ -586,7 +586,7 @@ na.te = na.themeEditor = {
             }
             if (data.action=='select_node') {
                 na.te.disableAllButtons();
-                if (data.node && data.node.type=='naSelectorSet' && data.node.text!=='Dialogs' && data.node.text!=='App') {
+                if (data.node && data.node.type=='naSelectorSet' && data.node.text!=='dialogs' && data.node.text!=='App') {
                     na.te.enableButtons ([ '#btnAddGraphics' ]);
                 }
                 if (data && data.node.type=='naCSS' && data.node.text!=='main') {
@@ -735,6 +735,7 @@ na.te = na.themeEditor = {
         inputData = na.site.globals.themes[themeName];
         if (!inputData) inputData = na.site.globals.themes.default;
         inputData = inputData.themeSettings;
+        debugger;
 
         var
         outputData = na.te.transform_siteGlobalsThemes_to_jsTree__recurse(
@@ -780,7 +781,7 @@ na.te = na.themeEditor = {
                     });
                     if (divSel=='#'+na.te.s.c.forDialogID) outputData.did = newID2;
                 }
-            } else if (key=='Extras' || key=='Apps') {
+            } else if (key=='Extras' || key=='apps') {
                 outputData.dat.push ({
                     id : newID,
                     parent : parentID,
@@ -858,7 +859,7 @@ na.te = na.themeEditor = {
 
         /*
          * na.site.loadTheme(), .saveTheme() and .fetchTheme() distribute and collect the settings under the
-         * 'Dialogs' and 'Apps' nodes of the Theme Editor's main tree view (the selectors jstree).
+         * 'dialogs' and 'apps' nodes of the Theme Editor's main tree view (the selectors jstree).
          *
          * that leaves us with only the custom built selectors to pick up here,
          * to be used in na.site.saveTheme() and na.site.loadTheme()

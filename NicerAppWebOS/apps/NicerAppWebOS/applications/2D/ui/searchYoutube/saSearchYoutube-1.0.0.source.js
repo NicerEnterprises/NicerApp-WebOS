@@ -255,7 +255,7 @@ sa.apps.loaded.search_youtube  = {
                                 sa.apps.loaded.search_youtube.settings.resizing = {};
                                 
                                 
-                                //if (!sa.apps.loaded.search_youtube.settings.resizeTimer) 
+                                //if (!sa.apps.loaded.search_youtube.settings.resizeTimer)
                                 //sa.apps.loaded.search_youtube.settings.resizeTimer = setTimeout (function () {
                                 
                                 

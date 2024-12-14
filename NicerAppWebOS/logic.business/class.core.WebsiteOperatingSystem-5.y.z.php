@@ -37,9 +37,9 @@ class NicerAppWebOS {
 		$this->basePath = realpath(dirname(__FILE__).'/../..');
 
         $this->debugThemeLoading = (
-            true
-            && array_key_exists ('dtl', $_GET)
-            && (
+            //true ||
+            array_key_exists ('dtl', $_GET)
+            || (
                 $_GET['dtl'] == 'y'
                 || $_GET['dtl'] == 'yes'
                 || $_GET['dtl'] == 'true'
@@ -1487,7 +1487,7 @@ class NicerAppWebOS {
                 ) {
                     $r .= 'na.site.globals = $.extend(na.site.globals, {'.PHP_EOL;
                         $r .= "\tapp : ".json_encode($this->view).','.PHP_EOL;
-                        if (array_key_exists('apps',$_GET)) $r .= "\tapps : ".json_encode($_GET['apps']).PHP_EOL;
+                        //if (array_key_exists('apps',$_GET)) $r .= "\tapps : ".json_encode($_GET['apps']).PHP_EOL;
                     $r .= '});'.PHP_EOL;
                     $r .= 'if (!na.site.settings.current.url) na.site.settings.current = $.extend(na.site.settings.current, {'.PHP_EOL;
                         $r .= "\turl : ".json_encode($this->url).PHP_EOL;
@@ -1499,6 +1499,7 @@ class NicerAppWebOS {
                     $r .= '$(document).ready(function() {'.PHP_EOL;
                     //$r .= "\tna.m.waitForCondition('HTML BODY : document.ready -> na.site.setSpecificity', na.m.HTMLidle, na.site.setSpecificity, 50);".PHP_EOL;
                     $r .= "\tna.site.setSpecificity();".PHP_EOL;
+                    //$r .= "\tna.site.globals.themes.default = na.site.loadTheme_fetchDialogs();".PHP_EOL;
                     $r .= "});".PHP_EOL;
                 }
                 $r .= '</script>'.PHP_EOL;
@@ -1685,6 +1686,8 @@ class NicerAppWebOS {
                     $r .= '$(document).ready(function() {'.PHP_EOL;
                         $r .= "\tsetTimeout(function() {".PHP_EOL;
                         $r .= "\t\tna.site.setSpecificity();".PHP_EOL;
+                        //$r .= "\t\tna.site.globals.themes.default = na.site.loadTheme_fetchDialogs();".PHP_EOL;
+
                         $r .= "\t}, 10);".PHP_EOL;
                     $r .= "});".PHP_EOL;
                     $r .= '</script>'.PHP_EOL;
@@ -2244,7 +2247,7 @@ class NicerAppWebOS {
                                 } else {
                                     $adjustedUserOrGroupID = $db->translate_plainGroupName_to_couchdbGroupName($userOrGroupID);
                                 }
-                                $adjustedUserOrGroupID = $userOrGroupID;
+                                //$adjustedUserOrGroupID = $userOrGroupID;
 
 
                                 //if ($debug) { echo 't666='; var_dump($accountType); var_dump ($this->dbs->findConnection('couchdb')->username); echo '<br/>'.PHP_EOL; var_dump ($userOrGroupID); echo '<br/>$adjustedUserOrGroupID='; var_dump ($adjustedUserOrGroupID); }
@@ -2380,7 +2383,7 @@ class NicerAppWebOS {
                         $tn => [
                             'dbID' => $d2->_id,
                             'themeSettings' => json_decode(json_encode($d2->themeSettings), true),
-                            'apps' => json_decode(json_encode((property_exists($d2,'apps')?$d2->apps:[])), true),
+                            //'apps' => json_decode(json_encode((property_exists($d2,'apps')?$d2->apps:[])), true),
                             'background' => ( isset($d2->background) ? $d2->background : '' ),
                             'backgroundSearchKey' => ( isset($d2->backgroundSearchKey) ? $d2->backgroundSearchKey : '' ),
                             'textBackgroundOpacity' => ( isset($d2->textBackgroundOpacity) ? $d2->textBackgroundOpacity : ''),
