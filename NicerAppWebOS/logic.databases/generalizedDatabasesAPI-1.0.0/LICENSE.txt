@@ -1,4 +1,4 @@
-WARNING : PRELIMINARY BUT HIGHLY LIKELY TO BE THE FINALIZED LONGTERM LICENSE FOR THIS LIBRARY : See https://www.gnu.org/licenses/lgpl-3.0.en.html
+WARNING : PRELIMINARY BUT HIGHLY LIKELY TO BE THE FINALIZED LONGTERM LICENSE FOR THIS LIBRARY : See https://opensource.org/licenses/MIT
 
-CopyLefted (c)/(C) 2025 by Rene A.J.M. Veerman, <rene.veerman.netherlands@gmail.com>
+(c) or (C) 2025 by Rene A.J.M. Veerman, <rene.veerman.netherlands@gmail.com>
 Owner, CEO, CTO and CFO for https://nicer.app and related websites.
