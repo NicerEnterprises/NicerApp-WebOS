@@ -1,0 +1,104 @@
+
+Warning: Undefined array key "dtl" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 43
+
+Warning: Undefined array key "dtl" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 44
+
+Warning: Undefined array key "dtl" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 45
+\033[42;1;4mnicerapp/apps/nicer.app/applications/2D/news/crontabEntry_manageDatabase.php : Fetching news for 499 RSS pages, 60 menu-items.\033[37;49m
+
+newsapp3_class->fetch() : Rewriting menu files took 0.0151 seconds.
+
+newsapp3_class->fetch() : Fetching news for 499 RSS pages, 60 menu-items, took 0 minutes, 10.6311 seconds; 0 new items.
+
+CURL operation (path=/English News/Regions/Countries/USA, url=http://feeds.reuters.com/Reuters/domesticNews) \e[1;33mERROR : Could not resolve host: feeds.reuters.com\e[0m
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://feeds.smh.com.au/rssheadlines/top.xml) \e[1;33mERROR : Could not resolve host: feeds.smh.com.au\e[0m
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://feeds.theage.com.au/rssheadlines/top.xml) \e[1;33mERROR : Could not resolve host: feeds.theage.com.au\e[0m
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://feeds.brisbanetimes.com.au/rssheadlines/top.xml) \e[1;33mERROR : Could not resolve host: feeds.brisbanetimes.com.au\e[0m
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://feeds.watoday.com.au/rssheadlines/top.xml) \e[1;33mERROR : Could not resolve host: feeds.watoday.com.au\e[0m
+Fetching RSS data for 499 RSS pages, 60 menu-items, 13373 new news-items, took 0 minutes, 0 seconds.
+
+\e[1;32mDuplicates : 13325, New items : 48\e[0m
+
+\e[42;1;4m nicerapp/apps/nicer.app/applications/2D/news/crontabEntry_manageDatabase.php : Done.\e[0m 
+
+
+Warning: Undefined array key "seoValue" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 234
+
+Warning: Undefined array key "na_error_log_filepath_txt" in /var/www/nicer.app/NicerAppWebOS/boot.php on line 443
+\033[42;1;4mnicerapp/apps/nicer.app/applications/2D/news/crontabEntry_manageDatabase.php : Fetching news for 499 RSS pages, 60 menu-items.\033[37;49m
+newsapp3_class->fetch() : Rewriting menu files took 0.0151 seconds.
+newsapp3_class->fetch() : Fetching news for 499 RSS pages, 60 menu-items, took 0 minutes, 10.6311 seconds; 0 new items.
+CURL operation (path=/Deutsche nachrichten/Sport, url=http://boerse.ard.de/index~rss.xml) 0 bytes retrieved
+CURL operation (path=/Nederlands Nieuws/Wereld, url=http://feeds.nos.nl/nosjournaal?format=xml) 0 bytes retrieved
+CURL operation (path=/Nederlands Nieuws/Wereld, url=http://feeds.nos.nl/nos-nieuwsin60seconden?format=xml) 0 bytes retrieved
+CURL operation (path=/Nederlands Nieuws/Wereld, url=http://feeds.nos.nl/MHOOM?format=xml) 0 bytes retrieved
+CURL operation (path=/Nederlands Nieuws/Sport, url=http://feeds.nos.nl/ldlsportforum?format=xml) 0 bytes retrieved
+CURL operation (path=/Nederlands Nieuws/Tech en Wetenschap, url=http://feeds.nos.nl/nosop3-tech-podcast?format=xml) 0 bytes retrieved
+CURL operation (path=/English News/World Headlines, url=http://www.koreatimes.co.kr/www/rss/world.xml) 0 bytes retrieved
+CURL operation (path=/English News/World Headlines, url=http://www.tribuneindia.com/rss/feed.aspx?cat_id=8) 0 bytes retrieved
+CURL operation (path=/English News/World Headlines, url=http://www.tribuneindia.com/rss/feed.aspx?cat_id=69) 0 bytes retrieved
+CURL operation (path=/English News/World Headlines, url=https://www.dailytelegraph.com.au/news/world/rss) 0 bytes retrieved
+CURL operation (path=/English News/World Headlines, url=http://www.dailytelegraph.com.au/news/breaking-news/rss) 0 bytes retrieved
+CURL operation (path=/English News/World Headlines, url=http://www.dailytelegraph.com.au/news/national/rss) 0 bytes retrieved
+CURL operation (path=/English News/World Headlines, url=http://feeds.washingtonpost.com/rss/world) 0 bytes retrieved
+CURL operation (path=/English News/World Headlines, url=https://www.rt.com/rss/news/) 0 bytes retrieved
+CURL operation (path=/English News/World Headlines, url=https://sputniknews.com/export/rss2/world/index.xml) 0 bytes retrieved
+CURL operation (path=/English News/World Headlines, url=https://www.seattletimes.com/nation-world/world/feed/) 0 bytes retrieved
+CURL operation (path=/English News/World Headlines, url=https://worldnewsera.com/feed/) 0 bytes retrieved
+CURL operation (path=/English News/Opinions, url=http://www.koreatimes.co.kr/www/rss/opinion.xml) 0 bytes retrieved
+CURL operation (path=/English News/Opinions, url=http://www.tribuneindia.com/rss/feed.aspx?cat_id=12) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/USA, url=http://feeds.reuters.com/Reuters/domesticNews) \e[1;33mERROR : Could not resolve host: feeds.reuters.com\e[0m
+CURL operation (path=/English News/Regions/Countries/India, url=http://www.tribuneindia.com/rss/feed.aspx?cat_id=7) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/India, url=http://www.tribuneindia.com/rss/feed.aspx?cat_id=5) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/India, url=http://www.tribuneindia.com/rss/feed.aspx?cat_id=11) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://feeds.smh.com.au/rssheadlines/top.xml) \e[1;33mERROR : Could not resolve host: feeds.smh.com.au\e[0m
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://feeds.theage.com.au/rssheadlines/top.xml) \e[1;33mERROR : Could not resolve host: feeds.theage.com.au\e[0m
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://www.heraldsun.com.au/rss) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://feeds.brisbanetimes.com.au/rssheadlines/top.xml) \e[1;33mERROR : Could not resolve host: feeds.brisbanetimes.com.au\e[0m
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://feeds.watoday.com.au/rssheadlines/top.xml) \e[1;33mERROR : Could not resolve host: feeds.watoday.com.au\e[0m
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://www.ntnews.com.au/news/rss) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://www.theshovel.com.au/feed/rss) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/Australia, url=http://www.townsvillebulletin.com.au/news/rss) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/Australia, url=https://pixelkey.biz/tasmaniantimes/feed/) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/South-Korea, url=http://www.koreatimes.co.kr/www/rss/nation.xml) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/South-Korea, url=http://www.koreatimes.co.kr/www/rss/arts.xml) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/North-Korea, url=http://www.koreatimes.co.kr/www/rss/northkorea.xml) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Countries/Russia, url=https://www.rt.com/rss/) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Europe, url=http://www.rferl.org/z/645/rss/feeds/posts/default) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Europe, url=http://beta.euractiv.com/feed) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Europe, url=https://xml.euobserver.com/rss.xml) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Europe, url=http://news.ofthe.eu/feed) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Asia, url=http://asiancorrespondent.com/feed) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Asia, url=http://www.atimes.com/feed) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Asia, url=http://www.asiantribune.com/index.php?q=rss.xml) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Asia, url=http://sea-globe.com/feed) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Asia, url=http://www.southasiaanalysis.org/rss.xml) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Asia, url=https://newsin.asia/feed) 0 bytes retrieved
+CURL operation (path=/English News/Regions/Asia, url=http://www.vona.tv/feed) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Business, url=http://www.koreatimes.co.kr/www/rss/biz.xml) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Business, url=http://www.koreatimes.co.kr/www/rss/tech.xml) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Business, url=http://www.tribuneindia.com/rss/feed.aspx?cat_id=10) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Business, url=http://www.asiainsurancereview.com/desktopmodules/rssedaily) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Business, url=http://www.coinnewsasia.com/feed) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Business, url=http://investvine.com/feed) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Business, url=http://tyre-asia.com/feed) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Business, url=http://www.intermet.asia/1/feed) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Business, url=http://www.dailytelegraph.com.au/business/rss) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Business, url=http://www.dailytelegraph.com.au/business/breaking-news/rss) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Careers, url=http://www.singingbasics.com/feed/) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Entertainment, url=http://www.koreatimes.co.kr/www/rss/entertainment.xml) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Entertainment, url=http://www.tribuneindia.com/rss/feed.aspx?cat_id=13) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Entertainment, url=http://www.dailytelegraph.com.au/entertainment/sydney-confidential/rss) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Entertainment, url=http://www.dailytelegraph.com.au/entertainment/celebrity/rss) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Entertainment, url=http://www.dailytelegraph.com.au/entertainment/music/rss) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Lifestyle, url=http://www.dailytelegraph.com.au/lifestyle/rss) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Sports, url=http://soccernet.espn.com/rss/news) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Sports, url=http://www.koreatimes.co.kr/www/rss/sports.xml) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Sports, url=http://www.tribuneindia.com/rss/feed.aspx?cat_id=9) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Sports, url=http://www.tribuneindia.com/rss/feed.aspx?cat_id=55) 0 bytes retrieved
+CURL operation (path=/English News/Topics/Stock Trading, url=http://blog.commodityandderivativeadv.com/feed/) 0 bytes retrieved
+CURL operation (path=/Arabic/Middle East, url=https://kwttoday.com/feed/) 0 bytes retrieved
+Fetching RSS data for 499 RSS pages, 60 menu-items, 13373 new news-items, took 0 minutes, 0 seconds.
+Total records fetched : 13373
+\e[1;32mDuplicates : 13325, New items : 48\e[0m
+\e[42;1;4m nicerapp/apps/nicer.app/applications/2D/news/crontabEntry_manageDatabase.php : Done.\e[0m 

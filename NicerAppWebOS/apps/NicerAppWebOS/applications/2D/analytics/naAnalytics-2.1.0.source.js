@@ -28,7 +28,7 @@ na.an = na.analytics = {
         date = new Date(), 
         dip = na.an.s.c.loadedDaysIntoPast;
         if (dip < na.an.globals.loadDaysIntoPast) {
-            if (dip > 0) date.setDate (date.getDate() - dip);            
+            if (dip >= 0) date.setDate (date.getDate() - dip);
             var
             dateStr = date.toISOString().slice(0, 10),
             msg = 'Now loading '+dateStr+' ('+dip+' of '+na.an.globals.loadDaysIntoPast+')';
@@ -78,7 +78,7 @@ na.an = na.analytics = {
                 }
                 
                 na.an.s.c.loadedDaysIntoPast++;
-                na.an.load_more()
+                setTimeout (na.an.load_more, 500);
             },
             error : function (xhr, textStatus, errorThrown) {
                 na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
@@ -94,6 +94,7 @@ na.an = na.analytics = {
             var d = na.an.s.c.dbByIP[date];
             for (var ip in d) {
                 var d2 = d[ip];
+                //debugger;
                 if (d2.isBot) {
                     for (var i=0; i<d2.length; i++) {
                         var d3 = d2[i];
@@ -105,7 +106,7 @@ na.an = na.analytics = {
                             +'</tr>';
                     }
                 } else {
-                    for (var i=d2.length-1; i>0; i--) {
+                    for (var i=d2.length-1; i>=0; i--) {
                         var d3 = d2[i];
                         html += 
                             '<tr class="naan_rec">'

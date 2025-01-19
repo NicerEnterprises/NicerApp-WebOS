@@ -2,7 +2,7 @@ var NicerApp_WebOS = nicerapp = na = {};
 na.site = {
     about : {
         firstCreated : '10 January 2002',
-        copyright : '<table style="height:100%;"><tr><td>Copyright (C) 2002-2024 by <a href="mailto:rene.veerman.netherlands@gmail.com">Rene A.J.M. Veerman &lt;rene.veerman.netherlands@gmail.com&gt;</a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>',
+        copyright : '<table style="height:100%;"><tr><td>Copyright (C) 2002-2025 by <a href="mailto:rene.veerman.netherlands@gmail.com">Rene A.J.M. Veerman &lt;rene.veerman.netherlands@gmail.com&gt;</a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>',
     },
     
     errors : {
@@ -67,6 +67,7 @@ na.site = {
     },
     
     onload : function (evt) {
+        var fncn = 'na.site.onload(evt)';
         na.site.settings.current.event = evt;
 
         var startTime = new Date();
@@ -77,7 +78,7 @@ na.site = {
             $.cookie('agreedToPolicies')!=='true'
             ? '<table style=""><tr><td><a href="/" style="padding:0;text-shadow:0px 0px 5px rgba(0,0,0,0.8);">'+na.site.globals.domain+'</a> only uses cookies for remembering user settings.</td>'
                 + '<td style="width:66px;"><div class="vividButton" theme="dark" style="position:relative;color:white;width:40px;height:20px;" onclick="na.site.dismissCookieWarning();">Ok</div></td></table>'
-            : '<table style="height:100%;"><tr><td>Copyright (C) and All Rights Reserved (R) 2002-2024 by <a href="mailto:rene.veerman.netherlands@gmail.com">Rene A.J.M. Veerman &lt;rene.veerman.netherlands@gmail.com&gt;</a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
+            : '<table style="height:100%;"><tr><td>Copyright (C) and All Rights Reserved (R) 2002-2025 by <a href="mailto:rene.veerman.netherlands@gmail.com">Rene A.J.M. Veerman &lt;rene.veerman.netherlands@gmail.com&gt;</a></td><td style="width:40px;"><div class="vividButton" theme="dark" style="position:relative;color:white;height:20px;width:40px;" onclick="na.site.dismissCopyrightMessage();">Ok</div></td></table>'
         );
 
 
@@ -3960,8 +3961,10 @@ na.site = {
                         na.m.log (10, 'na.site.saveTheme() : FAILED.');
                         
                     } else {
-                        //na.site.globals.specificityName = na.site.globals.specificityName_revert;
-                        //na.site.setSpecificity();
+                        na.site.globals.specificityName = na.site.globals.specificityName_revert;
+                        debugger;
+                        na.site.setSpecificity();
+
 
                         //na.site.loadTheme(null, null, false); //REPLACED with .loadTheme_applySettings() in the block above this AJAX call.
 
@@ -4022,7 +4025,6 @@ na.site = {
                 m = divSel.match(regExApps),
                 appName = m[1],
                 appDialogName = m[2];
-                debugger;
                 if (!themeData.themeSettings['apps'][appName])
                     themeData.themeSettings['apps'][appName] = { css : {} };
                 //if (!themeData.themeSettings['apps'][appName]['css'][divSel])

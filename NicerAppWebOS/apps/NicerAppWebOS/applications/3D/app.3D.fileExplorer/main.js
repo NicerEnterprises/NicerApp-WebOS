@@ -37,6 +37,8 @@ import { DragControls } from '/NicerAppWebOS/3rd-party/3D/libs/three.js/examples
     //$(document).ready(function() {
         setTimeout (function() {
 
+        delete na.site.settings.current.loadingApps;
+
         na.m.waitForCondition ('app.3D.fileExplorer : Filesystem index loaded?',
             function () { 
 				var r =
@@ -56,18 +58,20 @@ import { DragControls } from '/NicerAppWebOS/3rd-party/3D/libs/three.js/examples
                 // and when the data has loaded, do the following.. :
                 na.site.closeAll_3D_apps();
                 $('.na3D').each(function(idx,el){
-                    var ac = {
-                        type : 'GET',
-                        url : '/NicerAppWebOS/apps/NicerAppWebOS/applications/3D/app.3D.fileExplorer/ajax_getBackgroundsRecursive.php',
-                        success : function (data, ts) {
-                            var parameters = { views : [ JSON.parse(data) ] };
-                            //debugger;
+                    if (idx==0) {
+                        var ac = {
+                            type : 'GET',
+                            url : '/NicerAppWebOS/apps/NicerAppWebOS/applications/3D/app.3D.fileExplorer/ajax_getBackgroundsRecursive.php',
+                            success : function (data, ts) {
+                                var parameters = { views : [ JSON.parse(data) ] };
+                                //debugger;
 
-                            na.site.settings.na3D['#app_3D_fileExplorer'] =
-                                new na3D_fileBrowser(el, $(el).parent()[0], parameters);
-                        }
-                    };
-                    $.ajax(ac);
+                                na.site.settings.na3D['#app_3D_fileExplorer'] =
+                                    new na3D_fileBrowser(el, $(el).parent()[0], parameters);
+                            }
+                        };
+                        $.ajax(ac);
+                    }
 
 
                 });
@@ -101,8 +105,8 @@ import { DragControls } from '/NicerAppWebOS/3rd-party/3D/libs/three.js/examples
                 };
                 na.vividText.initElement (vividTextCmd);
 
-            }, 50
+            }, 300
         );
 
-    }, 50);
+    }, 300);
  

@@ -12,15 +12,27 @@
 
 //echo realpath(dirname(__FILE__).'/../../../../../..').'/NicerAppWebOS/boot.php';die();
 require_once (realpath(dirname(__FILE__).'/../../../../../..').'/NicerAppWebOS/boot.php');
-global $naWebOS;
+global $naWebOS; global $naLAN;
 //echo '<pre>'; var_dump ($naWebOS->view); exit();
 $view = $naWebOS->view["/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer"];
 //var_dump ($view); //exit();
 
 
 if ($view['set']==='index') {
-    require_once(dirname(__FILE__).'/frontpage.php');
+    if (!$naLAN) {
+        require_once(dirname(__FILE__).'/OFFLINE.php');
+    } else {
+        require_once(dirname(__FILE__).'/frontpage.php');
+    }
+
 } else {
+    if (!$naLAN) {
+        require_once(dirname(__FILE__).'/OFFLINE.php');
+        return true;
+        exit();
+    }
+
+
     $setPath = dirname(__FILE__).'/music/'.$view['set'];
 
     /*

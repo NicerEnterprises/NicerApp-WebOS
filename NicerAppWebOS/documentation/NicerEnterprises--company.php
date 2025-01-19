@@ -13,7 +13,7 @@
 <div>
     <p>
     <a href="https://nicer.app" target="naHP">https://nicer.app</a>, <a href="https://said.by" target="sbHP">https://said.by</a>, <a href="https://zoned.at" target="zAt">https://zoned.at</a>, are all
-    Copyrighted 2002-2024 and owned by Nicer Enterprises company.<br/>
+    Copyrighted 2002-2024 and owned by <a href="mailto:rene.veerman.netherlands@gmail.com" target="_new" class="nomod noPushState">Rene A.J.M. Veerman &lt;rene.veerman.netherlands@gmail.com&gt;</a>.<br/>
     </p>
 
 

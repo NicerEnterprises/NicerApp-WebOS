@@ -35,7 +35,7 @@ $db = $naWebOS->dbs->findConnection('couchdb');
 
 // create users
 //$username = $_SESSION['cdb_loginName'];
-//$username = str_replace(' ', '__', $username);
+//  $username = str_replace(' ', '__', $username);
 //$username = str_replace('.', '_', $username);
 $username = $db->translate_plainUserName_to_couchdbUserName ($_SESSION['cdb_loginName']);
 
@@ -62,7 +62,7 @@ $findCommand = array (
     'selector' => array(
         'date' => $_GET['date']
     ),
-    'fields' => array( '_id', 'datetime' ),
+    'fields' => array( '_id', 'datetime', 'milliseconds' ),
     'sort' => [
         ['datetime' => 'asc'],
         ['milliseconds' => 'asc'],

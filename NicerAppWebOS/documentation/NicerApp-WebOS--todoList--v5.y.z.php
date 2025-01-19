@@ -4,9 +4,23 @@
 ?>
 
 <h1 class="contentSectionTitle2"><span class="contentSectionTitle2_span">NicerApp WebOS Development Direction</span></h1><br/><br/>
+<p>
+I can not open up this to-do list for "jobs" done by other people yet, simply because the code is still in Alpha Phase. an initial test-phase.<br/>
+But eventually yes, this WebOS will be a truly open market (at the technical and company levels).
+</p>
 
 <ol class="todoList">
-    <li class="todoList"><div>(CURRENT) (2024) Write the <a class="nomod noPushState" href="https://new.nicer.app" target="nna">next major version</a>.
+    <li class="todoList"><div>(2025) Write a forums/posts + replies/posts API for this WebOS, for the v5 and v6 branch, in one go.</div></li>
+
+    <li class="todoList"><div>(2025) Write a notification API for this WebOS, for the v5 and v6 branch, in one go.</div></li>
+
+    <li class="todoList"><div>(2025) Write an in-app tutorial API for this WebOS, for the v5 and v6 branch, in one go.</div></li>
+
+    <li class="todoList"><div>(2025) Start doing daily testruns of all apps and features.</div></li>
+
+    <li class="todoList"><div>(2025 or 2026) Rewrite the YouTube search features to funnel videos into the backgrounds list for a NicerApp site (in addition to playing them via a vividDialog combination).</div></li>
+
+    <li class="todoList"><div>(2024, 2025) Write the <a class="nomod noPushState contentSectionTitle3_a" href="https://new.nicer.app" target="nna"><span class="contentSectionTitle3_span">next major version</span></a>.
         <ol class="todoList_l1">
             <li class="todoList_l1"><div>how to run multiple web apps with changing DIV contents in a single tab</div></li>
             <li class="todoList_l1"><div>(DONE) how to load web apps as a module into a DIV on demand (lazy loading of ThreeJS -240Kb- for instance)</div></li>
@@ -15,11 +29,13 @@
             <li class="todoList_l1"><div>how to move DIV dialogs/windows in and out of view on a screen that may change it's orientation at any time, on demand.</div></li>.
         </ol>
     </li>
-    <li class="todoList"><div>(NEARLY DONE) (Aug 2024) Fix bugs in the Theme Editor and page loading mechanism of v5.y.z</div></li>
+    <li class="todoList"><div>(DONE) (Dec 2024) Fix bugs in the Theme Editor and page loading mechanism of v5.y.z</div></li>
 
-    <li class="todoList"><div>(CURRENT) (Aug 2024) Add SQL capabilities to .../logic.databases</div></li>
+    <li class="todoList"><div>(2025 or 2026) Start work on a self-healer component for this WebOS, and a lot more Desktop OS level automated security to be installed via the <a href="https://github.com/NicerEnterprises/NicerApp-WebOS/tree/main/NicerAppWebOS/scripts.install" target="mainBashInstallScript_for_NicerAppWebOS" class="nomod noPushState contentSectionTitle3_a"><span class="contentSectionTitle3_span">main Bash install script</span></a>.</div></li>
 
-    <li class="todoList"><div>(CURRENT) (2023 Oct,Nov,Dec) Upgrade the blogging features.
+    <li class="todoList"><div>(2026 or 2027, unless someone wants to pay me 4 hundred euro up front and 2 thousand euro per year to develop this sooner) Add SQL and Linux + Windows file-system JSON storage and retrieval capabilities to .../logic.databases</div></li>
+
+    <li class="todoList"><div>(2025 or 2026) Upgrade the blogging features.
         <ol class="todoList_l1">
             <li class="todoList_l1"><div>(Jan 2025) Create a new HTML WYSIWYG rich-text editor component (that will be entirely created from scratch by me, ensuring i have the copyright and rights reserved for this component), that ties into the NicerApp Theme Editor.<br/>
             This is stalled because browser makers need to start supporting a window.getSelection() that returns a .anchorOffset and .extentOffset that works on the .innerHTML instead of the .innerText of any given element (usually the .commonAncestorElement).<br/>
@@ -28,8 +44,8 @@
             I've taken the liberty of web form contacting the tinymce sales team to ask if they can implement this for universal web theme editor builders for free.
             </div></li>
 
-            <li class="todoList_l1"><div>(STALLED, awaiting completion of item 3.1 on this list)<br/>
-            Supply data from a HTML+CSS form (as a tabpage in the universal web theme editor) into <a href="https://github.com/NicerEnterprises/NicerApp-WebOS/blob/main/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php#L1374" class="noPushState" target="naGH_wos1088">css_keyframes_to_array() and css_animation_template_to_animation()</a>, colors to mix will be defined by two 'colorpicker' (3rd-party) pieces of JS.
+            <li class="todoList_l1"><div>(STALLED, awaiting completion of item 9.1 on this list)<br/>
+            Supply data from a HTML+CSS form (as a tabpage in the universal web theme editor) into <a href="https://github.com/NicerEnterprises/NicerApp-WebOS/blob/main/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php#L1374" class="noPushState contentSectionTitle3_a" target="naGH_wos1088"><span class="contentSectionTitle3_span">css_keyframes_to_array() and css_animation_template_to_animation()</span></a>, colors to mix will be defined by two 'colorpicker' (3rd-party) pieces of JS.
             </div></li>
 
             <li class="todoList_l1"><div>(CURRENT) (2023 Nov,Dec) Extend the current limited permissions system to a full CMS, Web User Interfaced, permissions system for the WebOS.
@@ -57,7 +73,7 @@
 
     <li class="todoList"><div>Create an app-store app that links into an eCommerce app component set (a bunch of javascript, svg, css and html snippet files).</div></li>
 
-    <li class="todoList"><div>Implement bandwidth throttling for my webserver.</div></li>
+    <li class="todoList"><div>Implement bandwidth throttling in the <a href="https://github.com/NicerEnterprises/NicerApp-WebOS/tree/main/NicerAppWebOS/scripts.install" target="mainBashInstallScript_for_NicerAppWebOS" class="nomod noPushState">main Bash install script</a>.</div></li>
 
     <li class="todoList"><div>Add a checkbox in the Theme Editor to select backgrounds and stretch instead of tile them for any DIV.</div></li>
 
@@ -69,7 +85,7 @@
 
 
 
-    <li class="todoList"><div>Restore the automatic retrieval of new backgrounds download routines for nicerapp via free to use methods of delivery at Google image search and (TODO :)Bing image search.</div></li>
+    <!--<li class="todoList"><div>Restore the automatic retrieval of new backgrounds download routines for nicerapp via free to use methods of delivery at Google image search and (TODO :)Bing image search.</div></li>-->
 
     <li class="todoList">
     <div><pre class="todoList">

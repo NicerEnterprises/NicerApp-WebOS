@@ -1318,7 +1318,7 @@ class naVividMenu__behavior_rainbowPanels {
                 panel = $('#'+panelID)[0];
                 panel.it = pit;
 
-                t.showPanel (
+                if (r && r.dim) t.showPanel (
                     t, evt, panel, pit, pit, r.dim, r.numColumns, (r.numKids / r.numColumns),
                     $(x1.b.el).offset().left - $(t.el).offset().left,
                     $(x1.b.el).offset().top - $(t.el).offset().top

@@ -354,29 +354,31 @@ na.te = na.themeEditor = {
             var bgSrc = $(bg).css('backgroundImage');
             bgSrc = bgSrc.replace('url("', '');
             bgSrc = bgSrc.replace('")', '');
-            bgSrc = bgSrc.replace("url'", '');
+            bgSrc = bgSrc.replace("url('", '');
             bgSrc = bgSrc.replace("')", '');
-            var bgEl = document.createElement('img');
-            bgEl.onload = function () {
-                if (na.te.s.c.forDialogID) {
-                    var bg = $('#'+na.te.s.c.forDialogID+' > .vdBackground')[0];
-                } else {
-                    var bg = $(na.te.s.c.forElements)[0];
-                }
-                scaleRegEx = /(\d+)px\s(\d+)px/,
-                test3a = $(bg).css('backgroundSize').match(scaleRegEx);
+            if (bgSrc!=='none') {
+                var bgEl = document.createElement('img');
+                bgEl.onload = function () {
+                    if (na.te.s.c.forDialogID) {
+                        var bg = $('#'+na.te.s.c.forDialogID+' > .vdBackground')[0];
+                    } else {
+                        var bg = $(na.te.s.c.forElements)[0];
+                    }
+                    scaleRegEx = /(\d+)px\s(\d+)px/,
+                    test3a = $(bg).css('backgroundSize').match(scaleRegEx);
 
-                if (test3a) {
-                    na.te.s.c.scaleX = (parseInt(test3a[1]) * 100) / bgEl.naturalWidth;
-                    na.te.s.c.scaleY = (parseInt(test3a[2]) * 100) / bgEl.naturalHeight;
-                } else {
-                    na.te.s.c.scaleX = 100;
-                    na.te.s.c.scaleY = 100;
+                    if (test3a) {
+                        na.te.s.c.scaleX = (parseInt(test3a[1]) * 100) / bgEl.naturalWidth;
+                        na.te.s.c.scaleY = (parseInt(test3a[2]) * 100) / bgEl.naturalHeight;
+                    } else {
+                        na.te.s.c.scaleX = 100;
+                        na.te.s.c.scaleY = 100;
+                    };
+                    $('#themeEditor_photoScaleX').val(na.te.s.c.scaleX);
+                    $('#themeEditor_photoScaleY').val(na.te.s.c.scaleY);
                 };
-                $('#themeEditor_photoScaleX').val(na.te.s.c.scaleX);
-                $('#themeEditor_photoScaleY').val(na.te.s.c.scaleY);
-            };
-            bgEl.src = bgSrc;
+                bgEl.src = bgSrc;
+            }
         }
         
         $('#siteToolbarThemeEditor').css({ display : 'flex', flexDirection : 'row', flexWrap : 'wrap' });

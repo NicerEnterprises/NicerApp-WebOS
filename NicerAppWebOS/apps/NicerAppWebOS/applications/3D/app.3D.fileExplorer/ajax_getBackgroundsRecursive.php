@@ -10,7 +10,7 @@
     else {
         $mi = [];
 
-        $root = $naRoot.'/NicerAppWebOS/siteMedia/backgrounds';
+        $root = $naRoot.'/NicerAppWebOS/siteMedia/backgrounds/landscape';
         //var_dump (file_exists($root)); die();
         $fileFormats = '/.*/';
         global $fileFormats;

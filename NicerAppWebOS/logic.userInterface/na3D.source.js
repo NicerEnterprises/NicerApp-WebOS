@@ -104,13 +104,15 @@ export class na3D_portraitFrame {
 export class na3D_fileBrowser {
     constructor(el, parent, parameters) {
         var t = this;
-
+        var fncn = 'na3D_fileBrowser::constructor(el,parent,parameters)';
+        $('#site3D_label').html ('Loading and processing data now, be PATIENT please.');
         t.debug = false;
-        
+
         t.autoRotate = false;
         t.showLines = true;
         t.animationDuration = 10;
-        
+        t.itemsLength = 2; // DO NOT change this initial value!
+
         t.p = parent;
         t.el = el;
         t.t = $(t.el).attr('theme');
@@ -216,7 +218,6 @@ export class na3D_fileBrowser {
         });
         
         t.loader = new GLTFLoader();
-        t.initializeItems (t);
 
         const light1  = new AmbientLight(0xFFFFFF, 0.3);
         light1.name = 'ambient_light';
@@ -318,14 +319,32 @@ export class na3D_fileBrowser {
         t.flyControls.rollSpeed = Math.PI / 24;
         t.flyControls.autoMove = true;
         //t.fpControls = new FirstPersonControls (t.camera, t.renderer.domElement);
-        t.camera.lookAt (t.s2[0].position);
-        t.cameraControls._camera.lookAt (t.s2[0].position);
+        debugger;
+        if (
+            !t.items
+            || t.items.length == 1 // DO NOT change this '1' value!
+        ) t.initializeItems (t);
+        na.m.waitForCondition (fncn+' : FINALIZING.', function() {
+            var r =
+                t.items
+                && t.items.length > 100
+                && t.items.length+1 !== t.itemsLength;
+            return r;
+        }, function () {
+            t.itemsLength = t.items.length;
+            t.camera.lookAt (t.s2[0].position);
+            t.cameraControls._camera.lookAt (t.s2[0].position);
 
-        t.animate(this, null);
+            t.animate(t);
+            t.onresize(t);
+        }, 200);
     }
     
     animate(t, evt) {
         requestAnimationFrame( function(evt) { t.animate (t,evt) });
+        //setTimeout( function(evt) { t.animate (t,evt) }, 500, event);
+
+
         //if (t.mouse.x!==0 || t.mouse.y!==0) {
 
             for (var i=0; i<t.s2.length; i++) {
@@ -776,12 +795,22 @@ export class na3D_fileBrowser {
     initializeItems (t) {
         var p = { t : t, ld2 : {}, idxPath : '', idxPath2 : '/0' };
         na.m.walkArray (t.data, t.data, t.initializeItems_walkKey, t.initializeItems_walkValue, false, p);
-        t.onresize(t);
     }
+
     initializeItems_walkKey (cd) {
+        cd.params.t.initializeItems_walkKey_doNext (cd);
+    }
+
+    initializeItems_walkKey_doNext (cd) {
         var ps = cd.path.split('/');
         if (ps[ps.length-1]=='folders') {
-            cd.params.idxPath = cd.params.idxPath2;
+            setTimeout (cd.params.t.initializeItems_walkKey_doFolder, 100, cd);
+        }
+    }
+
+    initializeItems_walkKey_doFolder (cd) {
+        var ps = cd.path.split('/');
+            //cd.params.idxPath = cd.params.idxPath2;
             //cd.params.idxPath = cd.params.idxPath + '/' + cd.params.t.items.length;
 
             var ps2 = $.extend([],ps);
@@ -830,6 +859,8 @@ export class na3D_fileBrowser {
             var
             textures = [];
             for (var i=0; i<6; i++) textures[i] = '/NicerAppWebOS/siteMedia/folderIcon.png';
+            /*
+             * 2025-01-17 18:38CET : SLOWS EVERYTHING INTO A CRAWL OF DEATH (ENDLESS LOOP!)
             for (var i=0; i<6; i++) {
                 var p = null;
                 //debugger;
@@ -848,6 +879,7 @@ export class na3D_fileBrowser {
                     //alert (itd[''+i]);
                 }
             }
+            */
             var
             materials = [
                 new THREE.MeshBasicMaterial({
@@ -875,19 +907,20 @@ export class na3D_fileBrowser {
             cube.it = it;
             it.model = cube;
             cd.params.t.items.push (it);
-        }
+        //}
     }
     initializeItems_walkValue (cd) {
-        console.log ('initializeItems_walkValue', 'cd', cd);
+        //console.log ('initializeItems_walkValue', 'cd', cd);
     }
     
     onresize (t, levels) {
+        var fncn = t.me + '::onresize(t,levels)';
         if (!t) t = this;
-        //debugger;
-        na.m.waitForCondition ('waiting for other onresize commands to finish',
+        na.m.waitForCondition (fncn + ' : ready to call t.onresize() now?',
+        //if (!t.mainInterval) t.mainInterval = setInterval (
             function () { return t.resizing === false; },
             function () { t.onresize_do (t, levels); }, 
-            50
+            200//1000, //50
         );
     }
 
@@ -949,6 +982,7 @@ export class na3D_fileBrowser {
         maxLevel = 0;
 
         for (var i=0; i<its.length; i++) {
+            //if (its[i].leftRight) continue; // already done this item in the list.
             if (maxLevel < its[i].level) maxLevel = its[i].level;
             for (var j=0; j<its.length; j++) {
                 if (its[i].parent === its[j].parent) {
@@ -983,6 +1017,8 @@ export class na3D_fileBrowser {
             it = t.items[i],
             p = (it.parent ? t.items[it.parent.idx] : null),
             rndMax = 4000;
+            if (it.leftRight) continue; // already done this item in the list.
+            if (it.name.match(/halloween/i)) debugger;
 
             if (it.parent && !pox[it.parent.idx]) pox[it.parent.idx] = Math.abs(Math.random() * rndMax);
             if (it.parent && !poy[it.parent.idx]) poy[it.parent.idx] = Math.abs(Math.random() * rndMax);
@@ -1006,8 +1042,8 @@ export class na3D_fileBrowser {
             
             if (p) {
                 var
-                itmaxc = it.maxColumnIta.maxColumn,
-                itmaxr = it.maxRowIta.maxRow,
+                itmaxc = it.maxColumnIta,
+                itmaxr = it.maxRowIta,
                 itmaxc2 = Math.floor(itmaxc/2),
                 itmaxr2 = Math.floor(itmaxr/2),
                 itLeftRight = /*p.leftRight * */(
@@ -1044,8 +1080,8 @@ export class na3D_fileBrowser {
                 var mc = 0, mr = 0, p = it;
 
                 var
-                itmaxc = it.maxColumnIta.maxColumn,
-                itmaxr = it.maxRowIta.maxRow,
+                itmaxc = it.maxColumnIta,
+                itmaxr = it.maxRowIta,
                 itLeftRight = /*p.leftRight * */(
                     it.column-1 == itmaxc / 2
                     ? 0
@@ -1133,11 +1169,14 @@ export class na3D_fileBrowser {
             }
         }
         
-        t.onresize_postDo(t);
+        if (t.onresize_postDo(t)===true) { // 2nd time doing this AT LEAST :)
+            t.resizing = false;
+        };
     }
 
     onresize_postDo (t) {
         t.drawLines(t);
+        if (t.curve1b) return true;
 
         if (!t.cameraOrigin) t.cameraOrigin = $.extend({}, t.camera.position);
 
@@ -1443,14 +1482,16 @@ export class na3D_fileBrowser {
                         //t.cameraControls._camera.position = t.cameraOrigin;
                     }*/
                 });
+                /*
                 t.renderer.domElement.addEventListener ('pointermove', function (evt) {
                     var dbg = {
                         't.cameraControls._isDragging' : t.cameraControls._isDragging,
-                        't.cameraControls._dragNeedsUpdate' : t.cameraControls._dragNeedsUpdate,
+                        't.cameraControls._dragNeedsUpdate (never looks good this way..)' : t.cameraControls._dragNeedsUpdate,
                         't.lookClock' : t.lookClock
                     };
                     if (t.debug) console.log (dbg);
                 });
+                */
                 t.renderer.domElement.addEventListener ('pointerup', function (evt) {
                     if (t.debug) console.log ('pointerup() t.lookClock === -1, t.cameraControls.enabled');
                     t.lookClock = -1;

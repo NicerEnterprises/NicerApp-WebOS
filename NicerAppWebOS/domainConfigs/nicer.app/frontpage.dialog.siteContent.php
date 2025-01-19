@@ -9,7 +9,7 @@
             na.d.s.visibleDivs = arrayRemove (na.d.s.visibleDivs, '#siteToolbarRight');
             na.d.s.visibleDivs = arrayRemove (na.d.s.visibleDivs, '#siteToolbarTop');
             na.desktop.resize();
-        }, 1000);
+        }, 100);
     </script>
 
     <p>
@@ -27,7 +27,9 @@
 
     <h2 class="contentSectionTitle1"><span class="contentSectionTitle1_span">Available Apps</span></h2>
 
-    <a href="<?php echo $naURLs['music'];?>" class="contentSectionTitle3_a"><h3 class="contentSectionTitle3"><span class="contentSectionTitle3_span">Music</span></h3></a>
+    <?php /* REQUIRED ACCORDING TO 2025 LAWS THAT GOVERN HTTPS://nicer.app/music */ global $naLAN; if ($naLAN) { ?>
+        <a href="<?php echo $naURLs['music'];?>" class="contentSectionTitle3_a"><h3 class="contentSectionTitle3"><span class="contentSectionTitle3_span">Music</span></h3></a>
+    <?php } ?>
     
     <h3 id="h3_news" class="contentSectionTitle3 contentSectionTitle3_darker"><span class="contentSectionTitle3_span_darker">News</span></h3>
     <ul class="index" style="margin-block-end:33px;">
