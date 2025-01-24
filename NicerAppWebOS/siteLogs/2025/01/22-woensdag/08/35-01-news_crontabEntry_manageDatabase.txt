@@ -1,0 +1,121 @@
+PHP Warning:  Undefined array key "dtl" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 43
+
+Warning: Undefined array key "dtl" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 43
+PHP Warning:  Undefined array key "dtl" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 44
+
+Warning: Undefined array key "dtl" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 44
+PHP Warning:  Undefined array key "dtl" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 45
+
+Warning: Undefined array key "dtl" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 45
+PHP Deprecated:  Creation of dynamic property NicerAppWebOS::$debugThemeLoading is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 39
+
+Deprecated: Creation of dynamic property NicerAppWebOS::$debugThemeLoading is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 39
+PHP Deprecated:  Creation of dynamic property NicerAppWebOS::$browserDebug is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 67
+
+Deprecated: Creation of dynamic property NicerAppWebOS::$browserDebug is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 67
+PHP Deprecated:  Creation of dynamic property NicerAppWebOS::$domainForDB is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 74
+
+Deprecated: Creation of dynamic property NicerAppWebOS::$domainForDB is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 74
+PHP Deprecated:  Creation of dynamic property NicerAppWebOS::$ownerInfo is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 87
+
+Deprecated: Creation of dynamic property NicerAppWebOS::$ownerInfo is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 87
+PHP Deprecated:  Creation of dynamic property NicerAppWebOS::$viewsMIDpath is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 98
+
+Deprecated: Creation of dynamic property NicerAppWebOS::$viewsMIDpath is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 98
+PHP Deprecated:  Creation of dynamic property NicerAppWebOS::$viewsMID is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 101
+
+Deprecated: Creation of dynamic property NicerAppWebOS::$viewsMID is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 101
+PHP Deprecated:  Creation of dynamic property NicerAppWebOS::$cssFiles is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 105
+
+Deprecated: Creation of dynamic property NicerAppWebOS::$cssFiles is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 105
+PHP Deprecated:  Creation of dynamic property NicerAppWebOS::$javascriptFiles is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 109
+
+Deprecated: Creation of dynamic property NicerAppWebOS::$javascriptFiles is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 109
+PHP Deprecated:  Creation of dynamic property class_NicerAppWebOS_database_API::$settings is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/class.database_API.php on line 30
+
+Deprecated: Creation of dynamic property class_NicerAppWebOS_database_API::$settings is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/class.database_API.php on line 30
+PHP Deprecated:  Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$cms is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 25
+
+Deprecated: Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$cms is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 25
+PHP Deprecated:  Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$connectionSettings is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 28
+
+Deprecated: Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$connectionSettings is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 28
+PHP Deprecated:  Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$admin is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 33
+
+Deprecated: Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$admin is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 33
+PHP Deprecated:  Creation of dynamic property class_NicerAppWebOS_database_API::$connections is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/class.database_API.php on line 41
+
+Deprecated: Creation of dynamic property class_NicerAppWebOS_database_API::$connections is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/class.database_API.php on line 41
+PHP Deprecated:  Creation of dynamic property class_NicerAppWebOS_database_API::$settings is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/class.database_API.php on line 30
+
+Deprecated: Creation of dynamic property class_NicerAppWebOS_database_API::$settings is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/class.database_API.php on line 30
+PHP Deprecated:  Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$cms is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 25
+
+Deprecated: Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$cms is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 25
+PHP Deprecated:  Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$connectionSettings is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 28
+
+Deprecated: Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$connectionSettings is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 28
+PHP Deprecated:  Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$admin is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 33
+
+Deprecated: Creation of dynamic property class_NicerAppWebOS_database_API_couchdb_3_2::$admin is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/connectors/class.couchdb-3.2.2_1.0.1.php on line 33
+PHP Deprecated:  Creation of dynamic property class_NicerAppWebOS_database_API::$connections is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/class.database_API.php on line 41
+
+Deprecated: Creation of dynamic property class_NicerAppWebOS_database_API::$connections is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0/class.database_API.php on line 41
+PHP Deprecated:  Creation of dynamic property NicerAppWebOS::$globals is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 216
+PHP Deprecated:  Creation of dynamic property class_NicerApp_WebOS_siteComments::$forumsIndexFilepath is deprecated in /var/www/nicer.app/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/siteComments-2.0.0/class NicerApp WebOS comments v2.0.0.php on line 23
+PHP Deprecated:  Creation of dynamic property NicerAppWebOS::$url is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 226
+PHP Warning:  Undefined array key "seoValue" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 234
+
+Deprecated: Creation of dynamic property NicerAppWebOS::$globals is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 216
+
+Deprecated: Creation of dynamic property class_NicerApp_WebOS_siteComments::$forumsIndexFilepath is deprecated in /var/www/nicer.app/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/siteComments-2.0.0/class NicerApp WebOS comments v2.0.0.php on line 23
+
+Deprecated: Creation of dynamic property NicerAppWebOS::$url is deprecated in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 226
+
+Warning: Undefined array key "seoValue" in /var/www/nicer.app/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php on line 234
+<pre>object(stdClass)#20 (3) {
+  ["headers"]=>
+  object(stdClass)#24 (8) {
+    ["_HTTP"]=>
+    object(stdClass)#25 (3) {
+      ["raw"]=>
+      string(15) "HTTP/1.1 200 OK"
+      ["version"]=>
+      string(3) "1.1"
+      ["status"]=>
+      string(3) "200"
+    }
+    ["cache-control"]=>
+    string(15) "must-revalidate"
+    ["content-type"]=>
+    string(16) "application/json"
+    ["date"]=>
+    string(29) "Wed, 22 Jan 2025 07:35:06 GMT"
+    ["server"]=>
+    string(29) "CouchDB/3.4.2 (Erlang OTP/25)"
+    ["transfer-encoding"]=>
+    string(7) "chunked"
+    ["x-couch-request-id"]=>
+    string(10) "3bf1fca637"
+    ["x-couchdb-body-time"]=>
+    string(1) "0"
+  }
+  ["body"]=>
+  object(stdClass)#27 (3) {
+    ["docs"]=>
+    array(1) {
+      [0]=>
+      object(stdClass)#26 (1) {
+        ["_id"]=>
+        string(32) "de58a21dbba928aed3a5f79f6c7e1b7a"
+      }
+    }
+    ["bookmark"]=>
+    string(147) "g1AAAABteJw1yzsSQDAQANBQqbTaXCFMhFMoHMDsZjfjk4hBk9uj0L6Z54UQ-ZyTKK8bznvjNFG0C4XXJbHuoFaECH3dAVMD2pnetdawQgPfK_7n35F9rRpGaWMIsJNfdpbHGRHQp3V9AIzdIDw"
+    ["warning"]=>
+    string(119) "_design/556539d11d9d33d17c72fd402798730ceac08471 was not used because it does not contain a valid index for this query."
+  }
+  ["status"]=>
+  string(3) "200"
+}
+</pre>

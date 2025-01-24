@@ -72,6 +72,7 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
     $naDebugAll = true;
     global $naDebugAll;
     global $naBypassMainErrorHandler;
+    //$naBypassMainErrorHandler = false;
     if ($naDebugAll) {
             ini_set('display_errors', 1); // 0 == false, 1 == true
             ini_set('display_startup_errors', 1);
@@ -367,9 +368,10 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
         'fields' => ['_id'],
         'use_index' => $naWebOS->globals['cdbDesignDocs']['logentries_pageLoad']
     ];
-    //echo '<pre style="padding:8px;border-radius:10px;background:rgba(255,255,255,0.5);color:green;">'; var_dump ($findCommand); echo '</pre>';
+    //echo '<pre style="padding:8px;border-radius:10px;background:rgba(255,255,255,0.5);color:green;">'; var_dump ($findCommand); echo '</pre>'; exit();
     try {
         $call = $cdb->find ($findCommand);
+        //echo '<pre>'; var_dump ($call); echo '</pre>'; exit();
     } catch (Exception $e) {
         //$msg = ' FAILED (boot.php) while trying to find in \''.$dbName.'\' : '.$e->getMessage();
         //trigger_error ($msg, E_USER_ERROR);
