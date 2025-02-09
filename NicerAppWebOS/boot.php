@@ -139,7 +139,7 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
         $now->setTimezone(new DateTimeZone(exec('date +%z')));
         //$date = $now->format("Y-m-d_H:i:s.u");
         $date =
-            $now->format("Y-m-d_H:i:s_")
+            $now->format("Y/m/d-l/H/i-s_")
             .str_replace(
                 '+','plus',
                 preg_replace('/.*\s/','',date(DATE_RFC2822))
@@ -158,6 +158,7 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
             $_SESSION['na_error_log_filepath_html'] = null;
             $_SESSION['na_error_log_filepath_txt'] = null;
         }
+        //echo $date.'<br/>'; exit();
 
         $_SESSION['dbgNum'] = 0;
         $_SESSION['dbgNum2'] = 0;
@@ -179,11 +180,12 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
         $now->setTimezone(new DateTimeZone(exec('date +%z')));
         //$date = $now->format("Y-m-d_H:i:s.u");
         $date =
-            $now->format("Y-m-d_H:i:s_")
+            $now->format("Y/m/d-l/H/i-s_")
             .str_replace(
                 '+','plus',
                 preg_replace('/.*\s/','',date(DATE_RFC2822))
             );
+        //echo $date.'<br/>'; exit();
 
         $_SESSION['na_error_log_filepath_html'] =
             '/var/www/'.$naWebOS->domain.'/NicerAppWebOS/siteLogs/'

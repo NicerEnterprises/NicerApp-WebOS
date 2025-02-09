@@ -26,7 +26,7 @@ if (file_exists($fnLock)) unlink ($fnLock);
 if (file_exists($fnLock)) {
     $logstr = 'Lockfile exists. exiting.';
     echo $logstr;
-    //error_log ($logstr);
+    error_log ($logstr);
 } else {
     file_put_contents ($fnLock, 'locked');
     //$logstr = $fncn.' : Reading data from disk'.PHP_EOL;

@@ -1,4 +1,4 @@
-Copyright (c)/(C) and All Rights Reserved (r)/(R) {i am not a lawyer, nor can i afford one at the moment} 2002-2024 by <a href="mailto:rene.veerman.netherlands@gmail.com">Rene A.J.M. Veerman &lt;rene.veerman.netherlands@gmail.com&gt;</a>
+Copyright (c)/(C) and All Rights Reserved (r)/(R) {i am not a lawyer, nor can i afford one at the moment} 2002-2025 by <a href="mailto:rene.veerman.netherlands@gmail.com">Rene A.J.M. Veerman &lt;rene.veerman.netherlands@gmail.com&gt;</a>
 Opensourced at <a href="https://github.com/NicerEnterprises/" target="ghna" class="nomod noPushState">https://github.com/NicerEnterprises/</a>.
 
 This software is currently in alpha phase. That means while most of the features work, there probably are still some undiscovered bugs to fix.

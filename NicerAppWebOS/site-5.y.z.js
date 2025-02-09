@@ -59,7 +59,7 @@ na.site = {
         na.site.setStatusMsg (na.site.about.copyright);
         
     },
-    
+
     dismissCopyrightMessage : function () {
         $.cookie('visible_siteStatusbar', 'false', na.m.cookieOptions());
         na.d.s.visibleDivs = arrayRemove (na.d.s.visibleDivs,'#siteStatusbar');
@@ -1017,6 +1017,7 @@ na.site = {
                 //na.site.loadTheme_applySettings (na.site.globals.themes[na.site.globals.themeName]);
                 $('.na_themes_dropdown__specificity > .vividDropDownBox_selected').html (na.site.globals.themeDBkeys.specificityName);
                 na.te.settings.current.specificity = na.site.globals.themeDBkeys;
+                na.site.globals.specificityName = na.site.globals.themeDBkeys.specificityName;
             };
 
             $('.na_themes_dropdown__specificity > .vividDropDownBox_selector > .vividScrollpane').append($(divEl).clone(true,true));
@@ -1050,6 +1051,7 @@ na.site = {
                     }
                 }
             };
+            na.site.setSiteLoginLogout();
         }
 
         na.te.s.c.oldThemeNames = [];
@@ -1206,6 +1208,7 @@ na.site = {
     },
     
     setSiteLoginLogout : function () {
+        if (!$('#siteLoginLogout')[0].hoverBound)
         $('#btnLoginLogout').hover(function() {
             var 
             loggedInAs = $.cookie && $.cookie('cdb_loginName')!=''
@@ -1221,6 +1224,7 @@ na.site = {
                 +'<div id="specificityName" class="siteLoginLogout_labelText" style="grid-column:2;grid-row:2">'+na.site.globals.specificityName+'</div><br/>'
                 +'<div id="labelThemeName" class="siteLoginLogout_label" style="grid-column:1;grid-row:3">Theme : </div>'
                 +'<div id="themeName" class="siteLoginLogout_labelText" style="grid-column:2;grid-row:3">'+na.te.s.c.selectedThemeName+'</div><br/>';
+            debugger;
             $('#siteLoginLogout').html(html);
             $('#siteLoginLogout').css ({
                 display : 'none',
@@ -1232,6 +1236,7 @@ na.site = {
         }, function() {
             $('#siteLoginLogout').fadeOut('normal');
         });
+        $('#siteLoginLogout')[0].hoverBound = true;
     },
     
     onclick_btnFullResetOfAllMenuLayoutData : function (event) {
@@ -2100,7 +2105,11 @@ na.site = {
 
         dat = eventParams.dat,
         url3 = '/NicerAppWebOS/logic.AJAX/ajax_get_pageSpecificSettings.php',
-        getData = ( url2.match(/\/view\//) ? { apps : url2 } : { viewID : '/'+url2 } ),
+        getData = (
+            url2.match(/\/view\//)
+            ? { apps : url2 }
+            : { viewID : '/'+url2 }
+        ),
         ac2 = {
             type : 'GET',
             url : url3,
@@ -3343,6 +3352,7 @@ na.site = {
             !theme
             || typeof theme=='number' // when called via na.site.loadContent()
         ) theme = na.site.globals.themeName;
+        debugger;
 
         na.themeEditor.settings.current.selectedThemeName = theme;
         
@@ -3961,11 +3971,6 @@ na.site = {
                         na.m.log (10, 'na.site.saveTheme() : FAILED.');
                         
                     } else {
-                        na.site.globals.specificityName = na.site.globals.specificityName_revert;
-                        debugger;
-                        na.site.setSpecificity();
-
-
                         //na.site.loadTheme(null, null, false); //REPLACED with .loadTheme_applySettings() in the block above this AJAX call.
 
                         na.m.log (10, 'na.site.saveTheme() : FINISHED.', false);
