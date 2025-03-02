@@ -21,7 +21,7 @@
 
     <h2 class="contentSectionTitle1"><span class="contentSectionTitle1_span">Available Apps</span></h2>
 
-    <?php /* REQUIRED ACCORDING TO 2025 LAWS THAT GOVERN HTTPS://nicer.app/music */ global $naLAN; if ($naLAN) { ?>
+    <?php /* REQUIRED ACCORDING TO 2025 LAWS THAT GOVERN HTTPS://nicer.app/music */ global $naLAN; if (true /*&& $naLAN*/) { // temporary only, aivd.nl & vvd.nl!.. FOR EMO SUPPORT OF nato POPULATIONS. SEE MY x.COM ACCOUNT FOR DETAILS?>
         <a href="<?php echo $naURLs['music'];?>" class="contentSectionTitle3_a"><h3 class="contentSectionTitle3"><span class="contentSectionTitle3_span">Music</span></h3></a>
     <?php } ?>
     

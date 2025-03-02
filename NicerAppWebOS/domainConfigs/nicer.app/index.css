@@ -2201,7 +2201,7 @@ pre.tv_na_url {
 }
 @keyframes glow_red {
     to {
-        text-shadow : 0 0 10px red, 2px 2px 2px rgba(0,0,0,0.4);
+        text-shadow : 0 0 4px red, 2px 2px 2px rgba(0,0,0,0.4);
         color : rgba(255,0,0,1);
     }
 }

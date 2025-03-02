@@ -2773,7 +2773,7 @@ na.site = {
     },
     ajaxFail : function (location, url, xhr, ajaxOptions, thrownError) {
         var 
-        msg = 'AJAX error ('+location+') : '+thrownError+':<br/>url='+url;
+        msg = 'AJAX error ('+location+') : '+thrownError+':<br/>url = '+url;
 
         if (location=='na.site.testDBconnection()' && thrownError=='Internal Server Error') {
             msg = 'Database cookie expired. Please log in again.';
@@ -2787,7 +2787,7 @@ na.site = {
         //var msg2 = '<span style="display:table-cell;vertical-align:middle;background:rgba(255,255,255,0.45);color:red;borderRadius:10">'+msg+'</span>';
 
 
-        na.site.setStatusMsg(html, true, 'indefinitely');
+        na.site.setStatusMsg(html, true);
         na.m.log (3, 'na.site.ajaxFail() : msg='+msg);
         na.analytics.logMetaEvent ('na.site.ajaxFail() : msg='+msg);
     },
@@ -2805,7 +2805,7 @@ na.site = {
         //debugger;
 
         //if (!resize) na.site.settings.current.cancelAllResizeCommands = true;
-        if (!showMilliseconds) showMilliseconds = 4000;
+        if (!showMilliseconds) showMilliseconds = 10 * 1000;
         na.site.settings.current.desktopIdle = false;
         if (fade)
         $('#siteStatusbar .vividDialogContent').stop(true,true).animate({opacity:0.0001},'fast', function () {

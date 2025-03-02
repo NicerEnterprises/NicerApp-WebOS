@@ -16,6 +16,11 @@
     Copyrighted 2002-2024 and owned by <a href="mailto:rene.veerman.netherlands@gmail.com" target="_new" class="nomod noPushState">Rene A.J.M. Veerman &lt;rene.veerman.netherlands@gmail.com&gt;</a>.<br/>
     </p>
 
+    <p><a href="https:/facebook.com/rene.veerman.90">https://facebook.com/rene.veerman.90</a></p>
+    <p><a href="https://x.com/ReneVeerma64021">https://x.com/ReneVeerma64021</a>.</p>
+    <p><a href="https://is.gd/cheetahkungfu">https://is.gd/cheetahkungfu</a> a free video Youtube address where a free video tutorial can be found on the latest top-notch martial-arts.</p>
+
+
 
 </div>
 
