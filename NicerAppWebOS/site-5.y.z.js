@@ -415,6 +415,8 @@ na.site = {
         na.site.settings.current.siteResized = true;
         //na.desktop.setConfig ('content');
        // debugger;
+        na.sie.onresize_doContent();
+
         $('.vividDialog').css({overflow:'visible'});
         $('#siteComments .vdTools').remove();
 
@@ -2385,6 +2387,43 @@ na.site = {
         onresize_doContent : function (settings) {
             //debugger;
             startLogo('neCompanyLogo', 'countryOfOriginColors');
+            if (document.location.href=='/license') {
+                $(
+                    '#siteContent > .vividDialogConent > .vividScrollpane, '
+                    +'#siteContent >                     .vividDialogConent >  container'
+                ).css ({
+                    position:'relative',
+                    opacity : 1,
+                    overflowWrap: 'break-word !important',
+                    width:'90%',
+                    alignItems:'left'
+                });
+            } else {
+                $(
+                    '#siteContent > .vividDialogContent > .vividScrollpane'
+                ).css({
+                    display:'block',
+                    opacity : 1
+                });
+                $(
+                    'pre.license'
+                ).css({
+                    padding: '8px',
+                    borderRadius: '5px',
+                    margin: '4px',
+                    color: 'rgba(227, 230, 255, 1)',
+                    background: 'rgba(0, 0, 0, 0.4)',
+                    boxShadow: 'inset 0px 0px 3px 2px rgba(0, 0, 0, 0.5), 2px 2px 3px 2px rgba(0, 0, 0, 0.7)',
+                    fontWeight: 'bold',
+                    width: 'fit-content'
+                });
+            }
+
+            $('.vividDialog')
+                .css({overflow:'visible'});
+            $('#siteComments .vdTools')
+                .remove();
+
             return false;
             /*
             if ($(window).width() < na.site.globals.reallySmallDeviceWidth) {
