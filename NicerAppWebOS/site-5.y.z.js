@@ -415,7 +415,6 @@ na.site = {
         na.site.settings.current.siteResized = true;
         //na.desktop.setConfig ('content');
        // debugger;
-        na.sie.onresize_doContent();
 
         $('.vividDialog').css({overflow:'visible'});
         $('#siteComments .vdTools').remove();

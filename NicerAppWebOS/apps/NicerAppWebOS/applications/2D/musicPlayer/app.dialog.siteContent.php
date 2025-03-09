@@ -19,20 +19,19 @@ $view = $naWebOS->view["/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicP
 
 
 if ($view['set']==='index') {
-    /*if (TRUE ||!$naLAN) { // temporary only, aivd.nl & vvd.nl!.. FOR EMO SUPPORT OF nato POPULATIONS. SEE MY x.COM ACCOUNT FOR DETAILS
-        require_once(dirname(__FILE__).'/OFFLINE.php');
+    if ($naLAN) {
+        require_once(dirname(__FILE__).'/frontpage.php');
     } else {
-        require_once(dirname(__FILE__).'/frontpage.php');
-    }*/
-        require_once(dirname(__FILE__).'/frontpage.php');
+        require_once(dirname(__FILE__).'/OFFLINE.php');
+    }
+    //require_once(dirname(__FILE__).'/frontpage.php'); // temporary only, aivd.nl & vvd.nl!.. FOR EMO SUPPORT OF nato POPULATIONS. SEE MY x.COM ACCOUNT FOR DETAILS
 
 } else {
-    /*if (TRUE ||!$naLAN)
+    if (!$naLAN) {
         require_once(dirname(__FILE__).'/OFFLINE.php');
         return true;
         exit();
-    }*/
-    // temporary only, aivd.nl & vvd.nl!.. FOR EMO SUPPORT OF nato POPULATIONS. SEE MY x.COM ACCOUNT FOR DETAILS
+    }
 
 
     $setPath = dirname(__FILE__).'/music/'.$view['set'];
