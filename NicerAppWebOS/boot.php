@@ -303,6 +303,22 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
         $_SESSION['logsInitialized'] = true;
     }
 
+
+    global $naSettings;
+    $fnSettingsMusicPlayer2D = realpath(dirname(__FILE__)).'/apps/NicerAppWebOS/applications/2D/musicPlayer/settings.json';
+    $folderAppMusicPlayer2D = '.../NicerWebAppOS/apps/NicerWebAppOS/applications/2D/musicPlayer';
+    $naSettings = [ 'apps' => json_decode(file_get_contents($fnSettingsMusicPlayer2D),true) ];
+    $rcl = 'respectLatestDutchCopyrightLaws';
+    global $naSettings_app2D_musicPlayer_respectDutchCopyright;
+    $naSettings_app2D_musicPlayer_respectDutchCopyright = $naSettings['apps'][$folderAppMusicPlayer2D]['defaults'][$rcl];
+    global $naSettings_app2D_musicPlayer;
+    $naSettings_app2D_musicPlayer = $naSettings['apps'][$folderAppMusicPlayer2D];
+    //echo '<pre>'; var_dump ($app2DmusicPlayer_respectDutchCopyright); echo '</pre>'.PHP_EOL.PHP_EOL;
+    //echo '<pre>'; var_dump ($naSettings); echo '</pre>'.PHP_EOL.PHP_EOL;
+    //exit();
+
+
+
     global $phpScript_startupTime;
     global $naIP;
     global $naVersionNumber;

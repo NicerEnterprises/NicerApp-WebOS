@@ -35,6 +35,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
                     na.site.settings.current.app = '/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer';
                     na.analytics.logMetaEvent ("na.musicPlayer.onload() called.");
 
+                    $('#siteContent > .vividDialogContent').css({ direction:'ltr'});
                 /*na.m.waitForCondition ('DOM ready', function() {
                     return na && na.apps && typeof na.mediaPlayer =='object' && $.ui && $.ui.draggable && $('#mp3s')[0] && $('#app__musicPlayer__player')[0];
                 }, function() {*/
@@ -62,21 +63,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
                 //}, 100);
 
 
-                    na.mp.onWindowResize();
-                    $('#mp3s .vividButton').css({position:'relative'});
-                    var w = $('#mp3s').width()-25;
-                    na.m.waitForCondition (
-                        'na.site.settings.current.HTMLidle for resizing of playlist .vividButton elements (not in a .vividMenu btw)',
-                        function () { return na.m.HTMLidle(); },
-                        function () {
-                            $('#mp3s .vividButton, #app__musicPlayer__player .vividButton4').each(function(idx,el) {
-                                $(el).css({width:w});
-                                if (!na.site.settings.buttons['#'+el.id])
-                                    na.site.settings.buttons['#'+el.id] = new naVividButton(el);
-                            });
-                        }, 100); // milliseconds delay number (milliseconds between check of 2nd parameter function call)
-                    na.mp.setupDragNDrop();
-                    
+
                     $('.audioSeekBar_setting').css({ height : $('.audioSeekBar').height() - 4, marginTop : 2, marginLeft : 2, borderRadius:5 });
                     $('.audioVolumeBar_setting').css({ height : $('.audioVolumeBar').height() - 4, marginTop : 2, marginLeft : 2, borderRadius:5 });
                     
@@ -457,8 +444,14 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
             if (this.id.indexOf('playlist_')!==-1) return false;
             if (this.id===na.mp.settings.resortedItem) return false;
             var div = document.createElement('div');
+            var scale = $('#siteContent > .vividDialogContent').css('scale')
             $('body').append(div);
-            $(this).clone(false,false).appendTo(div).css({position:'relative',zIndex:1100, margin : 5, marginLeft:40});
+            $(this).clone(false,false).appendTo(div).css({position:'relative',zIndex:1100, margin : 5, marginLeft:40,
+                width : $(this).width(),
+                scale: scale
+            });
+            na.mp.globals.mp3dragged = this;
+            na.mp.globals.mp3scale = scale;
             //$(document.body).append(div);
             return div;
         }
@@ -486,6 +479,9 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
 		mp3s.draggable (na.mp.mp3drag);
 		$('#playlist').sortable(na.mp.mp3sortable);
 		$('#playlist').droppable ({
+            over : function (evt, ui) {
+                ui.helper.css({scale:1});
+            },
 			drop : function (evt, ui) {
                 if (!ui.helper[0].children[0]) return false;
                                   
@@ -507,11 +503,13 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
                 
                 if (oldID.match('playlist_')) return false;
                 $(dragged).attr('id', newID);
+                var scale = 'scale:'+(na.mp.globals.zfw+' '+na.mp.globals.zfh);
                 $(dragged).attr(
                     'style',
                     $(dragged).attr('style').replace(/;margin-left:30px;/,'')+';margin-left:30px;'
                 );
-                $(dragged).css({ background : '', color : '' });
+                debugger;
+                $(dragged).css({ background : '', color : '', width : $(na.mp.globals.mp3dragged).width(), height : $(na.mp.globals.mp3dragged).height(), scale : 1 });
                 dragged.evt = evt;
                 $(dragged).attr('class', 'mp3 vividButton');// ui-draggable ui-draggable-handle');
                 $(dragged).attr('file', original.attr('file'));
@@ -584,13 +582,62 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
         if (!window.top || !$(window.top.document.getElementById('siteContent'))[0]) return false;
 		var 
 		myWidth = $('#siteContent').width(),
-		myHeight = $('#siteContent').height()- $('#horizontalMover__containmentBox2').height() - $('#horizontalMover__containmentBox2')[0].offsetTop - 50 -$('#app__musicPlayer__header').height() - 30,
-		contentWidth = 20 + 240 + 40 + 300 + 30,
+		myHeight = (
+            $('#siteContent').height()
+            - $('#horizontalMover__containmentBox2').height()
+            - $('#horizontalMover__containmentBox2')[0].offsetTop
+            - 50 -$('#app__musicPlayer__header').height() - 30
+        );
+        if (na.desktop.globals.divs.includes('#siteStatusbar')) {
+            myHeight = myHeight - $('#siteStatusbar').height() - na.d.g.margin;
+        }
+        var
+        contentWidth = 20 + 240 + 40 + 300 + 30,
         contentInnerWidth = 240 + 40 + 300 - 10,
+        zfh =
+        (
+            $(window).height()
+        ) / (
+                $(window).height()
+                - $('#siteContent').offset().top
+                + (na.d.g.margin * 2)
+                - (
+                    na.desktop.globals.divs.includes('#siteStatusbar')
+                    ? ( $('#siteStatusbar').height() + na.d.g.margin )
+                    : na.d.g.margin
+                )
+        ), zfw =
+        (
+            $('#siteContent').width() > contentWidth
+            ? (
+                ( $('#siteContent').width() )
+                / ( contentWidth  )
+            )
+            : (
+                ( contentWidth  )
+                / ( $('#siteContent').width() )
+            )
+        );
+        na.mp.globals.zfh = zfh;
+        na.mp.globals.zfw = zfw;
+
+        if ($('#siteContent').width() > contentWidth) {
+            var wide = true;
+        } else {
+            var wide = false;
+        }
+        //alert ('wide='+(wide?'true':'false'));
+
+        var
         sc_scrollpane = $('#siteContent', window.top.document.body),
 		sc_scrollpaneContainer = $('#siteContent', window.top.document.body),
 		sc_siteContent = $('#siteContent', window.top.document.body);
-        
+        if (!na.site.settings.current.scaleApp) {
+            na.site.settings.current.scaleApp = zfw+' '+zfh;
+            //alert (na.site.settings.current.scaleApp);
+        };
+        $('#siteContent > .vividDialogContent').css({ direction:'ltr',scale : zfw+' '+zfh });
+
 		if (typeof na.mp.settings.masterLeftOffset == 'number' && !na.mp.settings.onResizeReposition) {
 			var masterLeftOffset = na.mp.settings.masterLeftOffset;
 			if (masterLeftOffset<0) masterLeftOffset=0;
@@ -609,7 +656,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
 			else var dialogPlayer = '#app__musicPlayer__player, #app__musicPlayer__player__CSS3';
             
         var 
-        leftOffset = masterLeftOffset + 30,
+        leftOffset = masterLeftOffset + 0,
         playerLeft = (leftOffset + 250 + 30),
 		dialogsLeft = Math.round (leftOffset);
         $('#app__musicPlayer__header').css ({
@@ -639,15 +686,16 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
 			width : myWidth-50,
 			opacity : 0.001,
 			display : 'block'
-		}).animate ({opacity:0.1},1000);
+		}).animate ({opacity:(wide?0.00001:0.1)},1000);
 		$('#horizontalMover__containmentBox1').css({
 			left : 25,
             top : 20,
 			width : myWidth - 50,
 			opacity : 0.001,
 			display : 'block'
-		}).animate ({opacity:0.3},1300);
+		}).animate ({opacity:(wide?0.00001:0.3)},1300);
 		
+        $('#app__musicPlayer__player').css({ height : 120 });
         $('#app__musicPlayer__player, #app__musicPlayer__player__CSS3').css ({
             left : playerLeft,
             width : 300,
@@ -659,24 +707,24 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
         $('#app__musicPlayer__description, #app__musicPlayer__description__CSS3, #app__musicPlayer__description__item__0, #app__musicPlayer__description__item__0__img1, app__musicPlayer__desc__item__0__img2, #app__musicPlayer__description, #app__musicPlayer__description').css({
             position : 'absolute',
             width : 300,
-            height : (myHeight - 20 - 120) /2
+            height : (myHeight - 20 - 120) /3
         });
         $('#app__musicPlayer__description').css({
             left : leftOffset + 250 + 30,
             top : dialogsTop + $('#app__musicPlayer__player')[0].offsetHeight + 30,
             width : 300,
-            height : ((myHeight - 20 - 120) /2)
+            height : ((myHeight - 20 - 120) /3)
         });
         $('#app__musicPlayer__description__CSS3').css({
             width : 300,
-            height : (myHeight - 20 - 120) /2
+            height : (myHeight - 20 - 120) /3
         });
         //$('#mp3descText').css({ marginLeft : 40 });
         
         
         $('#app__musicPlayer__description > table').css({
             width : '',
-            height : ((myHeight - 20 - 120) /2)
+            height : ((myHeight - 20 - 120) /3)
         });
 	 
         $('#horizontalMover').css({
@@ -697,7 +745,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
     $dialogPlaylist.css ({
         left : leftOffset + 250 + 30,
         width : 300,
-        height : (myHeight - 170 - $('#app__musicPlayer__header').height()) /2,
+        height : (myHeight - 170 - $('#app__musicPlayer__header').height()) / (3/2),
         top : ($dialogMP3desc[0].offsetTop + $dialogMP3desc.height() + 30) + 'px'
     });
     $('ul', $dialogPlaylist).css ({
@@ -706,12 +754,29 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
         
 		if (!na.mp.settings.afterInitializing) {
             na.mp.settings.afterInitializing = true;
+
+
+            $('#mp3s .vividButton').css({position:'relative'});
+            var w = ($('#mp3s').width()-25);
+            na.m.waitForCondition (
+                'na.site.settings.current.HTMLidle for resizing of playlist .vividButton elements (not in a .vividMenu btw)',
+                function () { return na.m.HTMLidle(); },
+                function () {
+                    $('#mp3s .vividButton, #app__musicPlayer__player .vividButton4').each(function(idx,el) {
+                        $(el).css({width:w});
+                        if (!na.site.settings.buttons['#'+el.id])
+                            na.site.settings.buttons['#'+el.id] = new naVividButton(el);
+                    });
+                }, 100); // milliseconds delay number (milliseconds between check of 2nd parameter function call)
+            na.mp.setupDragNDrop();
+
+
             setTimeout (function() {
                 $('#horizontalMover').css({
                     width : 610,
                     opacity : 0.001,
                     display : 'block'
-                }).animate ({opacity:0.5}, 700);
+                }).animate ({opacity : (wide?0.00001:1)}, 700);
             }, 100);
         
 			$('.vividDialog, .vividScrollpane, #heading_wrapper, #siteIntroText, #mp3s, #app__musicPlayer__player, #app__musicPlayer__player_table, #app__musicPlayer__playlist, #infoWindow_help')

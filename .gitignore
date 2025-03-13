@@ -25,6 +25,7 @@ NicerAppWebOS/siteMedia/backgrounds/*.zip
 NicerAppWebOS/siteMedia/backgrounds/landscape*
 NicerAppWebOS/siteMedia/backgrounds/portrait*
 NicerAppWebOS/siteData
+NicerAppWebOS/siteData.backups
 NicerAppWebOS/siteCache
 NicerAppWebOS/siteLogs
 NicerAppWebOS/scripts.maintenance/setupReplication_credentials.sh

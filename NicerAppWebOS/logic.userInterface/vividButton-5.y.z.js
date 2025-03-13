@@ -482,6 +482,7 @@ class naVividButton_icon_svg {
     hoverOver (b,evt) {
         var
         t = this;
+        if (b.state===b.btnCode.selectedState) return false;
         b.circumstance = 'normal';
         b.to.circumstance = 'hover';
 
@@ -510,6 +511,7 @@ class naVividButton_icon_svg {
     hoverOut (b,evt) {
         var
         t = this;
+        if (b.state===b.btnCode.selectedState) return false;
         b.circumstance = 'hover';
         b.to.circumstance = 'normal';
         $(b.el).removeClass('selected');
@@ -527,6 +529,7 @@ class naVividButton_icon_svg {
             && !b.btnCode.handlesOwnHighlighting
         ) {
             l.animDirection = 'decrease';
+            debugger;
             t.anim_decreaseGradient(b, l, ato);
         }
 
@@ -553,7 +556,7 @@ class naVividButton_icon_svg {
 
         b.state = selected?b.btnCode.startupState:b.btnCode.selectedState;
 
-        if (selected) {
+        if (!selected) {
             $(b.el)
                 .addClass('selected')
                 .addClass(b.btnCode.selectedState)

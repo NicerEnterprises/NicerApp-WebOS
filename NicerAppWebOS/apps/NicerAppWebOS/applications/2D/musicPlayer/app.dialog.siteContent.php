@@ -17,9 +17,10 @@ global $naWebOS; global $naLAN;
 $view = $naWebOS->view["/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer"];
 //var_dump ($view); //exit();
 
-
 if ($view['set']==='index') {
-    if ($naLAN) {
+    global $naLAN;
+    global $naSettings_app2D_musicPlayer_respectDutchCopyright;
+    if ($naSettings_app2D_musicPlayer_respectDutchCopyright || $naLAN) {
         require_once(dirname(__FILE__).'/frontpage.php');
     } else {
         require_once(dirname(__FILE__).'/OFFLINE.php');
@@ -27,10 +28,12 @@ if ($view['set']==='index') {
     //require_once(dirname(__FILE__).'/frontpage.php'); // temporary only, aivd.nl & vvd.nl!.. FOR EMO SUPPORT OF nato POPULATIONS. SEE MY x.COM ACCOUNT FOR DETAILS
 
 } else {
-    if (!$naLAN) {
+    global $naLAN;
+    global $naSettings_app2D_musicPlayer_respectDutchCopyright;
+    //var_dump ($naLAN); var_dump ($naSettings_app2D_musicPlayer_respectDutchCopyright);
+    if (!$naLAN && !$naSettings_app2D_musicPlayer_respectDutchCopyright) {
         require_once(dirname(__FILE__).'/OFFLINE.php');
         return true;
-        exit();
     }
 
 
