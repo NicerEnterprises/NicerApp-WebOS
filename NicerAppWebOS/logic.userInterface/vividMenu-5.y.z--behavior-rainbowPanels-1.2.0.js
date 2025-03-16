@@ -238,7 +238,7 @@ class naVividMenu__behavior_rainbowPanels {
 
         $(it.b.el).css({opacity:1, width : 150, height : '120%'});
 
-        if (it.label!=='Select Font') debugger;
+        //if (it.label!=='Select Font') debugger;
         if (na.m.userDevice.isPhone) {
             $(it.b.el).add('a',it.b.el).bind('click', function() {
                 debugger;

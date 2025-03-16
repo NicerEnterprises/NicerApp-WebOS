@@ -737,7 +737,7 @@ na.te = na.themeEditor = {
         inputData = na.site.globals.themes[themeName];
         if (!inputData) inputData = na.site.globals.themes.default;
         inputData = inputData.themeSettings;
-        debugger;
+        //debugger;
 
         var
         outputData = na.te.transform_siteGlobalsThemes_to_jsTree__recurse(

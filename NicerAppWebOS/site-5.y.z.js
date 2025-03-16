@@ -492,7 +492,7 @@ na.site = {
                             function () {
                             setTimeout (function() {
                                 na.te.onload('siteContent'); // do this or cms features wont work
-                                debugger;
+                                //debugger;
                                 na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
                             }, 100);
                             }
@@ -1024,7 +1024,7 @@ na.site = {
             $('.na_themes_dropdown__specificity > .vividDropDownBox_selector > .vividScrollpane').append($(divEl).clone(true,true));
         };
 
-        debugger;
+        //debugger;
         na.te.s.c.selectedThemeName = na.site.globals.themeName;
         $('.themeItem').remove();
         for (var themeName in na.site.globals.themes) {
@@ -1722,6 +1722,7 @@ na.site = {
         $('.vividDialog'/*, vdc[0]*/).each(function(idx,el){
             if (!na.site.settings.dialogs['#'+el.id]) na.site.settings.dialogs['#'+el.id] = new naVividDialog(el);
         });
+        $('#siteContent > .vividDialogContent').css({scale:1});
 
         $('.vividMenu'/*, vdc[0]*/).each(function(idx,el){
             if (el.id!=='siteMenu') {
