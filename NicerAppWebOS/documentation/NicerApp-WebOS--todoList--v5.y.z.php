@@ -6,7 +6,7 @@
 <h1 class="contentSectionTitle2"><span class="contentSectionTitle2_span">NicerApp WebOS Development Direction</span></h1><br/><br/>
 <p>
 I can not open up this to-do list for "jobs" done by other people yet, simply because the code is still in Alpha Phase. an initial test-phase.<br/>
-But eventually yes, this WebOS will be a truly open market (at the technical and company levels).
+But eventually yes, this WebOS will be a truly open market (at the technical and company levels).<br/>
 </p>
 
 <ol class="todoList">

@@ -411,62 +411,110 @@ na.site = {
     },
 
     onload_phase2 : function (div, calculationResults, sectionIdx, section, divOrderIdx) {
-        var fncn = 'na.site.onload_phase2()';
-        na.site.settings.current.siteResized = true;
-        //na.desktop.setConfig ('content');
-       // debugger;
+        na.m.waitForCondition ('Loading, possibly generating, backgrounds JSON index files on and from the server.', function () {
+            return na.site.settings.backgrounds && na.site.settings.backgroundsRecursive;
+        }, function () {
+            var fncn = 'na.site.onload_phase2()';
+            na.site.settings.current.siteResized = true;
+            //na.desktop.setConfig ('content');
+        // debugger;
 
-        $('.vividDialog').css({overflow:'visible'});
-        $('#siteComments .vdTools').remove();
+            $('.vividDialog').css({overflow:'visible'});
+            $('#siteComments .vdTools').remove();
 
-        if (!na.site.settings.current.onload_phase2__alreadyCalled) na.site.settings.current.onload_phase2__alreadyCalled = true; else return false;
+            if (!na.site.settings.current.onload_phase2__alreadyCalled) na.site.settings.current.onload_phase2__alreadyCalled = true; else return false;
 
-        //na.site.resizeApps();
+            //na.site.resizeApps();
 
-        na.site.onresize_doContent();
+            na.site.onresize_doContent();
 
-        na.site.reloadMenu();
+            na.site.reloadMenu();
 
-        //na.an.logEvent(na.site.settings.current.event);
-        
-        if (!na.m.conditionExists('.../NicerAppWebOS/site-5.y.z.js : na.m.desktopIdle()?') )
-            na.m.waitForCondition(fncn+' : na.m.desktopIdle()?', na.m.desktopIdle, function () {
-                na.m.log (10, fncn+' : STARTS.', false);
-            
-                $('.vividDialogPopup').not('#siteContent__btnOptions_menu, #siteLoginLogout, #btnOptions_menu, #siteErrors,  #siteLogin, #siteLoginSuccessful, #siteLoginFailed, #siteRegistration, #siteRegistrationError, #document_headers, .vividEditor_popupDialog').css({opacity:1,display:'none'}).fadeIn('slow');
-                $('body > .lds-facebook').fadeOut('normal');//css({display:'none'});
+            //na.an.logEvent(na.site.settings.current.event);
 
-                na.site.renderAllCustomHeadingsAndLinks();
+            if (!na.m.conditionExists('.../NicerAppWebOS/site-5.y.z.js : na.m.desktopIdle()?') )
+                na.m.waitForCondition(fncn+' : na.m.desktopIdle()?', na.m.desktopIdle, function () {
+                    na.m.log (10, fncn+' : STARTS.', false);
 
-                //na.themeEditor.onload ('siteContent'); // must remain HERE, or else you'll not correctly load the theme settings for 'Extras'
-                na.te.s.c.specificity = na.site.globals.themeDBkeys; // IF NOT using the statement above here, DO USE THIS, or you end up loading ALL THEMES in ajax_loadTheme.php
+                    $('.vividDialogPopup').not('#siteContent__btnOptions_menu, #siteLoginLogout, #btnOptions_menu, #siteErrors,  #siteLogin, #siteLoginSuccessful, #siteLoginFailed, #siteRegistration, #siteRegistrationError, #document_headers, .vividEditor_popupDialog').css({opacity:1,display:'none'}).fadeIn('slow');
+                    $('body > .lds-facebook').fadeOut('normal');//css({display:'none'});
 
-                $('#siteContent .vividDialogContent.vividScrollpane')[0].focus();
+                    na.site.renderAllCustomHeadingsAndLinks();
 
-                na.site.settings.current.testDBsuccessful = false;
+                    //na.themeEditor.onload ('siteContent'); // must remain HERE, or else you'll not correctly load the theme settings for 'Extras'
+                    na.te.s.c.specificity = na.site.globals.themeDBkeys; // IF NOT using the statement above here, DO USE THIS, or you end up loading ALL THEMES in ajax_loadTheme.php
 
-                if (na.site.globals.downloadErrors) {
+                    $('#siteContent .vividDialogContent.vividScrollpane')[0].focus();
 
-                    na.site.downloadErrors(na.site.testDBconnection);
-                    na.m.waitForCondition ('na.site.testDBconnection()', function () {
-                        return na.site.settings.current.testDBsuccessful;
-                    }, function() {
-                        if (na.site.globals.debug_backgroundChanges) debugger;
+                    na.site.settings.current.testDBsuccessful = false;
 
-                        na.site.onclick_displayErrors();
+                    if (na.site.globals.downloadErrors) {
 
-                        if (typeof na.site.globals.background=='string' && na.site.globals.background!=='')
-                        na.backgrounds.next (
-                            '#siteBackground',
-                            na.site.globals.backgroundSearchKey,
-                            na.site.globals.background,
-                            //needNewBackground ? null : na.site.globals.background,
-                            false,
-                            function () {
-                            }
-                        );
+                        na.site.downloadErrors(na.site.testDBconnection);
+                        na.m.waitForCondition ('na.site.testDBconnection()', function () {
+                            return na.site.settings.current.testDBsuccessful;
+                        }, function() {
+                            if (na.site.globals.debug_backgroundChanges) debugger;
 
-                        na.site.loadTheme(na.site.loadTheme_initializeExtras, undefined, false, false, na.site.globals.onloadSpecificityName);
+                            na.site.onclick_displayErrors();
+
+                            if (typeof na.site.globals.background=='string' && na.site.globals.background!=='')
+                            na.backgrounds.next (
+                                '#siteBackground',
+                                na.site.globals.backgroundSearchKey,
+                                na.site.globals.background,
+                                //needNewBackground ? null : na.site.globals.background,
+                                false,
+                                function () {
+                                }
+                            );
+
+                            na.site.loadTheme(na.site.loadTheme_initializeExtras, undefined, false, false, na.site.globals.onloadSpecificityName);
+
+                            na.site.settings.current.startupErrorsOccurred = 'maybe';
+                            //na.site.seeIfAnyStartupErrorsOccurred();
+                            /*
+                            na.m.waitForCondition(fncn+'->na.site.settings.current.startupErrorsOccurred?', function() {
+                                return na.site.settings.current.startupErrorsOccurred === false;
+                            }, function() {
+                                startLogo('neCompanyLogo', 'countryOfOriginColors');
+                            }, 50);
+                            */
+                            na.site.startUIvisuals();
+
+                            na.site.initializeApps(null, null, null, null, na.site.resizeApps);
+                        }, 50);
+                    } else {
+                        if (typeof na.site.globals.background=='string' && na.site.globals.background!=='') {
+                            na.backgrounds.next (
+                                '#siteBackground',
+                                na.site.globals.backgroundSearchKey,
+                                na.site.globals.background,
+                                //needNewBackground ? null : na.site.globals.background,
+                                false,
+                                function () {
+                                //setTimeout (function() {
+                                    //debugger;
+                                    na.te.onload('siteContent'); // do this or cms features wont work
+                                    //debugger;
+                                    na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
+                                //}, 1000);
+                                }
+                            );
+
+                        } else {
+
+                            na.site.loadTheme(function() {
+                                //setTimeout (function() {
+                                    //debugger;
+                                    na.te.onload('siteContent'); // do this or cms features wont work
+                                    //debugger;
+                                    na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
+                                //}, 1000);
+
+                            }, undefined, false, false, na.site.globals.onloadSpecificityName);
+                        };
+
 
                         na.site.settings.current.startupErrorsOccurred = 'maybe';
                         //na.site.seeIfAnyStartupErrorsOccurred();
@@ -478,86 +526,45 @@ na.site = {
                         }, 50);
                         */
                         na.site.startUIvisuals();
-
                         na.site.initializeApps(null, null, null, null, na.site.resizeApps);
-                    }, 50);
-                } else {
-                    if (typeof na.site.globals.background=='string' && na.site.globals.background!=='') {
-                        na.backgrounds.next (
-                            '#siteBackground',
-                            na.site.globals.backgroundSearchKey,
-                            na.site.globals.background,
-                            //needNewBackground ? null : na.site.globals.background,
-                            false,
-                            function () {
-                            setTimeout (function() {
-                                na.te.onload('siteContent'); // do this or cms features wont work
-                                //debugger;
-                                na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
-                            }, 100);
-                            }
-                        );
-
-                    } else {
-
-                        na.site.loadTheme(function() {
-                            setTimeout (function() {
-                                na.te.onload('siteContent'); // do this or cms features wont work
-                                debugger;
-                                na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
-                            }, 100);
-                        }, undefined, false, false, na.site.globals.onloadSpecificityName);
-                    };
-
-
-                    na.site.settings.current.startupErrorsOccurred = 'maybe';
-                    //na.site.seeIfAnyStartupErrorsOccurred();
-                    /*
-                    na.m.waitForCondition(fncn+'->na.site.settings.current.startupErrorsOccurred?', function() {
-                        return na.site.settings.current.startupErrorsOccurred === false;
-                    }, function() {
-                        startLogo('neCompanyLogo', 'countryOfOriginColors');
-                    }, 50);
-                    */
-                    na.site.startUIvisuals();
-                    na.site.initializeApps(null, null, null, null, na.site.resizeApps);
-                }
-            }, 50);
-        //debugger;
-        var url = document.location.href.replace(document.location.origin,'');
-        if (url.match(/\/view/)) {
-            var app = 'app='+na.m.base64_decode_url(document.location.href.replace(document.location.origin,'').replace('/view/',''));
-        } else {
-            var app = 'url='+url;
-        }
-        na.analytics.logMetaEvent ('startup : html and js fully loaded, '+app+', browserWidth='+$(window).width()+', browserHeight='+$(window).height()+', referer='+na.site.globals.referer+', userAgent='+navigator.userAgent+', isPhone='+(na.m.userDevice.isPhone?'true':'false'));
-
-
-        $(window).on('mousemove', function(event) {
-            clearTimeout (na.site.settings.current.timeout_windowMouseMove);
-            na.site.settings.current.timeout_windowMouseMove = setTimeout (function() {
-                if (
-                    (typeof na.site.globals.background == 'string')
-                    && na.site.globals.background.indexOf ('iframe')!==-1
-                ) {
-                    if (
-                        event.pageY > $(window).height() - 100
-                        && !na.desktop.settings.showVideoBackgroundControls
-                    ) {
-                        na.desktop.settings.showVideoBackgroundControls = true;
-                        na.desktop.resize();
-                        //na.site.setStatusMsg ('in zone', true)
-                    } else if (
-                        event.pageY < $(window).height() - 100
-                        && na.desktop.settings.showVideoBackgroundControls
-                    ) {
-                        //na.site.setStatusMsg ('out zone', true);
-                        na.desktop.settings.showVideoBackgroundControls = false;
-                        na.desktop.resize();
                     }
-                }
-            }, 50);
-        });
+                }, 50);
+            //debugger;
+            var url = document.location.href.replace(document.location.origin,'');
+            if (url.match(/\/view/)) {
+                var app = 'app='+na.m.base64_decode_url(document.location.href.replace(document.location.origin,'').replace('/view/',''));
+            } else {
+                var app = 'url='+url;
+            }
+            na.analytics.logMetaEvent ('startup : html and js fully loaded, '+app+', browserWidth='+$(window).width()+', browserHeight='+$(window).height()+', referer='+na.site.globals.referer+', userAgent='+navigator.userAgent+', isPhone='+(na.m.userDevice.isPhone?'true':'false'));
+
+
+            $(window).on('mousemove', function(event) {
+                clearTimeout (na.site.settings.current.timeout_windowMouseMove);
+                na.site.settings.current.timeout_windowMouseMove = setTimeout (function() {
+                    if (
+                        (typeof na.site.globals.background == 'string')
+                        && na.site.globals.background.indexOf ('iframe')!==-1
+                    ) {
+                        if (
+                            event.pageY > $(window).height() - 100
+                            && !na.desktop.settings.showVideoBackgroundControls
+                        ) {
+                            na.desktop.settings.showVideoBackgroundControls = true;
+                            na.desktop.resize();
+                            //na.site.setStatusMsg ('in zone', true)
+                        } else if (
+                            event.pageY < $(window).height() - 100
+                            && na.desktop.settings.showVideoBackgroundControls
+                        ) {
+                            //na.site.setStatusMsg ('out zone', true);
+                            na.desktop.settings.showVideoBackgroundControls = false;
+                            na.desktop.resize();
+                        }
+                    }
+                }, 50);
+            });
+        }, 50);
 
         this.completed = true;
     },
@@ -3625,6 +3632,7 @@ na.site = {
                 //na.site.setSpecificity (true);
                 na.site.loadTheme_applySettings (dat, callback, loadBackground);
                 na.te.onload('siteContent'); // do this or cms features wont work
+                na.site.globals.themes[na.site.globals.themeName] = na.site.loadTheme_fetchDialogs();
             },
             error : function (xhr, textStatus, errorThrown) {
                 debugger;

@@ -21,6 +21,7 @@ class newsApp3_class {
     public $fs = array(); // factorySettings
     public $ds = array(); // dataSources
     public $d = array(); // data
+    public $db = array(); // database in RAM
     public $curlOps = array(); // cURL operations
     public static $prevLevel = 0;
 
@@ -50,7 +51,6 @@ class newsApp3_class {
         
         $debug = false;//$naDebugAll;
         
-
         $this->db = $naWebOS->dbsAdmin->findConnection('couchdb');
         $this->cdb = $this->db->cdb;
 
@@ -388,7 +388,7 @@ class newsApp3_class {
             $y = chown ($fn, $filePerms_ownerUser);
             $z = chmod ($fn, $filePerms_perms_publicWriteableExecutable);
         }
-       $exc = 'php '.realpath(dirname(__FILE__).'/../../../../../..').'/NicerAppWebOS/maintenance.scripts/htaccess.build.php';
+       $exc = 'php '.realpath(dirname(__FILE__).'/../../../../../..').'/NicerAppWebOS/scripts.maintenance/htaccess.build.php';
        exec ($exc, $output, $result);
        $dbg = [
         'exc' => $exc,

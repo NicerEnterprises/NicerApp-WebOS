@@ -42,6 +42,7 @@ cpanm Mail::IMAPClient
 cpanm JSON::WebToken
 
 a2enmod headers rewrite
+
 service apache2 restart
 
 # installing the NicerAppWebOS source files
