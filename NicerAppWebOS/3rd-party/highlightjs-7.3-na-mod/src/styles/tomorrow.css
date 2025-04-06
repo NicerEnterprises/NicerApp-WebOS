@@ -1,0 +1,49 @@
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+.tomorrow-comment, pre.jshighlight__theme__tomorrow .comment, pre.jshighlight__theme__tomorrow .title {
+  color: #8e908c;
+}
+
+.tomorrow-red, pre.jshighlight__theme__tomorrow .variable, pre.jshighlight__theme__tomorrow .attribute, pre.jshighlight__theme__tomorrow .tag, pre.jshighlight__theme__tomorrow .regexp, pre.jshighlight__theme__tomorrow .ruby .constant, pre.jshighlight__theme__tomorrow .xml .tag .title, pre.jshighlight__theme__tomorrow .xml .pi, pre.jshighlight__theme__tomorrow .xml .doctype, pre.jshighlight__theme__tomorrow .html .doctype, pre.jshighlight__theme__tomorrow .css .id, pre.jshighlight__theme__tomorrow .css .class, pre.jshighlight__theme__tomorrow .css .pseudo {
+  color: #c82829;
+}
+
+.tomorrow-orange, pre.jshighlight__theme__tomorrow .number, pre.jshighlight__theme__tomorrow .pre.jshighlight__theme__tomorrowprocessor, pre.jshighlight__theme__tomorrow .built_in, pre.jshighlight__theme__tomorrow .literal, pre.jshighlight__theme__tomorrow .params, pre.jshighlight__theme__tomorrow .constant {
+  color: #f5871f;
+}
+
+.tomorrow-yellow, pre.jshighlight__theme__tomorrow .ruby .class .title, pre.jshighlight__theme__tomorrow .css .rules .attribute {
+  color: #eab700;
+}
+
+.tomorrow-green, pre.jshighlight__theme__tomorrow .string, pre.jshighlight__theme__tomorrow .value, pre.jshighlight__theme__tomorrow .inheritance, pre.jshighlight__theme__tomorrow .header, pre.jshighlight__theme__tomorrow .ruby .symbol, pre.jshighlight__theme__tomorrow .xml .cdata {
+  color: #718c00;
+}
+
+.tomorrow-aqua, pre.jshighlight__theme__tomorrow .css .hexcolor {
+  color: #3e999f;
+}
+
+.tomorrow-blue, pre.jshighlight__theme__tomorrow .function, pre.jshighlight__theme__tomorrow .python .decorator, pre.jshighlight__theme__tomorrow .python .title, pre.jshighlight__theme__tomorrow .ruby .function .title, pre.jshighlight__theme__tomorrow .ruby .title .keyword, pre.jshighlight__theme__tomorrow .perl .sub, pre.jshighlight__theme__tomorrow .javascript .title, pre.jshighlight__theme__tomorrow .coffeescript .title {
+  color: #4271ae;
+}
+
+.tomorrow-purple, pre.jshighlight__theme__tomorrow .keyword, pre.jshighlight__theme__tomorrow .javascript .function {
+  color: #8959a8;
+}
+
+pre.jshighlight__theme__tomorrow code {
+  display: block;
+  background: white;
+  color: #4d4d4c;
+  padding: 0.5em;
+}
+
+pre.jshighlight__theme__tomorrow .coffeescript .javascript,
+pre.jshighlight__theme__tomorrow .javascript .xml,
+pre.jshighlight__theme__tomorrow .tex .formula,
+pre.jshighlight__theme__tomorrow .xml .javascript,
+pre.jshighlight__theme__tomorrow .xml .vbscript,
+pre.jshighlight__theme__tomorrow .xml .css,
+pre.jshighlight__theme__tomorrow .xml .cdata {
+  opacity: 0.5;
+}

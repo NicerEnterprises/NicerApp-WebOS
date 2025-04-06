@@ -1,0 +1,12 @@
+body {
+    background : transparent;
+    color : black;
+}
+
+.mce-content-body {
+    background : rgba(255,255,255,0.25);
+}
+
+p {
+    color : black;
+}

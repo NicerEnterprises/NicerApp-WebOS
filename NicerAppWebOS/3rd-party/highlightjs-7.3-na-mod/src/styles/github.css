@@ -1,0 +1,129 @@
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+pre.jshighlight__theme__github code {
+  display: block; padding: 0.5em;
+  color: #333;
+  background: #f8f8ff
+}
+
+pre.jshighlight__theme__github .comment,
+pre.jshighlight__theme__github .template_comment,
+pre.jshighlight__theme__github .diff .header,
+pre.jshighlight__theme__github .javadoc {
+  color: #998;
+  font-style: italic
+}
+
+pre.jshighlight__theme__github .keyword,
+pre.jshighlight__theme__github .css .rule .keyword,
+pre.jshighlight__theme__github .winutils,
+pre.jshighlight__theme__github .javascript .title,
+pre.jshighlight__theme__github .nginx .title,
+pre.jshighlight__theme__github .subst,
+pre.jshighlight__theme__github .request,
+pre.jshighlight__theme__github .status {
+  color: #333;
+  font-weight: bold
+}
+
+pre.jshighlight__theme__github .number,
+pre.jshighlight__theme__github .hexcolor,
+pre.jshighlight__theme__github .ruby .constant {
+  color: #099;
+}
+
+pre.jshighlight__theme__github .string,
+pre.jshighlight__theme__github .tag .value,
+pre.jshighlight__theme__github .phpdoc,
+pre.jshighlight__theme__github .tex .formula {
+  color: #d14
+}
+
+pre.jshighlight__theme__github .title,
+pre.jshighlight__theme__github .id,
+pre.jshighlight__theme__github .coffeescript .params,
+pre.jshighlight__theme__github .scss .pre.jshighlight__theme__githubprocessor {
+  color: #900;
+  font-weight: bold
+}
+
+pre.jshighlight__theme__github .javascript .title,
+pre.jshighlight__theme__github .lisp .title,
+pre.jshighlight__theme__github .clojure .title,
+pre.jshighlight__theme__github .subst {
+  font-weight: normal
+}
+
+pre.jshighlight__theme__github .class .title,
+pre.jshighlight__theme__github .haskell .type,
+pre.jshighlight__theme__github .vhdl .literal,
+pre.jshighlight__theme__github .tex .command {
+  color: #458;
+  font-weight: bold
+}
+
+pre.jshighlight__theme__github .tag,
+pre.jshighlight__theme__github .tag .title,
+pre.jshighlight__theme__github .rules .property,
+pre.jshighlight__theme__github .django .tag .keyword {
+  color: #000080;
+  font-weight: normal
+}
+
+pre.jshighlight__theme__github .attribute,
+pre.jshighlight__theme__github .variable,
+pre.jshighlight__theme__github .lisp .body {
+  color: #008080
+}
+
+pre.jshighlight__theme__github .regexp {
+  color: #009926
+}
+
+pre.jshighlight__theme__github .class {
+  color: #458;
+  font-weight: bold
+}
+
+pre.jshighlight__theme__github .symbol,
+pre.jshighlight__theme__github .ruby .symbol .string,
+pre.jshighlight__theme__github .lisp .keyword,
+pre.jshighlight__theme__github .tex .special,
+pre.jshighlight__theme__github .prompt {
+  color: #990073
+}
+
+pre.jshighlight__theme__github .built_in,
+pre.jshighlight__theme__github .lisp .title,
+pre.jshighlight__theme__github .clojure .built_in {
+  color: #0086b3
+}
+
+pre.jshighlight__theme__github .pre.jshighlight__theme__githubprocessor,
+pre.jshighlight__theme__github .pi,
+pre.jshighlight__theme__github .doctype,
+pre.jshighlight__theme__github .shebang,
+pre.jshighlight__theme__github .cdata {
+  color: #999;
+  font-weight: bold
+}
+
+pre.jshighlight__theme__github .deletion {
+  background: #fdd
+}
+
+pre.jshighlight__theme__github .addition {
+  background: #dfd
+}
+
+pre.jshighlight__theme__github .diff .change {
+  background: #0086b3
+}
+
+pre.jshighlight__theme__github .chunk {
+  color: #aaa
+}

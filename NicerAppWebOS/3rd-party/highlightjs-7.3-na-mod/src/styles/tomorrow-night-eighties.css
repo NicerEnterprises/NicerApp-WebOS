@@ -1,0 +1,51 @@
+/* Tomorrow Night Eighties Theme */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+.tomorrow-comment, pre.jshighlight__theme__tomorrow-night-eighties .comment, pre.jshighlight__theme__tomorrow-night-eighties .title {
+  color: #999999;
+}
+
+.tomorrow-red, pre.jshighlight__theme__tomorrow-night-eighties .variable, pre.jshighlight__theme__tomorrow-night-eighties .attribute, pre.jshighlight__theme__tomorrow-night-eighties .tag, pre.jshighlight__theme__tomorrow-night-eighties .regexp, pre.jshighlight__theme__tomorrow-night-eighties .ruby .constant, pre.jshighlight__theme__tomorrow-night-eighties .xml .tag .title, pre.jshighlight__theme__tomorrow-night-eighties .xml .pi, pre.jshighlight__theme__tomorrow-night-eighties .xml .doctype, pre.jshighlight__theme__tomorrow-night-eighties .html .doctype, pre.jshighlight__theme__tomorrow-night-eighties .css .id, pre.jshighlight__theme__tomorrow-night-eighties .css .class, pre.jshighlight__theme__tomorrow-night-eighties .css .pseudo {
+  color: #f2777a;
+}
+
+.tomorrow-orange, pre.jshighlight__theme__tomorrow-night-eighties .number, pre.jshighlight__theme__tomorrow-night-eighties .pre.jshighlight__theme__tomorrow-night-eightiesprocessor, pre.jshighlight__theme__tomorrow-night-eighties .built_in, pre.jshighlight__theme__tomorrow-night-eighties .literal, pre.jshighlight__theme__tomorrow-night-eighties .params, pre.jshighlight__theme__tomorrow-night-eighties .constant {
+  color: #f99157;
+}
+
+.tomorrow-yellow, pre.jshighlight__theme__tomorrow-night-eighties .ruby .class .title, pre.jshighlight__theme__tomorrow-night-eighties .css .rules .attribute {
+  color: #ffcc66;
+}
+
+.tomorrow-green, pre.jshighlight__theme__tomorrow-night-eighties .string, pre.jshighlight__theme__tomorrow-night-eighties .value, pre.jshighlight__theme__tomorrow-night-eighties .inheritance, pre.jshighlight__theme__tomorrow-night-eighties .header, pre.jshighlight__theme__tomorrow-night-eighties .ruby .symbol, pre.jshighlight__theme__tomorrow-night-eighties .xml .cdata {
+  color: #99cc99;
+}
+
+.tomorrow-aqua, pre.jshighlight__theme__tomorrow-night-eighties .css .hexcolor {
+  color: #66cccc;
+}
+
+.tomorrow-blue, pre.jshighlight__theme__tomorrow-night-eighties .function, pre.jshighlight__theme__tomorrow-night-eighties .python .decorator, pre.jshighlight__theme__tomorrow-night-eighties .python .title, pre.jshighlight__theme__tomorrow-night-eighties .ruby .function .title, pre.jshighlight__theme__tomorrow-night-eighties .ruby .title .keyword, pre.jshighlight__theme__tomorrow-night-eighties .perl .sub, pre.jshighlight__theme__tomorrow-night-eighties .javascript .title, pre.jshighlight__theme__tomorrow-night-eighties .coffeescript .title {
+  color: #6699cc;
+}
+
+.tomorrow-purple, pre.jshighlight__theme__tomorrow-night-eighties .keyword, pre.jshighlight__theme__tomorrow-night-eighties .javascript .function {
+  color: #cc99cc;
+}
+
+pre.jshighlight__theme__tomorrow-night-eighties code {
+  display: block;
+  background: #2d2d2d;
+  color: #cccccc;
+  padding: 0.5em;
+}
+
+pre.jshighlight__theme__tomorrow-night-eighties .coffeescript .javascript,
+pre.jshighlight__theme__tomorrow-night-eighties .javascript .xml,
+pre.jshighlight__theme__tomorrow-night-eighties .tex .formula,
+pre.jshighlight__theme__tomorrow-night-eighties .xml .javascript,
+pre.jshighlight__theme__tomorrow-night-eighties .xml .vbscript,
+pre.jshighlight__theme__tomorrow-night-eighties .xml .css,
+pre.jshighlight__theme__tomorrow-night-eighties .xml .cdata {
+  opacity: 0.5;
+}

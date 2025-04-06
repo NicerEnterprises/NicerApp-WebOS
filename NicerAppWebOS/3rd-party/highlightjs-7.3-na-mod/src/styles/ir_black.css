@@ -1,0 +1,105 @@
+/*
+  IR_Black style (c) Vasily Mikhailitchenko <vaskas@programica.ru>
+*/
+
+pre.jshighlight__theme__ir_black code {
+  display: block; padding: 0.5em;
+  background: #000; color: #f8f8f8;
+}
+
+pre.jshighlight__theme__ir_black .shebang,
+pre.jshighlight__theme__ir_black .comment,
+pre.jshighlight__theme__ir_black .template_comment,
+pre.jshighlight__theme__ir_black .javadoc {
+  color: #7c7c7c;
+}
+
+pre.jshighlight__theme__ir_black .keyword,
+pre.jshighlight__theme__ir_black .tag,
+pre.jshighlight__theme__ir_black .tex .command,
+pre.jshighlight__theme__ir_black .request,
+pre.jshighlight__theme__ir_black .status,
+pre.jshighlight__theme__ir_black .clojure .attribute {
+  color: #96CBFE;
+}
+
+pre.jshighlight__theme__ir_black .sub .keyword,
+pre.jshighlight__theme__ir_black .method,
+pre.jshighlight__theme__ir_black .list .title,
+pre.jshighlight__theme__ir_black .nginx .title {
+  color: #FFFFB6;
+}
+
+pre.jshighlight__theme__ir_black .string,
+pre.jshighlight__theme__ir_black .tag .value,
+pre.jshighlight__theme__ir_black .cdata,
+pre.jshighlight__theme__ir_black .filter .argument,
+pre.jshighlight__theme__ir_black .attr_selector,
+pre.jshighlight__theme__ir_black .apache .cbracket,
+pre.jshighlight__theme__ir_black .date,
+pre.jshighlight__theme__ir_black .coffeescript .attribute {
+  color: #A8FF60;
+}
+
+pre.jshighlight__theme__ir_black .subst {
+  color: #DAEFA3;
+}
+
+pre.jshighlight__theme__ir_black .regexp {
+  color: #E9C062;
+}
+
+pre.jshighlight__theme__ir_black .title,
+pre.jshighlight__theme__ir_black .sub .identifier,
+pre.jshighlight__theme__ir_black .pi,
+pre.jshighlight__theme__ir_black .decorator,
+pre.jshighlight__theme__ir_black .tex .special,
+pre.jshighlight__theme__ir_black .haskell .type,
+pre.jshighlight__theme__ir_black .constant,
+pre.jshighlight__theme__ir_black .smalltalk .class,
+pre.jshighlight__theme__ir_black .javadoctag,
+pre.jshighlight__theme__ir_black .yardoctag,
+pre.jshighlight__theme__ir_black .phpdoc,
+pre.jshighlight__theme__ir_black .nginx .built_in {
+  color: #FFFFB6;
+}
+
+pre.jshighlight__theme__ir_black .symbol,
+pre.jshighlight__theme__ir_black .ruby .symbol .string,
+pre.jshighlight__theme__ir_black .number,
+pre.jshighlight__theme__ir_black .variable,
+pre.jshighlight__theme__ir_black .vbscript,
+pre.jshighlight__theme__ir_black .literal {
+  color: #C6C5FE;
+}
+
+pre.jshighlight__theme__ir_black .css .tag {
+  color: #96CBFE;
+}
+
+pre.jshighlight__theme__ir_black .css .rules .property,
+pre.jshighlight__theme__ir_black .css .id {
+  color: #FFFFB6;
+}
+
+pre.jshighlight__theme__ir_black .css .class {
+  color: #FFF;
+}
+
+pre.jshighlight__theme__ir_black .hexcolor {
+  color: #C6C5FE;
+}
+
+pre.jshighlight__theme__ir_black .number {
+  color:#FF73FD;
+}
+
+pre.jshighlight__theme__ir_black .coffeescript .javascript,
+pre.jshighlight__theme__ir_black .javascript .xml,
+pre.jshighlight__theme__ir_black .tex .formula,
+pre.jshighlight__theme__ir_black .xml .javascript,
+pre.jshighlight__theme__ir_black .xml .vbscript,
+pre.jshighlight__theme__ir_black .xml .css,
+pre.jshighlight__theme__ir_black .xml .cdata {
+  opacity: 0.7;
+}
