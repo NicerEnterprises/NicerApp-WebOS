@@ -99,9 +99,7 @@ h1::after, h2::after, h3::after { white-space : inherit};
 }
 
 .audioVolumeBar, .audioSeekBar {
-    width : 130px;
-    min-width : 130px;
-    max-width : 130px;
+    width : calc(50% - 5px);
     height : 1em;
     border-radius : 8px;
 }

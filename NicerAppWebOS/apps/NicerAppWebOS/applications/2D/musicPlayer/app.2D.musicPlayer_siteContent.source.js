@@ -770,6 +770,7 @@ debugger;
 			if (masterLeftOffset<0) masterLeftOffset=0;
 		} else {
 			var masterLeftOffset = ((myWidth - contentWidth) / 2);
+            debugger;
 			if (masterLeftOffset<0) masterLeftOffset=0;
 			na.mp.settings.masterLeftOffset = masterLeftOffset;
 		}
