@@ -1,8 +1,0 @@
-.idea
-nbproject
-
-example/tokens/
-
-.phpunit.result.cache
-
-/vendor/
