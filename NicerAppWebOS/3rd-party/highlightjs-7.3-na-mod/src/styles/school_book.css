@@ -1,0 +1,112 @@
+/*
+
+School Book style from goldblog.com.ua (c) Zaripov Yura <yur4ik7@ukr.net>
+
+*/
+
+pre.jshighlight__theme__school_book code {
+  display: block; padding: 15px 0.5em 0.5em 30px;
+  font-size: 11px !important;
+  line-height:16px !important;
+}
+
+pre.jshighlight__theme__school_book{
+  background:#f6f6ae url(./school_book.png);
+  border-top: solid 2px #d2e8b9;
+  border-bottom: solid 1px #d2e8b9;
+}
+
+pre.jshighlight__theme__school_book .keyword,
+pre.jshighlight__theme__school_book .literal,
+pre.jshighlight__theme__school_book .change,
+pre.jshighlight__theme__school_book .winutils,
+pre.jshighlight__theme__school_book .flow,
+pre.jshighlight__theme__school_book .lisp .title,
+pre.jshighlight__theme__school_book .clojure .built_in,
+pre.jshighlight__theme__school_book .nginx .title,
+pre.jshighlight__theme__school_book .tex .special {
+  color:#005599;
+  font-weight:bold;
+}
+
+pre.jshighlight__theme__school_book code,
+pre.jshighlight__theme__school_book .subst,
+pre.jshighlight__theme__school_book .tag .keyword {
+  color: #3E5915;
+}
+
+pre.jshighlight__theme__school_book .string,
+pre.jshighlight__theme__school_book .title,
+pre.jshighlight__theme__school_book .haskell .type,
+pre.jshighlight__theme__school_book .tag .value,
+pre.jshighlight__theme__school_book .css .rules .value,
+pre.jshighlight__theme__school_book .pre.jshighlight__theme__school_bookprocessor,
+pre.jshighlight__theme__school_book .ruby .symbol,
+pre.jshighlight__theme__school_book .ruby .symbol .string,
+pre.jshighlight__theme__school_book .ruby .class .parent,
+pre.jshighlight__theme__school_book .built_in,
+pre.jshighlight__theme__school_book .sql .aggregate,
+pre.jshighlight__theme__school_book .django .template_tag,
+pre.jshighlight__theme__school_book .django .variable,
+pre.jshighlight__theme__school_book .smalltalk .class,
+pre.jshighlight__theme__school_book .javadoc,
+pre.jshighlight__theme__school_book .ruby .string,
+pre.jshighlight__theme__school_book .django .filter .argument,
+pre.jshighlight__theme__school_book .smalltalk .localvars,
+pre.jshighlight__theme__school_book .smalltalk .array,
+pre.jshighlight__theme__school_book .attr_selector,
+pre.jshighlight__theme__school_book .pseudo,
+pre.jshighlight__theme__school_book .addition,
+pre.jshighlight__theme__school_book .stream,
+pre.jshighlight__theme__school_book .envvar,
+pre.jshighlight__theme__school_book .apache .tag,
+pre.jshighlight__theme__school_book .apache .cbracket,
+pre.jshighlight__theme__school_book .nginx .built_in,
+pre.jshighlight__theme__school_book .tex .command,
+pre.jshighlight__theme__school_book .coffeescript .attribute {
+  color: #2C009F;
+}
+
+pre.jshighlight__theme__school_book .comment,
+pre.jshighlight__theme__school_book .java .annotation,
+pre.jshighlight__theme__school_book .python .decorator,
+pre.jshighlight__theme__school_book .template_comment,
+pre.jshighlight__theme__school_book .pi,
+pre.jshighlight__theme__school_book .doctype,
+pre.jshighlight__theme__school_book .deletion,
+pre.jshighlight__theme__school_book .shebang,
+pre.jshighlight__theme__school_book .apache .sqbracket {
+  color: #E60415;
+}
+
+pre.jshighlight__theme__school_book .keyword,
+pre.jshighlight__theme__school_book .literal,
+pre.jshighlight__theme__school_book .css .id,
+pre.jshighlight__theme__school_book .phpdoc,
+pre.jshighlight__theme__school_book .title,
+pre.jshighlight__theme__school_book .haskell .type,
+pre.jshighlight__theme__school_book .vbscript .built_in,
+pre.jshighlight__theme__school_book .sql .aggregate,
+pre.jshighlight__theme__school_book .rsl .built_in,
+pre.jshighlight__theme__school_book .smalltalk .class,
+pre.jshighlight__theme__school_book .xml .tag .title,
+pre.jshighlight__theme__school_book .diff .header,
+pre.jshighlight__theme__school_book .chunk,
+pre.jshighlight__theme__school_book .winutils,
+pre.jshighlight__theme__school_book .bash .variable,
+pre.jshighlight__theme__school_book .apache .tag,
+pre.jshighlight__theme__school_book .tex .command,
+pre.jshighlight__theme__school_book .request,
+pre.jshighlight__theme__school_book .status {
+  font-weight: bold;
+}
+
+pre.jshighlight__theme__school_book .coffeescript .javascript,
+pre.jshighlight__theme__school_book .javascript .xml,
+pre.jshighlight__theme__school_book .tex .formula,
+pre.jshighlight__theme__school_book .xml .javascript,
+pre.jshighlight__theme__school_book .xml .vbscript,
+pre.jshighlight__theme__school_book .xml .css,
+pre.jshighlight__theme__school_book .xml .cdata {
+  opacity: 0.5;
+}

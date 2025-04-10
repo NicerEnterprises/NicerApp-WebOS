@@ -6,11 +6,11 @@ delete na.mp;
 na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] = na.musicPlayer = na.mp = {
 	about : {
 		whatsThis : 'Complete application code for the music playback-and-download site on http://nicer.app/musicPlayer',
-		copyright : 'Copyrighted (c) 2011-2021 by Rene AJM Veerman - rene.veerman.netherlands@gmail.com',
-		license : 'http://nicer.app/LICENSE.txt',
-		version : '3.1.14',
+		copyright : 'Copyrighted (c) 2011-2025 by Rene AJM Veerman - rene.veerman.netherlands@gmail.com',
+		license : 'http://nicer.app/license',
+		version : '3.2.0',
 		firstReleased : '2011',   
-		lastUpdated : '2022-04-28(Thursday) 05:10 Central European Summer Time',
+		lastUpdated : '2025-04-08(Wednesday) 07:50 Central European Summer Time',
 		knownBugs : [
 			"None at the moment, i think. Please report any bugs you find.."
 		]
@@ -35,7 +35,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
                     na.site.settings.current.app = '/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer';
                     na.analytics.logMetaEvent ("na.musicPlayer.onload() called.");
 
-                    $('#siteContent > .vividDialogContent').css({ direction:'ltr'});
+                    $('#siteContent > .vividDialogContent').css({ overflow : 'hidden', direction:'ltr'});
                 /*na.m.waitForCondition ('DOM ready', function() {
                     return na && na.apps && typeof na.mediaPlayer =='object' && $.ui && $.ui.draggable && $('#mp3s')[0] && $('#app__musicPlayer__player')[0];
                 }, function() {*/
@@ -856,7 +856,8 @@ debugger;
         });
 	 
         $('#horizontalMover').css({
-			left : masterLeftOffset + 13,
+			left : masterLeftOffset + $('#app__musicPlayer__header').width()/4,
+            width : $('#app__musicPlayer__header').width()/2,
             top : contentMargin + 2
 		});
 

@@ -1,0 +1,51 @@
+/* Tomorrow Night Bright Theme */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+.tomorrow-comment, pre.jshighlight__theme__tomorrow-night-bright .comment, pre.jshighlight__theme__tomorrow-night-bright .title {
+  color: #969896;
+}
+
+.tomorrow-red, pre.jshighlight__theme__tomorrow-night-bright .variable, pre.jshighlight__theme__tomorrow-night-bright .attribute, pre.jshighlight__theme__tomorrow-night-bright .tag, pre.jshighlight__theme__tomorrow-night-bright .regexp, pre.jshighlight__theme__tomorrow-night-bright .ruby .constant, pre.jshighlight__theme__tomorrow-night-bright .xml .tag .title, pre.jshighlight__theme__tomorrow-night-bright .xml .pi, pre.jshighlight__theme__tomorrow-night-bright .xml .doctype, pre.jshighlight__theme__tomorrow-night-bright .html .doctype, pre.jshighlight__theme__tomorrow-night-bright .css .id, pre.jshighlight__theme__tomorrow-night-bright .css .class, pre.jshighlight__theme__tomorrow-night-bright .css .pseudo {
+  color: #d54e53;
+}
+
+.tomorrow-orange, pre.jshighlight__theme__tomorrow-night-bright .number, pre.jshighlight__theme__tomorrow-night-bright .pre.jshighlight__theme__tomorrow-night-brightprocessor, pre.jshighlight__theme__tomorrow-night-bright .built_in, pre.jshighlight__theme__tomorrow-night-bright .literal, pre.jshighlight__theme__tomorrow-night-bright .params, pre.jshighlight__theme__tomorrow-night-bright .constant {
+  color: #e78c45;
+}
+
+.tomorrow-yellow, pre.jshighlight__theme__tomorrow-night-bright .ruby .class .title, pre.jshighlight__theme__tomorrow-night-bright .css .rules .attribute {
+  color: #e7c547;
+}
+
+.tomorrow-green, pre.jshighlight__theme__tomorrow-night-bright .string, pre.jshighlight__theme__tomorrow-night-bright .value, pre.jshighlight__theme__tomorrow-night-bright .inheritance, pre.jshighlight__theme__tomorrow-night-bright .header, pre.jshighlight__theme__tomorrow-night-bright .ruby .symbol, pre.jshighlight__theme__tomorrow-night-bright .xml .cdata {
+  color: #b9ca4a;
+}
+
+.tomorrow-aqua, pre.jshighlight__theme__tomorrow-night-bright .css .hexcolor {
+  color: #70c0b1;
+}
+
+.tomorrow-blue, pre.jshighlight__theme__tomorrow-night-bright .function, pre.jshighlight__theme__tomorrow-night-bright .python .decorator, pre.jshighlight__theme__tomorrow-night-bright .python .title, pre.jshighlight__theme__tomorrow-night-bright .ruby .function .title, pre.jshighlight__theme__tomorrow-night-bright .ruby .title .keyword, pre.jshighlight__theme__tomorrow-night-bright .perl .sub, pre.jshighlight__theme__tomorrow-night-bright .javascript .title, pre.jshighlight__theme__tomorrow-night-bright .coffeescript .title {
+  color: #7aa6da;
+}
+
+.tomorrow-purple, pre.jshighlight__theme__tomorrow-night-bright .keyword, pre.jshighlight__theme__tomorrow-night-bright .javascript .function {
+  color: #c397d8;
+}
+
+pre.jshighlight__theme__tomorrow-night-bright code {
+  display: block;
+  background: black;
+  color: #eaeaea;
+  padding: 0.5em;
+}
+
+pre.jshighlight__theme__tomorrow-night-bright .coffeescript .javascript,
+pre.jshighlight__theme__tomorrow-night-bright .javascript .xml,
+pre.jshighlight__theme__tomorrow-night-bright .tex .formula,
+pre.jshighlight__theme__tomorrow-night-bright .xml .javascript,
+pre.jshighlight__theme__tomorrow-night-bright .xml .vbscript,
+pre.jshighlight__theme__tomorrow-night-bright .xml .css,
+pre.jshighlight__theme__tomorrow-night-bright .xml .cdata {
+  opacity: 0.5;
+}

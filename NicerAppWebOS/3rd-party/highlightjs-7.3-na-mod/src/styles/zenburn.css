@@ -1,0 +1,116 @@
+/*
+
+Zenburn style from voldmar.ru (c) Vladimir Epifanov <voldmar@voldmar.ru>
+based on dark.css by Ivan Sagalaev
+
+*/
+
+pre.jshighlight__theme__zenburn code {
+  display: block; padding: 0.5em;
+  background: #3F3F3F;
+  color: #DCDCDC;
+}
+
+pre.jshighlight__theme__zenburn .keyword,
+pre.jshighlight__theme__zenburn .tag,
+pre.jshighlight__theme__zenburn .css .class,
+pre.jshighlight__theme__zenburn .css .id,
+pre.jshighlight__theme__zenburn .lisp .title,
+pre.jshighlight__theme__zenburn .nginx .title,
+pre.jshighlight__theme__zenburn .request,
+pre.jshighlight__theme__zenburn .status,
+pre.jshighlight__theme__zenburn .clojure .attribute {
+  color: #E3CEAB;
+}
+
+pre.jshighlight__theme__zenburn .django .template_tag,
+pre.jshighlight__theme__zenburn .django .variable,
+pre.jshighlight__theme__zenburn .django .filter .argument {
+  color: #DCDCDC;
+}
+
+pre.jshighlight__theme__zenburn .number,
+pre.jshighlight__theme__zenburn .date {
+  color: #8CD0D3;
+}
+
+pre.jshighlight__theme__zenburn .dos .envvar,
+pre.jshighlight__theme__zenburn .dos .stream,
+pre.jshighlight__theme__zenburn .variable,
+pre.jshighlight__theme__zenburn .apache .sqbracket {
+  color: #EFDCBC;
+}
+
+pre.jshighlight__theme__zenburn .dos .flow,
+pre.jshighlight__theme__zenburn .diff .change,
+pre.jshighlight__theme__zenburn .python .exception,
+pre.jshighlight__theme__zenburn .python .built_in,
+pre.jshighlight__theme__zenburn .literal,
+pre.jshighlight__theme__zenburn .tex .special {
+  color: #EFEFAF;
+}
+
+pre.jshighlight__theme__zenburn .diff .chunk,
+pre.jshighlight__theme__zenburn .subst {
+  color: #8F8F8F;
+}
+
+pre.jshighlight__theme__zenburn .dos .keyword,
+pre.jshighlight__theme__zenburn .python .decorator,
+pre.jshighlight__theme__zenburn .title,
+pre.jshighlight__theme__zenburn .haskell .type,
+pre.jshighlight__theme__zenburn .diff .header,
+pre.jshighlight__theme__zenburn .ruby .class .parent,
+pre.jshighlight__theme__zenburn .apache .tag,
+pre.jshighlight__theme__zenburn .nginx .built_in,
+pre.jshighlight__theme__zenburn .tex .command,
+pre.jshighlight__theme__zenburn .prompt {
+    color: #efef8f;
+}
+
+pre.jshighlight__theme__zenburn .dos .winutils,
+pre.jshighlight__theme__zenburn .ruby .symbol,
+pre.jshighlight__theme__zenburn .ruby .symbol .string,
+pre.jshighlight__theme__zenburn .ruby .string {
+  color: #DCA3A3;
+}
+
+pre.jshighlight__theme__zenburn .diff .deletion,
+pre.jshighlight__theme__zenburn .string,
+pre.jshighlight__theme__zenburn .tag .value,
+pre.jshighlight__theme__zenburn .pre.jshighlight__theme__zenburnprocessor,
+pre.jshighlight__theme__zenburn .built_in,
+pre.jshighlight__theme__zenburn .sql .aggregate,
+pre.jshighlight__theme__zenburn .javadoc,
+pre.jshighlight__theme__zenburn .smalltalk .class,
+pre.jshighlight__theme__zenburn .smalltalk .localvars,
+pre.jshighlight__theme__zenburn .smalltalk .array,
+pre.jshighlight__theme__zenburn .css .rules .value,
+pre.jshighlight__theme__zenburn .attr_selector,
+pre.jshighlight__theme__zenburn .pseudo,
+pre.jshighlight__theme__zenburn .apache .cbracket,
+pre.jshighlight__theme__zenburn .tex .formula,
+pre.jshighlight__theme__zenburn .coffeescript .attribute {
+  color: #CC9393;
+}
+
+pre.jshighlight__theme__zenburn .shebang,
+pre.jshighlight__theme__zenburn .diff .addition,
+pre.jshighlight__theme__zenburn .comment,
+pre.jshighlight__theme__zenburn .java .annotation,
+pre.jshighlight__theme__zenburn .template_comment,
+pre.jshighlight__theme__zenburn .pi,
+pre.jshighlight__theme__zenburn .doctype {
+  color: #7F9F7F;
+}
+
+pre.jshighlight__theme__zenburn .coffeescript .javascript,
+pre.jshighlight__theme__zenburn .javascript .xml,
+pre.jshighlight__theme__zenburn .tex .formula,
+pre.jshighlight__theme__zenburn .xml .javascript,
+pre.jshighlight__theme__zenburn .xml .vbscript,
+pre.jshighlight__theme__zenburn .xml .css,
+pre.jshighlight__theme__zenburn .xml .cdata {
+  opacity: 0.5;
+}
+
