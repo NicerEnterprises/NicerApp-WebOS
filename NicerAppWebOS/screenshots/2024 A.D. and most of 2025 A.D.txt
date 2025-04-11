@@ -1,0 +1,5 @@
+I have embarked on a quest for the Holy Grail of WebOS and CMS design : a 3D + 2D user-interface for web-browsers.
+I choose to build this in the Chrome Browser, but to stick close to W3C standards, meaning sooner or later this will work in ALL browsers.
+
+https://youtube.com/@ReneAJMVeerman
+
