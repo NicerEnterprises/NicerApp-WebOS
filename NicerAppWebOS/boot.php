@@ -6,7 +6,7 @@ IF YOU DO NEED THIS FILE CHANGED, EMAIL THE COMPLETE AND CHANGED FILE
 TO THE Current Owner AT THE FOLLOWING EMAIL ADDRESS :
 rene.veerman.netherlands@gmail.com
 
-NicerApp WCS (Website Control System) from Nicer Enterprises
+NicerApp WebOS from Nicer Enterprises
 */
     define ("SESSION_ERRORS_ID", "NicerApp_WebOS_errors_PHP");
     define ("SEID", SESSION_ERRORS_ID);
@@ -107,6 +107,7 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
                 $_SESSION['cdb_loginName'] = 'Guest';
             }*/
         } else {
+            ini_set('session.gc_maxlifetime', 3600 * 24 * 7);
             session_start();
         }
 
