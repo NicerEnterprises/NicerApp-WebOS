@@ -1,0 +1,6 @@
+[submodule "NicerAppWebOS/phpDB"]
+	path = NicerAppWebOS/phpDB
+	url = https://github.com/NicerEnterprises/phpDB
+[submodule "NicerAppWebOS/phpTasksManager"]
+	path = NicerAppWebOS/phpTasksManager
+	url = https://github.com/NicerEnterprises/phpTasksManager
