@@ -33,10 +33,11 @@ NicerApp WCS (Website Control System) from Nicer Enterprises
     //require_once ($rootPath_na_dbs.'/connectors/forFuture_design_coding_debugging_and_usage/class.adodb5_1.0.0.php');
     //require_once ($rootPath_na.'/NicerAppWebOS/3rd-party/adodb5/adodb.inc.php');
 
-    require_once ($rootPath_na_dbs.'/connectors/class.couchdb-3.2.2_1.0.1.php');
+    require_once ($rootPath_na_dbs.'/plugins/class.couchdb-3.2.2_1.0.1.php');
     // Sag, the business code layer that i use towards the couchdb.apache.org database system.
-    require_once($rootPath_na.'/NicerAppWebOS/3rd-party/sag/src/Sag.php');
-    require_once ($rootPath_na.'/NicerAppWebOS/Sag-support-functions.php');
+    require_once($rootPath_na_dbs.'/plugins/CouchDB-specific/sag/src/Sag.php');
+    require_once ($rootPath_na_dbs.'/plugins/CouchDB-specific/Sag-support-functions.php');
+
     require_once ($rootPath_na.'/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/siteComments-2.0.0/boot.php');
     //echo 'YES'.$rootPath_na; exit();
 

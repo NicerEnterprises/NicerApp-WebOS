@@ -1,0 +1,14 @@
+WARNING : PRELIMINARY BUT HIGHLY LIKELY TO BE THE FINALIZED LONGTERM LICENSE FOR THESE LIBRARIES :
+See https://opensource.org/licenses/MIT
+
+(c) or (C) 2025 by Rene A.J.M. Veerman, <rene.veerman.netherlands@gmail.com>
+
+Met vriendelijke groet,
+  Rene AJM Veerman ookwel bekend als Gavan Peacefan Unifier Revenger Hoverswell uit Amsterdam, Nederland.
+  Sinds 2002 A.D. de Schepper + Architect + Ingenieur + Bouwer + Eigenaar + Algemeen, Technisch & Financieel directeur van https://nicer.app, https://said.by, https://zoned.at en alle andere computer-code en -content die ik waar dan ook in computers heb ingevoerd.
+    Zie tevens https://nicer.app/license (of hier) voor mijn voorwaarden en tarieven.
+
+With kind regards,
+    Rene AJM Veerman aka Gavan Peacefan Unifier Revenger Hoverswell from Amsterdam, The Netherlands.
+    Creator, Architect, Engineer + Owner, CEO, CTO and CFO for https://nicer.app, https://said.by, https://zoned.at and all other computer-code and -content that I ever put into computers anywhere.
+    See also https://nicer.app/license (or here) for my occasionally changing terms and conditions and tariffs.

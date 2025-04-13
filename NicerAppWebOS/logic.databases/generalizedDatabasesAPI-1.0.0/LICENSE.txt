@@ -1,4 +1,0 @@
-WARNING : PRELIMINARY BUT HIGHLY LIKELY TO BE THE FINALIZED LONGTERM LICENSE FOR THIS LIBRARY : See https://opensource.org/licenses/MIT
-
-(c) or (C) 2025 by Rene A.J.M. Veerman, <rene.veerman.netherlands@gmail.com>
-Owner, CEO, CTO and CFO for https://nicer.app and related websites.

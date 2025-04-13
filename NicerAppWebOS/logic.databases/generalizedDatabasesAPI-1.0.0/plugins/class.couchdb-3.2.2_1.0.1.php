@@ -1,8 +1,8 @@
 <?php
 require_once (realpath(dirname(__FILE__).'/../../../..').'/NicerAppWebOS/boot.php');
 require_once (realpath(dirname(__FILE__).'/../../../..').'/NicerAppWebOS/functions.php');
-require_once (realpath(dirname(__FILE__).'/../../../..').'/NicerAppWebOS/3rd-party/sag/src/Sag.php');
-require_once (realpath(dirname(__FILE__).'/../../../..').'/NicerAppWebOS/Sag-support-functions.php');
+require_once ('CouchDB-specific/sag/src/Sag.php');
+require_once ('CouchDB-specific/Sag-support-functions.php');
 
 class class_NicerAppWebOS_database_API_couchdb_3_2 {
     public $cn = 'class_NicerAppWebOS_database_API_couchdb_3_2';

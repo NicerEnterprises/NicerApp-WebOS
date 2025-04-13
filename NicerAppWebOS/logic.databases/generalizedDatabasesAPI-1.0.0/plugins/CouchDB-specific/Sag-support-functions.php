@@ -1,4 +1,7 @@
 <?php
+// COPYLEFTED 2025, FREE TO USE FOR ALL TYPES OF USE BY ANYONE ANYWHERE
+// Written by Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+
 
 function cdb_error ($errCode, $e, $msg) {
     switch ($errCode) {

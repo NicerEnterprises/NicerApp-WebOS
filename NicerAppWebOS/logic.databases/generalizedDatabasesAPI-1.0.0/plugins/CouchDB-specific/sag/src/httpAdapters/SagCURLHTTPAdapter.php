@@ -8,7 +8,7 @@
  * @package HTTP
  */
 require_once('SagHTTPAdapter.php');
-require_once(dirname(__FILE__).'/../../../../apps/NicerAppWebOS/applications/2D/ui/jsonViewer/jsonViewer.php');
+require_once(dirname(__FILE__).'/../../../../../../../apps/NicerAppWebOS/applications/2D/ui/jsonViewer/jsonViewer.php');
 
 class SagCURLHTTPAdapter extends SagHTTPAdapter {
   private $ch;
