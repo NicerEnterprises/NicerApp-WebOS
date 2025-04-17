@@ -7,10 +7,10 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
 	about : {
 		whatsThis : 'Complete application code for the music playback-and-download site on http://nicer.app/musicPlayer',
 		copyright : 'Copyrighted (c) 2011-2025 by Rene AJM Veerman - rene.veerman.netherlands@gmail.com',
-		license : 'http://nicer.app/license',
-		version : '3.2.0',
+		license : 'https://opensource.org/license/mit',
+		version : '4.0.0',
 		firstReleased : '2011',   
-		lastUpdated : '2025-04-08(Wednesday) 07:50 Central European Summer Time',
+		lastUpdated : '2025-04-18(Friday) 01:23am Central European Summer Time - AMS https://Amsterdam.nl',
 		knownBugs : [
 			"None at the moment, i think. Please report any bugs you find.."
 		]
