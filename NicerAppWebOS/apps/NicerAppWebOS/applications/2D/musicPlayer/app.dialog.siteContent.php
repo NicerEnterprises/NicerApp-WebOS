@@ -20,7 +20,7 @@ $view = $naWebOS->view["/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicP
 if ($view['set']==='index') {
     global $naLAN;
     global $naSettings_app2D_musicPlayer_respectDutchCopyright;
-    if ($naSettings_app2D_musicPlayer_respectDutchCopyright || $naLAN) {
+    if (!$naSettings_app2D_musicPlayer_respectDutchCopyright || $naLAN) {
         require_once(dirname(__FILE__).'/frontpage.php');
     } else {
         require_once(dirname(__FILE__).'/OFFLINE.php');
