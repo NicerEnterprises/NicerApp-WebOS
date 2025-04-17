@@ -64,7 +64,7 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
 
 
 
-                    $('.audioSeekBar_setting').css({ height : $('.audioSeekBar').height() - 4, marginTop : 2, marginLeft : 2, borderRadius:5 });
+                    $('.audioSeekBar_setting').css({ height : $('.audioSeekBar').height() - 4, marginTop : 2, /*marginLe*/ft : 2, borderRadius:5 });
                     $('.audioVolumeBar_setting').css({ height : $('.audioVolumeBar').height() - 4, marginTop : 2, marginLeft : 2, borderRadius:5 });
                     
                     $('#siteContent .vividDialog').each(function(idx,el){
@@ -450,11 +450,17 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
                 var
                 div = document.createElement('div'),
                 div2 = document.createElement('div'),
-                scale = $('#siteContent > .vividDialogContent').css('scale'),
-                sp = scale.split(' '),
-                scaleX = parseFloat(sp[0]),
-                scaleY = parseFloat(sp[1]);
-            debugger;
+                scale = $('#siteContent > .vividDialogContent').css('scale');
+                if (scale.indexOf(' ')!==-1) {
+                    var
+                    sp = scale.split(' '),
+                    scaleX = parseFloat(sp[0]),
+                    scaleY = parseFloat(sp[1]);
+                } else {
+                    var
+                    scaleX = scale;
+                    scaleY = scale;
+                }
                 $(this).add(div).add(div2).css({ position : 'absolute', zIndex : 110000 });
 
                 $(document.body).append(div);
@@ -514,10 +520,13 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
 		$('#playlist').droppable ({
             tolerance : 'pointer',
             activate : function (evt, ui) {
+                /*
+                debugger;
                 var
                 pl = $('#playlist')[0],
                 dragged = $(ui.helper[0]).clone(true,true).detach().appendTo(pl)[0],//na.mp.globals.mp3dragged,
                 x = na.mp.globals.mp3sItem;
+                debugger;
                 $(dragged).css({
                     position:'relative',
                     background : '',
@@ -534,6 +543,8 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
                 //$(na.mp.globals.mp3dragged).remove();
                 na.mp.globals.mp3dragged = dragged;
                 //debugger;
+                */
+                na.mp.globals.mp3dragged = ui.helper[0];
 
             },
             over : function (evt, ui) {
@@ -567,31 +578,20 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
                 dragged.file = original.attr('file');
                 dragged.oldID = oldID;
 
-                /*
-                $(dragged).attr(
-                    'style',
-                    $(dragged).attr('style').replace(/;margin-left:30px;/,'')+';margin-left:30px;'
-                );
-                */
                 var
                 x = na.mp.globals.mp3sItem;
                 $(dragged).css({
                     position:'relative',
                     background : '',
                     color : '',
-                    left : ($('#playlist').width() - $(x).width())/2,
-                    left : ($('#playlist').width() - $(x).width())/2,
+                    marginLeft : 0,
+                    left : na.d.g.margin/2,
                     display : 'block',
-                    //left : $(x).offset().left,
                     top : 'auto',
-                    width : (
-                        $('#playlist').width() - $(x).width() > 0
-                        ? $(x).width()
-                        : Math.abs(($('#playlist').width() - $(x).width())/2)
-                    ),
+                    width : $(x).width(),
                     height : $(x).height(),
                     verticalAlign : 'middle',
-                    scale : 1
+                    scale : scale
                 });
                 $(dragged).attr('class', 'mp3 vividButton');// ui-draggable ui-draggable-handle');
                 $(dragged).attr('file', original.attr('file'));
@@ -605,7 +605,6 @@ na.apps.loaded['/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/musicPlayer'] 
                         .replace('\n}','')
                         .replace (new RegExp(oldID), dragged.id)
                 );
-debugger;
                 $(ui.helper[0]).remove();
                 na.mp.reorderPlaylist();
                 
@@ -624,7 +623,7 @@ debugger;
                     stack : '.mp3',
                     helper : function (evt, ui) {
                         na.mp.settings.resortedItem = dragged.oldID;
-                        var x= $('#'+newID).parent()[0];
+                        var x = $('#'+newID).parent()[0];
                         var div = document.createElement('div');
                         $(div).css({width:'100%'});
                         $(this).clone(true,true).appendTo(div).css({zIndex:1100, color:'yellow', paddingLeft:30}).attr('id',newID);
@@ -638,8 +637,6 @@ debugger;
 
                 na.site.loadTheme_applySettings(na.site.globals.themes[na.site.globals.themeName], null, false);
 
-
-
                 return dragged;
 			}
 		});
@@ -651,9 +648,6 @@ debugger;
             let 
             x = $(el).attr('onclick').toString().replace(new RegExp(el.id),'playlist_'+idx),
             x1 = x.replace('javascript:','').trim();
-            //debugger;
-            
-            //el.onclick = function (evt) { eval (x1); };
             $(el).attr('onclick','javascript:'+x1);
             el.id = 'playlist_'+idx;
         });
@@ -671,10 +665,10 @@ debugger;
             $('#siteContent').height()
             - $('#horizontalMover__containmentBox2').height()
             - $('#horizontalMover__containmentBox2')[0].offsetTop
-            - (contentMargin*2) -$('#app__musicPlayer__header').height()
+            - (contentMargin*2) - (na.d.g.margin*2) -$('#app__musicPlayer__header').height()
         );
         if (na.desktop.globals.divs.includes('#siteStatusbar')) {
-            myHeight = myHeight - $('#siteStatusbar').height() - contentMargin;
+            myHeight = myHeight - contentMargin;
         }
         var columnWidth = ($(window).width()/2)-30;
         if (columnWidth>250) columnWidth = 250;
@@ -682,95 +676,32 @@ debugger;
         var
         contentWidth = columnWidth*2 + 10,
         contentInnerWidth = columnWidth*2 + 20,
-        /*zfh =
-        (
-            $(window).height()
-        ) / (
-                $(window).height()
-                - $('#siteContent').offset().top
-                + (na.d.g.margin * 2)
-                - (
-                    na.desktop.globals.divs.includes('#siteStatusbar')
-                    ? ( $('#siteStatusbar').height() + na.d.g.margin )
-                    : na.d.g.margin
-                )
-        ), zfw =
-        (
-            $('#siteContent').width() > contentWidth
-            ? (
-                ( $('#siteContent').width() )
-                / ( contentWidth  )
-            )
-            : (
-                ( contentWidth  )
-                / ( $('#siteContent').width() )
-
-
-            )
-        ),*/
         zfh = (
                 $('#siteContent').height() /
                 ( $('#siteContent').height() - (contentMargin*2) )
-        ), zfw = (
+        ),
+        zfw = (
             (
                 ( $('#siteContent').width() )
                 / ( (contentWidth * 2) + 30 + (na.d.g.margin*3)  )
             )
         );
-
-            /*(
-            screen.height >= 1810
-            ? 3
-            : screen.height >= 900
-                ? 2
-                : $('#siteContent').width() > contentWidth * 4
-                    ? (
-                        ( $('#siteContent').width() )
-                        / ( contentWidth  )
-                    ) / 8
-                    : $('#siteContent').width() > contentWidth * 2
-                        ? (
-                            ( $('#siteContent').width() )
-                            / ( contentWidth  )
-                        ) / 4
-                        : $('#siteContent').width() < contentWidth
-                            ? (
-                                ( contentWidth  )
-                                / ( $('#siteContent').width() )
-                            ) / 2
-                            : (
-                                ( $('#siteContent').width() )
-                                / ( contentWidth  )
-                            ) / 2
-        );*/
-        //alert (screen.height);
         na.mp.globals.zfh = zfh;
         na.mp.globals.zfw = zfw;
-        debugger;
-
-        if ($('#siteContent').width() > contentWidth) {
-            var wide = true;
-        } else {
-            var wide = false;
-        }
 
         var
         sc_scrollpane = $('#siteContent', window.top.document.body),
 		sc_scrollpaneContainer = $('#siteContent', window.top.document.body),
 		sc_siteContent = $('#siteContent', window.top.document.body);
         if (!na.site.settings.current.scaleApp) {
-            //alert(screen.height);
             na.site.settings.current.scaleApp = zfw+' '+zfh;
-            //alert (na.site.settings.current.scaleApp);
         };
-        //$('#siteContent > .vividDialogContent').css({ direction:'ltr',scale : zfw+' '+zfh });
 
 		if (typeof na.mp.settings.masterLeftOffset == 'number' && !na.mp.settings.onResizeReposition) {
 			var masterLeftOffset = na.mp.settings.masterLeftOffset;
 			if (masterLeftOffset<0) masterLeftOffset=0;
 		} else {
 			var masterLeftOffset = ((myWidth - contentWidth) / 2);
-            debugger;
 			if (masterLeftOffset<0) masterLeftOffset=0;
 			na.mp.settings.masterLeftOffset = masterLeftOffset;
 		}
@@ -790,7 +721,7 @@ debugger;
         $('#app__musicPlayer__header').css ({
             width : contentInnerWidth,
             left : dialogsLeft,
-            top : (na.d.g.margin*2) + contentMargin
+            top : (na.d.g.margin*2)
         });
         $('#app__musicPlayer__header .vividDialogContent').css ({
             overflow : 'hidden'
@@ -805,23 +736,24 @@ debugger;
 		$dialogPlaylist = $(dialogPlaylist),
 		$dialogPlayer = $(dialogPlayer),
 		centerDialogsWidth = $(dialogMP3sList).width() + $dialogPlaylist.width() + $dialogPlayer.width(),
-		dialogsTop = /*contentMargin + (na.d.g.margin*2) +*/ $('#app__musicPlayer__header').position().top + $('#app__musicPlayer__header').height() + na.d.g.margin,
+		dialogsTop = contentMargin + (na.d.g.margin*2) + $('#app__musicPlayer__header').position().top + $('#app__musicPlayer__header').height() + na.d.g.margin,
+		dialogsTop = contentMargin + (na.d.g.margin*2) + $('#app__musicPlayer__header').height() + na.d.g.margin,
 		dialogsHeight = (myHeight - dialogsTop - contentMargin);
         
 		$('#horizontalMover__containmentBox2').css({
 			left : contentMargin,
-            top : contentMargin,
+            top : 0,
 			width : myWidth,
 			opacity : 0.001,
 			display : 'block'
-		}).animate ({opacity:(wide?0.00001:0.1)},1000);
+		}).animate ({opacity:(0.3)},1000);
 		$('#horizontalMover__containmentBox1').css({
 			left : contentMargin,
-            top : contentMargin,
+            top : 0,
 			width : myWidth,
 			opacity : 0.001,
 			display : 'block'
-		}).animate ({opacity:(wide?0.00001:0.3)},1300);
+		}).animate ({opacity:(0.2)},1300);
 		
         $('#app__musicPlayer__player').css({ height : 120 });
         $('#app__musicPlayer__player, #app__musicPlayer__player__CSS3').css ({
@@ -847,39 +779,35 @@ debugger;
             width : columnWidth,
             height : (myHeight - 20 - 120) /3
         });
-        //$('#mp3descText').css({ marginLeft : 40 });
-        
-        
         $('#app__musicPlayer__description > table').css({
             width : '',
             height : ((myHeight - 20 - 120) /3)
         });
-	 
         $('#horizontalMover').css({
-			left : masterLeftOffset + $('#app__musicPlayer__header').width()/4,
-            width : $('#app__musicPlayer__header').width()/2,
-            top : contentMargin + 2
+			left : masterLeftOffset + 10,
+            width : $('#app__musicPlayer__header').width()-20,
+            top : 2,
+            background : 'rgba(243, 245, 39, 0.55)', // yellow, semi-translucent
+            boxShadow : '2px 2px 2px rgba(0,0,0,0.7)'
 		});
+        $('#mp3s').css ({
+            visibility : 'visible',
+            position : 'absolute',
+            left : dialogsLeft,
+            width : columnWidth,
+            height : myHeight ,
+            top : dialogsTop
+        });
 
-
-    $('#mp3s').css ({
-        visibility : 'visible',
-        position : 'absolute',
-        left : dialogsLeft,
-        width : columnWidth,
-        height : myHeight ,
-        top : dialogsTop
-    });
-
-    $dialogPlaylist.css ({
-        left : playerLeft,
-        width : columnWidth,
-        height : (myHeight - 170 - $('#app__musicPlayer__header').height()) / (3/2),
-        top : ($dialogMP3desc[0].offsetTop + $dialogMP3desc.height() + 30) + 'px'
-    });
-    $('ul', $dialogPlaylist).css ({
-        height : 'calc(100% - '+$('h2', $dialogPlaylist).outerHeight()+'px - 10px - '+$('h2', $dialogPlaylist).css('marginBottom')+' - '+$('h2', $dialogPlaylist).css('marginBottom')+')'
-    });
+        $dialogPlaylist.css ({
+            left : playerLeft,
+            width : columnWidth,
+            height : (myHeight - 170 - $('#app__musicPlayer__header').height()) / (3/2),
+            top : ($dialogMP3desc[0].offsetTop + $dialogMP3desc.height() + 30) + 'px'
+        });
+        $('ul', $dialogPlaylist).css ({
+            height : 'calc(100% - '+$('h2', $dialogPlaylist).outerHeight()+'px - 10px - '+$('h2', $dialogPlaylist).css('marginBottom')+' - '+$('h2', $dialogPlaylist).css('marginBottom')+')'
+        });
         
 		if (!na.mp.settings.afterInitializing) {
             na.mp.settings.afterInitializing = true;
@@ -897,16 +825,15 @@ debugger;
                             na.site.settings.buttons['#'+el.id] = new naVividButton(el);
                     });
                     na.mp.setupDragNDrop();
-                }, 100); // milliseconds delay number (milliseconds between check of 2nd parameter function call)
+                }, 150); // milliseconds delay number (milliseconds between check of 2nd parameter function call)
 
 
             setTimeout (function() {
                 $('#horizontalMover').css({
-                    width : myWidth - 20,
                     opacity : 0.001,
                     display : 'block'
-                }).animate ({opacity : (wide?0.00001:1)}, 700);
-            }, 100);
+                }).animate ({opacity : (1)}, 700);
+            }, 150);
         
 			$('.vividDialog, .vividScrollpane, #heading_wrapper, #siteIntroText, #mp3s, #app__musicPlayer__player, #app__musicPlayer__player_table, #app__musicPlayer__playlist, #infoWindow_help')
 				.not ('#siteLoginSuccessful, #siteLoginFailed, #siteLogin, #siteRegistration, #siteDateTime, #infoWindow_info, #infoWindow_tools')
