@@ -15,13 +15,13 @@ $username = array_key_exists('cdb_loginName',$_COOKIE) ? $_COOKIE['cdb_loginName
 $username1a = $db->translate_plainUserName_to_couchdbUserName ($username);
 $username1 = $db->translate_couchdbUserName_to_plainUserName ($username1a);
 
-$cdb_domain = $naWebOS->domainForDB;
+$cdb_domain = $naWebOS->domainFolderForDB;
 $tables = array (
     $cdb_domain.'___cms_tree',
     $cdb_domain.'___cms_tree___role___guests',
     $cdb_domain.'___cms_tree___user___'.strtolower($username1)
-    //$naWebOS->domain.'___cms_tree__user__administrator',
-    //$naWebOS->domain.'___cms_tree__user__guest'
+    //$naWebOS->domainFolder.'___cms_tree__user__administrator',
+    //$naWebOS->domainFolder.'___cms_tree__user__guest'
 );
 
 $data = array();

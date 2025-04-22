@@ -8,6 +8,7 @@ rene.veerman.netherlands@gmail.com
 
 NicerApp WebOS from Nicer Enterprises
 */
+
     define ("SESSION_ERRORS_ID", "NicerApp_WebOS_errors_PHP");
     define ("SEID", SESSION_ERRORS_ID);
 
@@ -19,57 +20,12 @@ NicerApp WebOS from Nicer Enterprises
     define ("FILE_FORMATS_NO_thumbs", '/(?!.*thumbs).*/');
     global $na_full_init;
     if (!isset($na_full_init)) $na_full_init = true;
-
     $rootPath_na = realpath(dirname(__FILE__).'/..');
+    //echo '<h1>'.$rootPath_na.'</h1>';
     require_once($rootPath_na.'/NicerAppWebOS/lib_duration.php');
     require_once($rootPath_na.'/NicerAppWebOS/functions.php');
-    require_once($rootPath_na.'/NicerAppWebOS/logic.business/class.NicerAppWebOS.errorHandler.php');
-    require_once($rootPath_na.'/NicerAppWebOS/logic.business/class.NicerAppWebOS.log.php');
-
-    $rootPath_na_dbs = $rootPath_na.'/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0';
-    require_once ($rootPath_na_dbs.'/class.database_API.php');
-    //require_once ($rootPath_na_dbs.'/connectors/forFuture_design_coding_debugging_and_usage/class.fileSystemDB-1.0.0.php');
-
-    //require_once ($rootPath_na_dbs.'/connectors/forFuture_design_coding_debugging_and_usage/class.adodb5_1.0.0.php');
-    //require_once ($rootPath_na.'/NicerAppWebOS/3rd-party/adodb5/adodb.inc.php');
-
-    require_once ($rootPath_na_dbs.'/plugins/class.couchdb-3.2.2_1.0.1.php');
-    // Sag, the business code layer that i use towards the couchdb.apache.org database system.
-    require_once($rootPath_na_dbs.'/plugins/CouchDB-specific/sag/src/Sag.php');
-    require_once ($rootPath_na_dbs.'/plugins/CouchDB-specific/Sag-support-functions.php');
-
-    require_once ($rootPath_na.'/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/siteComments-2.0.0/boot.php');
-    //echo 'YES'.$rootPath_na; exit();
-
-
-    global $naGlobals;
-    $naGlobals = [
-        'cdb_designDoc_logentries' => '_design/4ed57c36e325319b9e5b0730589fb06ae6b177ee'
-    ];
-    //var_dump ($naGlobals); echo PHP_EOL; exit();
-
-
-    //require_once ($rootPath_na.'/NicerAppWebOS/apps/NicerAppWebOS/application-programmer-interfaces/technology/codeTranslationSystems/boot.php');
-
-    //require_once($rootPath_na.'/NicerAppWebOS/3rd-party/vendor/autoload.php'); // loads up a whole bunch of PHP libraries, including birke-rememberme.
-    //require_once($rootPath_na.'/NicerAppWebOS/3rd-party/birke/rememberme/src/LoginResult.php'); // small change of my own in the birke-rememberme modern encrypted login system for web 4.0.
-
-    // the main() class
-    require_once($rootPath_na.'/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php');
-    //echo 'ohhNo'.$rootPath_na; exit();
-
-    global $naIP;
-    if (
-        function_exists('apache_request_headers')
-        && array_key_exists('X-Forwarded-For',apache_request_headers())
-    ) {
-        $naIP = apache_request_headers()['X-Forwarded-For'];
-    } elseif (array_key_exists('REMOTE_ADDR', $_SERVER)) {
-        $naIP = $_SERVER['REMOTE_ADDR'];
-    } else {
-        $naIP = 'OS commandline probably';
-    }
-
+    require_once($rootPath_na.'/NicerAppWebOS/logic.business-5.8.z/class.NicerAppWebOS.errorHandler.php');
+    //echo '<h2>'.$rootPath_na.'</h2>';
     $naDebugAll = true;
     global $naDebugAll;
     global $naBypassMainErrorHandler;
@@ -90,6 +46,57 @@ NicerApp WebOS from Nicer Enterprises
     }
     ini_set ('log_errors', true);
     //var_dump (["test1a"=>true]); echo PHP_EOL; exit();
+
+    require_once($rootPath_na.'/NicerAppWebOS/logic.business-5.8.z/class.NicerAppWebOS.log.php');
+
+    $rootPath_na_dbs = $rootPath_na.'/NicerAppWebOS/logic.databases/generalizedDatabasesAPI-1.0.0';
+    require_once ($rootPath_na_dbs.'/class.database_API.php');
+    //require_once ($rootPath_na_dbs.'/connectors/forFuture_design_coding_debugging_and_usage/class.fileSystemDB-1.0.0.php');
+
+    //require_once ($rootPath_na_dbs.'/connectors/forFuture_design_coding_debugging_and_usage/class.adodb5_1.0.0.php');
+    //require_once ($rootPath_na.'/NicerAppWebOS/3rd-party/adodb5/adodb.inc.php');
+
+    require_once ($rootPath_na_dbs.'/plugins/class.couchdb-3.2.2_1.0.1.php');
+    // Sag, the business code layer that i use towards the couchdb.apache.org database system.
+    require_once($rootPath_na_dbs.'/plugins/CouchDB-specific/sag/src/Sag.php');
+    require_once ($rootPath_na_dbs.'/plugins/CouchDB-specific/Sag-support-functions.php');
+    //echo '<h1>'.$rootPath_na_dbs.'</h1>'; exit();
+
+
+
+
+    require_once ($rootPath_na.'/NicerAppWebOS/apps/NicerAppWebOS/userInterfaces/siteComments-2.0.0/boot.php');
+    //echo 'YES'.$rootPath_na; exit();
+
+
+    global $naGlobals;
+    $naGlobals = [
+        'cdb_designDoc_logentries' => '_design/4ed57c36e325319b9e5b0730589fb06ae6b177ee'
+    ];
+    //var_dump ($naGlobals); echo PHP_EOL; exit();
+
+
+    //require_once ($rootPath_na.'/NicerAppWebOS/apps/NicerAppWebOS/application-programmer-interfaces/technology/codeTranslationSystems/boot.php');
+
+    //require_once($rootPath_na.'/NicerAppWebOS/3rd-party/vendor/autoload.php'); // loads up a whole bunch of PHP libraries, including birke-rememberme.
+    //require_once($rootPath_na.'/NicerAppWebOS/3rd-party/birke/rememberme/src/LoginResult.php'); // small change of my own in the birke-rememberme modern encrypted login system for web 4.0.
+
+    // the main() class
+    require_once($rootPath_na.'/NicerAppWebOS/logic.business-5.8.z/class.NicerAppWebOS.php');
+    //echo 'ohhNo'.$rootPath_na; exit();
+
+    global $naIP;
+    if (
+        function_exists('apache_request_headers')
+        && array_key_exists('X-Forwarded-For',apache_request_headers())
+    ) {
+        $naIP = apache_request_headers()['X-Forwarded-For'];
+    } elseif (array_key_exists('REMOTE_ADDR', $_SERVER)) {
+        $naIP = $_SERVER['REMOTE_ADDR'];
+    } else {
+        $naIP = 'OS commandline probably';
+    }
+
 
 
     if (php_sapi_name() !== 'cli') {
@@ -128,6 +135,8 @@ NicerApp WebOS from Nicer Enterprises
     global $filePerms_perms_readonly;
     global $filePerms_perms_readWrite;
 
+    global $na_error_log_filepath_html;
+    global $na_error_log_filepath_txt;
     global $naWebOS;
     //var_dump (["test2a"=>true]); echo PHP_EOL; exit();
 
@@ -153,15 +162,15 @@ NicerApp WebOS from Nicer Enterprises
         //echo '<pre>t584'; var_dump($naBot); die();
 
         if (!$naBot) {
-            $_SESSION['na_error_log_filepath_html'] =
-                '/var/www/'.$naWebOS->domain.'/NicerAppWebOS/siteLogs/'
+            $na_error_log_filepath_html =
+                '/var/www/'.$naWebOS->domainFolder.'/NicerAppWebOS/siteLogs/'
                 .$date./*'-'.$appName.*/'-'.$naIP.($naBot?'-BOT':'').'.html';
-            $_SESSION['na_error_log_filepath_txt'] =
-                '/var/www/'.$naWebOS->domain.'/NicerAppWebOS/siteLogs/'
+            $na_error_log_filepath_txt =
+                '/var/www/'.$naWebOS->domainFolder.'/NicerAppWebOS/siteLogs/'
                 .$date./*'-'.$appName.*/'-'.$naIP.($naBot?'-BOT':'').'.txt';
         } else {
-            $_SESSION['na_error_log_filepath_html'] = null;
-            $_SESSION['na_error_log_filepath_txt'] = null;
+            $na_error_log_filepath_html = null;
+            $na_error_log_filepath_txt = null;
         }
         //echo $date.'<br/>'; exit();
 
@@ -192,11 +201,11 @@ NicerApp WebOS from Nicer Enterprises
             );
         //echo $date.'<br/>'; exit();
 
-        $_SESSION['na_error_log_filepath_html'] =
-            '/var/www/'.$naWebOS->domain.'/NicerAppWebOS/siteLogs/'
+        $na_error_log_filepath_html =
+            '/var/www/'.$naWebOS->domainFolder.'/NicerAppWebOS/siteLogs/'
             .$date.'-'.$naIP.'-db_init.html';
-        $_SESSION['na_error_log_filepath_txt'] =
-            '/var/www/'.$naWebOS->domain.'/NicerAppWebOS/siteLogs/'
+        $na_error_log_filepath_txt =
+            '/var/www/'.$naWebOS->domainFolder.'/NicerAppWebOS/siteLogs/'
             .$date.'-'.$naIP.'-db_init.txt';
 
         $_SESSION['dbgNum'] = 0;
@@ -281,14 +290,14 @@ NicerApp WebOS from Nicer Enterprises
     }
     //echo '<p style="color:purple">'; var_dump($naIsBot); echo '</p>';
 
-    $lanConfigFilepath = realpath(dirname(__FILE__)).'/domainConfigs/'.$naWebOS->domain.'/naLAN.json';
-    $lanConfigExampleFilepath = realpath(dirname(__FILE__)).'/domainConfigs/'.$naWebOS->domain.'/naLAN.EXAMPLE.json';
+    $lanConfigFilepath = realpath(dirname(__FILE__)).'/domainConfigs/'.$naWebOS->domainFolder.'/naLAN.json';
+    $lanConfigExampleFilepath = realpath(dirname(__FILE__)).'/domainConfigs/'.$naWebOS->domainFolder.'/naLAN.EXAMPLE.json';
     if (!file_exists($lanConfigFilepath))
         trigger_error ('"'.$lanConfigFilepath.'" does not exist. See "'.$lanConfigExampleFilepath.'" for a template.', E_USER_ERROR);
     $lanConfigRaw = file_get_contents($lanConfigFilepath);
     $lanConfig = json_decode($lanConfigRaw, true);
     checkForJSONerrors($lanConfigRaw, $lanConfigFilepath, $lanConfigExampleFilepath);
-
+    //echo '<pre>'; var_dump ($lanConfigFilepath); var_dump ($lanConfigRaw); var_dump ($lanConfig); var_dump (json_last_error_msg()); exit();
     global $naLAN;
     $naLAN = (
         $naIP === '::1'
@@ -302,8 +311,8 @@ NicerApp WebOS from Nicer Enterprises
             //.PHP_EOL.$naWebOS->getLinks($naWebOS->cssFiles)
             //.PHP_EOL.$naWebOS->getLinks($naWebOS->javascriptFiles).PHP_EOL
             //.'</head><body style="overflow:visible"><div id="siteBackground"></div>';*/
-        //$html = '<script type="text/javascript" src="/NicerAppWebOS/logic.business/debug-1.0.0.source.js?c='.date('Ymd_His',filemtime(dirname(__FILE__).'/logic.business/debug-1.0.0.source.js')).'"></script>';
-        //file_put_contents ($_SESSION['na_error_log_filepath_html'], $html, FILE_APPEND);
+        //$html = '<script type="text/javascript" src="/NicerAppWebOS/logic.business-5.8.z/debug-1.0.0.source.js?c='.date('Ymd_His',filemtime(dirname(__FILE__).'/logic.business-5.8.z/debug-1.0.0.source.js')).'"></script>';
+        //file_put_contents ($na_error_log_filepath_html, $html, FILE_APPEND);
 
         $_SESSION['logsInitialized'] = true;
     }
@@ -340,7 +349,7 @@ NicerApp WebOS from Nicer Enterprises
         array_push($headers_list, array("name" => $name, "value" => $value));
     }
 
-    $fn = dirname(__FILE__).'/domainConfigs/'.$naWebOS->domain.'/apiKey.whatismybrowser.txt';
+    $fn = dirname(__FILE__).'/domainConfigs/'.$naWebOS->domainFolder.'/apiKey.whatismybrowser.txt';
     $api_key = file_get_contents($fn);
     $headers = [
         'X-API-KEY: '.$api_key,
@@ -474,7 +483,7 @@ NicerApp WebOS from Nicer Enterprises
     //trigger_error ($msg, E_USER_NOTICE);
     //echo '<pre>'; var_dump ($_SERVER); die();
 
-    ini_set ('error_log', $_SESSION['na_error_log_filepath_txt']);
+    ini_set ('error_log', $na_error_log_filepath_txt);
 
     // at the *bottom* of this file (that's for good reasons),
     // you will find : require_once(dirname(__FILE__).'/apps/nicer.app/api.paymentSystems/boot.php');

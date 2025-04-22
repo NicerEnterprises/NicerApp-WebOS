@@ -1,3 +1,4 @@
+if (!na) var na = nicerapp = NicerApp_WebOS = {};
 
 na.apps = {
     loaded : {}
@@ -282,9 +283,9 @@ na.m = {
         return dateObj.getFullYear() + "-" +
             ("0" + (dateObj.getMonth()+1)).slice(-2) + "-" +
             ("0" + dateObj.getDate()).slice(-2) + "(" + dns[dateObj.getDay()] + ') ' +
-            ("0" + dateObj.getHours()).slice(-2) + "h" +
-            ("0" + dateObj.getMinutes()).slice(-2) + "m" +
-            ("0" + dateObj.getSeconds()).slice(-2) + "s" +
+            ("0" + dateObj.getHours()).slice(-2) + ":" +
+            ("0" + dateObj.getMinutes()).slice(-2) + ":" +
+            ("0" + dateObj.getSeconds()).slice(-2) +
             (
                 includeTimezone
                     ? ' (UTC' + (-1*dateObj.getTimezoneOffset())+'m)'
@@ -416,10 +417,6 @@ na.m = {
         return false;
     },
 
-    clearAllConditions : function () {
-        na.m.settings.waitForCondition = {};
-    },
-
 	waitForCondition : function (label, condition, callback, frequency, context) {
 		var
 		_fncn = 'na.m.waitForCondition(): ',
@@ -509,7 +506,7 @@ na.m = {
                     var k = allKeys[i];
                     if (!blacklistedEntries.includes(k)) entries.push(k);
                 };
-                delete na.site.settings.current.timeout_waitForCondition_reporting;
+                delete na.site.settings.timeout_waitForCondition_reporting;
 
                 if (entries.length > 0)
                     return 'na.m.waitForCondition() : currently waiting for conditions '+JSON.stringify(entries, null, 4);
@@ -524,6 +521,7 @@ na.m = {
 
     walkArray : function (rt, a, keyCallback, valueCallback, callKeyForValues, callbackParams, k, level, path) {
         if (!path) path = '';
+        if (typeof level=='undefined') level = 1;
         if (typeof a !== 'object') {
             //debugger;
         } else {
@@ -540,11 +538,12 @@ na.m = {
                     v : v,
                     params : callbackParams
                 };
-                if (typeof v=='object' && v!==null && typeof v.length=='number') continue;
+                //if (typeof v=='object' && v!==null && typeof v.length=='number') continue;
                 if (typeof keyCallback=='function' && (callKeyForValues || typeof v==='object')) keyCallback (cd);
                 if (typeof v==='object') {
                     cd.type = 'value';
                     if (typeof valueCallback=='function') valueCallback(cd);
+
                     na.m.walkArray (rt, a[k], keyCallback, valueCallback, callKeyForValues, callbackParams, k, level+1, path+'/'+k);
                 } else {
                     cd.type = 'value';
@@ -1267,7 +1266,7 @@ na.m = {
 
     HTMLidle : function(ctx) {
 		var
-		c = na.site.settings.current,
+		s = na.site.settings,
 		r = (
             na.m.desktopIdle()
 
@@ -1275,11 +1274,11 @@ na.m = {
             //  any <SCRIPT SRC="https://someSite.tld/script.js"> being loaded into my <HEAD> HTML section
 
             &&
-                c.scriptsToLoad > 0
-                ? c.scriptsLoaded === true || c.scriptsLoaded <= c.scriptsToLoad
-                : c.scriptsLoaded
+                s.scriptsToLoad > 0
+                ? s.scriptsLoaded === true || s.scriptsLoaded <= s.scriptsToLoad
+                : true//s.scriptsLoaded
 
-            && !c.startingApps
+            && !s.startingApps
 
             // no na.apps.loaded[appID].settings.loadedIn[divID] currently has
             //  any <SCRIPT SRC="https://someSite.tld/script.js"> with empty content

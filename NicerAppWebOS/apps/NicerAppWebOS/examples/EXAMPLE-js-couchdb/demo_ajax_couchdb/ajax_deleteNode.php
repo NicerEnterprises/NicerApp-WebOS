@@ -22,7 +22,7 @@ global $naWebOS;
 $naWebOS = new NicerAppWebOS();
 $naWebOS->init();
 
-$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
 $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
 
 $cdb = new Sag($cdbConfig['domain'], $cdbConfig['port']);
@@ -38,7 +38,7 @@ $doc = array (
 );
 try { $call = $cdb->get ($_POST['id']); } catch (Exception $e) { cdb_error (404, $e, 'Could not find record'); exit(); };
 
-$root = realpath(dirname(__FILE__).'/../../../').'/siteData/'.$naWebOS->domain.'/';
+$root = realpath(dirname(__FILE__).'/../../../').'/siteData/'.$naWebOS->domainFolder.'/';
 $path = $root.$_POST['currPath'];
 $xec = 'rm -rf "'.$path.'"';
 exec ($xec, $output, $result);

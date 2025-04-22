@@ -87,7 +87,7 @@ try { $call = $cdb->post($recordToAdd); } catch (Exception $e) {
 }
 
 
-$folder = $rootPath.'/siteData/'.$naWebOS->domain.'/'.$_POST['relFilePath'].'/'.$textFinal;
+$folder = $rootPath.'/siteData/'.$naWebOS->domainFolder.'/'.$_POST['relFilePath'].'/'.$textFinal;
 
     global $filePerms_ownerUser;
     global $filePerms_ownerGroup;

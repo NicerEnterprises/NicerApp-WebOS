@@ -72,7 +72,7 @@ if (!array_key_exists('rootURL', $_GET)) $_GET['rootURL'] = dirname(dirname(dirn
 */
 
 global $naWebOS;
-define ('SA_WEB', 'https://'.$naWebOS->domain);
+define ('SA_WEB', 'https://'.$naWebOS->domainFolder);
 ?>
 		<title><?php readfile (dirname(__FILE__).'/index.php.title.txt');?></title>
 		<?php require (dirname(__FILE__).'/index.php.meta.php');?>

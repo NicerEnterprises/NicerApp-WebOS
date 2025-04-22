@@ -14,9 +14,9 @@ use Defuse\Crypto\Crypto;
     global $naWebOS;
     $naWebOS = new NicerAppWebOS();
     $naWebOS->init();
-    $cdbDomain = str_replace('.','_',$naWebOS->domain);
+    $cdbDomain = str_replace('.','_',$naWebOS->domainFolder);
 
-    $couchdbConfigFilepath = realpath(dirname(__FILE__)).'/../../../domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+    $couchdbConfigFilepath = realpath(dirname(__FILE__)).'/../../../domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
     $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
     //var_dump ($cdbConfig); echo PHP_EOL;
 

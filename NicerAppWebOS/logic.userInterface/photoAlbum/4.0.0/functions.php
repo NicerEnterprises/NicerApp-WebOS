@@ -11,8 +11,8 @@ function naPhotoAlbum ($cmd=null) {
 
     
     
-    $baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domain;
-    $baseDir = $root.'/NicerAppWebOS/siteData/'.$naWebOS->domain;
+    $baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domainFolder;
+    $baseDir = $root.'/NicerAppWebOS/siteData/'.$naWebOS->domainFolder;
     $targetDir = realpath($baseDir.'/'.$cmd['mediaFolder']);
     $thumbDir = $targetDir.'/thumbs';
     

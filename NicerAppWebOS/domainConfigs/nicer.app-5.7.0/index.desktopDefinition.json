@@ -1,0 +1,70 @@
+{
+    "negotiateOptions" : [
+        {
+            "mode" : 0,
+            "#siteTaskbar" : {
+                "snapTo" : [
+                    { "element" : "body", "edge" : "bottom" },
+                    { "element" : "body", "edge" : "left" }
+                ],
+                "offsetY" : 5
+            }
+        }, {
+        "conditions" : [ { "jsVar" : "na.d.s.visibleDivs", "jsVarIncludes" : "#siteToolbarThemeEditor" } ],
+        "conditionsMet" : {
+           "mode" : 0,
+            "#siteToolbarThemeEditor" : {
+               "snapTo" : [
+                    {"element" : "body","edge" : "top" },
+                    {"element" : "body","edge" : "left" }
+                ],
+               "growTo" : "maxY",
+                "growToLimits" : {
+                    "conditions" : [
+                        {
+                            "jsVar" : "na.d.s.visibleDivs",
+                            "jsVarIncludes" : "#siteTaskbar"
+                        },
+                        {
+                            "htmlSelector" : "#siteTaskbar",
+                            "cssPropertyName" : "display",
+                            "isNotExactly" : "none"
+                        }
+                    ],
+                    "conditionsMet" : [{"element" : "#siteTaskbar","edge" : "top" }],
+                    "conditionsFailed" : []
+                }
+            }
+        },
+        "conditionsFailed" : {}
+    }, {
+        "conditions" : [
+            {
+                "jsVar" : "na.d.s.visibleDivs",
+                "jsVarIncludes" : "#siteContent"
+            }
+        ],
+        "conditionsMet" : {
+            "#siteContent" : {
+               "mode" : 1,
+               "snapTo" : {
+                    "conditions" : [ { "jsVar" : "na.d.s.visibleDivs", "jsVarIncludes" : "#siteToolbarThemeEditor" } ],
+                    "conditionsMet" : [
+                        {"element" : "body","edge" : "top" },
+                        {"element" : "#siteToolbarThemeEditor","edge" : "right" }
+                    ],
+                    "conditionsFailed" : [
+                        {"element" : "body","edge" : "top" },
+                        {"element" : "body","edge" : "left" }
+                    ]
+                },
+                "growTo" : "max",
+                "growToLimits" : [
+                    { "element" : "#siteTaskbar", "edge" : "top" }
+                ]
+            }
+        },
+        "conditionsFailed" : {}
+    }
+    ]
+}

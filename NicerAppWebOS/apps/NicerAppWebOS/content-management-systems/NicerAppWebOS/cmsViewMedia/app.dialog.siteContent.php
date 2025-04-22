@@ -25,7 +25,7 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
 global $naWebOS;
 
 /*
-$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
 //var_dump ($couchdbConfigFilepath); exit();
 $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
 
@@ -43,8 +43,8 @@ echo $call->body->document;
 $fn = $view['cmsViewMedia']['filename'];
 
 if (substr($view['cmsViewMedia']['basePath'],0,1)!=='/') {
-    $baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domain.'/';
-    $baseDir = $root.'/NicerAppWebOS/siteData/'.$naWebOS->domain.'/';
+    $baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domainFolder.'/';
+    $baseDir = $root.'/NicerAppWebOS/siteData/'.$naWebOS->domainFolder.'/';
 } else {
     if (
         !array_key_exists('relPath1',$_GET)

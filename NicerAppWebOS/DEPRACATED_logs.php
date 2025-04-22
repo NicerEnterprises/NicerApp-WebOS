@@ -19,7 +19,7 @@ if (
 ) die('403 Forbidden.');
 
 if (array_key_exists('file', $_GET)) {
-    $fp = '/var/www/'.$naWebOS->domain.'/NicerAppWebOS/siteLogs/'.$_GET['file'];
+    $fp = '/var/www/'.$naWebOS->domainFolder.'/NicerAppWebOS/siteLogs/'.$_GET['file'];
     //echo file_get_contents($fp); die();
     $html = file_get_contents($fp).'<script type="text/javascript">na.site.settings.current.loadingApps = false; na.site.settings.current.running_loadTheme = false; setTimeout (na.hms.startProcessing, 1000); na.site.transformLinks()</script>';
 
@@ -32,7 +32,7 @@ if (array_key_exists('file', $_GET)) {
 
     //echo '<pre>'; var_dump ($_SERVER); die();
     if (
-        $_SERVER['SCRIPT_FILENAME']!=='/var/www/'.$naWebOS->domain.'/NicerAppWebOS/index.php'
+        $_SERVER['SCRIPT_FILENAME']!=='/var/www/'.$naWebOS->domainFolder.'/NicerAppWebOS/index.php'
     ) {
         echo $html;
     } else {
@@ -49,7 +49,7 @@ if (array_key_exists('file', $_GET)) {
     asort($files);
     $html = '';
     foreach ($files as $i => $fp) {
-        $fp2 = str_replace('/var/www/'.$naWebOS->domain.'/NicerAppWebOS/siteLogs/', '', $fp);
+        $fp2 = str_replace('/var/www/'.$naWebOS->domainFolder.'/NicerAppWebOS/siteLogs/', '', $fp);
         $url = '/view/logs?file='.$fp2;
         $html .= '<a href="'.$url.'">'.$fp.'</a><br/>';
     }

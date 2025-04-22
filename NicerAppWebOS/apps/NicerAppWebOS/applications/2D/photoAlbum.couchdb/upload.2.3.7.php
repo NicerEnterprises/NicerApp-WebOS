@@ -52,7 +52,7 @@ if ($debug) { echo '$relativePath='; var_dump ($relativePath); echo PHP_EOL.PHP_
 
 $targetDir = 
         realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'../siteData/')
-        .DIRECTORY_SEPARATOR.$naWebOS->domain.DIRECTORY_SEPARATOR.$_GET['basePath']
+        .DIRECTORY_SEPARATOR.$naWebOS->domainFolder.DIRECTORY_SEPARATOR.$_GET['basePath']
         .$relativePath;
 if ($debug) { echo '$targetDir='; var_dump ($targetDir); echo PHP_EOL.PHP_EOL; }
     

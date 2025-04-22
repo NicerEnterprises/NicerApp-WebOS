@@ -20,7 +20,7 @@ global $naWebOS;
 //$naWebOS = new NicerAppWebOS();
 //$naWebOS->init();
 /*
-$couchdbConfigFilepath = $rootpath.'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+$couchdbConfigFilepath = $rootpath.'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
 $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
 
 if ($debug) { echo 'info : '.__FILE__.' : $debug = true.<br/>'.PHP_EOL;  }

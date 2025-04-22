@@ -23,6 +23,6 @@ global $naWebOS;
 $naWebOS = new NicerAppWebOS();
 $naWebOS->init();
 
-$file = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domain.'/app.'.$view['diskText']['id'].'.dialog.siteContent.php';
+$file = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domainFolder.'/app.'.$view['diskText']['id'].'.dialog.siteContent.php';
 echo execPHP($file);
 ?>

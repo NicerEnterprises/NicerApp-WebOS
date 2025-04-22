@@ -6,7 +6,7 @@ $debug = false;
 if ($debug) { echo 'info : '.__FILE__.' : $debug = true.<br/>'.PHP_EOL;  }
 
 global $naWebOS;
-$cdbDomain = $naWebOS->domainForDB;
+$cdbDomain = $naWebOS->domainFolderForDB;
 
 $cdb = $naWebOS->dbs->findConnection('couchdb')->cdb;
 

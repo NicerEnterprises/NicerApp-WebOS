@@ -23,7 +23,7 @@ $doc = array (
 );
 try { $call = $cdb->get ($_POST['id']); } catch (Exception $e) { cdb_error (404, $e, 'Could not find record'); exit(); };
 
-$root = realpath(dirname(__FILE__).'/../../../').'/siteData/'.$naWebOS->domain.'/';
+$root = realpath(dirname(__FILE__).'/../../../').'/siteData/'.$naWebOS->domainFolder.'/';
 $path = $root.$_POST['currPath'];
 $xec = 'rm -rf "'.$path.'"';
 exec ($xec, $output, $result);

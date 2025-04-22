@@ -66,7 +66,7 @@ class PHPCookie implements CookieInterface
         $this->name = $name;
         $this->expireTime = $expireTime;
         $this->path = $path;
-        $this->domain = $domain;
+        $this->domainFolder = $domain;
         $this->secure = $secure;
         $this->httpOnly = $httpOnly;
         $this->setSameSite($sameSite);
@@ -88,7 +88,7 @@ class PHPCookie implements CookieInterface
         setcookie($this->name, $value, [
             'expires'  => $expire,
             'path'     => $this->path,
-            'domain'   => $this->domain,
+            'domain'   => $this->domainFolder,
             'secure'   => $this->secure,
             'httponly' => $this->httpOnly,
             'samesite' => $this->sameSite,
@@ -115,7 +115,7 @@ class PHPCookie implements CookieInterface
         setcookie($this->name, "", [
             'expires'  => $expire,
             'path'     => $this->path,
-            'domain'   => $this->domain,
+            'domain'   => $this->domainFolder,
             'secure'   => $this->secure,
             'httponly' => $this->httpOnly,
             'samesite' => $this->sameSite,
@@ -175,7 +175,7 @@ class PHPCookie implements CookieInterface
      */
     public function getDomain()
     {
-        return $this->domain;
+        return $this->domainFolder;
     }
 
     /**
@@ -183,7 +183,7 @@ class PHPCookie implements CookieInterface
      */
     public function setDomain($domain)
     {
-        $this->domain = $domain;
+        $this->domainFolder = $domain;
     }
 
     /**

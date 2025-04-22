@@ -24,7 +24,7 @@ function tvGetTableRows() {
         $naWebOS->init();
     }
 
-    $couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+    $couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
     $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
     if ($debug) { 
         echo '$couchdbConfigFilepath='; var_dump ($couchdbConfigFilepath); echo PHP_EOL;
@@ -36,7 +36,7 @@ function tvGetTableRows() {
     $cdb->useSSL($cdbConfig['useSSL']);
     $cdb->login($cdbConfig['adminUsername'], $cdbConfig['adminPassword']);
     
-    $cdbDomain = $naWebOS->domain;
+    $cdbDomain = $naWebOS->domainFolder;
     $cdbDomain = str_replace ('.', '_', $cdbDomain);
     $dbName = $cdbDomain.'___themeData';
 

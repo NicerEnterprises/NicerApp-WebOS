@@ -22,7 +22,7 @@ global $naWebOS;
 $naWebOS = new NicerAppWebOS();
 $naWebOS->init();
 
-$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
 $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
 
 $cdb = new Sag($cdbConfig['domain'], $cdbConfig['port']);

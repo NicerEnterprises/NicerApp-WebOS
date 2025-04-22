@@ -21,7 +21,7 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
 }*/
 
 global $naWebOS;
-$cdbDomain = $naWebOS->domainForDB;
+$cdbDomain = $naWebOS->domainFolderForDB;
 
 $cdb = $naWebOS->dbsAdmin->findConnection('couchdb')->cdb;
 

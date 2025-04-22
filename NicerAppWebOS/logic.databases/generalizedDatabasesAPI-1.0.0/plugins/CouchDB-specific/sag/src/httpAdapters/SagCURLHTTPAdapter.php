@@ -34,13 +34,16 @@ class SagCURLHTTPAdapter extends SagHTTPAdapter {
   }
 
   public function procPacket($method, $url, $data = null, $reqHeaders = array(), $specialHost = null, $specialPort = null) {
+    global $na_error_log_filepath_html;
+    global $na_error_log_filepath_txt;
+
     global $naWebOS;
     // the base cURL options
     $url = (
       isset($_SESSION)
       && array_key_exists('cdb_loginName', $_SESSION)
       && array_key_exists('cdb_pw', $_SESSION)
-      ? "{$this->proto}://".$naWebOS->domainForDB.'___'.preg_replace('/.*___/','',str_replace(' ','_',str_replace('.','__',$_SESSION['cdb_loginName']))).":".$_SESSION['cdb_pw']."@{$this->host}:{$this->port}{$url}"
+      ? "{$this->proto}://".$naWebOS->domainFolderForDB.'___'.preg_replace('/.*___/','',str_replace(' ','_',str_replace('.','__',$_SESSION['cdb_loginName']))).":".$_SESSION['cdb_pw']."@{$this->host}:{$this->port}{$url}"
       : "{$this->proto}://{$this->host}:{$this->port}{$url}"
     );
     //var_dump ('t3322'); var_dump ($url); die();
@@ -171,7 +174,7 @@ class SagCURLHTTPAdapter extends SagHTTPAdapter {
     //if (is_object($naWebOS->dbs)) { echo '<pre>'; var_dump ($naWebOS->dbs->findConnection('couchdb')->username); echo '</pre>'; }
 
     $dbg = [
-      1 => (isset($_SESSION['na_error_log_filepath_html'])),
+      1 => (isset($na_error_log_filepath_html)),
       2 => (is_object($naWebOS->dbs)),
       3 => (is_object($naWebOS->dbs) ? $naWebOS->dbs->findConnection('couchdb')->username : 'NOTSETYET'),
       4 => $this->debug
@@ -235,7 +238,7 @@ class SagCURLHTTPAdapter extends SagHTTPAdapter {
       $ret = str_replace('\n','<br/>',$ret);
       $ret = str_replace(" ",'&nbsp;',$ret);
       */
-      //if (!is_null($_SESSION['na_error_log_filepath_html'])) {
+      //if (!is_null($na_error_log_filepath_html)) {
         $dbgOpts = json_decode(json_encode($optsTranslated), true);
         if (array_key_exists('CURLOPT_POSTFIELDS', $dbgOpts))
           $dbgOpts = [
@@ -262,7 +265,7 @@ class SagCURLHTTPAdapter extends SagHTTPAdapter {
           .'</div>';
         */
         $_SESSION['dbgNum2']++;
-        //file_put_contents ($_SESSION['na_error_log_filepath_html'], $dbgHTML, FILE_APPEND);
+        //file_put_contents ($na_error_log_filepath_html, $dbgHTML, FILE_APPEND);
 
         $dbgTxt =
           'curl options = '
@@ -273,7 +276,7 @@ class SagCURLHTTPAdapter extends SagHTTPAdapter {
         //echo '<pre>t33321:';var_dump (debug_backtrace());
         //echo '<pre>t120A:'.json_encode($_SESSION,JSON_PRETTY_PRINT).'</pre>';
 
-        $folderName = dirname($_SESSION['na_error_log_filepath_txt']);
+        $folderName = dirname($na_error_log_filepath_txt);
         //echo '<pre>t120B:'.json_encode($folderName,JSON_PRETTY_PRINT).'</pre>'; exit();
         if (!file_exists($folderName) || !is_dir($folderName)) {
           global $filePerms_ownerUser;
@@ -282,15 +285,15 @@ class SagCURLHTTPAdapter extends SagHTTPAdapter {
           try {
             createDirectoryStructure ($folderName.'/');
           } catch (Exception $e) {
-            echo '<H1>NicerAppWebOS Error(3)</H1><p><b>Could not create folder structure '.json_encode($_SESSION['na_error_log_filepath_txt']).'</b></p>';
+            echo '<H1>NicerAppWebOS Error(3)</H1><p><b>Could not create folder structure '.json_encode($na_error_log_filepath_txt).'</b></p>';
             //exit();
           }
         }
         if (
           array_key_exists('na_error_log_filepath_txt', $_SESSION)
-          && is_string($_SESSION['na_error_log_filepath_txt'])
-          && $_SESSION['na_error_log_filepath_txt'] !== ''
-        ) file_put_contents ($_SESSION['na_error_log_filepath_txt'], $dbgTxt, FILE_APPEND);
+          && is_string($na_error_log_filepath_txt)
+          && $na_error_log_filepath_txt !== ''
+        ) file_put_contents ($na_error_log_filepath_txt, $dbgTxt, FILE_APPEND);
       //}
 
       global $phpScript_startupTime;

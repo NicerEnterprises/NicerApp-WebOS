@@ -26,7 +26,7 @@ global $naWebOS;
 $naWebOS = new NicerAppWebOS();
 $naWebOS->init();
 
-$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
 $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
 
 $cdb = new Sag($cdbConfig['domain'], $cdbConfig['port']);
@@ -39,15 +39,15 @@ $username = str_replace('.', '_', $username);
 $pw = array_key_exists('cdb_pw',$_SESSION) ? $_SESSION['cdb_pw'] : $cdbConfig['password'];
 $cdb->login($username, $pw);
 
-$cdb_domain = $naWebOS->domain;
+$cdb_domain = $naWebOS->domainFolder;
 $cdb_domain = str_replace('.','_',$cdb_domain);
 
 $databases = array (
     $cdb_domain.'___cms_tree',
     $cdb_domain.'___cms_tree__role___guests',
     $cdb_domain.'___cms_tree__user___'.strtolower($username)
-    //$naWebOS->domain.'___cms_tree__user__administrator',
-    //$naWebOS->domain.'___cms_tree__user__guest'
+    //$naWebOS->domainFolder.'___cms_tree__user__administrator',
+    //$naWebOS->domainFolder.'___cms_tree__user__guest'
 );
 
 $data = array();

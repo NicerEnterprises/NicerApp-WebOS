@@ -151,7 +151,7 @@ $output2 = preg_replace('/\.mw\-parser\-output \#mp\-left \{.*?\}/','',$output2)
 
 //echo '<pre>';
 //die();
-$output2 = str_replace('</body>', '<link type="text/css" rel="StyleSheet" href="https://'.$naWebOS->domain.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/index.css"/><link type="text/css" rel="StyleSheet" href="https://'.$naWebOS->domain.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/index.dark.css"/><link type="text/css" rel="StyleSheet" href="https://'.$naWebOS->domain.'/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/3rd-party-site.wikipedia.org/index.css"/></body>', $output2);
+$output2 = str_replace('</body>', '<link type="text/css" rel="StyleSheet" href="https://'.$naWebOS->domainFolder.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/index.css"/><link type="text/css" rel="StyleSheet" href="https://'.$naWebOS->domainFolder.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/index.dark.css"/><link type="text/css" rel="StyleSheet" href="https://'.$naWebOS->domainFolder.'/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/3rd-party-site.wikipedia.org/index.css"/></body>', $output2);
 
 
 echo $output2;

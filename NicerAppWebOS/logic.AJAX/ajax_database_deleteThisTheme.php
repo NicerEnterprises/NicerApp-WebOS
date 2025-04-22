@@ -13,7 +13,7 @@ require_once ($rootPathNA.'/boot.php');
         ],
         'fields' => [ '_id', '_rev' ]
     ];
-    $cdbDomain = $naWebOS->domainForDB; //str_replace('.','_',$naWebOS->domain);
+    $cdbDomain = $naWebOS->domainFolderForDB; //str_replace('.','_',$naWebOS->domainFolder);
     $dataSetName = $cdbDomain.'___themes';
     $cdb->setDatabase ($dataSetName);
     try {

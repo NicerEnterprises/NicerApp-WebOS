@@ -16,8 +16,8 @@ global $nicerapp_bar; // backup and restore class instance.
 $nicerapp_bar = new class_NicerApp_backupAndRestore($nicerapp_bar_factorySettings);
 
 
-$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../..').'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
-$couchdbConfigExampleFilepath = realpath(dirname(__FILE__).'/../../../..').'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/couchdb.EXAMPLE.json';
+$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../..').'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
+$couchdbConfigExampleFilepath = realpath(dirname(__FILE__).'/../../../..').'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.EXAMPLE.json';
 if (!file_exists($couchdbConfigFilepath)) {
     trigger_error ('file "'.$couchdbConfigFilepath.'" does not exist. see "'.$couchdbConfigExampleFilepath.'" for an example template file.', E_USER_ERROR);
 }
@@ -35,7 +35,7 @@ $userID_roles = $cdb->getSession()->body->roles;
 $cdbFunctional = true;
 if ($cdbFunctional) {
 
-    $dbName = $naWebOS->domain.'___backup_and_restore';
+    $dbName = $naWebOS->domainFolder.'___backup_and_restore';
     
     $dbName = $cdb->dataSetName ($dbName);
     

@@ -37,7 +37,7 @@
             
             <span class="wms_header">Local IMAP server settings</span><br/>
             <label class="wms_label" for="wms_localIMAP_domain">Server name : </label>
-            <input id="wms_localIMAP_domain" name="wms_localIMAP_domain" type="text" value="<?php echo $naWebOS->domain?>"/><br/>
+            <input id="wms_localIMAP_domain" name="wms_localIMAP_domain" type="text" value="<?php echo $naWebOS->domainFolder?>"/><br/>
             
             <label class="wms_label" for="wms_localIMAP_port">Port : </label>
             <input id="wms_localIMAP_port" name="wms_localIMAP_port" type="number" min="0" max="65535" value="993"/><br/>
@@ -87,7 +87,7 @@
             
             <span class="wms_header">Local SMTP server settings</span><br/>
             <label class="wms_label" for="wms_smtp_domain">Server name : </label>
-            <input id="wms_smtp_domain" name="wms_smtp_domain" type="text" value="<?php echo $naWebOS->domain?>"/><br/>
+            <input id="wms_smtp_domain" name="wms_smtp_domain" type="text" value="<?php echo $naWebOS->domainFolder?>"/><br/>
             
             <label class="wms_label" for="wms_smtp_requiresAuthentication">Requires authentication : </label>
             <input id="wms_smtp_requiresAuthentication" name="wms_smtp_requiresAuthentication" type="checkbox" checked/><br/>

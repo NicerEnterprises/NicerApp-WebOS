@@ -155,27 +155,27 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         global $naWebOS;
         $users = safeLoadJSONfile(
             realpath(dirname(__FILE__).'/../../../..')
-            .'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/database.users.json.php'
+            .'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/database.users.json.php'
         );
         //echo '<pre style="color:skyblue;background:rgba(0,50,0,0.7);">'; var_dump ($users); echo '</pre>'; die();
         //$users = json_decode($usersJSON, true);
         $groups = safeLoadJSONfile(
             realpath(dirname(__FILE__).'/../../../..')
-            .'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/database.groups.json.php'
+            .'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/database.groups.json.php'
         );
         //$groups = json_decode($groupsJSON, true);
 
-        $clientUsersJSONfn = //dirname(__FILE__).'/domainConfigs/'.$naWebOS->domain.'/database.users.CLIENT.json.php';
+        $clientUsersJSONfn = //dirname(__FILE__).'/domainConfigs/'.$naWebOS->domainFolder.'/database.users.CLIENT.json.php';
             realpath(dirname(__FILE__).'/../../../..')
-            .'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/database.users.CLIENT.json.php';
+            .'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/database.users.CLIENT.json.php';
 
         $clientUsersJSON = (!file_exists($clientUsersJSONfn) ? '' : require_return($clientUsersJSONfn));
         $clientUsers = json_decode ($clientUsersJSON, true);
         //echo '<pre style="color:skyblue;background:rgba(0,50,0,0.7);">'; var_dump ($clientUsers); echo '</pre>'; die();
 
-        $clientGroupsJSONfn = //dirname(__FILE__).'/domainConfigs/'.$naWebOS->domain.'/database.groups.CLIENT.json.php';
+        $clientGroupsJSONfn = //dirname(__FILE__).'/domainConfigs/'.$naWebOS->domainFolder.'/database.groups.CLIENT.json.php';
             realpath(dirname(__FILE__).'/../../../..')
-            .'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/database.groups.CLIENT.json.php';
+            .'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/database.groups.CLIENT.json.php';
 
 
         $clientGroupsJSON = (!file_exists($clientGroupsJSONfn) ? '' : require_return($clientGroupsJSONfn));
@@ -265,7 +265,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
     public function dataSetName ($dbSuffix) {
         global $naWebOS;
-        $domainName = $this->dataSetName_domainName($naWebOS->domain);
+        $domainName = $this->dataSetName_domainName($naWebOS->domainFolder);
         $dataSetName = $domainName.'___'.str_replace('.','_',$dbSuffix);
         $dataSetName = strtolower($dataSetName);
         return $dataSetName;
@@ -277,7 +277,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
     public function translate_plainUserName_to_couchdbUserName ($un) {
         global $naWebOS;
-        $dn = $this->dataSetName_domainName($naWebOS->domain);
+        $dn = $this->dataSetName_domainName($naWebOS->domainFolder);
         $un = str_replace($dn.'___', '', $un);
         return $dn.'___'.str_replace(' ','__',str_replace('.', '_', $un));
     }
@@ -288,7 +288,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
     public function translate_plainGroupName_to_couchdbGroupName ($gn) {
         global $naWebOS;
-        $dn = $this->dataSetName_domainName($naWebOS->domain);
+        $dn = $this->dataSetName_domainName($naWebOS->domainFolder);
         //echo '<pre style="color:red">'; var_dump ($dn); echo '</pre>';
         $gn = str_replace($dn.'___', '', $gn);
         //echo '<pre style="color:purple">'; var_dump ($dn); echo '</pre>';
@@ -306,7 +306,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         $g2 = [];
         //echo '<pre>633:'; var_dump ($users); die();
         foreach ($users as $userName => $userDoc) {
-            $dn = $this->dataSetName_domainName($naWebOS->domain);
+            $dn = $this->dataSetName_domainName($naWebOS->domainFolder);
             $uid = 'org.couchdb.user:'.$this->translate_plainUserName_to_couchdbUserName($userName);
             //var_dump ($uid); die();
             $got = true;
@@ -778,7 +778,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
                     ], css_to_array (file_get_contents(
                         realpath(dirname(__FILE__).'/../../../..')
                         .'/NicerAppWebOS/themes/nicerapp_default_siteContent-almost-transparent.css'
-                    ))
+                    )), []
                 )
             )
 /*
@@ -814,7 +814,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
                     '/#site([\w]+)[\s\.\>\#\w]*/' ], css_to_array (file_get_contents(
                         realpath(dirname(__FILE__).'/../../../..')
                         .'/NicerAppWebOS/themes/nicerapp_default_siteContent-almost-transparent.css'
-                    ))
+                    )), []
                 )
             )
 /*
@@ -851,14 +851,14 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
                     '/#site([\w]+)[\s\.\>\#\w]*/' ], css_to_array (file_get_contents(
                         realpath(dirname(__FILE__).'/../../../..')
                         .'/NicerAppWebOS/themes/nicerapp_default_siteContent-almost-transparent.css'
-                    ))
+                    )), []
                 ),
                 cssArray_seperate('App', [
                     '/\.vivid([\w]+)[\s\.\>\#\w]*/' ,
                     '/#app__musicPlayer__([\w]+)[\s\.\>\#\w]*/'
                 ], css_to_array (file_get_contents(
                         realpath(dirname(__FILE__).'/../../../..').'/NicerAppWebOS/themes/nicerapp_app.2D.musicPlayer-v2.css'
-                    ))
+                    )), []
                 )
             )
         );
@@ -887,14 +887,14 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
                     '/#site([\w]+)[\s\.\>\#\w]*/' ], css_to_array (file_get_contents(
                         realpath(dirname(__FILE__).'/../../../..')
                         .'/NicerAppWebOS/themes/nicerapp_default_siteContent-almost-transparent.css'
-                    ))
+                    )),[]
                 ),
                 cssArray_seperate('App', [
                     '/\.vivid([\w]+)[\s\.\>\#\w]*/' ,
                     '/#app__musicPlayer__([\w]+)[\s\.\>\#\w]*/'
                 ], css_to_array (file_get_contents(
                         realpath(dirname(__FILE__).'/../../../..').'/NicerAppWebOS/themes/nicerapp_app.2D.musicPlayer-v2.css'
-                    ))
+                    )), []
                 )
             )
         );
@@ -1499,7 +1499,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         $r = '';
 
         global $naWebOS; global $naErr; global $naLog;
-        $cdbDomain = str_replace('.','_',$naWebOS->domain);
+        $cdbDomain = str_replace('.','_',$naWebOS->domainFolder);
         $cdb = $this->cdb;
 
 //echo '<pre style="background:blue;color:white;">'; var_dump ($_COOKIE);echo '</pre>';
@@ -1541,7 +1541,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
                 $fail = 'Could not login to database yet, not even under a "Guest" account for this domain.';
 
                 try {
-                    $cdb_authSession_cookie = $cdb->login($naWebOS->domainForDB.'___'.$username, $pw, Sag::$AUTH_COOKIE);
+                    $cdb_authSession_cookie = $cdb->login($naWebOS->domainFolderForDB.'___'.$username, $pw, Sag::$AUTH_COOKIE);
                     $r .= 'status : Success';
                 } catch (Throwable $e) {
                     $r .= $fail;
@@ -1566,7 +1566,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             //var_dump ($sessionData); exit();
             $_SESSION['cdb_loginName'] = $sessionData->body->userCtx->name;
             $userID = $sessionData->body->userCtx->name;
-            if (count($sessionData->body->userCtx->roles)>0) $r .= 'status : Success'; else $r .= 'Browser cookies and server hosted credentials do not contain (valid) database connection settings.<br/>(problem #3 - the cdb_authSession_cookie and AuthSession cookies are both invalid and the settings in .../NicerAppWebOS/domainConfigs/$naWebOS->DOMAIN/couchdb.json are invalid as well).';
+            if (count($sessionData->body->userCtx->roles)>0) $r .= 'status : Success'; else $r .= 'Browser cookies and server hosted credentials do not contain (valid) database connection settings.<br/>(problem #3 - the cdb_authSession_cookie and AuthSession cookies are both invalid and the settings in .../NicerAppWebOS/domainConfigs/$naWebOS->domainFolder/couchdb.json are invalid as well).';
 
 
         }
@@ -1835,7 +1835,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
     public function getSettingsPositions() {
         global $naWebOS; global $naErr; global $naLog;
         $naLogEntries = [];
-        $cdbDomain = str_replace('.','_',$naWebOS->domain);
+        $cdbDomain = str_replace('.','_',$naWebOS->domainFolder);
         $cdb = $this->cdb;
         //echo '<pre>'; var_dump ($_POST);
         $dataSetName = strtolower($cdbDomain.'___'.$_POST['dbType']);
@@ -1897,7 +1897,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         $fncn = $this->cn.'->setSettingsPositions()';
 
         global $naWebOS; global $naErr; global $naLog;
-        $cdbDomain = str_replace('.','_',$naWebOS->domain); global $cdbDomain;
+        $cdbDomain = str_replace('.','_',$naWebOS->domainFolder); global $cdbDomain;
 
         $dataSetName = $cdbDomain.'___'.$_POST['dbType'];
         $cdb = $naWebOS->dbs->findConnection('couchdb')->cdb;

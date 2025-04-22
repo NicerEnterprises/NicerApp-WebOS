@@ -27,11 +27,11 @@ error_reporting(E_ALL);
     $naWebOS = new NicerAppWebOS();
     $naWebOS->init();
     
-    $baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domain;
-    $baseDir = $root.'/siteData/'.$naWebOS->domain;
+    $baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domainFolder;
+    $baseDir = $root.'/siteData/'.$naWebOS->domainFolder;
     //echo '<pre style="color:white;">'; var_dump($baseDir); echo '</pre>'; exit();
     
-    $couchdbConfigFilepath = $root.'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+    $couchdbConfigFilepath = $root.'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
     $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
 
     $cdb = new Sag($cdbConfig['domain'], $cdbConfig['port']);

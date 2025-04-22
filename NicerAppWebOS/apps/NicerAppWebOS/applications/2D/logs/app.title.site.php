@@ -1,4 +1,4 @@
 <?php
 global $naWebOS;
-echo 'Log viewer on '.$naWebOS->domain;
+echo 'Log viewer on '.$naWebOS->domainFolder;
 ?>

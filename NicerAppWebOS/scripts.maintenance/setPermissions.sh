@@ -1,6 +1,6 @@
 #!/bin/bash
 
-myRoot=/var/www/nicer.app
+myRoot=/var/www/nicer.app-5.7.0
 
 echo "START OF $myRoot/NicerAppWebOS/scripts.maintenance/setPermissions.sh"
 
@@ -82,6 +82,7 @@ sudo echo "<Files \"*.txt\">Require all denied</Files>" > $ROOT_PATH/NicerAppWeb
 chown -R $NA_MAIN_USER:$NA_MAIN_GROUP $ROOT_PATH/NicerAppWebOS/siteCache
 sudo chmod -R $NA_USERDATA_PERMISSIONS $ROOT_PATH/NicerAppWebOS/siteCache
 sudo find $ROOT_PATH/NicerAppWebOS/siteCache -type d -exec chmod u+x,g+x {} \;
+sudo rm $ROOT_PATH/NicerAppWebOS/siteCache/getPageCSS*
 
 
 

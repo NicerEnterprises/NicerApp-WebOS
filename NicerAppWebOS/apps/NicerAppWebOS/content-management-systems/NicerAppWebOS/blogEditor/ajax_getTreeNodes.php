@@ -9,13 +9,13 @@ $username = preg_replace ('/.*___/', '', $username);
 $username = str_replace(' ', '__', $username);
 $username = str_replace('.', '_', $username);
 
-$cdb_domain = $naWebOS->domainForDB;
+$cdb_domain = $naWebOS->domainFolderForDB;
 $tables = array (
     $cdb_domain.'___cms_tree',
     $cdb_domain.'___cms_tree___role___guests',
     $cdb_domain.'___cms_tree___user___'.strtolower($username)
-    //$naWebOS->domain.'___cms_tree__user__administrator',
-    //$naWebOS->domain.'___cms_tree__user__guest'
+    //$naWebOS->domainFolder.'___cms_tree__user__administrator',
+    //$naWebOS->domainFolder.'___cms_tree__user__guest'
 );
 
 $data = array();

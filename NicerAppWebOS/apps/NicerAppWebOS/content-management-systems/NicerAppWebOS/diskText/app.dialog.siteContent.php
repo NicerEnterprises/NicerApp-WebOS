@@ -17,9 +17,9 @@ global $naWebOS;
 
 foreach ($view as $fp1 => $rec) {
     $rec = (array)$rec;
-    $fp1 = '/var/www/'.$naWebOS->domain.$fp1;
+    $fp1 = '/var/www/'.$naWebOS->domainFolder.$fp1;
     if (substr($rec['file'],0,1)=='/')
-        $fPath = '/var/www/'.$naWebOS->domain.$rec['file'];
+        $fPath = '/var/www/'.$naWebOS->domainFolder.$rec['file'];
     else
         $fPath = $fp1.'/'.$rec['file'];
     echo require_return ($fPath);

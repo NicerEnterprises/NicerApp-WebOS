@@ -35,7 +35,7 @@
     */
     $rootPath_vkdmd = realpath(dirname(__FILE__).'/../../../../../..');
     require_once ($rootPath_vkdmd.'/NicerAppWebOS/boot.php');
-    require_once ($rootPath_vkdmd.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/mainmenu.items.php');
+    require_once ($rootPath_vkdmd.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/mainmenu.items.php');
     global $naURLs;
     //var_dump ($naURLs);
 ?>

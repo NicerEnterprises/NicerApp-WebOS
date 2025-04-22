@@ -20,9 +20,9 @@ function nicer_app__webmail__recrypt ($username, $plaintextPassword, $newHash_co
     global $rootPath_cyslw;
     $naWebOS = new NicerAppWebOS();
     $naWebOS->init();
-    $cdbDomain = str_replace('.','_',$naWebOS->domain);
+    $cdbDomain = str_replace('.','_',$naWebOS->domainFolder);
 
-    $couchdbConfigFilepath = $rootPath_cyslw.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+    $couchdbConfigFilepath = $rootPath_cyslw.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
     $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
     //var_dump ($cdbConfig); echo PHP_EOL;
 

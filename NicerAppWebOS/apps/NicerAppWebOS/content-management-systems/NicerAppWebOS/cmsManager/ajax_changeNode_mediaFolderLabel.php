@@ -24,8 +24,8 @@ try { $call = $cdb->post($call->body); } catch (Exception $e) {
 }
 if ($debug) { echo '$call='; var_dump ($call); echo PHP_EOL.PHP_EOL; }
 
-$oldPath = realpath(dirname(__FILE__).'/../../../../..').'/siteData/'.$naWebOS->domain.'/'.$_POST['relFilePath'];
-$newPath = realpath(dirname(__FILE__).'/../../../../..').'/siteData/'.$naWebOS->domain.'/'.$_POST['newRelFilePath'];
+$oldPath = realpath(dirname(__FILE__).'/../../../../..').'/siteData/'.$naWebOS->domainFolder.'/'.$_POST['relFilePath'];
+$newPath = realpath(dirname(__FILE__).'/../../../../..').'/siteData/'.$naWebOS->domainFolder.'/'.$_POST['newRelFilePath'];
 $xec = 'mv "'.$oldPath.'" "'.$newPath.'"';
 exec ($xec, $output, $result);
 $dbg = array (

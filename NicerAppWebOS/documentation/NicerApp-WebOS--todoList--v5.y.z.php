@@ -1,6 +1,6 @@
 <?php
     global $naWebOS;
-    require_once ($naWebOS->basePath.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/pageHeader.php');
+    require_once ($naWebOS->basePath.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/pageHeader.php');
 ?>
 
 <h1 class="contentSectionTitle2"><span class="contentSectionTitle2_span">NicerApp WebOS Development Direction</span></h1><br/><br/>
@@ -45,7 +45,7 @@ But eventually yes, this WebOS will be a truly open market (at the technical and
             </div></li>
 
             <li class="todoList_l1"><div>(STALLED, awaiting completion of item 9.1 on this list)<br/>
-            Supply data from a HTML+CSS form (as a tabpage in the universal web theme editor) into <a href="https://github.com/NicerEnterprises/NicerApp-WebOS/blob/main/NicerAppWebOS/logic.business/class.core.WebsiteOperatingSystem-5.y.z.php#L1374" class="noPushState contentSectionTitle3_a" target="naGH_wos1088"><span class="contentSectionTitle3_span">css_keyframes_to_array() and css_animation_template_to_animation()</span></a>, colors to mix will be defined by two 'colorpicker' (3rd-party) pieces of JS.
+            Supply data from a HTML+CSS form (as a tabpage in the universal web theme editor) into <a href="https://github.com/NicerEnterprises/NicerApp-WebOS/blob/main/NicerAppWebOS/logic.business-5.8.z/class.core.WebsiteOperatingSystem-5.y.z.php#L1374" class="noPushState contentSectionTitle3_a" target="naGH_wos1088"><span class="contentSectionTitle3_span">css_keyframes_to_array() and css_animation_template_to_animation()</span></a>, colors to mix will be defined by two 'colorpicker' (3rd-party) pieces of JS.
             </div></li>
 
             <li class="todoList_l1"><div>(CURRENT) (2023 Nov,Dec) Extend the current limited permissions system to a full CMS, Web User Interfaced, permissions system for the WebOS.

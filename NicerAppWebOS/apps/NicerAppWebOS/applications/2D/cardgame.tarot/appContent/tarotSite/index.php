@@ -123,6 +123,7 @@ require_once (realpath(dirname(__FILE__).'/../../../../../../../..').'/NicerAppW
 		</div>
 		<div id="intro" class="text" style="display:none;">
 			<h1 class="nicerEnterprises_tarot_cardExplanation" id="pageTitle" style="text-shadow:2px 2px 1px rgba(0,0,0,0.7)">Free Tarot Reading (191 decks, 9 reading types)</h1>
+			<h2>For paid live-interactive card readings look no further than <a href="https://oranum.com/?referal-origin=nicer-dot-app-slash-tarot_looking-for-donation-back-of-around-1000-euros-per-year_see-my-Apps-Documentation-Company-Overview-page-at-nicer-dot-app-for-my-email-to-acquire-my-streetaddress" target="nicerAppWebOS-oranum">oranum.com</a></h2>
 			<script type="text/javascript">
 			/*
                 setTimeout(function() {

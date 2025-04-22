@@ -1,10 +1,74 @@
 <?php
-require_once(dirname(__FILE__).'/boot.php');
-require_once(dirname(__FILE__).'/3rd-party/vendor/autoload.php');
-use Birke\Rememberme\Authenticator;
-use Birke\Rememberme\Storage\FileStorage;
-use Defuse\Crypto\Key;
-use Defuse\Crypto\Crypto;
+//require_once(dirname(__FILE__).'/boot.php');
+//require_once(dirname(__FILE__).'/3rd-party/vendor/autoload.php');
+//use Birke\Rememberme\Authenticator;
+//use Birke\Rememberme\Storage\FileStorage;
+//use Defuse\Crypto\Key;
+//use Defuse\Crypto\Crypto;
+
+function timestampJSmodule ($js) {
+    $js = timestampJSmodule1 ($js);
+    $js = timestampJSmodule2 ($js);
+    return $js;
+}
+
+function timestampJSmodule1 ($js) {
+  $rt = realpath(dirname(__FILE__).'/..');
+  $preg = preg_match_all ('/from\s+[\'"](.*?)[\'"]/', $js, $matches);
+  $matches[2] = [];
+  $matches[3] = [];
+
+  foreach ($matches[1] as $idx => $relPath) {
+    $rp = str_replace('/NicerAppWebOS/ajax_getModule.php?f=','',$relPath);
+    if (strpos($rp,'&')===false) {
+        $m = filemtime($rt.$rp);
+        $matches[2][] = $rt.$rp;
+        $matches[3][] = $m;
+    } else {
+        $matches[2][] = $rt.$rp;
+        $matches[3][] = false;
+    }
+  }
+
+  foreach ($matches[1] as $idx => $relPath) {
+    if ($matches[3][$idx]!==false) {
+      $m = $matches[3][$idx];
+      $js = str_replace($relPath, $relPath.'&c='.date('Ymd-His',$m), $js);
+    }
+  }
+  //echo '<pre style="background:red;color:yellow;">'; var_dump($matches); echo '</pre>';
+
+  return $js;
+}
+
+function timestampJSmodule2 ($js) {
+  $rt = realpath(dirname(__FILE__).'/..');
+  $preg = preg_match_all ('/\(\s*[\'"](.*?)[\'"]\s*\)/', $js, $matches);
+  $matches[2] = [];
+  $matches[3] = [];
+
+  foreach ($matches[1] as $idx => $relPath) {
+    $rp = str_replace('/NicerAppWebOS/ajax_getModule.php?f=','',$relPath);
+    if (strpos($rp,'&')===false) {
+        $m = filemtime($rt.$rp);
+        $matches[2][] = $rt.$rp;
+        $matches[3][] = $m;
+    } else {
+        $matches[2][] = $rt.$rp;
+        $matches[3][] = false;
+    }
+  }
+
+  foreach ($matches[1] as $idx => $relPath) {
+    if ($matches[3][$idx]!==false) {
+      $m = $matches[3][$idx];
+      $js = str_replace($relPath, $relPath.'&c='.date('Ymd-His',$m), $js);
+    }
+  }
+  //echo '<pre style="background:red;color:white;">'; var_dump($matches); echo '</pre>';
+
+  return $js;
+}
 
 global $toArray;
 $toArray = function($x) use(&$toArray) {
@@ -16,12 +80,12 @@ $toArray = function($x) use(&$toArray) {
 function filePathToURL ($filepath) {
     global $naWebOS;
     $fp = str_replace(realpath(dirname(__FILE__).'/..'),'',$filepath);
-    $fp = 'https://'.$naWebOS->domain.$fp;
+    $fp = 'https://'.$naWebOS->domainFolder.$fp;
     return $fp;
 }
 
 function safeLoadJSONfile($filePath, $mustExist=true, $flush=true) {
-    $debug = true;
+    $debug = false;
     if (!file_exists($filePath)) {
         if (!$mustExist) return []; else trigger_error ('File "'.$filePath.'" does not exist.', E_USER_ERROR);
     };
@@ -29,6 +93,7 @@ function safeLoadJSONfile($filePath, $mustExist=true, $flush=true) {
         if (!$mustExist) return []; else trigger_error ('File "'.$filePath.'" does is not readable.', E_USER_ERROR);
     };
         //var_dump (preg_match('/\.php$/', $filePath));
+
     $textData =
         preg_match('/\.php$/', $filePath)
         ? require_return ($filePath, $flush)
@@ -49,6 +114,7 @@ function safeLoadJSONfile($filePath, $mustExist=true, $flush=true) {
             echo '</pre>';
         }
     } catch (Exception $e) { }
+
     //exit();
     //echo '<pre style="color:blue">'; var_dump ($textData); echo '</pre>';
     //if (json_last_error()!==JSON_ERROR_NONE) trigger_error ('Error during JSON decoding of file content for file "'.$filePath.'" : '.json_last_error_msg(), E_USER_ERROR);
@@ -60,7 +126,7 @@ function getBackgrounds ($root, $webRoot, $recursive=false) {
 
     $files1 = getBackgroundFiles ($root, FILE_FORMATS_photos_texts, $excl, $recursive);
     $files2 = processBackgroundFiles ($files1, $root, $webRoot, $recursive);
-    //echo '<pre>'; var_dump ($root); var_dump ($webRoot); var_dump ($files2); die();
+    //echo '<pre>'; var_dump ($root); var_dump ($webRoot); var_dump ($files2); exit();
 
     return $files2;
 }
@@ -70,6 +136,7 @@ function getBackgroundFiles ($root, $fileFormats, $excl, $recursive) {
     } else {
         $r = getFilePathList ($root, true, $fileFormats, $excl, array('file'));
     }
+    //echo 'getBackgroundFiles(); $r:'; var_dump($recursive); var_dump ($r); exit();
     return $r;
 }
 function processBackgroundFiles (&$files, $root, $webRoot, $recursive) {
@@ -92,28 +159,68 @@ function processBackgroundFile_key ($cd) {
     $path = $cd['path'].'/'.$cd['k'];
 }
 function processBackgroundFile_value ($cd) {
+    $debugMe = false;
+    if ($debugMe) echo '<pre style="color:white;background:green;margin-left:10px;margin:10px;border-radius:10px;padding:5px;">';
+
+    // DO NOT DELETE THIS COMMENTED-OUT CODE.
+    // IT IS FROM THE DAYS BEFORE LINUX SYMLINK USAGE TO .../NicerAppWebOS/siteMedia
+    /*
     if ($cd['params']['recursive']) {
+        if ($debugMe) { echo 'cd:'.PHP_EOL; var_dump ($cd['path']); var_dump ($cd['k']); var_dump ($cd['v']); }
+
         if (!is_int($cd['k'])) {
-            $path = $cd['path'].'/'.$cd['k'];
-            $path = substr($path,1);
+            $path1a = realpath($cd['path']).'/'.$cd['k'];
+            if ($debugMe) echo 'path1a:'.$path1a.PHP_EOL;
+            $path1b = substr($path1a,1);
+            if ($debugMe) echo 'path1b:'.$path1b.PHP_EOL;
+            $path = $path1b;
         } else {
-            $path = $cd['path'];
+            $path2 = $cd['path'];
+            if ($debugMe) echo 'path2:'.$path2.PHP_EOL;
+            $path = $path2;
         }
-        if ($cd['path']!=='') {
-            $file = $cd['params']['root'].$path.'/'.$cd['v'];
+        if (!is_int($cd['v'])) {
+            $file1a = realpath($cd['v']);
+            if ($debugMe) echo 'file1a:'.$file1a.PHP_EOL;
+            /*$file1b = substr($file1a,1);
+            if ($debugMe) echo 'file1b:'.$file1b.PHP_EOL;
+            $file1c = str_replace(realpath($cd['params']['root']),'',$file1b);
+            if ($debugMe) echo 'file1c:'.$file1c.PHP_EOL;* /
+            $file = $file1a;
         } else {
-            $file = $cd['params']['root'].$cd['v'];
+            $file2a = realpath($cd['v']);
+            if ($debugMe) echo 'file2a:'.$file2a.PHP_EOL;
+            $file2b = str_replace(realpath($cd['params']['root']),'',$file2);
+            if ($debugMe) echo 'file2b:'.$file2b.PHP_EOL;
+            $file = $file2b;
+        }
+        if ($path!=='') {
+            $file3 = realpath($cd['params']['root']).$path.'/'.$cd['v'];
+            if ($debugMe) {
+                echo '$path:'.$path.PHP_EOL;
+                echo 'file3:'.$file3.PHP_EOL;
+            }
+            $file = $file3;
+        } else {
+            $file4 = realpath($cd['params']['root']).$cd['v'];
+            if ($debugMe) echo 'file4:'.$file4.PHP_EOL;
+            $file = $file4;
         }
     } else {
-        $path = $cd['path'].$cd['k'];
-        $file = $cd['v'];
+        $path3 = $cd['path'].$cd['k'];
+        $file3 = $cd['v'];
+        $dbg = [ 'path3' => $path3, 'file3' => $file3 ];
+        if ($debugMe) { var_dump ($dbg); echo PHP_EOL; }
+        $path = $path3;
+        $file = $file3;
     }
 
-    //echo '<pre>';var_dump ($file);echo '</pre>';die();
+    if ($debugMe) { echo '<pre>';var_dump ($file);echo '</pre>'.PHP_EOL; exit(); }
     $td = str_replace ($cd['params']['root'], '', $file);
-    //echo '<pre>';var_dump ($cd);echo '</pre>';die();
+    //echo '<pre>';var_dump ($cd);echo '</pre>';exit();
     $path2 = $cd['path'].'/'.$cd['k'];
     $path2 = substr($path2,1);
+
     $ref = &chaseToPath ($cd['params']['a'], $path2);
     $xec = 'identify "'.$file.'"';
     exec ($xec, $output, $result);
@@ -125,6 +232,94 @@ function processBackgroundFile_value ($cd) {
     } else {
         $ref = [ $td => 'UNKNOWNxUNKNOWN' ];
     }
+    */
+
+
+    $path = $cd['path'];
+    $file = $cd['v'];
+
+    global $naWebOS;
+    $td = str_replace ($cd['params']['root'], '', $file);
+    $tdURL = str_replace('/var/www/'.$naWebOS->domainFolder,'',$cd['params']['root']).'/'.$cd['k'];
+    if ($debugMe) {
+        echo '<pre style="font-weight:bold;color:white;background:blue;margin:10px;margin-left:10px;padding:5px;border-radius:10px;">';
+        var_dump ($cd['params']['root']);
+        var_dump ($file);
+        var_dump ($td);
+        var_dump($cd['v']);
+        var_dump($tdURL);
+        echo '</pre>';
+        //exit();
+    }
+    //$path2 = $cd['path'].'/'.$cd['k'];
+    if ($cd['k']=='realPath') {
+        $path2 = $cd['v'];
+    $path2 = $cd['path'];//.'/'.$cd['k'];
+    $path2 = substr($path2,1);
+
+        if ($debugMe) echo '<pre style="font-weight:bold;color:yellow;background:red;margin-left:10px;padding:5px;border-radius:10px;">$path2:'.$path2.'</pre>'.PHP_EOL;
+        /*$path2 = substr($path2,1);
+        if ($debugMe) echo '$path2b:'.$path2.PHP_EOL;*/
+
+        $ref = &chaseToPath ($cd['params']['a'], $path2);
+        if ($debugMe) { echo '<pre style="font-weight:bold;color:white;background:lime;margin-left:10px;padding:5px;border-radius:10px;">'; var_dump ($ref); echo '</pre>'; }
+        if (true || ($ref!==false && is_array($ref))) {
+            $tdURL = &chaseToPath ($cd['params']['a'], $path2.'/webPath');
+            // JUST DON'T:
+            //$passSubArrs = is_array($ref);
+            //if ($passSubArrs) foreach ($ref as $k1 => $v1) if (is_array($v1)) $passSubArrs = true;
+            if ($debugMe) {
+                //echo '$passSubArrs:'; var_dump ($passSubArrs);
+                echo '<p style="color:cyan;background:navy;margin-left:20;padding:5px;border-radius:10px">';
+                var_dump ($tdURL);
+                var_dump ($file);
+                var_dump ($path2);
+                var_dump ($cd['k']);
+                echo '</p>';
+                //var_dump ($cd['params']['a']);
+                //exit();
+
+            }
+            if ($debugMe && is_string($ref)) {
+                echo '<pre class="font-weight:bold;color:white;background:lime;margin-left:10px;padding:5px;border-radius:10px;">';
+                var_dump ($ref);
+                echo '</pre>';
+            }
+            //if ($cd['k']=='path') {
+                $xec = 'identify "'.$file.'"';
+                exec ($xec, $output, $result);
+                if ($result===0) {
+                    $regex = '/\s(\d+)x(\d+)\s/';
+                    preg_match_all ($regex, $output[0], $m);
+                    $wt = $m[1][0].'x'.$m[2][0];
+                    if ($cd['params']['recursive']) {
+                        $ref = $wt;//[ $td => $wt ];
+                    } else {
+                        $ref = [ $tdURL => $wt ];
+                    }
+                } else {
+                    $wt = 'X*Y';
+                    if (false && $cd['params']['recursive']) {
+                        $ref = $wt;//[ $td => $wt ];
+                    } else {
+                        $ref = [ $tdURL => $wt ];
+                    }
+                }
+
+                if ($debugMe) {
+                    $dbg = [
+                        'path' => $path,
+                        'tdURL' => $tdURL,
+                        'file' => $file,
+                        'ref' => $ref
+                    ];
+                    var_dump ($dbg);
+                    //echo '</pre>';
+                }
+            //}
+        }
+    }
+    echo '</pre>';
 }
 
 
@@ -269,7 +464,7 @@ function checkForJSONerrors($rawData, $filepath, $exampleFilepath) {
 
 function translate_plainUserName_to_couchdbUserName ($un) {
     global $naWebOS;
-    $dn = $naWebOS->domainForDB;
+    $dn = $naWebOS->domainFolderForDB;
     $un = str_replace($dn.'___', '', $un);
     return $dn.'___'.str_replace('.','__',str_replace(' ', '_', $un));
 }
@@ -280,7 +475,7 @@ function translate_couchdbUserName_to_plainUserName ($un) {
 
 function translate_plainGroupName_to_couchdbGroupName ($gn) {
     global $naWebOS;
-    $dn = $naWebOS->domainForDB;
+    $dn = $naWebOS->domainFolderForDB;
     //echo '<pre style="color:red">'; var_dump ($dn); echo '</pre>';
     $gn = str_replace($dn.'___', '', $gn);
     //echo '<pre style="color:purple">'; var_dump ($dn); echo '</pre>';
@@ -339,7 +534,7 @@ function cdb_login($cdb, $cRec, $username) {
         $r = $cdb->loginByCookie ($_COOKIE['cdb_authSession_cookie']);
 
         try {
-            $cdb_session = $cdb->getSession();
+        $cdb_session = $cdb->getSession();
         } catch (Throwable $e) {
             $_SESSION['cdb_loginName'] = $cRec['username'];
             $cdb->login ($cRec['username'], $cRec['password'], Sag::$AUTH_COOKIE);
@@ -395,40 +590,23 @@ function cdb_login($cdb, $cRec, $username) {
             ) {
                 $done = true;
             } else {
-              //  echo 't34j21'; var_dump ($cdb); var_dump ($cRec); die();
+              //  echo 't34j21'; var_dump ($cdb); var_dump ($cRec); exit();
                 $_SESSION['cdb_loginName'] = $cRec['username'];
-                try {
-                    $cdb->login ($cRec['username'], $cRec['password'], Sag::$AUTH_COOKIE);
-                    $cdb_session = $cdb->getSession();
-                } catch (Exception $e2) {
-                    echo '<H1>NicerAppWebOS error(1):</H1><p><b>Could not log in using username '.$cRec['username'].'</b></p>';
-                    exit();
-                }
+                $cdb->login ($cRec['username'], $cRec['password'], Sag::$AUTH_COOKIE);
+                $cdb_session = $cdb->getSession();
             }
         } catch (Exception $e) {
-           //echo 't34j22'; var_dump ($cdb); var_dump ($cRec); die();
+           //echo 't34j22<pre>'; var_dump ($cRec); exit();
                 $_SESSION['cdb_loginName'] = $cRec['username'];
-                try {
-                    try {
-                        if (!$cdb->login ($cRec['username'], $cRec['password'], Sag::$AUTH_COOKIE)) {
-                            echo '<H1>NicerAppWebOS error(2):</H1><p><b>Could not log in using username '.$cRec['username'].'</b></p>';
-                        };
-                    } catch (Exception $e1a) {
-                        echo '<H1>NicerAppWebOS error(2):</H1><p><b>Could not log in using username '.$cRec['username'].'</b></p>';
-                        exit();
-                    };
-
-                    $cdb_session = $cdb->getSession();
-                } catch (Exception $e2) {
-
-                }
+                $cdb->login ($cRec['username'], $cRec['password'], Sag::$AUTH_COOKIE);
+                $cdb_session = $cdb->getSession();
         }
         if (is_object($cdb_session) && $cdb_session->body->ok) {
             global $naWebOS;
             $un = $naWebOS->ownerInfo['OWNER_NAME'];
             $un = str_replace ('.', '__', $un);
             $un = str_replace (' ', '_', $un);
-            $un = $naWebOS->domainForDB.'___'.$un;
+            $un = $naWebOS->domainFolderForDB.'___'.$un;
 
             if ($cdb_session->body->userCtx->name!==$un)
                 $_SESSION['cdb_loginName'] = $cdb_session->body->userCtx->name;
@@ -553,10 +731,10 @@ function require_return ($file, $flush=false) {
     return $c;
 }
 
-function cssArray_seperate ($id, $regExps, $arr) {
+function cssArray_seperate ($id, $regExps, $exclRegExps, $arr) {
     $ret = [ $id => [] ];
     $debug = false;
-    if ($debug) { echo '<pre style="color:green">$arr='; var_dump ($arr); echo '</pre>';die(); }
+    if ($debug) { echo '<pre style="color:green">$arr='; var_dump ($arr); echo '</pre>';exit(); }
     foreach ($regExps as $rIdx => $regex) {
         foreach ($arr as $key => $value) {
             if (is_array($value)) {
@@ -571,6 +749,17 @@ function cssArray_seperate ($id, $regExps, $arr) {
                 $pass = false;
                 if (array_key_exists(1,$m) && count($m[1])===1) { $k = $m[1][0]; $pass = true; }
                 if (array_key_exists(2,$m) &&count($m[2])===1) { $k = $m[2][0];  $pass = true; }
+
+                foreach ($exclRegExps as $rIdx2 => $regex2) {
+                    preg_match_all ($regex2, $key, $m2, PREG_PATTERN_ORDER);
+                    $pass2 = (
+                        (array_key_exists(1,$m2) && count($m2[1])===1)
+                        || (array_key_exists(1,$m2) && count($m2[1])===1)
+                    );
+                    if ($pass2) $pass = false;
+                }
+
+
                 if ($pass) {
                     $k = strtoupper(substr($k,0,1)).substr($k,1);
                     if (!array_key_exists($k,$ret[$id])) $ret[$id][$k] = [];
@@ -614,7 +803,6 @@ function css_array_to_css($rules, $indent = 0) {
             $properties = $value;
 
             $css .= $prefix . "$selector {\n";
-            $css .= $prefix . $prefix . 'font-weight:bolder;'.PHP_EOL;
             $css .= $prefix . css_array_to_css($properties, $indent + 1);
             $css .= $prefix . "}\n";
         } else {
@@ -816,7 +1004,7 @@ function naWebOS_photoAlbum_resizeFiles ($totalFileCount, $totalJobsCount, $jobs
     global $filePerms_perms_publicWriteableExecutable;
     global $filePerms_perms_readonly;
     global $filePerms_perms_readWrite;
-    //var_dump($job); echo PHP_EOL; die();
+    //var_dump($job); echo PHP_EOL; exit();
 
     $root = $job['path'];
     $thumbsPath = $job['thumbnails'];
@@ -826,13 +1014,13 @@ function naWebOS_photoAlbum_resizeFiles ($totalFileCount, $totalJobsCount, $jobs
     $excl2 = null;
 
 
-    //var_dump ($files); die();
+    //var_dump ($files); exit();
     $files3 = [];
 
     $msgJobs = ($jobsDoneCount+1).'of'.$totalJobsCount;
     $fncn = 'naWebOS_photoAlbum_convert() job '.$msgJobs.' :: ';
     echo $fncn.'Figuring out which files to convert.'.PHP_EOL;
-    //var_dump ($delThumbs); var_dump ($excl); die();
+    //var_dump ($delThumbs); var_dump ($excl); exit();
 
     if ($delThumbs) {
         $files = getFilePathList ($root, true, FILE_FORMATS_photos, $excl, ['file'], null, 1, false);
@@ -847,7 +1035,7 @@ function naWebOS_photoAlbum_resizeFiles ($totalFileCount, $totalJobsCount, $jobs
     } else {
         $files = getFilePathList ($root, true, FILE_FORMATS_photos, $excl, ['file'], null, 1, false);
     }
-    //echo '<pre>'; var_dump ($files); echo '</pre>'; die();
+    //echo '<pre>'; var_dump ($files); echo '</pre>'; exit();
 
     foreach ($files as $idx => $file) {
         if (strpos($file,'/thumbs/thumbs')!==false) {
@@ -886,7 +1074,7 @@ function naWebOS_photoAlbum_resizeFiles ($totalFileCount, $totalJobsCount, $jobs
             echo $fncn.$t->getMessage().'.'.PHP_EOL;
             continue;
         }
-        //var_dump ($original_info); die();
+        //var_dump ($original_info); exit();
 
         // my (and the end-user's) thanks go to https://ansi.gabebanks.net/.
         $cEnd = '';
@@ -1091,7 +1279,7 @@ function naWebOS_photoAlbum_resizeFiles ($totalFileCount, $totalJobsCount, $jobs
         exec ($xec, $output, $result);
 
         $result = $result1.$result;
-//var_dump ($output); die();
+//var_dump ($output); exit();
         if (
             (
                 $result === 0
@@ -1180,8 +1368,7 @@ $debug = false;
     if ($debug) { echo '<pre class="debug_createDirectoryStructure">'; };
     if ($debug) { echo $fncn.'()'.PHP_EOL; echo '$filepath='; var_dump ($filepath); echo PHP_EOL.PHP_EOL; }
 
-    if ($filepath=='/' || $filepath=='\\') trigger_error ("$fncn: $filepath is ONLY the root. results would be unstable. Give this function a filepath STARTING with / (Linux) or \ (Windows) as it's first character, and preferably MULTIPLE folders underneath it.\n<pre>stacktrace : ".json_encode(debug_backtrace(),JSON_PRETTY_PRINT).'</pre>', E_USER_ERROR);
-    if (($filepath[1]!=':') && ($filepath[0]!='/')) trigger_error ("$fncn: $filepath is not from the root. results would be unstable. Give this function a filepath STARTING with / (Linux) or \ (Windows) as first character and preferably MULTIPLE folders underneath it.\n<pre>stacktrace : ".json_encode(debug_backtrace(),JSON_PRETTY_PRINT).'</pre>', E_USER_ERROR);
+    if (($filepath[1]!=':') && ($filepath[0]!='/')) trigger_error ("$fncn: $filepath is not from the root. results would be unstable. gimme a filepath with / as first character.", E_USER_ERROR);
 
     $directories = explode ("/", $filepath);
     $i = count($directories)-1;
@@ -1199,12 +1386,12 @@ $debug = false;
         if (file_exists($pathToTest)) break;
     }
 
-    if ($debug) $dbg = [
+    $dbg = array (
         'ptt' => $pathToTest,
         'i' => $i,
         'dirs' => $directories//,
          //'backtrace' => debug_backtrace()
-    ];
+    );
 
     if ( ($i < count($directories)) ) {
         if ($debug) { var_dump ($dbg); echo PHP_EOL.PHP_EOL; }
@@ -1242,6 +1429,7 @@ function getFilePathList (
 	$depth = null,
 	$level = 1,
 	$returnRecursive = false,           // whether or not to return the filepaths found as a recursive array (true) or a flat list array (false).
+  $debug = false,
 	$ownerFilter = array (),			// array (int=>string (username) ); only return files owned by someone in $ownerFilter.
 	$fileSizeMin = null,				// If >=0, any files returned must have a minimum size of $fileSizeMin bytes.
 	$fileSizeMax = null,				// same as above, but maximum size
@@ -1258,6 +1446,7 @@ function getFilePathList (
 	*/
 	$listCall = "",						// interesting feature; lets you include results from any informational file function(s).
     $pathStart = null,
+    $realPath = null,
     $flatList = false
 /*	TODO : fix $*Date* parameter handling,
 	returns an array consisting of all files in a directory structure, filtered by the parameters given.
@@ -1285,36 +1474,36 @@ example:
 			  string(117) "c:/dat/web/sources.php - [listCall=ctime=2003/05/11 18:05:26 - atime=2003/05/16 04:05:50 - mtime=2003/05/12 00:05:22]"
 }
 		in this example, the $listCall is kinda complicated. but only to show it's power.
-		if you're having trouble debugging your $listCall, turn on the relevant htmlDump() call in this function.
+		if you're having trouble debugging your $listCall, turn on the relevant jsonViewer() call in this function.
 
 another example:
-	htmlDump (getFilePathList("c:/dat/web", false, "/.*\.php$|.*\.php\d$|.*\.inc$/",
+	jsonViewer (getFilePathList("c:/dat/web", false, "/.*\.php$|.*\.php\d$|.*\.inc$/",
 		array(), array(), null, null, null, null, null, time()-mktime (0,0,0,0,1,0));
 	-== this returns, for my system, all *.php,*.php3/4,*.inc files in c:/dat/web, that havent changed since 24 hours ago:
 */
 
 ) {
     $fncn = '.../NicerAppWebOS/functions.php/getFilePathList()';
-    $debug = false;
     if (is_null($pathStart)) $pathStart = $path;
+    $realPath = realpath($path);
 
 	//if (stripos($path, $pathStart)!==false) {
-		if ($debug) { echo '<pre style="color:cyan;">'; var_dump ($path); var_dump ($excludeFolders); echo '</pre>'; };
+		if ($debug) { echo '<pre style="color:black;background:lime;">'; var_dump ($path); var_dump ($excludeFolders); echo '</pre>'; };
 		if (!realpath($path)) {
             $msg = $fncn.' : FATAL ERROR : "'.$path.'" does not exist.';
             trigger_error ($msg, E_USER_ERROR);
             echo $msg;
-            die();
+            exit();
         }
-		$path = realpath($path);
 
 		if (!is_null($excludeFolders)) {
-            $r = preg_match($excludeFolders, $path, $ms);
+            $r = preg_match($excludeFolders, $realPath, $ms);
             if ($debug) {
-                echo '<pre style="color:yellow;background:navy;border-radius:10px;">';
+                echo '<pre style="color:yellow;background:navy;border-radius:10px;padding:5px;">';
                 //var_dump (debug_backtrace()); echo PHP_EOL;
                 echo '$r='; var_dump($r); echo PHP_EOL;
                 echo '$path='; var_dump ($path); echo PHP_EOL;
+                echo '$realPath='; var_dump ($realPath); echo PHP_EOL;
                 echo '$excludeFolders='; var_dump ($excludeFolders); echo PHP_EOL;
                 echo '$ms='; var_dump($ms);//exit();
                 echo '</pre>';
@@ -1333,7 +1522,8 @@ another example:
 
 
             if ($path[strlen($path)-1]!="/") $path.="/";
-            if ($handle = opendir($path)) {
+            if ($realPath[strlen($realPath)-1]!="/") $realPath.="/";
+            if ($handle = opendir($realPath)) {
                 /* This is the correct way to loop over the directory. */
                 while (false !== ($file = readdir($handle))) {
                 //if (!is_file($path.$file)) continue;
@@ -1343,19 +1533,18 @@ another example:
                         //echo $path.$file.'<br/>';
                         $ft = filetype($path.$file);
 
-                        if (!$recursive && !in_array ($ft, $fileTypesFilter)) $pass = false;
-                        if ($debug) { echo '<pre style="color:red;background:yellow;">'; var_dump ($pass); var_dump ($ft); var_dump($fileTypesFilter); echo '</pre>'; };
+                        if (!in_array ($ft, $fileTypesFilter)) $pass = false;
+                        if ($debug) { echo '<pre style="color:red">'; var_dump ($ft); var_dump($fileTypesFilter); echo '</pre>'; };
                         if ($ft=="dir") $filepath = $path.$file."/"; else $filepath = $path.$file;
 
-                        if ($debug) {
-                            echo '<pre style="color:yellow;background:red;border-radius:10px">';
+                        if ($debug && false) {
+                            echo '<pre style="color:yellow;background:red;border-radius:10px;padding:5px;">';
                             var_dump ($filepath); echo PHP_EOL;
                             var_dump ($fileSpecRE); echo PHP_EOL;
                             var_dump ($excludeFolders); echo PHP_EOL;
                             var_dump ($pass); echo PHP_EOL;
                         }
                         if ($pass/* && !$recursive*/) $pass = preg_match ($fileSpecRE, $filepath) === 1 || $recursive;
-                        if ($debug) { echo 't123a'; var_dump ($pass); var_dump ($fileSpecRE); var_dump ($filepath); var_dump ($recursive); echo PHP_EOL; };
                         if ($debug) { echo '#p1='; var_dump ($pass); echo PHP_EOL; }
                         if ($pass && !is_null($excludeFolders) && $excludeFolders!=='') $pass = preg_match ($excludeFolders, $filepath) === 0 || $recursive;
                         if ($debug) { echo '#p2='; var_dump ($pass); echo PHP_EOL; }
@@ -1410,19 +1599,21 @@ another example:
                         if ($debug) {
                             $dbg = [
                             //'bt' => debug_backtrace(),
+                            'filepath' => $filepath,
                             'fp' => $path.$file,
+                            'frp' => $realPath.$file,
                             'r' => $recursive,
                             'ft' => $ft,
                             'pass' => $pass,
                             'c' => (is_null($depth) || $level < $depth)
                             ];
-                            echo '<pre>t555 : '; var_dump ($dbg); echo '</pre>';
+                            echo '<pre style="color:white;background:brown;border-radius:5px;padding:5px;">'; echo json_encode ($dbg,JSON_PRETTY_PRINT); echo '</pre>';
                         }
 
                         if (
                             $recursive
                             && $ft=="dir"
-                            && $pass
+                            //&& $pass
                             && (
                                 is_null($depth)
                                 || $level<$depth
@@ -1430,10 +1621,10 @@ another example:
                             //&& preg_match($excludeFolders, $filepath.$r)===1
                         ) {
                             $subdir = @getFilePathList ($filepath,$recursive, $fileSpecRE, $excludeFolders,
-                                $fileTypesFilter, $depth, $level+1, $returnRecursive, $ownerFilter, $fileSizeMin, $fileSizeMax,
+                                $fileTypesFilter, $depth, $level+1, $returnRecursive, $debug, $ownerFilter, $fileSizeMin, $fileSizeMax,
                                 $aTimeMin, $aTimeMax, $mTimeMin, $mTimeMax,
-                                $cTimeMin, $cTimeMax, $listCall, $pathStart, $flatList);
-                            if ($debug) { echo '<pre>$subdir='; var_dump($subdir); echo '</pre>'.PHP_EOL; };
+                                $cTimeMin, $cTimeMax, $listCall, $pathStart, $realPath, $flatList);
+                            if ($debug) { echo '<pre style="color:yellow;background:red;border-radius:5px;">$fp='.$filepath.', $pathStart='.$pathStart.', $subdir='; var_dump($subdir); echo '</pre>'.PHP_EOL; };
                             if (count($subdir) > 0)
                                 if (!$returnRecursive || $flatList===true) {
                                     if (!is_null($subdir) && count($subdir)>0) array_splice ($result, count($result)+1, 0, $subdir);
@@ -1448,7 +1639,7 @@ another example:
                                     }
                                 }
                         } else {
-                            if ($pass==true) {
+                            if ($pass==true || $recursive) {
                                 //htmlOut ("PASSED");
 
                                 $ev = "\$r = $listCall";
@@ -1463,11 +1654,21 @@ another example:
                                 }*/
                                 //if (!array_key_exists('files',$result)) $result['files'] = [];
                                 //$result['files'][basename($filepath)] = $filepath;//DON'T! str_replace($pathStart,'',$filepath);
+                                global $naWebOS;
+                                if (in_array ($ft, $fileTypesFilter))
                                 if (!$returnRecursive) {
-                                    $result[$idx] = $filepath.$r;
+                                    $result[$idx] = [
+                                        'path' => $filepath.$r,
+                                        'realPath' => $realPath.basename($filepath),
+                                        'webPath' => str_replace('/var/www/'.$naWebOS->domainFolder,'',$filepath)
+                                    ];
                                 } else {
                                     if (!array_key_exists('files',$result)) $result['files'] = [];
-                                    $result['files'][basename($filepath)] = $filepath;
+                                    $result['files'][basename($filepath)] = [
+                                        'path' => $filepath,
+                                        'realPath' => $realPath.basename($filepath),
+                                        'webPath' => str_replace('/var/www/'.$naWebOS->domainFolder,'',$filepath)
+                                    ];
                                 }
                             }
 
@@ -1477,7 +1678,11 @@ another example:
 			}
 		}
 		//htmlDump ($result, "result");
-		if ($debug) { echo '<pre style="color:purple">$path='.$path.'; $result='; var_dump ($result); echo '</pre>'; };
+		if ($debug) {
+            echo '<pre style="color:purple;background:yellow;border:3px ridge black;padding:5px;border-radius:10px;">$path='.$path.'; $result='; var_dump ($result); echo '</pre>';
+            echo '<pre style="color:magenta;background:yellow;border:3px ridge black;padding:5px;border-radius:10px;">$realPath='.$realPath.'; $result='; var_dump ($result); echo '</pre>';
+
+        };
 		return $result;
 	//}
 	//$result = array();
@@ -1548,6 +1753,7 @@ function walkArray (&$a, $keyCallback=null, $valueCallback=null, $callKeyForValu
                 'type' => 'key',
                 'path' => $path,
                 'level' => $level,
+                'a' => &$a,
                 'k' => &$k,
                 'v' => &$v,
                 'params' => &$callbackParams

@@ -144,7 +144,7 @@ if ($_POST['type'] == 'naDocument') {
     $u = preg_replace('/.*___/','',$u);
     $u = preg_replace('/__/',' ',$u);
     $u1 = str_replace(' ', '-', $u);
-    $u2 = $naWebOS->domainForDB.'___'.$u1;
+    $u2 = $naWebOS->domainFolderForDB.'___'.$u1;
     $uid = '';
     if (strpos($_POST['database'], '_user')!==false) {
         $uid = ' -F \'user='.$u2.'\'';
@@ -155,7 +155,7 @@ if ($_POST['type'] == 'naDocument') {
     }
 
 
-    $exec = 'curl -X POST "https://'.$naWebOS->domain.'/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/NicerAppWebOS/cmsManager/ajax_editDocument.php"';
+    $exec = 'curl -X POST "https://'.$naWebOS->domainFolder.'/NicerAppWebOS/apps/NicerAppWebOS/content-management-systems/NicerAppWebOS/cmsManager/ajax_editDocument.php"';
     $exec2 = ' -F \'database='.str_replace('_tree','_documents',$_POST['database']).'\' -F \'id='.$id.'\' -F \'parent='.$_POST['parent'].'\' '.$uid.' -F \'document=<h1>Heading 1</h1><p>Enter your text here.</p>\' -F \'url1=on\' -F \'seoValue='.$d.'\' -F \'pageTitle=Said.by/'.$u1.'/on/'.$d.'\'';
     $exec2 = str_replace('>', '\\>', $exec2);
     $exec2 = str_replace('<', '\\<', $exec2);
@@ -174,7 +174,7 @@ if ($_POST['type'] == 'naDocument') {
 }
 
 
-$folder = $rootPath.'/siteData/'.$naWebOS->domain.'/'.$_POST['relFilePath'].'/'.$textFinal;
+$folder = $rootPath.'/siteData/'.$naWebOS->domainFolder.'/'.$_POST['relFilePath'].'/'.$textFinal;
 
     global $filePerms_ownerUser;
     global $filePerms_ownerGroup;

@@ -15,8 +15,8 @@
     
     global $naWebOS;
     
-    $baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domain.'/';
-    $baseDir = $root.'/NicerAppWebOS/siteData/'.$naWebOS->domain.'/';
+    $baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domainFolder.'/';
+    $baseDir = $root.'/NicerAppWebOS/siteData/'.$naWebOS->domainFolder.'/';
     $targetDir = $baseDir.$_GET['basePath'];
     $thumbDir = $targetDir.'/thumbs';
     //var_dump ($targetDir);exit();

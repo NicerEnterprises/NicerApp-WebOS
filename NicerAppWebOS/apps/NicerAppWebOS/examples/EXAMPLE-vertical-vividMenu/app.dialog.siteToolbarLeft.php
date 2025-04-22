@@ -19,14 +19,14 @@ $debug = false;
 <ul style="display:none;">
 <?php 
     global $naWebOS;
-    $fn = $naWebOS->basePath.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/mainmenu.items.new-background.php';
+    $fn = $naWebOS->basePath.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/mainmenu.items.new-background.php';
     if ($debug) {    
         echo '<pre>$fn='; var_dump ($fn); echo '</pre><br/>'.PHP_EOL.PHP_EOL;
         echo '<pre>file_exists($fn)='; var_dump (file_exists($fn)); echo '</pre><br/>'.PHP_EOL.PHP_EOL;
     }
     echo require_return($fn);
 
-    $fn = $naWebOS->basePath.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/mainmenu.items.dialogs.php';
+    $fn = $naWebOS->basePath.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/mainmenu.items.dialogs.php';
     if ($debug) {    
         echo '<pre>$fn='; var_dump ($fn); echo '</pre><br/>'.PHP_EOL.PHP_EOL;
         echo '<pre>file_exists($fn)='; var_dump (file_exists($fn)); echo '</pre><br/>'.PHP_EOL.PHP_EOL;

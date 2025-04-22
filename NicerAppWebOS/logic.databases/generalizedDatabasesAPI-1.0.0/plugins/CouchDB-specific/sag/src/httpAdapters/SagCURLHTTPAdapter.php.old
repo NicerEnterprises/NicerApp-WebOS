@@ -40,7 +40,7 @@ class SagCURLHTTPAdapter extends SagHTTPAdapter {
       isset($_SESSION)
       && array_key_exists('cdb_loginName', $_SESSION)
       && array_key_exists('cdb_pw', $_SESSION)
-      ? "{$this->proto}://".$naWebOS->domainForDB.'___'.preg_replace('/.*___/','',str_replace(' ','_',str_replace('.','__',$_SESSION['cdb_loginName']))).":".$_SESSION['cdb_pw']."@{$this->host}:{$this->port}{$url}"
+      ? "{$this->proto}://".$naWebOS->domainFolderForDB.'___'.preg_replace('/.*___/','',str_replace(' ','_',str_replace('.','__',$_SESSION['cdb_loginName']))).":".$_SESSION['cdb_pw']."@{$this->host}:{$this->port}{$url}"
       : "{$this->proto}://{$this->host}:{$this->port}{$url}"
     );
     //var_dump ('t3322'); var_dump ($url); die();
@@ -171,7 +171,7 @@ class SagCURLHTTPAdapter extends SagHTTPAdapter {
     //if (is_object($naWebOS->dbs)) { echo '<pre>'; var_dump ($naWebOS->dbs->findConnection('couchdb')->username); echo '</pre>'; }
 
     $dbg = [
-      1 => (isset($_SESSION['na_error_log_filepath_html'])),
+      1 => (isset($na_error_log_filepath_html)),
       2 => (is_object($naWebOS->dbs)),
       3 => (is_object($naWebOS->dbs) ? $naWebOS->dbs->findConnection('couchdb')->username : 'NOTSETYET'),
       4 => $this->debug
@@ -235,7 +235,7 @@ class SagCURLHTTPAdapter extends SagHTTPAdapter {
       $ret = str_replace('\n','<br/>',$ret);
       $ret = str_replace(" ",'&nbsp;',$ret);
       */
-      //if (!is_null($_SESSION['na_error_log_filepath_html'])) {
+      //if (!is_null($na_error_log_filepath_html)) {
         $dbgOpts = json_decode(json_encode($optsTranslated), true);
         if (array_key_exists('CURLOPT_POSTFIELDS', $dbgOpts))
           $dbgOpts = [
@@ -262,7 +262,7 @@ class SagCURLHTTPAdapter extends SagHTTPAdapter {
           .'</div>';
         */
         $_SESSION['dbgNum2']++;
-        //file_put_contents ($_SESSION['na_error_log_filepath_html'], $dbgHTML, FILE_APPEND);
+        //file_put_contents ($na_error_log_filepath_html, $dbgHTML, FILE_APPEND);
 
         $dbgTxt =
           'curl options = '
@@ -270,7 +270,7 @@ class SagCURLHTTPAdapter extends SagHTTPAdapter {
           .'curl response = '
           .json_encode(json_decode($response->body), JSON_PRETTY_PRINT).PHP_EOL.PHP_EOL
           .'----------------------'.PHP_EOL.PHP_EOL;
-        //file_put_contents ($_SESSION['na_error_log_filepath_txt'], $dbgTxt, FILE_APPEND);
+        //file_put_contents ($na_error_log_filepath_txt, $dbgTxt, FILE_APPEND);
       //}
 
       global $phpScript_startupTime;

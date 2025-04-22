@@ -1,6 +1,6 @@
 <?php
     global $naWebOS;
-    require_once ($naWebOS->basePath.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/mainmenu.items.php');
+    require_once ($naWebOS->basePath.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/mainmenu.items.php');
     global $naURLs; // from .../NicerAppWebOS/domainConfigs/nicer.app/mainmenu.items.php
     global $na_apps_structure;
     if (false) {
@@ -12,9 +12,9 @@
     }
 ?>
     <div class="container" style="display:flex;justify-content:left;align-items:center;">
-        <div id="divFor_neCompanyLogo" style="margin-left:5px;margin-bottom:20px;width:140px;height:140px;border-radius:10px;border:solid rgba(0,0,0,0.8);padding:5px;box-shadow:0px 0px 2px 1px rgba(0,0,0,0.55);">
+        <div id="divFor_neCompanyLogo" style="margin-left:5px;margin-bottom:20px;width:100px;height:100px;border-radius:10px;border:solid rgba(0,0,0,0.8);padding:5px;box-shadow:0px 0px 2px 1px rgba(0,0,0,0.55);">
             <img id="neCompanyLogo_img" style="position:absolute;opacity:0.00001;z-index:-1;" src="/NicerAppWebOS/favicon/android-chrome-512x512.png"/>
-            <canvas id="neCompanyLogo" width="140" height="140" onclick="event.data={element:'neCompanyLogo'}; na.logo.settings.stage.removeAllChildren(); na.logo.init_do_createLogo('neCompanyLogo','countryOfOriginColors');"></canvas>
+            <canvas id="neCompanyLogo" width="100" height="100" onclick="event.data={element:'neCompanyLogo'}; na.logo.settings.stage.removeAllChildren(); na.logo.init_do_createLogo('neCompanyLogo','countryOfOriginColors');"></canvas>
         </div>
         <div>
             <h1 class="contentSectionTitle1"><span class="contentSectionTitle1_span">NicerApp WebOS</span></h1>
@@ -27,7 +27,7 @@
         <a href="<?php echo $naURLs['docs__todoList'];?>" class="contentSectionTitle3_a"><h3 class="contentSectionTitle3"><span class="contentSectionTitle3_span">To-Do List</span></h3></a>
         <a href="<?php echo $naURLs['docs__companyOverview'];?>" class="contentSectionTitle3_a"><h3 class="contentSectionTitle3"><span class="contentSectionTitle3_span">Company Overview</span></h3></a>
     </div>
-<script type="text/javascript">
+<!--<script type="text/javascript">
     na.site.settings.current.loadingApps = false;
     na.site.settings.current.startingApps = false;
-</script>
+</script>-->

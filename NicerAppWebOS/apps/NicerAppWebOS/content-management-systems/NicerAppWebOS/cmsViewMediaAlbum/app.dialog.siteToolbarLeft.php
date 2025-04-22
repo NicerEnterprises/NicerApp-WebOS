@@ -25,7 +25,7 @@ $ip = (array_key_exists('X-Forwarded-For',apache_request_headers())?apache_reque
 global $naWebOS;
 
 /*
-$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
 //var_dump ($couchdbConfigFilepath); exit();
 $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
 
@@ -40,8 +40,8 @@ try { $call = $cdb->get ($view['cmsText']['id']); } catch (Exception $e) { echo 
 echo $call->body->document;
 */
 
-$baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domain.'/';
-$baseDir = $root.'/NicerAppWebOS/siteData/'.$naWebOS->domain.'/';
+$baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domainFolder.'/';
+$baseDir = $root.'/NicerAppWebOS/siteData/'.$naWebOS->domainFolder.'/';
 $targetDir = $baseDir.$view['cmsViewMediaAlbum']['relPath'].'/';
 $targetURL = $baseURL.$view['cmsViewMediaAlbum']['relPath'].'/';
 $fn = $view['cmsViewMedia']['filename'];

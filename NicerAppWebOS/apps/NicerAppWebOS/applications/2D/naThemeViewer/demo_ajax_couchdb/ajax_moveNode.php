@@ -26,7 +26,7 @@ global $naWebOS;
 $naWebOS = new NicerAppWebOS();
 $naWebOS->init();
 
-$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+$couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
 $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
 
 $cdb = new Sag($cdbConfig['domain'], $cdbConfig['port']);
@@ -43,8 +43,8 @@ try { $call = $cdb->post($call->body); } catch (Exception $e) {
 }
 if ($debug) { echo '$call='; var_dump ($call); echo PHP_EOL.PHP_EOL; }
 
-$oldPath = realpath(dirname(__FILE__).'/../../../').'/siteData/'.$naWebOS->domain.'/'.$_POST['oldPath'];
-$newPath = realpath(dirname(__FILE__).'/../../../').'/siteData/'.$naWebOS->domain.'/'.$_POST['newPath'];
+$oldPath = realpath(dirname(__FILE__).'/../../../').'/siteData/'.$naWebOS->domainFolder.'/'.$_POST['oldPath'];
+$newPath = realpath(dirname(__FILE__).'/../../../').'/siteData/'.$naWebOS->domainFolder.'/'.$_POST['newPath'];
 $xec = 'mv "'.$oldPath.'" "'.$newPath.'"';
 exec ($xec, $output, $result);
 $dbg = array (

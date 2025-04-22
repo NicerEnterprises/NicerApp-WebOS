@@ -23,7 +23,7 @@ $fc2 = '"url","apps"'.PHP_EOL;
 $counts = [];
     
 global $naWebOS;
-require_once ($rootPath_2vuslwos.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain.'/mainmenu.items.php');
+require_once ($rootPath_2vuslwos.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/mainmenu.items.php');
 $counts['.../NicerAppWebOS/domainConfigs/nicer.app/mainmenu.items.php'] = 0;
 global $na_apps_structure;
 $naURLs = array();

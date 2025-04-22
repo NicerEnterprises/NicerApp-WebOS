@@ -19,7 +19,7 @@ class class_NicerAppWebOS_database_API {
         global $naWebOS;
         $ret = [];
 
-        $domainConfigsPath = $myPath_BLdbs.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domain;
+        $domainConfigsPath = $myPath_BLdbs.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder;
         $configFilename = 'databases.username-'.$username.'.json';
         //echo '<pre style="color:green">'; var_dump($configFilename); var_dump(file_exists($configFilename)); echo '</pre>';
         if (!file_exists($domainConfigsPath.'/'.$configFilename)) $configFilename = 'databases.username-Guest.json';
@@ -68,7 +68,7 @@ class class_NicerAppWebOS_database_API {
          * IT IS NEEDED LATER TO PROPERLY INTEGRATE adodb AND fsdb SUPPORT!
          *
         if ($ct==='fsdb') {
-            $myPath_domainConfigs_MYDOMAIN_TLD_fsdb_settings_file = $myPath_BLdbs.'/domainConfigs/'.$naWebOS->domain.'/database.fileSystem.settings.json';
+            $myPath_domainConfigs_MYDOMAIN_TLD_fsdb_settings_file = $myPath_BLdbs.'/domainConfigs/'.$naWebOS->domainFolder.'/database.fileSystem.settings.json';
             if (!file_exists($myPath_domainConfigs_MYDOMAIN_TLD_fsdb_settings_file) || !is_readable($myPath_domainConfigs_MYDOMAIN_TLD_fsdb_settings_file)) {
                 $exampleFile = str_replace ('.json', '.EXAMPLE.json', $myPath_domainConfigs_MYDOMAIN_TLD_fsdb_settings_file);
                 $this->throwError ($fncn.' : !file_exists("'.$myPath_domainConfigs_MYDOMAIN_TLD_fsdb_settings_file.'"), see "'.$exampleFile.'" for an example.', E_USER_NOTICE);
@@ -81,7 +81,7 @@ class class_NicerAppWebOS_database_API {
         }
 
         if ($ct==='adodb') {
-            $myPath_domainConfigs_MYDOMAIN_TLD_adodb_sslJSONfile = $myPath_BLdbs.'/domainConfigs/'.$naWebOS->domain.'/database.SQL.adodb-5.22--sslSettings.json';
+            $myPath_domainConfigs_MYDOMAIN_TLD_adodb_sslJSONfile = $myPath_BLdbs.'/domainConfigs/'.$naWebOS->domainFolder.'/database.SQL.adodb-5.22--sslSettings.json';
             if (!file_exists($myPath_domainConfigs_MYDOMAIN_TLD_adodb_sslJSONfile) || !is_readable($myPath_domainConfigs_MYDOMAIN_TLD_adodb_sslJSONfile)) {
                 $exampleFile = str_replace ('.json', '.EXAMPLE.json', $myPath_domainConfigs_MYDOMAIN_TLD_adodb_sslJSONfile);
                 $this->throwError ($fncn.' : !file_exists("'.$myPath_domainConfigs_MYDOMAIN_TLD_adodb_sslJSONfile.'"), see "'.$exampleFile.'" for an example.', E_USER_NOTICE);
@@ -248,7 +248,7 @@ class class_NicerAppWebOS_database_API {
                     if (strtolower($dbName5)===$strippedDBname) $dbName4 = $dbName5;
                 }
 
-                $inJurisdiction = $dbsRec['c']['conn']->dataSetName_domainName($naWebOS->domain) === $dbDomainName;
+                $inJurisdiction = $dbsRec['c']['conn']->dataSetName_domainName($naWebOS->domainFolder) === $dbDomainName;
 
                 $affected =
                     $inJurisdiction

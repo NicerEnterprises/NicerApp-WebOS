@@ -207,9 +207,9 @@ class wallpaperScraper_plugin_imagesGoogleCom implements wallpaperScraper_plugin
                         // crawlHistory data and search result data even more, grow *huge* over time, so it's kept in a couchdb.apache.org installation.
                         global $naWebOS;
                         $naWebOS = new NicerAppWebOS();
-                        $cdbDomain = str_replace('.','_',$naWebOS->domain);
+                        $cdbDomain = str_replace('.','_',$naWebOS->domainFolder);
 
-                        $couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../..').'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+                        $couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../..').'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
                         if (!file_exists($couchdbConfigFilepath)) trigger_error ($fncn.' : "'.$couchdbConfigFilepath.'" does not exist.', E_USER_ERROR);
                         $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
                         if (json_last_error()!==0) trigger_error ($fncn.' : JSON decoding of file "'.$couchdbConfigFilepath.'" resulted in error '.json_last_error_msg(), E_USER_ERROR);
@@ -473,9 +473,9 @@ class wallpaperScraper_plugin_imagesGoogleCom implements wallpaperScraper_plugin
         global $naWebOS;
         $naWebOS = new NicerAppWebOS();
         $naWebOS->init();
-        $cdbDomain = str_replace('.','_',$naWebOS->domain);
+        $cdbDomain = str_replace('.','_',$naWebOS->domainFolder);
 
-        $couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../..').'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+        $couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../..').'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
         if (!file_exists($couchdbConfigFilepath)) trigger_error ($fncn.' : "'.$couchdbConfigFilepath.'" does not exist.', E_USER_ERROR);
         $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
         if (json_last_error()!==0) trigger_error ($fncn.' : JSON decoding of file "'.$couchdbConfigFilepath.'" resulted in error '.json_last_error_msg(), E_USER_ERROR);
@@ -550,9 +550,9 @@ class wallpaperScraper_plugin_imagesGoogleCom implements wallpaperScraper_plugin
         global $naWebOS;
         $naWebOS = new NicerAppWebOS();
         $naWebOS->init();
-        $cdbDomain = str_replace('.','_',$naWebOS->domain);
+        $cdbDomain = str_replace('.','_',$naWebOS->domainFolder);
 
-        $couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../..').'/domainConfigs/'.$naWebOS->domain.'/couchdb.json';
+        $couchdbConfigFilepath = realpath(dirname(__FILE__).'/../../..').'/domainConfigs/'.$naWebOS->domainFolder.'/couchdb.json';
         if (!file_exists($couchdbConfigFilepath)) trigger_error ($fncn.' : "'.$couchdbConfigFilepath.'" does not exist.', E_USER_ERROR);
         $cdbConfig = json_decode(file_get_contents($couchdbConfigFilepath), true);
         if (json_last_error()!==0) trigger_error ($fncn.' : JSON decoding of file "'.$couchdbConfigFilepath.'" resulted in error '.json_last_error_msg(), E_USER_ERROR);

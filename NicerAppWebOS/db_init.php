@@ -31,7 +31,7 @@ global $naWebOS;
 $un1 = strtolower(trim($naWebOS->ownerInfo['OWNER_NAME']));
 $un1 = str_replace(' ', '_', $un1);
 $un1 = str_replace('.', '__', $un1);
-$db1 = $naWebOS->domainForDB.'___'.trim($naWebOS->ownerInfo['OWNER_NAME']);
+$db1 = $naWebOS->domainFolderForDB.'___'.trim($naWebOS->ownerInfo['OWNER_NAME']);
 
 $dbs = [
     'analytics',
@@ -138,7 +138,7 @@ function addPrefixes ($dbs) {
     global $naWebOS;
     $dbs2 = [];
     foreach ($dbs as $dbName => $doDB)
-        $dbs2[$naWebOS->domainForDB.'___'.$dbName] = $doDB;
+        $dbs2[$naWebOS->domainFolderForDB.'___'.$dbName] = $doDB;
     return $dbs2;
 }
 
@@ -202,7 +202,7 @@ $dbs2 = addPrefixes($dbs);
 try {
     $allDBs = $naWebOS->dbsAdmin->getAllDatabases ();
 } catch (Exception $e) {
-    $fn = dirname(__FILE__).'/domainConfigs/'.$naWebOS->domain.'/databases.username-admin.json';
+    $fn = dirname(__FILE__).'/domainConfigs/'.$naWebOS->domainFolder.'/databases.username-admin.json';
     $msg =
         $e->getMessage().'<br/>'
         .str_replace('#', '<br/>&nbsp;&nbsp;&nbsp;#', $e->getTraceAsString()).'<br/>'
@@ -214,19 +214,19 @@ try {
 //echo '<pre style="color:green">'; var_dump ($dbs); echo '</pre>'; die();
 echo $naWebOS->dbsAdmin->listDatabases ($allDBs, $dbs, $dbsReset);
 
-//echo require_return(dirname(__FILE__).'/domainConfigs/'.$naWebOS->domain.'/database.users.json.php', true); die();
+//echo require_return(dirname(__FILE__).'/domainConfigs/'.$naWebOS->domainFolder.'/database.users.json.php', true); die();
 
-$users = safeLoadJSONfile(dirname(__FILE__).'/domainConfigs/'.$naWebOS->domain.'/database.users.json.php', true);
+$users = safeLoadJSONfile(dirname(__FILE__).'/domainConfigs/'.$naWebOS->domainFolder.'/database.users.json.php', true);
 //echo '<pre style="color:black;background:skyblue;">'; var_dump ($users); die();
 //$users = json_decode($usersJSON, true);
-$groups = safeLoadJSONfile(dirname(__FILE__).'/domainConfigs/'.$naWebOS->domain.'/database.groups.json.php', true);
+$groups = safeLoadJSONfile(dirname(__FILE__).'/domainConfigs/'.$naWebOS->domainFolder.'/database.groups.json.php', true);
 //echo '<pre>'; var_dump ($groups); die();
 //$groups = json_decode($groupsJSON, true);
 
-$clientUsersJSONfn = dirname(__FILE__).'/domainConfigs/'.$naWebOS->domain.'/database.users.CLIENT.json.php';
+$clientUsersJSONfn = dirname(__FILE__).'/domainConfigs/'.$naWebOS->domainFolder.'/database.users.CLIENT.json.php';
 $clientUsersJSON = (!file_exists($clientUsersJSONfn) ? '' : require_return($clientUsersJSONfn, true));
 $clientUsers = json_decode ($clientUsersJSON, true);
-$clientGroupsJSONfn = dirname(__FILE__).'/domainConfigs/'.$naWebOS->domain.'/database.groups.CLIENT.json.php';
+$clientGroupsJSONfn = dirname(__FILE__).'/domainConfigs/'.$naWebOS->domainFolder.'/database.groups.CLIENT.json.php';
 $clientGroupsJSON = (!file_exists($clientGroupsJSONfn) ? '' : require_return($clientGroupsJSONfn, true));
 $clientGroups = json_decode ($clientGroupsJSON, true);
 

@@ -1,4 +1,4 @@
-<?php global $naWebOS; require_once (dirname(__FILE__).'/domainConfigs/'.$naWebOS->domain.'/pageHeader.php');?>
+<?php global $naWebOS; require_once (dirname(__FILE__).'/domainConfigs/'.$naWebOS->domainFolder.'/pageHeader.php');?>
 <div class="license" style="width:calc(100% - 32px);">
 <?php
     $fn = dirname(__FILE__).'/LICENSE.html';

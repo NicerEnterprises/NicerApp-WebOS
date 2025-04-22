@@ -6,10 +6,10 @@
     $debug = false;
 
     global $naWebOS;
-//trigger_error (realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domain.'/index.dark.css', E_USER_NOTICE);
+//trigger_error (realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domainFolder.'/index.dark.css', E_USER_NOTICE);
     if (!array_key_exists('relPath1', $_GET)) {
-        $baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domain.'/';
-        $baseDir = $root.'/NicerAppWebOS/siteData/'.$naWebOS->domain.'/';
+        $baseURL = '/NicerAppWebOS/siteData/'.$naWebOS->domainFolder.'/';
+        $baseDir = $root.'/NicerAppWebOS/siteData/'.$naWebOS->domainFolder.'/';
     } else {
         $baseDir = $_GET['relPath1'];
         $rt = realpath(dirname(__FILE__).'/../../../../');
@@ -45,8 +45,8 @@ if (!array_key_exists('noIframe', $_GET) || $_GET['noIframe']===false) {
         var na = {};
     </script>
     <style></style>
-    <link type="text/css" rel="StyleSheet" href="/NicerAppWebOS/domainConfigs/<?php echo $naWebOS->domain?>/index.css?c=<?php echo date('Ymd_His',filemtime(realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domain.'/index.css'))?>">
-    <link type="text/css" rel="StyleSheet" href="/NicerAppWebOS/domainConfigs/<?php echo $naWebOS->domain?>/index.dark.css?c=<?php echo date('Ymd_His',filemtime(realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domain.'/index.dark.css'))?>">
+    <link type="text/css" rel="StyleSheet" href="/NicerAppWebOS/domainConfigs/<?php echo $naWebOS->domainFolder?>/index.css?c=<?php echo date('Ymd_His',filemtime(realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domainFolder.'/index.css'))?>">
+    <link type="text/css" rel="StyleSheet" href="/NicerAppWebOS/domainConfigs/<?php echo $naWebOS->domainFolder?>/index.dark.css?c=<?php echo date('Ymd_His',filemtime(realpath(dirname(__FILE__).'/../../../').'/domainConfigs/'.$naWebOS->domainFolder.'/index.dark.css'))?>">
     <script type="text/javascript" src="/NicerAppWebOS/logic.userInterface/photoAlbum/4.0.0/photoAlbum-4.0.0.source.js?c=<?php echo date('Ymd_His', filemtime(dirname(__FILE__).'/../../../logic.userInterface/photoAlbum/4.0.0/photoAlbum-4.0.0.source.js'));?>"></script>
 <?php
 } else {

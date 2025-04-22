@@ -39,7 +39,7 @@ use Defuse\Crypto\Crypto;
     }*/
     global $cdb;
     
-    $cdbDomain = str_replace('.','_',$naWebOS->domain);
+    $cdbDomain = str_replace('.','_',$naWebOS->domainFolder);
     $dbName = $cdbDomain.'___webmail_accounts';
     $cdb->setDatabase ($dbName, false);
     

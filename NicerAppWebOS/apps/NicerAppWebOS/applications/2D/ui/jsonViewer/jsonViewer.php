@@ -216,7 +216,7 @@ function jsonViewer_config_authorsDefaults () {
 		//'jv.source.js'.': '.date('r',filectime (HD_ROOT.'code/libraries_rv/jsonViewer-1.3.3/jv.source.js'));
 	global $naWebOS;
     $hmConfig['baseDir'] = $naWebOS->basePath.'/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/ui/jsonViewer';
-    $hmConfig['baseURL'] = 'https://'.$naWebOS->domain.'/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/ui/jsonViewer';
+    $hmConfig['baseURL'] = 'https://'.$naWebOS->domainFolder.'/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/ui/jsonViewer';
     
     return $hmConfig;
 
