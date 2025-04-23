@@ -100,9 +100,9 @@ class newsApp3_class {
              https://www.facebook.com/gavanHoverswell/posts/pfbid0MmAe2GkQSLtKQQdk2x9cdSpxP3C3dHhfJdzT9CvhMZiZC4VGBJfN5EKzWWDCGm92l
          */
         if ($t->raw['country']['iso_code']==='CN') $passIPrangeCheck = false; // China
-        if ($t->raw['country']['iso_code']==='IR') $passIPrangeCheck = false; // Iran (a new ally to China)
+        if ($t->raw['country']['iso_code']==='IR') $passIPrangeCheck = false; // Iran allied to China and responsible for Oct 7th along with Hamas)
         if ($t->raw['country']['iso_code']==='PK') $passIPrangeCheck = false; // Pakistan (a new ally to China)
-        if ($t->raw['country']['iso_code']==='RU') $passIPrangeCheck = false; // Russia (an old ally to China, and human rights violator in Ukraine (the right to die peacefully with your younger family nearby, and the right to live in peace))
+        if ($t->raw['country']['iso_code']==='RU') $passIPrangeCheck = false; // Russia (an old ally to China, and human rights violator in Ukraine (in the many cases of them violating the right to die peacefully with your younger family nearby, and the right to live in peace))
         if ($t->raw['country']['iso_code']==='NK') $passIPrangeCheck = false; // North-Korea (an old ally to China)
         if ($t->raw['country']['iso_code']==='BY') $passIPrangeCheck = false; // Belarus (strong ally of Russia, and co-conspirator in the attrocities commited against Ukraine)
 
