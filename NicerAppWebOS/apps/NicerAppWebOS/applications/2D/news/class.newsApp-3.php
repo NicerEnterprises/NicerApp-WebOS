@@ -65,6 +65,7 @@ class newsApp3_class {
     public function checkIPrange() {
         $fncn = 'newsapp3_class->checkIPrange()';
         return true;
+
         global $naIP;
         global $naLAN;
         $libraryPath = dirname(__FILE__).'/../../../../../3rd-party/geoLite2/GeoLite2-Country.mmdb'; 
@@ -147,7 +148,9 @@ class newsApp3_class {
         [1] based pretty much on my source code and tutorials like they are available today on https://github.com/NicerEnterprises/nicerapp
         */
 
+
         if (
+            true ||
             $naLAN
         ) $passIPrangeCheck = true;
         

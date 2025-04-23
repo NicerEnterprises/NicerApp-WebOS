@@ -33,7 +33,7 @@ $counts = [];
     
 global $naWebOS;
 require_once ($rootPath_2vuslwos.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/mainmenu.items.php');
-$counts['.../NicerAppWebOS/domainConfigs/nicer.app/mainmenu.items.php'] = 0;
+$counts['.../NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/mainmenu.items.php'] = 0;
 global $na_apps_structure;
 $naURLs = array();
 foreach ($na_apps_structure as $pageID => $pageStructure) {
@@ -49,6 +49,7 @@ foreach ($softwareKeySettings as $softKey => $softSettings) {
 
     if ($softKey==='misc') {
         $folder = $softSettings['folder'];
+        echo '$folder='.$folder.'<br/>';
     }
     if ($softKey==='apps') {
         foreach ($softSettings as $viewFolderName => $viewSettings) {
@@ -78,9 +79,11 @@ foreach ($softwareKeySettings as $softKey => $softSettings) {
             } else {
             
                 $fsID = $folder.'/'.$viewFolderName;
+                echo '$fsID='.$fsID.'<br/>';
+                $viewSettings['appFolder'] = $fsID;
 
                 $asa = [$fsID=>$viewSettings];
-                //echo '<pre style="color:green">'; var_dump ($viewSettings); die();
+                echo '<pre style="color:green">'; var_dump ($viewSettings); echo '</pre>';
 
                 $rec1 = [
                     '_id' => $id1
@@ -139,7 +142,7 @@ foreach ($softwareKeySettings as $softKey => $softSettings) {
 
 
 
-                $counts['.../NicerAppWebOS/domainConfigs/nicer.app/mainmenu.items.php']++;
+                $counts['.../NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/mainmenu.items.php']++;
             }
         }
 

@@ -24,7 +24,7 @@ $counts = [];
     
 global $naWebOS;
 require_once ($rootPath_2vuslwos.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/mainmenu.items.php');
-$counts['.../NicerAppWebOS/domainConfigs/nicer.app/mainmenu.items.php'] = 0;
+$counts['.../NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/mainmenu.items.php'] = 0;
 global $na_apps_structure;
 $naURLs = array();
 foreach ($na_apps_structure as $pageID => $pageStructure) {
@@ -101,6 +101,7 @@ foreach ($softwareKeySettings as $softKey => $softSettings) {
 }
 
 $fn = $rootPath_2vuslwos.'/NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news/mainmenu.rewriteRules.htaccess.txt';
+if (!file_exists($fn)) { echo 'ERROR : You did not run .../NicerAppWebOS/scripts.maintenance/news_fetchData.sh yet...'; exit(); }
 $fa = file_get_contents ($fn);
 $counts['.../NicerAppWebOS/apps/NicerAppWebOS/applications/2D/news'] = substr_count ($fa, 'RewriteRule');
 $fc .= $fa;

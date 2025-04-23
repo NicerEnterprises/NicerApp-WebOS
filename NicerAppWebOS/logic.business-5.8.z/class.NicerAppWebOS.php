@@ -309,7 +309,7 @@ class NicerAppWebOS {
         $ret = [];
         foreach ($files as $idx2 => $filepath) {
             $fileRoot = $folder;
-            $filename = str_replace ($fileRoot, '', $filepath);
+            $filename = str_replace ($fileRoot, '', $filepath['realPath']);
             $dialogID = str_replace ('app.dialog.', '', $filename);
             $dialogID = str_replace ('.php', '', $dialogID);
             $arr = array ( $dialogID => execPHP($filepath) );
@@ -334,6 +334,7 @@ class NicerAppWebOS {
         $debug = $this->debug;
         global $naWebOS;
 
+        if ($debug) { echo '<pre style="color:white;background:blue;">'; echo '$viewID='; var_dump ($viewID); echo '</pre>'; }
         $ret = [];
         if (!is_string($viewID) || $viewID==='') {
             $msg = $fncn.' : FAILED (invalid or empty viewID parameter).';
@@ -344,7 +345,7 @@ class NicerAppWebOS {
                 // output frontpage.dialog.*.php
                 $folder = $this->basePath.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/';
                 $files = getFilePathList($folder, false, '/frontpage.dialog.*\.php/', null, array('file'), 1, 1, true)['files'];
-                if (    $debug) { echo $folder.'<br/><pre>'.PHP_EOL; var_dump($files); echo PHP_EOL.PHP_EOL; exit(); };
+                if ($debug) { echo '<p style="color:yellow;background:red;margin:10px;padding:5px;border-radius:10px;">'.$folder.'</p><br/><pre style="color:yellow;background:red;margin:10px;padding:5px;border-radius:10px;">$files='.PHP_EOL; var_dump($files); echo '</pre>'.PHP_EOL.PHP_EOL; };
 
                 foreach ($files as $idx2 => $filepath) {
                     $fileRoot = $folder;
@@ -352,7 +353,7 @@ class NicerAppWebOS {
                     $dialogID = str_replace ('frontpage.dialog.', '', $filename);
                     $dialogID = str_replace ('.php', '', $dialogID);
                     $arr = array ( $dialogID => require_return($filepath['realPath']) );
-                    //var_dump ($filepath); echo PHP_EOL;
+                    //echo 't666a'; var_dump ($filepath); echo PHP_EOL;
                     //var_dump ($dialogID); echo PHP_EOL;
                     //$arr = array ( $dialogID => $filepath );
                     $ret = array_merge ($ret, $arr);
@@ -360,39 +361,55 @@ class NicerAppWebOS {
 
             } else {
                 // request view settings from database
-                $view = is_object($this->view)?(array)$this->view:$this->view;
-                //echo '<pre>'; var_dump($view);exit();
+                try {
+                    $view = is_object($this->view)?(array)$this->view:$this->view;
+                    if ($debug) { echo '<pre style="color:white;background:lime;font-weight:bold;padding:5px;margin:10px;border-radius:10px;">$view='; var_dump ($view); echo '</pre>'; }
+
+                } catch (Exception $e2) {
+                    echo '<pre style="color:white;background:red;margin:10px;padding:5px;border-radius:10pxp;">'; echo '<b>ERROR : '.$e2->getMessage().'</b>'; echo '<pre style="margin-left:10px;color:white;">debug_backtrace()='; var_dump (debug_backtrace()); echo '</pre><b>$view='; var_dump($view); echo '</b><p style="font-weight:bold;">probable solution : run "php .../NicerAppWebOS/scripts.maintenance/htaccess.build.php and htaccess.build-views.php again"</p>'; exit();
+                }
                 $ret = [ ];// DONT! 'siteContent' => '<pre>'.json_encode($view,JSON_PRETTY_PRINT).'</pre>'];
                 if (is_array($view)) {
-                    if (array_key_exists('misc', $view)) {
+                    /*if (array_key_exists('misc', $view)) {
                         $fsid = $view['misc']['folder'];
                         foreach ($view as $k => $rec) {
                             if ($k=='misc') continue; else {
                                 $fid = $k;
                                 $rp = $fsid.'/'.$fid;
+                                var_dump ($rp);
                             }
                         }
                         $view = [ $rp => $rec ];
-                    }
-                    //echo '<pre style="color:purple;background:cyan;">'; var_dump ($view); echo '</pre>'; exit();
+                    }*/
+                    if ($debug) { echo '<pre style="color:purple;background:cyan;">'; var_dump ($view); echo '</pre>'; }
 
                     //foreach ($view as $appName => $viewApp) break;
                     //echo '<pre style="color:purple;background:cyan;">'; var_dump ($viewApp); echo '</pre>'; exit();
-                    $viewsFolder = $view['appFolder'];
+                    $viewsFolder = '-$viewsFolder NOT FOUND-';
+                    foreach ($view as $k1 => $v1) {
+                        $viewsFolder = $this->basePath.$k1;
+                    }
+                    if ($debug) { echo '<em>$viewsFolder='.$viewsFolder.'</em>'; }
 
                     //foreach ($view as $viewsFolder => $viewSettings) {
-                        if (!file_exists($this->basePath.'/'.$viewsFolder)) {
-                            $msg = 'Folder "'.$this->basePath.'/'.$viewsFolder.'" does not exist.'.PHP_EOL;
+                        if (!file_exists($viewsFolder)) {
+                            $msg = 'Folder "'.$viewsFolder.'" does not exist.'.PHP_EOL;
                                 //.'$_SERVER='.json_encode($_SERVER,JSON_PRETTY_PRINT)
                                 //.' $VIEW='.json_encode($view,JSON_PRETTY_PRINT)
                                 //.' BACKTRACE='.json_encode(debug_backtrace(), JSON_PRETTY_PRINT);
+                            if ($debug) {
+                                echo '<pre style="color:red;font-weight:bold">';
+                                var_dump ($msg);
+                                echo '</pre>';
+                            }
                             trigger_error ($msg, E_USER_WARNING);
                         } else {
-                            $dbInitPHP = $this->basePath.'/'.$viewsFolder.'/db_init.php';
-                            if (file_exists($dbInitPHP)) execPHP ($dbInitPHP);
+                            //dangerous, don't remember why i put this in here atm :
+                            //$dbInitPHP = $this->basePath.'/'.$viewsFolder.'/db_init.php';
+                            //if (file_exists($dbInitPHP)) execPHP ($dbInitPHP);
 
-                            $files = getFilePathList ($this->basePath.'/'.$viewsFolder, true, '/app.*/', null, array('file'), 1, 1, true);
-                            //echo '<pre style="color:purple;background:cyan;">'; var_dump ($files); echo '</pre>'; exit();
+                            $files = getFilePathList ($viewsFolder, true, '/app.*/', null, array('file'), 1, 1, true);
+                            if ($debug) { echo '<pre style="font-weight:bolder;color:purple;background:cyan;">'; var_dump ($files); echo '</pre>'; exit(); }
                             if (!array_key_exists('files', $files)) {
                                 $msg = 'HTTP error 404 : no files matching app.* in "'.$viewsFolder.'"';
                                 trigger_error ($msg, E_USER_ERROR);
@@ -400,7 +417,7 @@ class NicerAppWebOS {
                                 exit();
                             };
                             $files = $files['files'];
-                            //if (true || $debug) { var_dump ($this->basePath.'/'.$viewsFolder); echo '<pre style="color:yellow;background:red;">'; var_dump ($files); echo '</pre>'.PHP_EOL.PHP_EOL;  }; exit();
+                            if ($debug) { var_dump ($viewsFolder); echo '<pre style="color:yellow;background:magenta;padding:5px;margin:10px;border-radius:10px;">'; var_dump ($files); echo '</pre>'.PHP_EOL.PHP_EOL;  };
 
                             $titleFile = $this->basePath.'/'.$viewsFolder.'/app.title.site.php';
                             $desktopDefinitionFile = $this->basePath.'/'.$viewsFolder.'/index.desktopDefinition.json';
@@ -410,14 +427,15 @@ class NicerAppWebOS {
                                 $ret['_desktopDefinition'] = require_return ($desktopDefinitionFile);
 
                             foreach ($files as $idx3 => $contentFile) {
-                                if (strpos($contentFile, 'app.dialog.')!==false) {
-                                    $divID = str_replace('app.dialog.', '', basename($contentFile));
+                                //echo 't666b'; var_dump ($contentFile);
+                                if (strpos($contentFile['realPath'], 'app.dialog.')!==false) {
+                                    $divID = str_replace('app.dialog.', '', basename($contentFile['realPath']));
                                     $divID = str_replace('.php', '', $divID);
-                                    $ret[$divID] = execPHP ($contentFile);
+                                    $ret[$divID] = execPHP ($contentFile['realPath']);
                                 }
                             }
                             //$contentFile = $rootPath.'/'.$viewsFolder.'/app.dialog.siteContent.php';
-                            //$ret = [ 'siteContent' => execPHP ($contentFile) ];
+                            $ret = [ 'siteContent' => execPHP ($contentFile['realPath']) ];
                         }
                     //}
                 } elseif ($view==='["NOT FOUND"]') {
@@ -440,6 +458,12 @@ class NicerAppWebOS {
             ]);
 
 
+            if ($debug) {
+                echo '<pre>';
+                var_dump ($ret);
+                echo '</pre>';
+                exit();
+            }
             return $ret;
 
         }
@@ -581,10 +605,10 @@ class NicerAppWebOS {
                         ];
                         //echo '<pre style="color:blue">'; var_dump ($ret); exit();
                         foreach ($files as $idx3 => $contentFile) {
-                            if (strpos($contentFile, 'app.dialog.')!==false) {
+                            if (strpos($contentFile['realPath'], 'app.dialog.')!==false) {
                                 $divID = str_replace('app.dialog.', '', basename($contentFile));
                                 $divID = str_replace('.php', '', $divID);
-                                $ret[$divID] = execPHP ($contentFile);
+                                $ret[$divID] = execPHP ($contentFile['realPath']);
                             }
                         }
                         //$contentFile = $rootPath.'/'.$viewsFolder.'/app.dialog.siteContent.php';
@@ -623,7 +647,7 @@ class NicerAppWebOS {
                     : $_GET[$getKeyName]
             ],
             'use_index' => 'primaryIndex',
-            'fields' => ['_id', 'viewID' ]
+            'fields' => ['_id', 'viewID', 'appFolder' ]
         ];
         $view = [
             'findCommand' => $findCommand
@@ -639,7 +663,7 @@ class NicerAppWebOS {
         $view = [
             'findCommand' => $findCommand,
             'call' => $call
-        ];//'<pre style="color:blue">$findCommand='.json_encode($findCommand, JSON_PRETTY_PRINT).'</pre><pre style="color:green">$call='.json_encode($call, JSON_PRETTY_PRINT).'</pre>';
+        ];'<pre style="color:blue">$findCommand='.json_encode($findCommand, JSON_PRETTY_PRINT).'</pre><pre style="color:green">$call='.json_encode($call, JSON_PRETTY_PRINT).'</pre>';
         //return true;
 
         if (
@@ -859,7 +883,7 @@ class NicerAppWebOS {
 
         $files = getFilePathList ($path, false, '/btn_.*\.css/', null, array('file'), 1, 1, true)['files'];
         foreach ($files as $idx => $file) {
-            $files[$idx] = str_replace($this->path, '', $file);
+            $files[$idx] = str_replace($this->path, '', $file['realPath']);
         }
         sort($files);
         return array_merge ([ '/NicerAppWebOS/logic.vividUserInterface/v6.y.z/2D/button-4.2.0/themes.css' ], $files);
@@ -2150,6 +2174,19 @@ class NicerAppWebOS {
 
         return false;
     }
+
+    // helper functions
+    public function currentDateTimeStamp() { // it's considered unwise to be using this function at all
+        return date('Ymd_His');
+    }
+
+    public function fileDateTimeStamp($filepath) { // use this function instead
+        //return $filepath;
+        return date('Ymd_His', filemtime($filepath));
+    }
+
+
+
 
 }
 

@@ -345,6 +345,7 @@ NicerApp WebOS from Nicer Enterprises
     $timestamp = date(DATE_RFC2822);
 
     $headers_list = [];
+    if (php_sapi_name() !== 'cli')
     foreach (getallheaders() as $name => $value) {
         array_push($headers_list, array("name" => $name, "value" => $value));
     }

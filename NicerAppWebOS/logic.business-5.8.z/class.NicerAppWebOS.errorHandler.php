@@ -81,6 +81,7 @@ class class_NicerAppWebOS__errorHandler {
         $errTXT = "[".$naIP." : ".$date."] PHP ".$errtype.' error in "'.$errfile.'":'.$errline." : ".$errstr.", backtrace = ".PHP_EOL.$this->backtrace('txt');
 
         $headers_list = [];
+        if (php_sapi_name() !== 'cli')
         foreach (getallheaders() as $name => $value) {
             array_push($headers_list, array("name" => $name, "value" => $value));
         }
