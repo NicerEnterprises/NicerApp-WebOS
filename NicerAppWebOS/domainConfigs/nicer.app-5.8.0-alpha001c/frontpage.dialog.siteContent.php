@@ -12,12 +12,11 @@
         }, 100);*/
     </script>
 
-    <p>
+    <div style="width:40%;color:black;background:rgba(250, 233, 52,0.35);font-size:120%;margin:10px;font-weight:bold;padding:8px;border-radius:10px;text-shadow:0px 0px 3px rgba(255,0,0,0.7);box-shadow:0px 0px 8px 4px rgba(0,0,0,0.666), 2px 2px 2px rgba(0,0,0,0.7);">
     Take a video or (tiled) background of any resolution, and project information onto that using any weblanguage you want.<br/>
-<!--     Written in a style simple enough for children to learn from.<br/> -->
-    This is the <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" class="contentSectionTitle3_a1 nomod noPushState" target="v5"><span class="contentSectionTitle3_a1" style="box-shadow:none; padding:0px;margin:0px;">5th major version</span></a> of this software, <a href="https://github.com/NicerEnterprises/NicerApp-WebOS-v6.y.z" class="contentSectionTitle3_a1 nomod noPushState" target="v6"><span class="contentSectionTitle3_a1" style="box-shadow:none;padding:0px;margin:0px;">version 6</span></a> can be found <a class="contentSectionTitle3_a1 nomod noPushState" href="https://new.nicer.app" target="newNA"><span class="contentSectionTitle3_a1" style="box-shadow:none;padding:0px;margin:0px;">here</span></a>.
-    <!--This is the 5th major version of this software, version 6 can be found <a class="nomod noPushState" href="https://new.nicer.app" target="newNA">here</a>.-->
-    </p>
+    Written in a style simple enough for children to learn from.<br/>
+    This is the <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" class="contentSectionTitle3_a1 nomod noPushState" target="v5"><span class="contentSectionTitle3_a1" style="box-shadow:none; padding:0px;margin:0px;">5th major version (5.8.0 to be exact)</span></a> of this software.<br/>
+    </div>
 
     <h2 class="contentSectionTitle1"><span class="contentSectionTitle1_span">Stable Apps</span></h2>
 

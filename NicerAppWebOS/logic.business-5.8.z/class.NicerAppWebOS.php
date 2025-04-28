@@ -370,17 +370,17 @@ class NicerAppWebOS {
                 }
                 $ret = [ ];// DONT! 'siteContent' => '<pre>'.json_encode($view,JSON_PRETTY_PRINT).'</pre>'];
                 if (is_array($view)) {
-                    /*if (array_key_exists('misc', $view)) {
+                    if (array_key_exists('misc', $view)) {
                         $fsid = $view['misc']['folder'];
                         foreach ($view as $k => $rec) {
                             if ($k=='misc') continue; else {
                                 $fid = $k;
                                 $rp = $fsid.'/'.$fid;
-                                var_dump ($rp);
+                                //var_dump ($rp);
                             }
                         }
                         $view = [ $rp => $rec ];
-                    }*/
+                    }
                     if ($debug) { echo '<pre style="color:purple;background:cyan;">'; var_dump ($view); echo '</pre>'; }
 
                     //foreach ($view as $appName => $viewApp) break;
@@ -431,11 +431,13 @@ class NicerAppWebOS {
                                 if (strpos($contentFile['realPath'], 'app.dialog.')!==false) {
                                     $divID = str_replace('app.dialog.', '', basename($contentFile['realPath']));
                                     $divID = str_replace('.php', '', $divID);
+                                    //echo $divID.'<br/>';
+                                    if ($divID=='siteContent') // TODO : fix again (2025-04/05)
                                     $ret[$divID] = execPHP ($contentFile['realPath']);
                                 }
                             }
                             //$contentFile = $rootPath.'/'.$viewsFolder.'/app.dialog.siteContent.php';
-                            $ret = [ 'siteContent' => execPHP ($contentFile['realPath']) ];
+                            //$ret = [ 'siteContent' => execPHP ($contentFile['realPath']) ];
                         }
                     //}
                 } elseif ($view==='["NOT FOUND"]') {
@@ -458,12 +460,12 @@ class NicerAppWebOS {
             ]);
 
 
-            if ($debug) {
+            /*if ($debug) {
                 echo '<pre>';
                 var_dump ($ret);
                 echo '</pre>';
                 exit();
-            }
+            }*/
             return $ret;
 
         }
@@ -1012,35 +1014,36 @@ class NicerAppWebOS {
     public function getPageCSS_checkPermissions($d) {
         global $naDebugAll;
         global $naLAN;
-        $debug = false;
+        $debug = $this->debugThemeLoading;
         $db = $this->dbs->findConnection('couchdb');
         $viewFolder = '[UNKNOWN VIEW]';
 
         $selectors2 = $d['selectors'];
+        if ($debug) { echo '<pre style="color:yellow;background:darkred;margin:10px;padding:8px;border-radius:10px;">4selectors2='; var_dump ($selectors2); }
         //$selectorNames = $d['selectorNames'];
         //$debug = true;
         foreach ($selectors2 as $idx => $selector) {
             if ($debug) { echo $idx.'<br/>'.PHP_EOL; };
 
             $permissions = $selector['permissions'];
-            //echo '<pre style="color:cyan;background:navy;">'; var_dump ($permissions); echo '</pre>';
+            if ($debug) { echo '<pre style="color:cyan;background:navy;">$permissions='; var_dump ($permissions); echo '</pre>'; }
 
             foreach (['read','write'] as $idx3=>$pt) {
             $hasPermission = false;
             foreach ($permissions as $permissionType => $permissionsRec) {
                 if ($permissionType==$pt) {
                     foreach ($permissionsRec as $accountType => $accountsList) {
-                        //echo '<pre style="color:white;background:navy;">'; var_dump ($permissionsRec); echo '</pre>';
+                        if ($debug) { echo 't666b1:<pre style="color:white;background:navy;">'; var_dump ($permissionsRec); echo '</pre>'; };
                         foreach ($accountsList as $idx2 => $userOrGroupID) {
                             if ($accountType == 'users') {
                                 $adjustedUserOrGroupID = $db->translate_plainUserName_to_couchdbUserName($userOrGroupID);
                             } else {
                                 $adjustedUserOrGroupID = $db->translate_plainGroupName_to_couchdbGroupName($userOrGroupID);
                             }
-                            //$adjustedUserOrGroupID = $userOrGroupID; // TODO : check if this is necessary
+                            $adjustedUserOrGroupID = $userOrGroupID; // TODO : check if this is necessary
 
-                            //if ($debug)
-                            //{ echo 't666='; var_dump($accountType); echo PHP_EOL; var_dump ($userOrGroupID); echo PHP_EOL; var_dump ($adjustedUserOrGroupID); echo PHP_EOL.PHP_EOL; var_dump ($this->dbs->findConnection('couchdb')->roles); echo '<br/>';}
+                            if ($debug)
+                            { echo '<pre style="color:white;background:blue;margin:10px;padding:5px;">t666b2='; var_dump($accountType); echo PHP_EOL; var_dump ($userOrGroupID); echo PHP_EOL; var_dump ($adjustedUserOrGroupID); echo PHP_EOL.PHP_EOL; var_dump ($this->dbs->findConnection('couchdb')->roles); echo '</pre>';}
                             if ($accountType == 'roles') {
                                 //if ($debug) { echo '$this->dbs->roles='; var_dump($this->dbs->roles); };
                                 if (is_string($this->dbs)) {
@@ -1078,7 +1081,7 @@ class NicerAppWebOS {
             //echo '<pre style="background:purple;color:white;font-weight:bold;">'.$idx.'</pre>'.PHP_EOL;
         }
 
-        if ($debug) {echo '<pre style="color:lime;background:blue;border-radius:10px;">'; var_dump ($selectors2); echo '</pre>'; }
+        if ($debug) {echo '<pre style="color:lime;background:blue;border-radius:10px;">'; var_dump ($selectors2); echo '</pre></pre>'; }
 
         return [
             'selectors' => $selectors2//,
@@ -1100,7 +1103,7 @@ class NicerAppWebOS {
 
         global $naDebugAll;
         global $naLAN;
-        $debug = false;
+        $debug = $this->debugThemeLoading;
 
         $viewFolder = '[UNKNOWN VIEW]';
         $db = $this->dbs->findConnection('couchdb');
@@ -1113,9 +1116,8 @@ class NicerAppWebOS {
         $d2 = $this->getPageCSS_checkPermissions($d1);
         $selectors = $d2['selectors'];
         if ($debug) {
-            //echo '<pre style="color:lime;background:green">'; var_dump ($selectors); echo '</pre>';
+            echo '<pre style="color:lime;background:green"'; var_dump ($selectors); echo '</pre>';
             $this->echoDebugData ($selectors, $fncn.' : 2', 'naDebugData_getPageCSS');
-            exit();
         };
 
         $selectorsCachedFN = 'getPageCSS_'.randomString(50);
@@ -1147,7 +1149,7 @@ class NicerAppWebOS {
 
 
         foreach ($selectors2 as $idx => $selector) {
-            //echo '<pre>'; var_dump ($selector); exit();
+            if ($debug) { echo '<pre style="color:yellow;background:blue;padding:5px;margin:10px;border-radius:10px;"><h2>'.$idx.'</h2>'.PHP_EOL.PHP_EOL; var_dump ($selector); echo '</pre>'.PHP_EOL.PHP_EOL; }
             if (
                 !array_key_exists('has_read_permission',$selector)
                 || !$selector['has_read_permission']
@@ -1164,7 +1166,7 @@ class NicerAppWebOS {
             ) continue;
 
             $css = $this->getPageCSS_specific($selector);
-            //echo '<pre>'; var_dump($css); echo '</pre>';
+            if ($debug) { echo '<pre style="color:darkred;background:yellow;padding:5px;margin:10px;border-radius:10px;">$css='.PHP_EOL.PHP_EOL; var_dump($css); echo '</pre>'; }
             if (is_array($css)) {
                 foreach ($css['themes'] as $themeName => $theme) { break; };
                 $specificityName = (
@@ -1471,7 +1473,7 @@ class NicerAppWebOS {
         file_put_contents($selectorsCachedFilepath.'.idx', $id2);
         file_put_contents($selectorsCachedFilepath.'.txt', $ret);
 
-        if ($debug) exit();
+        if ($this->debugThemeLoading) exit();
 
         return $ret;
     }
@@ -1933,8 +1935,15 @@ class NicerAppWebOS {
         $hasJS = false;
         $hasCSS = false;
 
-        //if ($debug)
-        //echo '<pre>';var_dump ($selectors); exit();
+        /*
+        if ($debug) {
+            $dbg1a = [
+                '$hasJS' => $hasJS,
+                '$hasCSS' => $hasCSS,
+                '$selectors' => $selectors
+            ];
+            echo '<pre>';var_dump ($dbg1a); exit();
+        }*/
         return [
             //'selectorNames' => $selectorNames,
             'selectors' => $selectors//,
@@ -1954,7 +1963,7 @@ class NicerAppWebOS {
         //{ echo '$selector='; var_dump ($selector); echo '<br/><br/>'.PHP_EOL.PHP_EOL; exit(); };
 
         $permissions = $selector['permissions'];
-        if (false && $debug) {
+        if ($debug) {
             echo '<pre style="color:purple">$selector='; var_dump ($selector); echo '</pre><br/>'.PHP_EOL.PHP_EOL;
         }
 
@@ -1998,7 +2007,7 @@ class NicerAppWebOS {
                                 $adjustedUserOrGroupID = $userOrGroupID;
 
 
-                                //if ($debug) { echo 't666='; var_dump($accountType); var_dump ($this->dbs->findConnection('couchdb')->username); echo '<br/>'.PHP_EOL; var_dump ($userOrGroupID); echo '<br/>$adjustedUserOrGroupID='; var_dump ($adjustedUserOrGroupID); }
+                                if ($debug) { echo '<pre style="color:lime;background:blue;margin:10px;padding:5px;">t666c='; var_dump($accountType); var_dump ($this->dbs->findConnection('couchdb')->username); echo '<br/>'.PHP_EOL; var_dump ($userOrGroupID); echo '<br/>$adjustedUserOrGroupID='; var_dump ($adjustedUserOrGroupID); echo '</pre>';}
 
                                 if ($accountType == 'roles') {
                                     //$adjustedUserOrGroupID = $db->translate_plainGroupName_to_couchdbGroupName($userOrGroupID);

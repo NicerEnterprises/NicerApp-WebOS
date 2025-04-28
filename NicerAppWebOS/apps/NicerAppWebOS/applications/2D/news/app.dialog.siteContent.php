@@ -10,7 +10,7 @@ $newsApp3_factorySettings_fn = dirname(__FILE__).'/config.factorySettings.json';
 $newsApp3_factorySettings = json_decode(file_get_contents($newsApp3_factorySettings_fn), true);
 $newsApp3 = new newsApp3_class($newsApp3_factorySettings);
 $passIPrangeCheck = $newsApp3->checkIPrange();
-
+var_dump ($passIPrangeCheck);
 if ($passIPrangeCheck) {
     echo require_return (dirname(__FILE__).'/app.content_fullService.php');
 } else {

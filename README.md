@@ -318,15 +318,18 @@ After that, the only remaining step is to restart all the server software :
 # Initializing a couchdb database
 
 You'll have to use the commandline OS app to start
+> cd .../NicerAppWebOS/scripts.maintenance
 ````
-  php .../NicerAppWebOS/scripts.maintenance/htaccess.build.php
+  ./setPermissions.sh
+  php htaccess.build.php
+  php htaccess.build-views.php
 ````
 
 You'll have to edit .../NicerAppWebOS/domainConfigs/YOURDOMAIN_TLD/naLAN.json
 to enter your local area network's outside-world IP address.
 
-After this, you'll have to browse once to https://YOURDOMAIN.TLD/NicerAppWebOS/db_init.php
-and after that to https://YOURDOMAIN.TLD
+After this, you'll have to browse once to https://YOURDOMAIN.TLD[:PORT]/NicerAppWebOS/db_init.php
+and after that to https://YOURDOMAIN.TLD[:PORT]
 	
 # Modifying the HTML for a nicerapp site
 This is done by modifying .../NicerAppWebOS/domainConfigs/YOURDOMAIN_TLD/index.template.php

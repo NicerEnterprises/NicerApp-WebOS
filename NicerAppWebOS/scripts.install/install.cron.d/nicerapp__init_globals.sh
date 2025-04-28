@@ -1,10 +1,10 @@
 #!/bin/bash
 PATH=/bin:/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin
 
-source /var/www/nicer.app-5.7.0/NicerAppWebOS/scripts.maintenance/do_upgrade_globals_manufacturer.sh
+source /var/www/nicer.app-5.8.0-alpha001c/NicerAppWebOS/scripts.maintenance/do_upgrade_globals_manufacturer.sh
 NA_ROOT_PATH="$NA_MAIN_HTDOCS_RELATIVE_PATH/$NA_MAIN_SITE_FOLDER"
 if [ ! -d $NA_ROOT_PATH ]; then
-        NA_ROOT_PATH="/var/www/nicer.app-5.7.0"
+        NA_ROOT_PATH="/var/www/nicer.app-5.8.0-alpha001c"
 fi
 
 NA_MAILTO=rene.veerman.netherlands@gmail.com

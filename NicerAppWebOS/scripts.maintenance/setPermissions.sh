@@ -1,6 +1,6 @@
 #!/bin/bash
 
-myRoot=/var/www/nicer.app-5.7.0
+myRoot=/var/www/nicer.app-5.8.0-alpha001c
 
 echo "START OF $myRoot/NicerAppWebOS/scripts.maintenance/setPermissions.sh"
 

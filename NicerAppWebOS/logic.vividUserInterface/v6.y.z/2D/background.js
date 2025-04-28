@@ -18,7 +18,7 @@ na.background = na.bg = {
                     t.data = JSON.parse(data);
 
 //debugger;
-                    //settings.naSite.globals.domain = 'nicer.app-5.7.0'; // TODO : get this fixed in .../NicerAppWebOS/logic.business-5.8.z/class.NicerAppWebOS.php::TODO 1
+                    //settings.naSite.globals.domain =nicer.app-5.8.0-alpha001c'; // TODO : get this fixed in .../NicerAppWebOS/logic.business-5.8.z/class.NicerAppWebOS.php::TODO 1
                     //t.next ('#siteBackground', 'landscape', null, false, function() {
                         var
                         url2 = '/NicerAppWebOS/domainConfigs/'

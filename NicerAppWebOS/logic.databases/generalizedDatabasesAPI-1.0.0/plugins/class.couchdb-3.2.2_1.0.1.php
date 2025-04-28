@@ -9,7 +9,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
     public $connectionType = 'couchdb';
     public $debug = false;
     public $ip;
-    public $security_admin = null;//'{ "admins": { "names": [], "roles": ["administrators"] }, "members": { "names": [], "roles": ["administrators","guests"] } }';
+    public $security_admin = '{ "admins": { "names": [], "roles": ["administrators"] }, "members": { "names": [], "roles": ["administrators","guests"] } }';
     public $security_guest = '{ "admins": { "names": [], "roles": ["guests"] }, "members": { "names": [], "roles": ["guests"] } }';
     public $naWebOS;
     public $cdb;
@@ -415,7 +415,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         //echo '<pre>'; var_dump ($this->security_guest); echo '</pre>'; die();
         if (is_null($this->security_guest)) { trigger_error ('FATAL ERROR : $this->security_guest is null. see $this->setGlobals()', E_USER_ERROR); die(); }
         try { 
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit();
         }
@@ -441,7 +441,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName,true);
         try { 
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit();
         }
@@ -453,7 +453,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName,true);
         try { 
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit();
         }
@@ -465,7 +465,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName,true);
         try { 
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit();
         }
@@ -549,7 +549,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         try { 
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit();
         }
@@ -630,7 +630,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         try { 
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit();
         }
@@ -685,7 +685,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         try { 
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
@@ -702,7 +702,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         try { 
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
@@ -736,7 +736,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         try {
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
@@ -752,7 +752,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         //if ($this->debug) { echo '<pre style="color:orange;background:navy;">'; var_dump (css_to_array(file_get_contents(dirname(__FILE__).'/themes/nicerapp_default.css'))); echo '</pre>';}
 
         try {
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
@@ -948,7 +948,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         //if ($this->debug) { echo '<pre style="color:orange;background:navy;">'; var_dump (css_to_array(file_get_contents(dirname(__FILE__).'/themes/nicerapp_default.css'))); echo '</pre>';}
 
         try {
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
@@ -1081,7 +1081,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         //if ($this->debug) { echo '<pre style="color:orange;background:navy;">'; var_dump (css_to_array(file_get_contents(dirname(__FILE__).'/themes/nicerapp_default.css'))); echo '</pre>';}
 
         try { 
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
@@ -1107,7 +1107,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         try { 
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
@@ -1119,7 +1119,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         try { 
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
@@ -1187,7 +1187,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         try {
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
@@ -1240,7 +1240,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         try {
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
@@ -1266,7 +1266,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         try {
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }
@@ -1290,7 +1290,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         try {
-            $call = $this->cdb->setSecurity ($this->security_guest);
+            $call = $this->cdb->setSecurity ($this->security_admin);
         } catch (Exception $e) {
             if ($this->debug) { echo '<pre style="color:red">'; var_dump ($e); echo '</pre>'; exit(); }
         }

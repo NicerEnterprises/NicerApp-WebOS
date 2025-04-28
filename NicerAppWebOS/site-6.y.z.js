@@ -25,7 +25,7 @@ na.site = {
 
     globals : {
         domain : 'nicer.app', // TODO : not hardcode this
-        domainFolder : 'nicer.app-5.7.0', // TODO : do not hardcode this either
+        domainFolder : 'nicer.app-5.8.0-alpha001c', // TODO : do not hardcode this either
         margin : 8,
         smallDeviceWidth : 1081,
         reallySmallDeviceWidth : 700

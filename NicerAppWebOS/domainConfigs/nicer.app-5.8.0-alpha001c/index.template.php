@@ -42,7 +42,7 @@ import { naLogo } from '/NicerAppWebOS/na.canvasLogo-4.y.z.js?f=u';
 </head>
 
 <body onload="siteOnLoad()" style="font-family: 'Roboto Condensed', sans-serif;">
-    <img style="z-index:-10;position:absolute;opacity:0.0001" src="/NicerAppWebOS/screenshots/2023 A.D./Screenshot_20230104_100223.png"/>
+    <img style="z-index:-10;position:absolute;opacity:0.0001;width:98%;height:98%;left:1%;top:1%;" src="/NicerAppWebOS/screenshots/2023 A.D./Screenshot_20230104_100223.png"/>
     <div id="siteContent" class="vividDialog">
         <div class="vividDialogBackground1"></div>
         <div class="vividDialogContent vividScrollpane">
