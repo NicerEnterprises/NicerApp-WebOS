@@ -289,6 +289,7 @@ na.site = {
     loadContent : function (event, url, callback_phase1, callback_phase2) {
         na.apps.mustHaveAtLeast_number = 0;
         na.site.settings.url = url;
+        debugger;
         //if (na.site.globals.debug['na.site.loadContent']) alert (url);
 
         //na.desktop.setConfig ('content');

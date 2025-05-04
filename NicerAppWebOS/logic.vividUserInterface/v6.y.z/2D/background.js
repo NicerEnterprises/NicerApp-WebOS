@@ -126,6 +126,14 @@ na.background = na.bg = {
                         hit = false;
                     }
 
+
+                    // pre-parsing; date-ranges & forbidden keywords
+                    if (hit) {
+                        if (!search.match('women') && bgk.match('women')) hit = false;
+                    }
+
+
+
                     if (hit) {
                         if (useRoot)
                             hits[hits.length] = bgs[collectionIdx].root+bgk;
@@ -136,12 +144,9 @@ na.background = na.bg = {
             }
 
             if (hits.length===0) return false;
- //debugger;
-            var
-            url = hits[Math.floor(Math.random() * Math.floor(hits.length))];
+            var url = hits[Math.floor(Math.random() * Math.floor(hits.length))];
         };
-        //debugger;
-        //na.m.log (20, fncn+' : url='+url, true);
+        na.m.log (20, fncn+' : url='+url, true);
 
         t.settings.div = div;
 

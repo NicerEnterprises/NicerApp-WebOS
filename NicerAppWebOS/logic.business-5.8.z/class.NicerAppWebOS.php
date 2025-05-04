@@ -173,10 +173,10 @@ class NicerAppWebOS {
         if ($this->dbsAdmin===null) {
             $this->dbsAdmin = 'initializing';
             // logged in as $cdbConfig['adminUsername']!
-            //$this->dbAdmin = new class_NicerAppWebOS_database_API_couchdb_3_2 (clone $this, true);
+            // $this->dbAdmin = new class_NicerAppWebOS_database_API_couchdb_3_2 (clone $this, true);
             $this->dbsAdmin = new class_NicerAppWebOS_database_API ('admin');
             try {
-                //q$this->dbsAdmin = new class_NicerAppWebOS_database_API ('admin');
+                // $this->dbsAdmin = new class_NicerAppWebOS_database_API ('admin');
 
                 if (php_sapi_name() !== 'cli') {
                     //WILL NEVER WORK; HANDLED BY logic.AJAX/ajax_testDBconnection.php! setcookie('cdb_admin_loginName' ,$this->dbsAdmin->findConnection('couchdb')->username, time() + 604800, '/');
@@ -2194,6 +2194,9 @@ class NicerAppWebOS {
         return date('Ymd_His', filemtime($filepath));
     }
 
+    public function adjustPath ($fn) {
+        return str_replace('/var/www/'.$this->domainFolder, '', $fn);
+    }
 
 
 

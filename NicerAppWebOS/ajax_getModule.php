@@ -17,7 +17,7 @@ $js = timestampJSmodule2($js);
 $js = timestampJSmodule3($js);
 echo $js;
 
-function filestampJSmodule ($js) {
+functdion filestampJSmodule ($js) {
   $rt = realpath(dirname(__FILE__).'/..');
   $preg = preg_match_all ('/class\s+(.*?)\s+\{/', $js, $matches);
 
