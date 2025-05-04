@@ -24,15 +24,15 @@ function naWebOS_gather_traceroute_data () {
 function naWebOS_output_debug_info ($di) {
     global $dbgDG;
     if ($dbgDG) {
-        echo '<pre class="naWebOS_debug_info '.$di['mainPreClassName'].'">'.PHP_EOL;
+        echo '<pre class="naWebOS-debug-info '.$di['mainPreClassName'].'">'.PHP_EOL;
             echo
-                '<span class="naWebOS_field_name">$xec</span>=<span class="naWebOS_field_value naWebOS_execcall_string">'
+                '<span class="naWebOS-field-name">$xec</span>=<span class="naWebOS-field-value naWebOS_execcall_string">'
                 .json_encode($di['execString'],JSON_PRETTY_PRINT).'</span>'.PHP_EOL;
             echo
-                '<span class="naWebOS_field_name">$result_code</span>=<span class="naWebOS_field_value naWebOS_execcall_result_code">'
+                '<span class="naWebOS-field-name">$result_code</span>=<span class="naWebOS-field-value naWebOS_execcall_result_code">'
                 .json_encode($di['result_code'],JSON_PRETTY_PRINT).'</span>'.PHP_EOL;
             echo
-                '<span class="naWebOS_field_name">$output</span>=<span class="naWebOS_field_value naWebOS_execcall_output">'
+                '<span class="naWebOS-field-name">$output</span>=<span class="naWebOS-field-value naWebOS_execcall_output">'
                 .json_encode($di['output'],JSON_PRETTY_PRINT).'</span>';PHP_EOL;
         echo '</pre>';
     }
