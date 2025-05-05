@@ -51,7 +51,6 @@ function naWebOS_output_debug_info ($di) {
 
 
 function naWebOS_gather_desktop_OS_info() {
-    global $dbgDG;
     $xec = 'hostnamectl';
     exec ($xec, $output, $result_code);
     $di = [
@@ -62,8 +61,15 @@ function naWebOS_gather_desktop_OS_info() {
     ];
     naWebOS_output_debug_info ($di);
 
-    $output2 = preg_match ('/\s+\([a-z][A-Z[0-0]\):\s([a-z][A-Z[0-0]\)/)', $ouput);
-    var_dump($output2);
+    $regEx = '/\s+\([a-z][A-Z[0-0]\):\s([a-z][A-Z[0-0]\)/)';
+    $preg_match_result_code = preg_match ($regEx, $ouput, $matches, PREG_OFFSET_CAPTURE);
+    $di = [
+        '$regEx' => $regEx,
+        'mode' => 'PREG_OFFSET_CAPTURE',
+        '$matches' => $matches,
+        '$preg_match_result_code' => $preg_match_result_code
+    ];
+    naWebOS_output_debug_info ($di);
 }
 
 function naWebOS_gather_traceroute_version () {
@@ -91,7 +97,7 @@ function naWebOS_gather_traceroute_version () {
 
     $cr = false;
     foreach ($expectedOutputs as $k => $v) {
-        if ($result_code === $k && join('<br/>>',$v) == join('<br/>>',$output)) $cr = true;
+        if ($result_code === $k && $v == $output[0][$k]) $cr = true;
     }
     return $cr;
 }
