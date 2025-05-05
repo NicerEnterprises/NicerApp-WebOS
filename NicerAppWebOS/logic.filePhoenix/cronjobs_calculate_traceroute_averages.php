@@ -18,7 +18,8 @@ naWebOS_gather_traceroute_data();
 
 function naWebOS_gather_traceroute_data () {
     $ctv = naWebOS_gather_traceroute_version();
-    var_dump ($ctv);
+    naWebOS_gather_traceroute_data_for_VPN_incoming_connections ('Google.com');
+    naWebOS_gather_traceroute_data_for_VPN_incoming_connections ('HotMail.com');
 }
 
 function naWebOS_output_debug_info ($di) {
@@ -102,8 +103,15 @@ function naWebOS_gather_traceroute_version () {
     return $cr;
 }
 
-function naWebOS_gather_traceroute_data_for_VPN_incoming_connections () {
-
+function naWebOS_gather_traceroute_data_for_VPN_incoming_connections ($target='Google.com') {
+    $xec = 'traceroute '.$target;
+    exec ($xec, $output, $result_code);
+    $di = [
+        'execString' => $xec,
+        'output' => $output,
+        'result_code' => $result_code
+    ];
+    naWebOS_output_debug_info ($di);
 }
 
 function naWebOS_gather_traceroute_data_for_regular_incoming_connections () {
