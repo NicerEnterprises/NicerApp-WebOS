@@ -13,13 +13,13 @@ echo '<link type="text/css" rel="StyleSheet" href="'.$fnWeb.'?m='.$naWebOS->file
 echo '</head>';
 echo '<body>';
 
-naWebOS_gather_desktop_OS_info();
 naWebOS_gather_traceroute_data();
 
 function naWebOS_gather_traceroute_data () {
-    $ctv = naWebOS_gather_traceroute_version();
-    naWebOS_gather_traceroute_data_for_VPN_incoming_connections ('Google.com');
-    naWebOS_gather_traceroute_data_for_VPN_incoming_connections ('HotMail.com');
+    naWebOS_gather_desktop_OS_info();
+    naWebOS_gather_traceroute_version();
+    naWebOS_gather_traceroute_data_for_VPN_outgoing_connections ('Google.com');
+    //naWebOS_gather_traceroute_data_for_VPN_outgoing_connections ('HotMail.com');
 }
 
 function naWebOS_output_debug_info ($di) {
@@ -62,7 +62,8 @@ function naWebOS_gather_desktop_OS_info() {
     ];
     naWebOS_output_debug_info ($di);
 
-    $regEx = '/\s+\([a-z][A-Z[0-0]\):\s([a-z][A-Z[0-0]\)/)';
+    /*
+    $regEx = '/\s+\([a-z][A-Z[0-0]\):\s([a-z][A-Z[0-0]\)./)';
     $preg_match_result_code = preg_match ($regEx, $ouput, $matches, PREG_OFFSET_CAPTURE);
     $di = [
         '$regEx' => $regEx,
@@ -71,6 +72,7 @@ function naWebOS_gather_desktop_OS_info() {
         '$preg_match_result_code' => $preg_match_result_code
     ];
     naWebOS_output_debug_info ($di);
+    */
 }
 
 function naWebOS_gather_traceroute_version () {
@@ -103,7 +105,7 @@ function naWebOS_gather_traceroute_version () {
     return $cr;
 }
 
-function naWebOS_gather_traceroute_data_for_VPN_incoming_connections ($target='Google.com') {
+function naWebOS_gather_traceroute_data_for_VPN_outgoing_connections ($target='Google.com') {
     $xec = 'traceroute '.$target;
     exec ($xec, $output, $result_code);
     $di = [
@@ -112,9 +114,35 @@ function naWebOS_gather_traceroute_data_for_VPN_incoming_connections ($target='G
         'result_code' => $result_code
     ];
     naWebOS_output_debug_info ($di);
+
+    foreach ($output as $idx => $line) {
+        if ($idx===0) {
+            $regEx_targetIP = '/(.*\))/';
+            $preg_match_result_code = preg_match ($regEx_targetIP, $line, $matches, PREG_OFFSET_CAPTURE);
+            $di = [
+                '$regEx_targetIP' => $regEx_targetIP,
+                'mode' => 'PREG_OFFSET_CAPTURE',
+                '$matches' => $matches,
+                '$preg_match_result_code' => $preg_match_result_code
+            ];
+            naWebOS_output_debug_info ($di);
+        }
+
+        if ($idx > 0) {
+            $regEx_lineDecompiledRXdata = '/\s+"\s+\d+\s+([\d.]+)".*/';
+            $preg_match_result_code = preg_match ($regEx_lineDecompiledRXdata, $line, $matches, PREG_OFFSET_CAPTURE);
+            $di = [
+                '$regEx_lineDecompiledRXdata' => $regEx_lineDecompiledRXdata,
+                'mode' => 'PREG_OFFSET_CAPTURE',
+                '$matches' => $matches,
+                '$preg_match_result_code' => $preg_match_result_code
+            ];
+            naWebOS_output_debug_info ($di);
+        }
+    }
 }
 
-function naWebOS_gather_traceroute_data_for_regular_incoming_connections () {
+function naWebOS_gather_traceroute_data_for_regular_outgoing_connections () {
 
 }
 
