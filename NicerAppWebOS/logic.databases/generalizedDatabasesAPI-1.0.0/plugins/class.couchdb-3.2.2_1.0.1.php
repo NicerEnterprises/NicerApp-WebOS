@@ -299,6 +299,49 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         return str_replace('_',' ',str_replace('__', '.', $gn));
     }
 
+    public function createGuestUser() {
+        $userName = 'Guest';
+        $roles = [ 'Guests' ];
+        $uid = 'org.couchdb.user:'.$this->translate_plainUserName_to_couchdbUserName($userName);
+        $dn = $this->dataSetName_domainName($naWebOS->domainFolder);
+
+        $this->cdb->setDatabase('_users',false);
+        try {
+            $rec = array (
+                '_id' => $uid,
+                'name' => $this->translate_plainUserName_to_couchdbUserName($userName),
+                'password' => 'Guest',
+                'realname' => 'Random Guest',
+                'email' => '-noValidEmailSetInDatabase-',
+                'roles' => $roles, // a CouchDB 'role' is a SQL 'group'.
+                'type' => "user"
+            );
+            if ($got) $rec['_rev'] = $call->body->_rev;
+            $call = $this->cdb->post ($rec);
+            if ($call->body->ok) echo (!$got?'Created ':'Updated ').$this->translate_plainUserName_to_couchdbUserName($userName).' user document in database _users.<br/>'; else echo '<span style="color:red">Could not '.(!$got?'create ':'update ').$this->translate_plainUserName_to_couchdbUserName($userName).' user document in database _users.</span><br/>';
+        } catch (Exception $e) {
+            echo '<pre style="color:red">'; var_dump ($e); echo '</pre>';
+        }
+
+        $dataSetName = $this->dataSetName('groups');
+        try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
+        $this->cdb->setDatabase($dataSetName, true);
+        foreach ($roles as $idx => $gn) {
+            $gn1 = $this->translate_plainGroupName_to_couchdbGroupName($gn);
+            $got = true;
+            try { $call = $this->cdb->get($gn); } catch (Exception $e) { $got = false; }
+            $groupRec = ['_id' => $idx.'___'.$gn, 'name' => $gn ];
+            if ($got) $groupRec['_rev'] = $call->body->_rev;
+
+            $call = $this->cdb->post ($groupRec);
+            //echo '<pre style="background:purple;color:white;border-radius:10px;">'; var_dump ($call); echo '</pre>';
+            if ($call->body->ok) echo (!$got?'Created ':'Updated ').'\''.$gn.'\' group document in database '.$dataSetName.'.<br/>'; else echo '<span style="color:red">Could not '.(!$got?'create ':'update ').'\''.$gn.'\' group document in database '.$dataSetName.'.</span><br/>';
+
+        }
+
+        return true;
+
+    }
 
     public function createUsers($users=null, $groups=null) {
         // $users and $groups are defined in .../NicerAppWebOS/db_init.php (bottom of the file).
@@ -337,7 +380,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         }
 
         $dataSetName = $this->dataSetName('groups');
-        try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
+        //try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         foreach ($groups as $gn => $groupRec) {
             $gn1 = $this->translate_plainGroupName_to_couchdbGroupName($gn);

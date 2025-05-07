@@ -22,6 +22,35 @@ function naWebOS_gather_traceroute_data () {
     //naWebOS_gather_traceroute_data_for_VPN_outgoing_connections ('HotMail.com');
 }
 
+function naWebOS_output_debug_info ($di) {
+    global $dbgDG;
+    if ($dbgDG) {
+        echo PHP_EOL.PHP_EOL;
+            echo '<div class="naWebOS-debug-outer-DIV">';
+            echo '<h1 class="naWebOS-debug-line naWebOS-debug-line-execcall-string">'.PHP_EOL;
+            echo
+                "\t".'<span class="naWebOS-field-name">$xec</span>=<span class="naWebOS-field-value naWebOS-execcall-string">'
+                .json_encode($di['execString'],JSON_PRETTY_PRINT).'</span>'.PHP_EOL;
+            echo '</h1>'.PHP_EOL;
+            echo '<div class="naWebOS-debug-line naWebOS-debug-line-execcall-result-code">'.PHP_EOL;
+            echo
+                "\t".'<span class="naWebOS-field-name">$result_code</span>=<span class="naWebOS-field-value naWebOS-execcall-result-code">'
+                .json_encode($di['result_code'],JSON_PRETTY_PRINT).'</span>'.PHP_EOL;
+            echo '</div>'.PHP_EOL;
+            echo '<div class="naWebOS-debug-line naWebOS-debug-line-execcall-output">'.PHP_EOL;
+            echo
+                "\t".'<span class="naWebOS-field-name">$output</span>=<span class="naWebOS-field-value naWebOS-execcall-output">';
+            echo
+                '<pre class="naWebOS-debug-info '.$di['mainPreClassName'].'">'.PHP_EOL
+                .json_encode($di['output'],JSON_PRETTY_PRINT).'</span>';PHP_EOL;
+            echo '</pre>'.PHP_EOL;
+            echo '</div>'.PHP_EOL;
+            echo '</div>'.PHP_EOL;
+        echo PHP_EOL.PHP_EOL;
+    }
+}
+
+
 function naWebOS_gather_desktop_OS_info() {
     $xec = 'hostnamectl';
     exec ($xec, $output, $result_code);

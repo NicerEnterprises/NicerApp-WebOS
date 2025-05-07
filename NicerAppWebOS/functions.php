@@ -2013,7 +2013,241 @@ function negotiateOptions () {
 
 		}
 	}
-	return $r;
+    return $r;
 }
+
+function naWebOS_output_debug_info ($di, $mi) {
+    global $naDebugAll;
+    if ($naDebugAll) {
+        $keyCount = 0;
+        $valueCount = 0;
+        $params = array (
+            'root' => $di,
+            'webRoot' => $webRoot,
+            'recursive' => true,
+            'a' => &$di,
+            'prevLevel' => 0,
+            'keyCount' => &$keyCount,
+            'valueCount' => &$valueCount,
+        );
+        $callKeyForValues = false;
+        walkArray ( $di, /*'processBackgroundFile_key'*/null, 'processDI_value', $callKeyForValues, $params );
+
+        echo PHP_EOL.PHP_EOL;
+            echo '<div class="naWebOS-debug-outer-DIV">';
+                echo '<h1 class="naWebOS-debug-line naWebOS-debug-line-key">'.PHP_EOL;
+                echo
+                    "\t".'<span class="naWebOS-field-name">'.$k1.'</span> = <span class="naWebOS-field-value naWebOS-value">'
+                    .json_encode($di,JSON_PRETTY_PRINT).'</span>'.PHP_EOL;
+                echo '</h1>'.PHP_EOL;
+            echo '</div>'.PHP_EOL;
+        echo PHP_EOL.PHP_EOL;
+    }
+}
+
+function processDI_value ($cd) {
+    $debugMe = false;
+
+    $path = $cd['path'];
+    $file = $cd['v'];
+
+    global $naWebOS;
+    $td = str_replace ($cd['params']['root'], '', $file);
+    $tdURL = str_replace('/var/www/'.$naWebOS->domainFolder,'',$cd['params']['root']).'/'.$cd['k'];
+    if ($debugMe) {
+        echo '<pre style="font-weight:bold;color:white;background:blue;margin:10px;margin-left:10px;padding:5px;border-radius:10px;">';
+        var_dump ($cd['params']['root']);
+        var_dump ($file);
+        var_dump ($td);
+        var_dump($cd['v']);
+        var_dump($tdURL);
+        echo '</pre>';
+        //exit();
+    }
+    //$path2 = $cd['path'].'/'.$cd['k'];
+    if ($cd['k']=='realPath') {
+        $path2 = $cd['v'];
+        $path2 = $cd['path'];//.'/'.$cd['k'];
+        $path2 = substr($path2,1);
+
+        if ($debugMe) echo '<pre style="font-weight:bold;color:yellow;background:red;margin-left:10px;padding:5px;border-radius:10px;">$path2:'.$path2.'</pre>'.PHP_EOL;
+        /*$path2 = substr($path2,1);
+        if ($debugMe) echo '$path2b:'.$path2.PHP_EOL;*/
+
+        $ref = &chaseToPath ($cd['params']['a'], $path2);
+        if ($debugMe) { echo '<pre style="font-weight:bold;color:white;background:lime;margin-left:10px;padding:5px;border-radius:10px;">'; var_dump ($ref); echo '</pre>'; }
+        if (true || ($ref!==false && is_array($ref))) {
+            $tdURL = &chaseToPath ($cd['params']['a'], $path2.'/webPath');
+            // JUST DON'T:
+            //$passSubArrs = is_array($ref);
+            //if ($passSubArrs) foreach ($ref as $k1 => $v1) if (is_array($v1)) $passSubArrs = true;
+            if ($debugMe) {
+                //echo '$passSubArrs:'; var_dump ($passSubArrs);
+                echo '<p style="color:cyan;background:navy;margin-left:20;padding:5px;border-radius:10px">';
+                var_dump ($tdURL);
+                var_dump ($file);
+                var_dump ($path2);
+                var_dump ($cd['k']);
+                echo '</p>';
+                //var_dump ($cd['params']['a']);
+                //exit();
+
+            }
+            if ($debugMe && is_string($ref)) {
+                echo '<pre class="font-weight:bold;color:white;background:lime;margin-left:10px;padding:5px;border-radius:10px;">';
+                var_dump ($ref);
+                echo '</pre>';
+            }
+            //if ($cd['k']=='path') {
+                $xec = 'identify "'.$file.'"';
+                exec ($xec, $output, $result);
+                if ($result===0) {
+                    $regex = '/\s(\d+)x(\d+)\s/';
+                    preg_match_all ($regex, $output[0], $m);
+                    $wt = $m[1][0].'x'.$m[2][0];
+                    if ($cd['params']['recursive']) {
+                        $ref = $wt;//[ $td => $wt ];
+                    } else {
+                        $ref = [ $tdURL => $wt ];
+                    }
+                } else {
+                    $wt = 'X*Y';
+                    if (false && $cd['params']['recursive']) {
+                        $ref = $wt;//[ $td => $wt ];
+                    } else {
+                        $ref = [ $tdURL => $wt ];
+                    }
+                }
+
+                if ($debugMe) {
+                    $dbg = [
+                        'path' => $path,
+                        'tdURL' => $tdURL,
+                        'file' => $file,
+                        'ref' => $ref
+                    ];
+                    var_dump ($dbg);
+                    //echo '</pre>';
+                }
+            //}
+        }
+    }
+    echo '</pre>';
+}
+
+function getMusicPlayerContentFiles ($root, $webRoot, $recursive=true) {
+    $keyCount = 0;
+    $valueCount = 0;
+    $params = array (
+        'root' => $root,
+        'webRoot' => $webRoot,
+        'recursive' => $recursive,
+        'a' => &$files,
+        'prevLevel  ' => 0,
+        'keyCount' => &$keyCount,
+        'valueCount' => &$valueCount,
+    );
+    $callKeyForValues = false;
+    walkArray ( $files, /*'processBackgroundFile_key'*/null, 'processBackgroundFile_value', $callKeyForValues, $params );
+    return $files;
+}
+/*
+function processBackgroundFile_key ($cd) {
+    $path = $cd['path'].'/'.$cd['k'];
+}
+function processBackgroundFile_value ($cd) {
+    $debugMe = false;
+    if ($debugMe) echo '<pre style="color:white;background:green;margin-left:10px;margin:10px;border-radius:10px;padding:5px;">';
+
+    $path = $cd['path'];
+    $file = $cd['v'];
+
+    global $naWebOS;
+    $td = str_replace ($cd['params']['root'], '', $file);
+    $tdURL = str_replace('/var/www/'.$naWebOS->domainFolder,'',$cd['params']['root']).'/'.$cd['k'];
+    if ($debugMe) {
+        echo '<pre style="font-weight:bold;color:white;background:blue;margin:10px;margin-left:10px;padding:5px;border-radius:10px;">';
+        var_dump ($cd['params']['root']);
+        var_dump ($file);
+        var_dump ($td);
+        var_dump($cd['v']);
+        var_dump($tdURL);
+        echo '</pre>';
+        //exit();
+    }
+    //$path2 = $cd['path'].'/'.$cd['k'];
+    if ($cd['k']=='realPath') {
+        $path2 = $cd['v'];
+        $path2 = $cd['path'];//.'/'.$cd['k'];
+        $path2 = substr($path2,1);
+
+        if ($debugMe) echo '<pre style="font-weight:bold;color:yellow;background:red;margin-left:10px;padding:5px;border-radius:10px;">$path2:'.$path2.'</pre>'.PHP_EOL;
+        /*$path2 = substr($path2,1);
+        if ($debugMe) echo '$path2b:'.$path2.PHP_EOL;* /
+
+        $ref = &chaseToPath ($cd['params']['a'], $path2);
+        if ($debugMe) { echo '<pre style="font-weight:bold;color:white;background:lime;margin-left:10px;padding:5px;border-radius:10px;">'; var_dump ($ref); echo '</pre>'; }
+        if (true || ($ref!==false && is_array($ref))) {
+            $tdURL = &chaseToPath ($cd['params']['a'], $path2.'/webPath');
+            // JUST DON'T:
+            //$passSubArrs = is_array($ref);
+            //if ($passSubArrs) foreach ($ref as $k1 => $v1) if (is_array($v1)) $passSubArrs = true;
+            if ($debugMe) {
+                //echo '$passSubArrs:'; var_dump ($passSubArrs);
+                echo '<p style="color:cyan;background:navy;margin-left:20;padding:5px;border-radius:10px">';
+                var_dump ($tdURL);
+                var_dump ($file);
+                var_dump ($path2);
+                var_dump ($cd['k']);
+                echo '</p>';
+                //var_dump ($cd['params']['a']);
+                //exit();
+
+            }
+            if ($debugMe && is_string($ref)) {
+                echo '<pre class="font-weight:bold;color:white;background:lime;margin-left:10px;padding:5px;border-radius:10px;">';
+                var_dump ($ref);
+                echo '</pre>';
+            }
+            //if ($cd['k']=='path') {
+                $xec = 'identify "'.$file.'"';
+                exec ($xec, $output, $result);
+                if ($result===0) {
+                    $regex = '/\s(\d+)x(\d+)\s/';
+                    preg_match_all ($regex, $output[0], $m);
+                    $wt = $m[1][0].'x'.$m[2][0];
+                    if ($cd['params']['recursive']) {
+                        $ref = $wt;//[ $td => $wt ];
+                    } else {
+                        $ref = [ $tdURL => $wt ];
+                    }
+                } else {
+                    $wt = 'X*Y';
+                    if (false && $cd['params']['recursive']) {
+                        $ref = $wt;//[ $td => $wt ];
+                    } else {
+                        $ref = [ $tdURL => $wt ];
+                    }
+                }
+
+                if ($debugMe) {
+                    $dbg = [
+                        'path' => $path,
+                        'tdURL' => $tdURL,
+                        'file' => $file,
+                        'ref' => $ref
+                    ];
+                    var_dump ($dbg);
+                    //echo '</pre>';
+                }
+            //}
+        }
+    }
+    echo '</pre>';
+}
+*/
+
+
+
 
 ?>

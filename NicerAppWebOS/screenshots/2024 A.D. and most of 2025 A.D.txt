@@ -1,5 +1,9 @@
 I have embarked on a quest for the Holy Grail of WebOS and CMS design : a 3D + 2D user-interface for web-browsers.
 I choose to build this in the Chrome Browser, but to stick close to W3C standards, meaning sooner or later this will work in ALL browsers.
 
+video of musicPlayer with 3D file index, early 2024 after finally solving most of the navigation-switching bugs, leaving only the rest of the user-interface bugs to fix :
+
 https://youtube.com/@ReneAJMVeerman
+
+screenshots 2025 : https://drive.google.com/drive/folders/1MDzSVE9DLIn-6tbg7rOlC8HvWUn2PRNe?usp=sharing
 

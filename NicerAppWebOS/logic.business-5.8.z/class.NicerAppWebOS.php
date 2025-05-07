@@ -134,10 +134,47 @@ class NicerAppWebOS {
         $fncn = $this->cn.'->initializeDatabases()';
 
         $this->hasDB = false;
+
+        if ($this->dbsAdmin===null) {
+            $this->dbsAdmin = 'initializing';
+            // logged in as $cdbConfig['adminUsername']!
+            // $this->dbAdmin = new class_NicerAppWebOS_database_API_couchdb_3_2 (clone $this, true);
+            $this->dbsAdmin = new class_NicerAppWebOS_database_API ('admin');
+            try {
+                // $this->dbsAdmin = new class_NicerAppWebOS_database_API ('admin');
+
+                if (php_sapi_name() !== 'cli') {
+                    //WILL NEVER WORK; HANDLED BY logic.AJAX/ajax_testDBconnection.php! setcookie('cdb_admin_loginName' ,$this->dbsAdmin->findConnection('couchdb')->username, time() + 604800, '/');
+                    $_SESSION['cdb_admin_loginName'] = $this->dbsAdmin->findConnection('couchdb')->username;
+                }
+
+                $this->hasDB = true;
+            } catch (Throwable $e) {
+                echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;padding:8px;">';
+                echo json_encode($e->getMessage());
+                echo '</pre>';
+                exit;
+            } catch (Exception $e) {
+                echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;padding:8px;">';
+                echo json_encode($e->getMessage());
+                echo '</pre>';
+                exit;
+            }
+        }
+
         if ($this->dbs===null) {
             $this->dbs = 'initializing';
             // logged in as the end-user.
             //$this->db = new class_NicerAppWebOS_database_API_couchdb_3_2 (clone $this, false);
+            try {
+                $this->dbs = new class_NicerAppWebOS_database_API ('Guest');
+            } catch (Exception $e) {
+                try {
+                    $this->dbsAdmin->findConnection('couchdb')->cdb->createGuestUser();
+                } catch (Exception $e) {
+                    echo '<h1>'.$e->getMessage().'</h1><pre>'.json_encode(debug_backtrace(),JSON_PRETTY_PRINT).'</pre>'.PHP_EOL.PHP_EOL;
+                }
+            }
             try {
                 $this->dbs = new class_NicerAppWebOS_database_API ('Guest');
                 //echo '<pre>'; var_dump ($this->dbs);exit();
@@ -170,32 +207,6 @@ class NicerAppWebOS {
             }
         }
 
-        if ($this->dbsAdmin===null) {
-            $this->dbsAdmin = 'initializing';
-            // logged in as $cdbConfig['adminUsername']!
-            // $this->dbAdmin = new class_NicerAppWebOS_database_API_couchdb_3_2 (clone $this, true);
-            $this->dbsAdmin = new class_NicerAppWebOS_database_API ('admin');
-            try {
-                // $this->dbsAdmin = new class_NicerAppWebOS_database_API ('admin');
-
-                if (php_sapi_name() !== 'cli') {
-                    //WILL NEVER WORK; HANDLED BY logic.AJAX/ajax_testDBconnection.php! setcookie('cdb_admin_loginName' ,$this->dbsAdmin->findConnection('couchdb')->username, time() + 604800, '/');
-                    $_SESSION['cdb_admin_loginName'] = $this->dbsAdmin->findConnection('couchdb')->username;
-                }
-
-                $this->hasDB = true;
-            } catch (Throwable $e) {
-                echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;padding:8px;">';
-                echo json_encode($e->getMessage());
-                echo '</pre>';
-                exit;
-            } catch (Exception $e) {
-                echo '<pre style="color:white;background:rgba(0,50,0,0.5);border-radius:10px;padding:8px;">';
-                echo json_encode($e->getMessage());
-                echo '</pre>';
-                exit;
-            }
-        }
         $this->dbs->setGlobals($this->dbs->findConnection('couchdb')->username);
         $this->dbsAdmin->setGlobals($this->dbsAdmin->findConnection('couchdb')->username);
 
