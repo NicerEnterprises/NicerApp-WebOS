@@ -305,7 +305,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         $uid = 'org.couchdb.user:'.$this->translate_plainUserName_to_couchdbUserName($userName);
         $dn = $this->dataSetName_domainName($naWebOS->domainFolder);
 
-        $this->cdb->setDatabase('_users',false);
+        $this->cdb->setDatabase('_users',true);
         try {
             $rec = array (
                 '_id' => $uid,
@@ -320,7 +320,8 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
             $call = $this->cdb->post ($rec);
             if ($call->body->ok) echo (!$got?'Created ':'Updated ').$this->translate_plainUserName_to_couchdbUserName($userName).' user document in database _users.<br/>'; else echo '<span style="color:red">Could not '.(!$got?'create ':'update ').$this->translate_plainUserName_to_couchdbUserName($userName).' user document in database _users.</span><br/>';
         } catch (Exception $e) {
-            echo '<pre style="color:red">'; var_dump ($e); echo '</pre>';
+            echo '<h1 style="color:red">Could not create record for user "Guest" in "_users" couchdb database :-(</h1>'.PHP_EOL;
+            echo '<pre style="color:red;font-weight:bold">'; var_dump ($e); echo '</pre>';
         }
 
         $dataSetName = $this->dataSetName('groups');

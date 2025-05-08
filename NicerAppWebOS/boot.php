@@ -20,7 +20,44 @@ NicerApp WebOS from Nicer Enterprises
     define ("FILE_FORMATS_NO_thumbs", '/(?!.*thumbs).*/');
     global $na_full_init;
     if (!isset($na_full_init)) $na_full_init = true;
-    $rootPath_na = realpath(dirname(__FILE__).'/..');
+
+    global $naSettings;
+    try {
+        $dcFolderName= basename(realpath(dirname(__FILE__).'/..'));
+
+        // TODO : Place $settingsFilePath file in
+        //  dirname(__FILE__).'/PHPserverConfigs/hostname.DOMAIN_TLD/settings.JSON
+        //  using techniques from .../NicerAppWebOS/logic.filePhoenix
+        $settingsFilePath = dirname(__FILE__).'/domainConfigs/'.$dcFolderName.'/settings.json';
+
+
+
+        $naSettings = json_decode(file_get_contents($settingsFilePath), true);
+        //$rootPath_na = realpath(dirname(__FILE__).'/..');
+        $thisServer = $naSettings['phpServers'][0];
+        echo '<pre>';
+        var_dump ($thisServer);
+        $qs = $thisServer['rootPath'];
+        if (substr($qs,strlen($qs)-1,1)!=='/')
+            trigger_error ('$thisServer["rootPath"] needs to end with "/" (without the quotes).', E_USER_ERROR);
+        $qs = $thisServer['relativePathUnderRootPath'];
+        if (substr($qs,strlen($qs)-1,1)!=='/')
+            trigger_error ('$thisServer["relativePathUnderRootPath"] needs to end with "/" (without the quotes).', E_USER_ERROR);
+        $rootPath_na = $thisServer['rootPath'].$thisServer['relativePathUnderRootPath'];
+        if (!is_dir($rootPath_na))
+            trigger_error ('$rootPath_na does not exist on this PHP server. ("'.$rootPath_na.'")', E_USER_ERROR);
+        echo $rootPath_na;
+        echo '</pre>';
+        //exit();
+    } catch (Exception $e) {
+        echo '<h1>NicerApp WebOS boot.php INITIALIZATION FATAL ERROR :</h1>';
+        echo '<pre>';
+        var_dump ($e);
+        echo '</pre>';
+    };
+
+
+
     //echo '<h1>'.$rootPath_na.'</h1>';
     require_once($rootPath_na.'/NicerAppWebOS/lib_duration.php');
     require_once($rootPath_na.'/NicerAppWebOS/functions.php');
