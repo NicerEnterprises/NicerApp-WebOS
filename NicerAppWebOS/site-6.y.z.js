@@ -226,7 +226,6 @@ na.site = {
         //setTimeout (function() {
             t.g = t.globals = $.extend (t.g, naGlobals);
             na.te = new naThemeEditor();
-            debugger;
             t.reloadMenu({callback:function() {
                 t.ui = {
                     vb : new vividUserInterface_2D_button_v4()
@@ -235,7 +234,7 @@ na.site = {
                     na.te.onload('siteContent');
                     t.setSpecificity();
                     t.loadTheme();
-                }, 500);
+                }, 100);
                 t.startTooltips();
                 $('.vividDialog').css ({
                     overflow : 'hidden'

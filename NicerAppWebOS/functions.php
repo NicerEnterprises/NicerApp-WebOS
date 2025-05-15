@@ -121,35 +121,36 @@ function safeLoadJSONfile($filePath, $mustExist=true, $flush=true) {
     return $jsonData;
 }
 
-function getBackgrounds ($root, $webRoot, $recursive=false) {
+function getBackgrounds ($root, $webRoot, $recursive=false, $debugMe=false) {
     $excl = '/(?!.*thumbs).*/'; // exclude anything that includes 'thumbs' in it's filepath.
 
-    $files1 = getBackgroundFiles ($root, FILE_FORMATS_photos_texts, $excl, $recursive);
-    $files2 = processBackgroundFiles ($files1, $root, $webRoot, $recursive);
+    $files1 = getBackgroundFiles ($root, FILE_FORMATS_photos_texts, $excl, $recursive, $debugMe);
+    $files2 = processBackgroundFiles ($files1, $root, $webRoot, $recursive, $debugMe);
     //echo '<pre>'; var_dump ($root); var_dump ($webRoot); var_dump ($files2); exit();
 
     return $files2;
 }
-function getBackgroundFiles ($root, $fileFormats, $excl, $recursive) {
+function getBackgroundFiles ($root, $fileFormats, $excl, $recursive, $debugMe) {
     if ($recursive) {
-        $r = getFilePathList ($root, true, $fileFormats, $excl, array('file'), null, 1, true);
+        $r = getFilePathList ($root, true, $fileFormats, $excl, array('file'), null, 1, true, $debugMe);
     } else {
-        $r = getFilePathList ($root, true, $fileFormats, $excl, array('file'));
+        $r = getFilePathList ($root, true, $fileFormats, $excl, array('file'), null, 1, false, $debugMe);
     }
     //echo 'getBackgroundFiles(); $r:'; var_dump($recursive); var_dump ($r); exit();
     return $r;
 }
-function processBackgroundFiles (&$files, $root, $webRoot, $recursive) {
+function processBackgroundFiles (&$files, $root, $webRoot, $recursive, $debugMe) {
     $keyCount = 0;
     $valueCount = 0;
     $params = array (
+        'debugMe' => $debugMe,
         'root' => $root,
         'webRoot' => $webRoot,
         'recursive' => $recursive,
         'a' => &$files,
         'prevLevel' => 0,
         'keyCount' => &$keyCount,
-        'valueCount' => &$valueCount,
+        'valueCount' => &$valueCount
     );
     $callKeyForValues = false;
     walkArray ( $files, /*'processBackgroundFile_key'*/null, 'processBackgroundFile_value', $callKeyForValues, $params );
@@ -159,7 +160,7 @@ function processBackgroundFile_key ($cd) {
     $path = $cd['path'].'/'.$cd['k'];
 }
 function processBackgroundFile_value ($cd) {
-    $debugMe = false;
+    $debugMe = $params['debugMe'];
     if ($debugMe) echo '<pre style="color:white;background:green;margin-left:10px;margin:10px;border-radius:10px;padding:5px;">';
 
     // DO NOT DELETE THIS COMMENTED-OUT CODE.

@@ -21,6 +21,7 @@ NicerApp WebOS from Nicer Enterprises
     global $na_full_init;
     if (!isset($na_full_init)) $na_full_init = true;
 
+
     global $naSettings;
     try {
         $dcFolderName= basename(realpath(dirname(__FILE__).'/..'));
@@ -35,8 +36,8 @@ NicerApp WebOS from Nicer Enterprises
         $naSettings = json_decode(file_get_contents($settingsFilePath), true);
         //$rootPath_na = realpath(dirname(__FILE__).'/..');
         $thisServer = $naSettings['phpServers'][0];
-        echo '<pre>';
-        var_dump ($thisServer);
+        global $naThisServer; $naThisServer = $thisServer;
+        //echo '<pre>'; var_dump ($thisServer);
         $qs = $thisServer['rootPath'];
         if (substr($qs,strlen($qs)-1,1)!=='/')
             trigger_error ('$thisServer["rootPath"] needs to end with "/" (without the quotes).', E_USER_ERROR);
@@ -46,8 +47,8 @@ NicerApp WebOS from Nicer Enterprises
         $rootPath_na = $thisServer['rootPath'].$thisServer['relativePathUnderRootPath'];
         if (!is_dir($rootPath_na))
             trigger_error ('$rootPath_na does not exist on this PHP server. ("'.$rootPath_na.'")', E_USER_ERROR);
-        echo $rootPath_na;
-        echo '</pre>';
+        //echo $rootPath_na;
+        //echo '</pre>';
         //exit();
     } catch (Exception $e) {
         echo '<h1>NicerApp WebOS boot.php INITIALIZATION FATAL ERROR :</h1>';
@@ -55,7 +56,6 @@ NicerApp WebOS from Nicer Enterprises
         var_dump ($e);
         echo '</pre>';
     };
-
 
 
     //echo '<h1>'.$rootPath_na.'</h1>';

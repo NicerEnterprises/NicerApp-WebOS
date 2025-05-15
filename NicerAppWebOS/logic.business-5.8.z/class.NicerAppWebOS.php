@@ -169,11 +169,7 @@ class NicerAppWebOS {
             try {
                 $this->dbs = new class_NicerAppWebOS_database_API ('Guest');
             } catch (Exception $e) {
-                try {
-                    $this->dbsAdmin->findConnection('couchdb')->cdb->createGuestUser();
-                } catch (Exception $e) {
-                    echo '<h1>'.$e->getMessage().'</h1><pre>'.json_encode(debug_backtrace(),JSON_PRETTY_PRINT).'</pre>'.PHP_EOL.PHP_EOL;
-                }
+                $this->dbsAdmin->findConnection('couchdb')->createGuestUser();
             }
             try {
                 $this->dbs = new class_NicerAppWebOS_database_API ('Guest');

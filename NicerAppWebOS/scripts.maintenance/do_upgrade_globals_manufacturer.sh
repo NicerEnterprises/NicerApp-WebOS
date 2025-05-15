@@ -1,6 +1,6 @@
 #!/bin/bash
-NA_MAIN_HTDOCS_RELATIVE_PATH="/var/www"
-NA_MAIN_SITE_FOLDER="nicer.app-5.8.0-alpha001c"
+NA_MAIN_HTDOCS_RELATIVE_PATH="/var/www/nicer.app-5.8.z/"
+NA_MAIN_SITE_FOLDER="nicer.app-5.8.0-alpha001c/"
 NA_MAIN_GROUP="www-data"
 NA_MAIN_USER="reneav"
 

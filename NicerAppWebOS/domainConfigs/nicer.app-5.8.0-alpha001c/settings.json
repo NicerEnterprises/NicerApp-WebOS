@@ -1,8 +1,12 @@
 {
     "phpServers" : [
         {
-            "rootPath" : "/var/www/",
-            "relativePathUnderRootPath" : "nicer.app-5.8.0-alpha001c/"
+            "rootPath" : "/var/www/nicer.app-5.8.z/",
+            "relativePathUnderRootPath" : "nicer.app-5.8.0-alpha001c/",
+            "debug" : {
+                "ajax_backgrounds.php" : true,
+                "ajax_backgrounds_recursive.php" : true
+            }
         }
     ],
     "useSimpleArtStyle" : false,
