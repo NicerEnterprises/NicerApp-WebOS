@@ -147,7 +147,7 @@ na.background = na.bg = {
             var url = hits[Math.floor(Math.random() * Math.floor(hits.length))];
         };
         na.m.log (20, fncn+' : url='+url, true);
-
+debugger;
         t.settings.div = div;
 
         var
@@ -162,6 +162,7 @@ na.background = na.bg = {
                 bgDiv = $(div+'_bg')[0],
                 bgDiv2 = $(div+'_bg2')[0];
                 if (!bgl) debugger;
+debugger;
 
                 if (url.match('tiled')) {
                     $(bgf).add(bgl).fadeOut('slow');
@@ -259,7 +260,8 @@ na.background = na.bg = {
 
             },
             error : function (xhr, textStatus, errorThrown) {
-                //na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
+                na.site.ajaxFail(fncn, url, xhr, textStatus, errorThrown);
+                debugger;
                 //TODO: re-enable:
                 //na.backgrounds.next (div, search, '', saveTheme, callback);
             }

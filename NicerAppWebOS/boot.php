@@ -23,6 +23,7 @@ NicerApp WebOS from Nicer Enterprises
 
 
     global $naSettings;
+    global $rootPath_na;
     try {
         $dcFolderName= basename(realpath(dirname(__FILE__).'/..'));
 

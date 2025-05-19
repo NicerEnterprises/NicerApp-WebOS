@@ -286,9 +286,12 @@ na.site = {
     },
 
     loadContent : function (event, url, callback_phase1, callback_phase2) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         na.apps.mustHaveAtLeast_number = 0;
         na.site.settings.url = url;
-        debugger;
         //if (na.site.globals.debug['na.site.loadContent']) alert (url);
 
         //na.desktop.setConfig ('content');
@@ -588,6 +591,7 @@ na.site = {
         c.divsInitializing = [];
 
         // stage 003 : attempt to decode the HTTP-delivered JSON that supplies the HTML and JS for the new page (url2a) and all the apps on that page.
+        debugger;
         try {
             var dat = JSON.parse(data);
         } catch (error) {

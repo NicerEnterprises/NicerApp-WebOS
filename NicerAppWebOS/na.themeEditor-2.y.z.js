@@ -1,4 +1,10 @@
 class naThemeEditor {
+/* (C) and (R) +-2022 to 2025 Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+ * price-tag for this component and all UI code and graphics examples for this nifty web dialog =
+ * big-tech (as defined by .../NicerAppWebOS/LICENSE.html) : five million euros for a perpetual license for all your users and staff.
+ * mediumsized online tech companies (as defined by .../NicerAppWebOS/LICENSE.html) : 1 million euros for a perpetual license for all your users and staff.
+ * small online tech companies (as defined by .../NicerAppWebOS/LICENSE.html) : one hundred thousand euros for a perpetual license for all your users and staff.
+ */
     settings = {
         current : { 
             firstRun : true, 

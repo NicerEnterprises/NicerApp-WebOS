@@ -344,6 +344,8 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
 
     }
 
+
+
     public function createUsers($users=null, $groups=null) {
         // $users and $groups are defined in .../NicerAppWebOS/db_init.php (bottom of the file).
         global $naWebOS;
@@ -381,7 +383,7 @@ class class_NicerAppWebOS_database_API_couchdb_3_2 {
         }
 
         $dataSetName = $this->dataSetName('groups');
-        //try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
+        try { $this->cdb->deleteDatabase ($dataSetName); } catch (Exception $e) { };
         $this->cdb->setDatabase($dataSetName, true);
         foreach ($groups as $gn => $groupRec) {
             $gn1 = $this->translate_plainGroupName_to_couchdbGroupName($gn);

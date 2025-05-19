@@ -1,6 +1,5 @@
 <?php
     global $naWebOS;
-    global $naURLs;
     require_once ($naWebOS->basePath.'/NicerAppWebOS/domainConfigs/'.$naWebOS->domainFolder.'/pageHeader.php');
 ?>
     <script type="text/javascript">
@@ -19,6 +18,30 @@
     This is the <a href="https://github.com/NicerEnterprises/NicerApp-WebOS" class="contentSectionTitle3_a1 nomod noPushState" target="v5"><span class="contentSectionTitle3_a1" style="box-shadow:none; padding:0px;margin:0px;">5th major version (5.8.0 to be exact)</span></a> of this software.<br/>
     </div>
 
+
+
+    <h1 class="contentSectionTitle1"><p class="contentSectionTitle1_span">Current "difficulties" getting this site to work are POLITICAL AND CYBERWARFARE IN ORIGINS, yet again...</p></h1>
+    <p>
+    The guilty parties are the US Democrats, US REPUBLICANS, and their Dutch government "sub-ordinates", along with their UK and German collegues!<br/>
+    While I usually am 100% behind NATO, no less.
+    </p>
+    <p>
+    UPDATE, 2025-05-11(Sunday) 04:30CEST (Amsterdam.NL timezone) :<br/>
+    The difficulties listed below, getting my background files read and displayed, are unfortunately not yet behind us.<br/>
+    I'll work more now additional debug routines and the infamous current na.site.loadContent() bugs, to allow me to get additional open source community help for this.
+    </p>
+    <div style="width:40%;color:black;background:rgba(250, 233, 52,0.35);font-size:120%;margin:10px;font-weight:bold;padding:8px;border-radius:10px;text-shadow:0px 0px 3px rgba(255,0,0,0.7);box-shadow:0px 0px 8px 4px rgba(0,0,0,0.666), 2px 2px 2px rgba(0,0,0,0.7);">
+        <p><a class="noPushState" href="https://x.com/ReneVeerma64021/status/1920179988361277510" target="Xcwna20250507a">UPDATE I - Love & revenge & profit goals...</a></p>
+        <p><a class="noPushState" href="https://x.com/ReneVeerma64021/status/1920194520144044431" target="Xcwna20250507b">UPDATE II - Philantropy vs selfishness</a></p>
+        <p><a class="noPushState" href="https://x.com/ReneVeerma64021/status/1920357531894878350" target="Xcwna20250507c0508">UPDATE III, just a few hours later - the half-apology + shelving of my future attacks against all US Americans.</a></p>
+        <h2>Evidence of cyberattack by NATO's CIA.GOV AGAINST this server and businessman's personal life goals - with the full intent of driving me (the Owner of these websites and vast online content datastores into SUICIDAL thinking - or AGGRESSIVE PROVOCATIVE THINKING - which is potentially just as deadly)</h2>
+        <p><a class="noPushState" href="/NicerAppWebOS/screenshots/2025%20A.D./Screenshot_20250508_043716.png"><img src="/NicerAppWebOS/screenshots/2025%20A.D./Screenshot_20250508_043716.png" style="width:280px;"/><br/><h3>File 1</h3></a></p>
+        <p><a class="noPushState" href="/NicerAppWebOS/screenshots/2025%20A.D./Screenshot_20250508_044011.png"><img src="/NicerAppWebOS/screenshots/2025%20A.D./Screenshot_20250508_044011.png"style="width:280px;" /><br/><h3>File 2</h3></a></p>
+    </div>
+
+
+
+
     <h1 class="contentSectionTitle1"><p class="contentSectionTitle1_span">Company Profile</p></h1>
     <div style="width:40%;color:black;background:rgba(250, 233, 52,0.35);font-size:120%;margin:10px;font-weight:bold;padding:8px;border-radius:10px;text-shadow:0px 0px 3px rgba(255,0,0,0.7);box-shadow:0px 0px 8px 4px rgba(0,0,0,0.666), 2px 2px 2px rgba(0,0,0,0.7);">
         <p style="background:none;">
@@ -26,13 +49,11 @@
         Copyrighted (C) and All Rights Reserved (R) 2002-2025 and owned by <a href="mailto:rene.veerman.netherlands@gmail.com" target="_new" class="nomod noPushState">Rene A.J.M. Veerman &lt;rene.veerman.netherlands@gmail.com&gt;</a>.<br/>
         </p>
 
-        <!-- proposed NicerAppWebOS/LICENSE.html revenue sharing suggestions, SUGGESTIONS at this time only according to me, Rene AJM Veerman, The Owner of this Software :
-        <h2 class="contentSectionTitle1"><p class="contentSectionTitle1_span">NicerEnterprises Contractor Revenue Sharing Promises</p></h2>
+        <h2 class="contentSectionTitle1"><p class="contentSectionTitle1_span">NicerEnterprises Contractor Profit Sharing Promises</p></h2>
         <p><a class="noPushState" href="https://jQuery.com" target="naJQueryContractorDeal">jQuery.com</a> : 1% of my total yearly revenue, whatever size my (x.com/ReneVeerma4021) companies reach.</p>
         <p><a class="noPushState" href="https://TinyMCE.com" target="naJTinyMCEContractorDeal">TinyMCE.com</a> : 1% of my total yearly revenue, whatever size my (x.com/ReneVeerma4021) companies reach.</p>
         <p><a class="noPushState" href="https://YouTube.com" target="naJQueryContractorDeal">YouTube.com</a> : 3% of my total yearly revenue, whatever size my (x.com/ReneVeerma4021) companies reach.</p>
         <p><a class="noPushState" href="https://GitHub.com" target="naGitHubContractorDeal">GitHub.com</a> : 3% of my total yearly revenue, whatever size my (x.com/ReneVeerma4021) companies reach.</p>
-        -->
 
         <p style="background:none;"><a href="https:/facebook.com/rene.veerman.90">https://facebook.com/rene.veerman.90</a></p>
         <p style="background:none;"><a href="https://x.com/ReneVeerma64021">https://x.com/ReneVeerma64021</a>.</p>

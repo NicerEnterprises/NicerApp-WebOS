@@ -112,6 +112,11 @@ na.m = {
 	},
 
     base64_encode_url : function (str) {
+                /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
+
         var str2 = btoa(str);
         str2 = str2.replace (/=/g, '');
         str2 = str2.replace ('+', '-');
@@ -120,6 +125,11 @@ na.m = {
     },
 
     base64_decode_url : function (str) {
+                /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
+
         var str2 = str;
         str2 = str2.replace ('-', '+');
         str2 = str2.replace ('_', '/');
@@ -404,6 +414,11 @@ na.m = {
 	},
 
     waitForCondition_blacklisted (label) {
+                /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
+
 		var
 		_fncn = 'na.m.waitForCondition(): ',
 		blacklistedEntries = [
@@ -418,6 +433,10 @@ na.m = {
     },
 
 	waitForCondition : function (label, condition, callback, frequency, context) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
 		var
 		_fncn = 'na.m.waitForCondition(): ',
 		blacklistedEntries = [
@@ -497,6 +516,10 @@ na.m = {
 	},
 
     waitForCondition_report_whatAmIwaitingFor : function (blacklistedEntries) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         //if (!na.site.settings.current.timeout_waitForCondition_reporting)
         //na.site.settings.current.timeout_waitForCondition_reporting = setTimeout (function() {
                 var
@@ -516,10 +539,18 @@ na.m = {
     },
 
     conditionExists : function (label) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         return label in na.m.settings.waitForCondition;
     },
 
     walkArray : function (rt, a, keyCallback, valueCallback, callKeyForValues, callbackParams, k, level, path) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         if (!path) path = '';
         if (typeof level=='undefined') level = 1;
         if (typeof a !== 'object') {
@@ -554,6 +585,10 @@ na.m = {
     },
 
     chaseToPath : function (wm, path, create) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         var
         nodes = path.split('/');
 
@@ -561,6 +596,10 @@ na.m = {
     },
 
     chase : function (arr, indexes, create) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         var
         r = arr;
 
@@ -582,6 +621,10 @@ na.m = {
     },
 
 	negotiateOptions : function () {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
 		// na.m.negotiateOptions() can't handle functions, and I dont trust $.extend
 		var r = {};
 		for (var i = 0; i < arguments.length; i++) {
@@ -600,6 +643,11 @@ na.m = {
 	},
 
     extend : function () {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         * BETTER, MORE RELIABLE!! : jQuery.extend()
+         */
 		var r = arguments[0];
 		for (var i = 1; i < arguments.length; i++) {
 			var a = arguments[i];
@@ -682,6 +730,11 @@ na.m = {
 
 */
     newEventChain : function (dt, rootEventData, displayStatusUpdates) {
+                /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
+
         // this returns a NicerApp WCS event chain, which may *include* HTML event data,
         // but which is also in total far more data than a single HTML event.
 
@@ -697,6 +750,10 @@ na.m = {
     },
 
     runFunctions : function (naEventsChain, updateEvent_returnValue) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         var functionsAdded = false;
         for (var eventID in updateEvent_returnValue) {
             var naEventData = updateEvent_returnValue[eventID];
@@ -736,11 +793,19 @@ na.m = {
     },
 
     updateEvent : function (dt, naNewEventData) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         return na.m.newEvent (dt, naNewEventData);
     },
 
     newEvent : function (dt, naEventData) { // dt is the date and time in dateObj and timeString format
         // this returns a NicerApp WCS event, not a HTML event.
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         var
         r = {},
         st = na.m.stacktrace();
@@ -793,6 +858,10 @@ na.m = {
     },
 
     newEventFunction : function (fnc, params) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         var r = {
             fnc : fnc
         };
@@ -802,6 +871,10 @@ na.m = {
     },
 
     continueRunningEvents : function (ec) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         var
         er = ec.events[0].root,
         r = false;
@@ -858,6 +931,10 @@ na.m = {
     },
 
     eventDescriptor : function (ec, eventIdx, eventID, fncIdx, f) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         //if (!f.fnc.name) debugger;
         var ts = (
             ec.events[0].root.dt.created
@@ -870,6 +947,10 @@ na.m = {
     },
 
     startEvent : function (ec, eventIdx, ev) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         var e = ec.events[eventIdx];
         for (var eventID in e) {
             var ev = e[eventID];
@@ -918,6 +999,10 @@ na.m = {
     },
 
     eventFunctionsCheck : function (ec, i, naEventData) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         if (naEventData && naEventData.newFunctions && !naEventData.functions) naEventData.functions = naEventData.newFunctions;
         if (naEventData && naEventData.functions && naEventData.functions.length) {
             for (var evIdx=0; evIdx < naEventData.functions.length; evIdx++) {
@@ -929,6 +1014,10 @@ na.m = {
     },
 
     endEvent : function (ec, eventIdx, p, f) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         debugger;
         f.runningNow = false;
         f.completed = true;
@@ -937,11 +1026,19 @@ na.m = {
     },
 
     closeEvent : function (ec, eventIdx, f) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         if (f && f.completed) f.runningNow = false;
         //na.m.eventChainCheck (ec);
     },
 
     eventChainCheck : function (ec) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         var
         numRootEvents = ec.events.length,
         numRootCompletedEvents = 0,
@@ -1074,6 +1171,10 @@ na.m = {
 
     closeEventChain : function (ec) {
         /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
+        /*
         var
         report = {
             plaintext : na.m.makePlaintextReportForEventChain (ec),
@@ -1085,6 +1186,10 @@ na.m = {
     },
 
     findEvent : function (ec, eventID) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         for (var evIdx=0; evIdx < ec.events.length; evIdx++) {
             var  ev = ec.events[evIdx];
 
@@ -1096,6 +1201,10 @@ na.m = {
     },
 
     makeEventsChain_theCurrentOne : function (lc, ec) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         var
         lcr = lc.recent,
         lcc = lc.current;
@@ -1130,6 +1239,10 @@ na.m = {
     },
 
     makePlaintextReportForEventChain : function (ec) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         var txt = '';
         for (var ecEventIdx=0; ecEventIdx < ec.events.length; ecEventIdx++) {
             var e = ec.events[ecEventIdx];
@@ -1157,6 +1270,10 @@ na.m = {
         return txt;
     },
     walkArray_makePlaintextReportFor_eventChainFunction__key : function(cd) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         if (typeof cd.v=='function') return false;
         if (typeof cd.v=='object' && cd.v!==null && typeof cd.v.length=='number') debugger;
         if (cd.v) {
@@ -1164,6 +1281,10 @@ na.m = {
         }
     },
     walkArray_makePlaintextReportFor_eventChainFunction__value : function (cd) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         if (typeof cd.v=='function') return false;
         if (typeof cd.v=='object' && cd.v!==null && typeof cd.v.length=='number') debugger;
         if (cd.v) {
@@ -1178,12 +1299,20 @@ na.m = {
     },
 
     findOne : function (haystack, arr) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         return arr.some(function (v) {
             return haystack.indexOf(v) >= 0;
         });
     },
 
     makeHTMLreportForEventChain : function (ec) {
+        /*
+         * LICENSE : https://opensource.org/license/mit
+         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
+         */
         for (var ecEventIdx=0; ecEventIdx < ec.events.length; ecEventIdx++) {
             var e = ec.events[ecEventIdx];
             for (var eventID in e) {

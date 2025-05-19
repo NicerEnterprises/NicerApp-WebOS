@@ -118,9 +118,9 @@ na.desktop = na.d = {
         document.removeEventListener('touchmove', na.desktop.gestureChange);
         document.addEventListener('touchmove', na.desktop.gestureChange, false);
         window.visualViewport.addEventListener("resize", na.desktop.gestureChange);
+        /*
         $('body').hammer().on('pinchin', '.vividDialog', na.desktop.gestureChange);
         $('body').hammer().on('pinchout', '.vividDialog', na.desktop.gestureChange);
-        /*
         na.site.settings.zingtouch = new ZingTouch.Region(document.body);
         na.site.settings.zingtouch.bind ($('#siteContent')[0], 'distance', na.desktop.gestureChange);
         */

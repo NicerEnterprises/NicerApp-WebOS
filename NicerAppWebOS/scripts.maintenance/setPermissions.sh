@@ -1,6 +1,7 @@
 #!/bin/bash
 
 myRoot=/var/www/nicer.app-5.8.z/nicer.app-5.8.0-alpha001c
+
 echo "START OF $myRoot/NicerAppWebOS/scripts.maintenance/setPermissions.sh"
 
 echo "INCLUDING $myRoot/NicerAppWebOS/scripts.maintenance/do_upgrade_globals_manufacturer.sh"

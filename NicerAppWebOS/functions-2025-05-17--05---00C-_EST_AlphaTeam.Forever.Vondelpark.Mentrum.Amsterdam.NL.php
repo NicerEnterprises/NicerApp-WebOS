@@ -6,6 +6,7 @@
 //use Defuse\Crypto\Key;
 //use Defuse\Crypto\Crypto;
 
+/*
 function timestampJSmodule ($js) {
     $js = timestampJSmodule1 ($js);
     $js = timestampJSmodule2 ($js);
@@ -69,6 +70,7 @@ function timestampJSmodule2 ($js) {
 
   return $js;
 }
+ -------*/
 
 global $toArray;
 $toArray = function($x) use(&$toArray) {
