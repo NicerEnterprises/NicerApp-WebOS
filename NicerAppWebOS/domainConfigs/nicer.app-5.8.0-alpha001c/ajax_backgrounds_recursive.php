@@ -1,6 +1,7 @@
 <?php 
-$rootPath_na = realpath(dirname(__FILE__).'/../../..');
-require_once ($rootPath_na.'/NicerAppWebOS/boot.php');
+$rpna = realpath(dirname(__FILE__).'/../../..');
+require_once ($rpna.'/NicerAppWebOS/boot.php');
+global $rootPath_na;
 set_time_limit (2 * 24 * 60 * 60); // 2 x 24 x 60 minutes max_execution_time for this script
 
 $cacheFilePath = realpath(dirname(__FILE__).'/../../..').'/NicerAppWebOS/siteCache';
@@ -8,15 +9,21 @@ $cacheFilePath = realpath(dirname(__FILE__).'/../../..').'/NicerAppWebOS/siteCac
 $cacheFile = $cacheFilePath.'/backgrounds_recursive.json';
 $lockFile = $cacheFilePath.'/backgrounds_recursive.LOCK.txt';
 global $naLAN;
-if ($naLAN) unlink ($cacheFile);//echo '<pre>';
+if (
+    $naLAN
+    && array_key_exists('rc', $_GET) // rc = re-calculate.
+    && $_GET['rc'] == 'true'
+) unlink ($cacheFile);//echo '<pre>';
 
 if (!file_exists($cacheFile)) {
     $mi = [];
 
     $root = $rootPath_na.'/NicerAppWebOS/siteMedia/backgrounds';
     global $naThisServer;
+    if (false) { var_dump (!file_exists($lockFile)); var_dump(!file_exists($cacheFile)); var_dump ($naLAN); };
     if (!file_exists($lockFile) && !file_exists($cacheFile) && $naLAN) {
         file_put_contents($lockFile, 'LOCKED');
+        echo 'RECALCULATING...<br/>';
         $f = getBackgrounds ($root, $rootPath_na, true, $naThisServer['phpServers'][0]['debug']['ajax_backgrounds_recursive.php']); // from .../NicerAppWebOS/function.php
     }
     $mi[] = [
