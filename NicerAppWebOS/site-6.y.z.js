@@ -286,10 +286,6 @@ na.site = {
     },
 
     loadContent : function (event, url, callback_phase1, callback_phase2) {
-        /*
-         * LICENSE : https://opensource.org/license/mit
-         * (C) Rene AJM Veerman <rene.veerman.netherlands@gmail.com>
-         */
         na.apps.mustHaveAtLeast_number = 0;
         na.site.settings.url = url;
         //if (na.site.globals.debug['na.site.loadContent']) alert (url);
@@ -506,6 +502,7 @@ na.site = {
 
                         eventData.reports.plaintext.push (msg);
 
+                        debugger;
                         na.site.loadContent_displayContent(xhr.responseText, textStatus, xhr);
                         return false;
                     };
@@ -523,8 +520,11 @@ na.site = {
                     na.site.ajaxFail(fncn, JSON.stringify(app), xhr, textStatus, errorThrown);
                 }
             };
+            debugger;
+
             ac.url = ac.url.replace('\/\/','/');
             $.ajax(ac);
+
             if (!url1.match(/\/view\//) && url1.indexOf('/')===0) {
                 na.analytics.logMetaEvent('na.site.loadContent() : url='+url1);
             } else {
@@ -636,7 +636,6 @@ na.site = {
         lcc.ec.events.push(naEventData);
         na.site.settings.running_loadTheme = true;
         na.site.settings.running_loadContent = true;
-
 
         na.m.runFunctions (lcc.ec, na.m.updateEvent (dt, {
             loadContent_displayContent : {
@@ -1861,11 +1860,13 @@ na.site = {
                 data : themeData,
                 success : function (data, ts, xhr) {
                     if (data.match('status : Failed')) {
-                        $('#siteLoginFailed').html('Could not save settings. Please login again.').fadeIn('normal', 'swing', function () {
+                        na.site.ajaxFail('na.saveTheme() : Could not save settings. Please login again.');
+        /*.fadeIn('normal', 'swing', function () {
                             setTimeout (function() {
                                 $('#siteLoginFailed').fadeOut('normal', 'swing');
                             }, 2 * 1000);
-                        });
+
+                        });*/
                         na.m.log (10, 'na.saveTheme() : FAILED.');
 
                     } else {

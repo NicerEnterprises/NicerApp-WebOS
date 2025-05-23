@@ -29,7 +29,31 @@
         if (!$naSettings_app2D_musicPlayer_respectDutchCopyright || $naLAN) {
     ?>
         <a href="<?php echo $naURLs['music'];?>" class="contentSectionTitle3_a"><h3 class="contentSectionTitle3"><span class="contentSectionTitle3_span">Music</span></h3></a>
-        <p style="padding:8px;color:070707;text-shadow:2px 2px 4px 3px rgba(0,0,0,0.75),0px 0px 5px 4px rgba(0,0,0,0.85);background:rgba(0,0,0,0.45);border-radius:5px;">If I don't respect Dutch Copyright Law for a while, or don't indefinitely until a fear generating situation somewhere, -anywhere-, in the world changes for the betterment of all in that region/locality or those regions/localities, then I'll explain myself as best I can right here (and visibly on the website as well, in future (post-2025-05-21) versions of this text.</p>
+        <div style="width:40%;margin:10px;padding:8px;color:070707;text-shadow:2px 2px 4px 3px rgba(0,0,0,0.75),0px 0px 5px 4px rgba(0,0,0,0.85);background:rgba(0,0,0,0.45);border-radius:5px;">
+        If I don't respect Copyright Law(s) for a while, or don't indefinitely until a fear generating situation somewhere, -anywhere-, in the world changes for the betterment of all in that region/locality or those regions/localities, then I'll explain myself as best I can right here; visibly on this website, and in future (post-2025-05-22) versions of this text as well.<br/>
+            <span style="margin:10px;">
+            <h3>Geopolitical Emergency #1: USMESSAGEBOARD.COM : The US Democrats and Republicans in league with eachother to destroy the world on behalf of US interests I think</h3>
+            <ul>
+                <li><a href="https://x.com/ReneVeerma64021/status/1925009356489109563" target="extLinkXdotCom-ReneVeerma64021-2a" class="nomod noPushState" style="color:white;">Problem Description, proposed solutions, taunting by trolls leading to real solution proposal (initiated and ended by yours truly, Rene AJM Veerman)</a></li>
+            </ul>
+            </span>
+
+            <span style="margin:10px;">
+            <h3>Geopolitical Emergency #2: Quality of Psychiatric care</h3>
+            <ul>
+                <li><a href="https://x.com/ReneVeerma64021/status/1925490227042263247" target="extLinkXdotCom-ReneVeerma64021-1a" class="nomod noPushState" style="color:white;">Patients to the world : Psychiatrists and their staff are all scum of the Earth!..</a></li>
+                <li><a href="https://x.com/ReneVeerma64021/status/1925498388373492185" target="extLinkXdotCom-ReneVeerma64021-1solution" class="nomod noPushState" style="color:white;">Rene AJM Veerman to the world : But they'll stop being that when they finally learn THIS trick! :-)</a></li>
+            </ul>
+            </span>
+
+            <!--
+            <h3>Geopolitical Emergency #N: ???</h3>
+            <ul>
+                <li><a href="" target="extLinkXdotCom-ReneVeerma64021-" class="nomod noPushState" style="color:white;"></a></li>
+                <li><a href="" target="extLinkXdotCom-ReneVeerma64021-" class="nomod noPushState" style="color:white;"></a></li>
+            </ul>
+            -->
+        </div>
     <?php } ?>
     
     <h3 id="h3_news" class="contentSectionTitle3 contentSectionTitle3_darker"><span class="contentSectionTitle3_span_darker">News</span></h3>
